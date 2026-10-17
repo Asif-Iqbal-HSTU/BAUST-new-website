@@ -1,0 +1,265 @@
+{
+    "department": {
+        "name": "Master of Business Administration (MBA) Program",
+        "short_name": "MBA",
+        "faculty": "Faculty of Business Studies (FBS)",
+        "tagline": "Modern Business Education for Tomorrow's Leaders",
+        "degree_name": "Master of Business Administration (MBA)",
+        "accreditation_badge": "UGC Approved",
+        "accreditation_title": "UGC and Government Approved",
+        "accreditation_text": "Master of Business Administration (MBA) program aims at providing modern and better education in business, preparing students as well-trained business professionals to meet the needs of the national and international business.",
+        "about": "Master of Business Administration (MBA) program aims at providing modern and better education in business, preparing students as well-trained business professionals to meet the needs of the national and international business. Through this program, students will develop their ability to understand necessary techniques for dealing with the economic, social, political and technological environment of the business organizations, especially quantitative techniques and communication skills. It also aims at developing students a wide appreciation of relevant subjects and of their importance in solving business problems. The undergraduate degree program maintains this extensive approach to business. There are formal final examinations in all courses and all activities carried out in the program are considered for overall assessment of students’ merit. A satisfactory record of class work will also be required at each stage for successful completion of BBA degree.",
+        "hod_name": "Md. Zaber Hossain",
+        "hod_designation": "Associate Professor & (MBA Program Coordinator)",
+        "hod_photo": "/images/departments/mba/head-md-zaber-hossain.jpeg",
+        "hod_message": "Master of Business Administration (MBA) program aims at providing modern and better education in business, preparing students as well-trained business professionals to meet the needs of the national and international business. Through this program, students will develop their ability to understand necessary techniques for dealing with the economic, social, political and technological environment of the business organizations, especially quantitative techniques and communication skills. It also aims at developing students a wide appreciation of relevant subjects and of their importance in solving business problems. The undergraduate degree program maintains this extensive approach to business. There are formal final examinations in all courses and all activities carried out in the program are considered for overall assessment of students’ merit. A satisfactory record of class work will also be required at each stage for successful completion of BBA degree."
+    },
+    "slides": [
+        {
+            "image": "/images/departments/mba/slider/slide1.jpg",
+            "title": "Industrial Tour"
+        },
+        {
+            "image": "/images/departments/mba/slider/slide2.jpg",
+            "title": "Seminar"
+        },
+        {
+            "image": "/images/departments/mba/slider/slide3.jpg",
+            "title": "Faculty Members with Hon’ble VC Sir"
+        },
+        {
+            "image": "/images/departments/mba/slider/slide4.jpg",
+            "title": "Faculty Members with Hon’ble VC & Professor Dr. Belayet Hossain"
+        },
+        {
+            "image": "/images/departments/mba/slider/slide5.jpg",
+            "title": "Hon’ble VC with Adjunct Faculty Professor Dr. Belayet Hossain"
+        },
+        {
+            "image": "/images/departments/mba/slider/slide6.jpg",
+            "title": "MBA program"
+        }
+    ],
+    "highlights": [
+        {
+            "icon": "GraduationCap",
+            "title": "Qualified Teacher",
+            "text": null
+        },
+        {
+            "icon": "Building2",
+            "title": "Modern Hall",
+            "text": null
+        },
+        {
+            "icon": "Globe",
+            "title": "Green Campus",
+            "text": null
+        }
+    ],
+    "curricula": [
+        {
+            "title": "MBA syllabus 2022 (OBE)",
+            "year": "2022",
+            "description": "Current Outcome-Based Education (OBE) curriculum for the MBA program.",
+            "highlights": null,
+            "file": "/files/departments/mba/curriculum/MBA-Syllabus-2022-obe.pdf",
+            "duration": null,
+            "credits": null,
+            "degree": "Master of Business Administration (MBA)"
+        },
+        {
+            "title": "MBA syllabus 2019 (Non-OBE)",
+            "year": "2019",
+            "description": "Earlier MBA curriculum (non-OBE).",
+            "highlights": null,
+            "file": "/files/departments/mba/curriculum/MBA-Syllabus-2019-non-obe.pdf",
+            "duration": null,
+            "credits": null,
+            "degree": "Master of Business Administration (MBA)"
+        }
+    ],
+    "notices": [
+        {
+            "wp_id": 2366,
+            "url": "https://baust.edu.bd/mba/mba-syllabus-2022-obe/",
+            "title": "MBA syllabus 2022 (OBE)",
+            "published_at": "2025-01-09 12:58:34",
+            "cats": [
+                "notice",
+                "news-events"
+            ],
+            "attachment": "/files/departments/mba/notices/2366.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2363,
+            "url": "https://baust.edu.bd/mba/mba-syllabus-2019-non-obe/",
+            "title": "MBA syllabus 2019 (Non-OBE)",
+            "published_at": "2025-01-09 12:57:25",
+            "cats": [
+                "notice",
+                "news-events"
+            ],
+            "attachment": "/files/departments/mba/notices/2363.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2359,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-final-examination-winter-2024/",
+            "title": "Publication of Results of MBA Final Examination Winter 2024",
+            "published_at": "2024-08-13 14:29:57",
+            "cats": [
+                "notice"
+            ],
+            "attachment": null,
+            "content": "<p>Publication of Results of MBA Final Examination Winter 2024</p>"
+        },
+        {
+            "wp_id": 2342,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-final-examination-winter-2023-with-internship/",
+            "title": "Publication of Results of MBA Final Examination Winter 2023 with Internship",
+            "published_at": "2023-11-21 14:02:16",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2342.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2337,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-final-examination-winter-2023/",
+            "title": "Publication of Results of MBA Final Examination Winter 2023",
+            "published_at": "2023-08-22 08:13:56",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2337.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2325,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-final-examination-summer-2022-internship/",
+            "title": "Publication of Results of MBA Final Examination Summer 2022-Internship",
+            "published_at": "2023-05-02 14:38:16",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2325.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2312,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-final-examination-summer-2022/",
+            "title": "Publication of Results of MBA Final Examination Summer 2022",
+            "published_at": "2022-12-29 14:25:58",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2312.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2308,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-programs/",
+            "title": "Publication of Results of MBA Programs",
+            "published_at": "2022-11-20 14:23:42",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2308.pdf",
+            "content": "<p><a href=\"https://baust.edu.bd/mba/wp-content/uploads/sites/23/2022/11/mba-11202022141741.pdf\">mba</a></p>"
+        },
+        {
+            "wp_id": 2305,
+            "url": "https://baust.edu.bd/mba/mba-summer-2022-exam-schedule/",
+            "title": "MBA SUMMER 2022 EXAM SCHEDULE",
+            "published_at": "2022-11-16 13:50:02",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2305.pdf",
+            "content": "<p><a href=\"https://baust.edu.bd/mba/wp-content/uploads/sites/23/2022/11/MBA-SUMMER-2022-EXAM-SCHEDULE-11162022112429.pdf\">MBA SUMMER 2022 EXAM SCHEDULE-11162022112429</p>\n<p></a></p>"
+        },
+        {
+            "wp_id": 2295,
+            "url": "https://baust.edu.bd/mba/academic-calendar-for-mba-program-summer-2022/",
+            "title": "Academic Calendar for MBA Program-Summer 2022",
+            "published_at": "2022-08-22 11:24:13",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2295.pdf",
+            "content": "<p><a href=\"https://baust.edu.bd/mba/wp-content/uploads/sites/23/2022/08/mba-academic-calender-08222022111511.pdf\">MBA academic calender-Summer Semester 2022</a></p>"
+        },
+        {
+            "wp_id": 2291,
+            "url": "https://baust.edu.bd/mba/publication-of-results-of-mba-final-examination-winter-2022/",
+            "title": "Publication of Results of MBA Final Examination Winter 2022",
+            "published_at": "2022-08-04 15:03:42",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2291.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2286,
+            "url": "https://baust.edu.bd/mba/results-of-mba-program-with-internship-summer-2021-final/",
+            "title": "Results OF MBA Program With Internship [SUMMER 2021 FINAL]",
+            "published_at": "2022-07-21 13:29:42",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2286.pdf",
+            "content": "<p><a href=\"https://baust.edu.bd/mba/wp-content/uploads/sites/23/2022/07/MBA-FINAL-SUMMER2021-07212022131146.pdf\">MBA FINAL SUMMER2021-07212022131146</a></p>"
+        },
+        {
+            "wp_id": 2279,
+            "url": "https://baust.edu.bd/mba/academic-calendar-for-mba-program/",
+            "title": "Academic Calendar for MBA Program",
+            "published_at": "2022-03-24 12:21:29",
+            "cats": [
+                "notice",
+                "news-events"
+            ],
+            "attachment": "/files/departments/mba/notices/2279.pdf",
+            "content": null
+        },
+        {
+            "wp_id": 2194,
+            "url": "https://baust.edu.bd/mba/faclulty-members-with-honble-vc-sir/",
+            "title": "Faclulty Members with Hon’ble VC Sir",
+            "published_at": "2021-11-04 16:46:06",
+            "cats": [
+                "notice",
+                "news-events"
+            ],
+            "attachment": null,
+            "content": null
+        },
+        {
+            "wp_id": 2191,
+            "url": "https://baust.edu.bd/mba/family-of-mba/",
+            "title": "Family of MBA",
+            "published_at": "2021-11-04 16:44:34",
+            "cats": [
+                "notice",
+                "news-events"
+            ],
+            "attachment": "/files/departments/mba/notices/2191.jpg",
+            "content": "<p>Master of Business Administration (MBA) program aims at providing modern and better education in business, preparing students as well-trained business professionals to meet the needs of the national and international business.</p>"
+        },
+        {
+            "wp_id": 2198,
+            "url": "https://baust.edu.bd/mba/results-of-mba-program-including-internship/",
+            "title": "Results of MBA Program including Internship",
+            "published_at": "2021-09-01 14:17:34",
+            "cats": [
+                "notice"
+            ],
+            "attachment": "/files/departments/mba/notices/2198.pdf",
+            "content": null
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+/.phpunit.cache
+/bootstrap/ssr
+/node_modules
+/public/build
+/public/hot
+/resources/js/actions
+/resources/js/routes
+/resources/js/wayfinder
+/storage/*.key
+/storage/pail
+/vendor
+.DS_Store
+.env
+.env.*
+!.env*.example
+.mcp.json
+.phpactor.json
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/auth.json
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+
+# Uploaded files. These live in the `app_storage` Docker volume on the server
+# and are moved between machines with tar/rsync, never through git (see
+# DEPLOY.md). On Windows `public/storage` is a real copy of storage/app/public
+# instead of the symlink `php artisan storage:link` creates.
+/public/storage
+
+# Database dumps and archives (real user data / secrets)
+*.sql
+*.sql.gz
+*.zip
+/vps-bundle/
+/composer-setup.php
+
+# Local tooling
+/.claude/settings.local.json
+/.claude/worktrees
+/tmp
+/scratch*.json
+/scratch/backup_*/
+
+# Scraper output and scratch material (not read by the app)
+/scraped_*.json
+/parsed_*.json
+/files to instruct/
+/Notices to upload/
+/EEE slider images/
+/image*.png
+/library.jpg
+/embed.html
+/oembed.json
+/msg.json
+/paragraphs.txt
+/privilege*.txt
+/vc_message_parsed.txt

@@ -1,0 +1,333 @@
+[
+    {
+        "order": 1,
+        "name": "Dr. Md. Shah Alam",
+        "designation": "Professor",
+        "profile_url": "https://baust.edu.bd/ais/employees/md-abaydur-rahman-pramanik-3/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2021/11/Dr.-Md.-Shah-Alam.jpg",
+        "phone": "01769662723 (Off)",
+        "email": "shahmdalam@yahoo.com",
+        "personal_email": "",
+        "education": [
+            "B.Com (Hons) in Accounting, M.Com in Accounting, PhD in Commerce"
+        ],
+        "areas_of_interest": [
+            "Project Planning and Investment"
+        ],
+        "experience": null,
+        "publications": null,
+        "research": "Financial Accounting",
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-dr-md-shah-alam.jpg"
+    },
+    {
+        "order": 2,
+        "name": "Rakibul Islam",
+        "designation": "Assistant Professor and Head",
+        "profile_url": "https://baust.edu.bd/ais/employees/rakibul-islam/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2021/11/Rakibulo-Islam_Head.jpg",
+        "phone": "+8801723913191",
+        "email": "headais@baust.edu.bd",
+        "personal_email": "rakibul@baust.edu.bd, rakibulhstu@gmail.com",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems (HSTU)"
+        ],
+        "areas_of_interest": [
+            "Environmental Accounting",
+            "Financial Statement Analysis and Reporting",
+            "Forensic Accounting Application"
+        ],
+        "experience": null,
+        "publications": null,
+        "research": "<p>Forensic Accounting Application, Financial Statement Analysis and Reporting, Environmental Accounting</p>",
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-rakibul-islam.jpg"
+    },
+    {
+        "order": 3,
+        "name": "Md. Azmir Sharif",
+        "designation": "Assistant Professor",
+        "profile_url": "https://baust.edu.bd/ais/employees/md-azmir-sharif/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2021/11/Azmir-Sharif.jpg",
+        "phone": "01878035636",
+        "email": "azmir@baust.edu.bd",
+        "personal_email": "",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems (HSTU)"
+        ],
+        "areas_of_interest": [
+            "Forensic accounting",
+            "Sustainability accounting"
+        ],
+        "experience": null,
+        "publications": null,
+        "research": "<p>Forensic accounting, Sustainability accounting.</p>",
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-md-azmir-sharif.jpg"
+    },
+    {
+        "order": 4,
+        "name": "Md. Hafizul Islam",
+        "designation": "Lecturer & Program Coordinator",
+        "profile_url": "https://baust.edu.bd/ais/employees/md-hafizul-islam/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2024/07/MHI1.jpg",
+        "phone": "01722268977",
+        "email": "hafizul013ais@baust.edu.bd",
+        "personal_email": "islamhafiz45@gmail.com",
+        "education": [
+            "BBA & MBA (Accounting and Information System), University of Barishal."
+        ],
+        "areas_of_interest": [
+            "Blockchain & AI",
+            "Emerging Technologies in Accounting",
+            "Environmental Accounting",
+            "Forensic accounting",
+            "Integrated Reporting",
+            "Islamic Finance"
+        ],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-md-hafizul-islam.jpg"
+    },
+    {
+        "order": 5,
+        "name": "Md. Saifur Rahman",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/md-saifur-rahman/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2025/03/Saifur-Rahman.jpg",
+        "phone": "+8801670521079",
+        "email": "saifur@baust.edu.bd",
+        "personal_email": "mdsaifurrahman079@gmail.com",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems, Noakhali Science and Technology University(NSTU)"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-md-saifur-rahman.jpg"
+    },
+    {
+        "order": 6,
+        "name": "Rezaul Karim",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/rezaul-karim/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2025/03/IMG_07832.jpg",
+        "phone": "+8801718061296; +8801571420501",
+        "email": "rezaul@baust.edu.bd",
+        "personal_email": "rezaulkarimhstu174@gmail.com",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems (HSTU)"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-rezaul-karim.jpg"
+    },
+    {
+        "order": 7,
+        "name": "Md. Kamrul Hassan Tuhin, ITP",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/md/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2025/08/IMG-20260726-WA0008.jpg",
+        "phone": "01690090415 (Personal)",
+        "email": "kamrultuhin@baust.edu.bd",
+        "personal_email": "",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems, Comilla University"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-md-kamrul-hassan-tuhin-itp.jpg"
+    },
+    {
+        "order": 8,
+        "name": "Munira Joynob Nur",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/munira-joynob-nur/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2025/08/Munira-2.jpg",
+        "phone": "01868310027 (Personal)",
+        "email": "munirajoynob27pabna@gmail.com",
+        "personal_email": "munirajoynob@baust.edu.bd",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems, Pabna University of Science and Technology (PUST)."
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-munira-joynob-nur.jpg"
+    },
+    {
+        "order": 9,
+        "name": "Suraia Akter",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/suraiya-akter/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2026/07/IMG_20260717_112525.jpg",
+        "phone": "+880 1758-300112",
+        "email": "suraiaakter58@gmail.com",
+        "personal_email": "",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems, JKKNIU"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": null
+    },
+    {
+        "order": 10,
+        "name": "Mst. Nurjahan Akter",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/mst-nurjahan-akter/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2026/07/IMG-20260720-WA0002.jpg",
+        "phone": "01762971410",
+        "email": "",
+        "personal_email": "",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems ,Jagannath University"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-mst-nurjahan-akter.jpg"
+    },
+    {
+        "order": 11,
+        "name": "Sanzida Begum",
+        "designation": "Assistant Professor",
+        "profile_url": "https://baust.edu.bd/ais/employees/sanzida-begum/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2021/11/SA-PHOTO-1.jpg",
+        "phone": "01740921632",
+        "email": "sanzidamunia@baust.edu.bd",
+        "personal_email": "",
+        "education": [
+            "BBA & MBA (Accounting & Information Systems), Noakhali Science & Technology University (NSTU)"
+        ],
+        "areas_of_interest": [
+            "Climate Reporting by Companies",
+            "Convergence of Accounting Standards"
+        ],
+        "experience": null,
+        "publications": null,
+        "research": "Convergence of Accounting Standards, Climate Reporting by Companies.",
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-sanzida-begum.jpg"
+    },
+    {
+        "order": 12,
+        "name": "Most. Mukta Khatun",
+        "designation": "Assistant Professor",
+        "profile_url": "https://baust.edu.bd/ais/employees/most-mukta-khatun/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2021/11/IMG_20240416_101804-scaled.jpg",
+        "phone": "01780261233, 01521477186",
+        "email": "mukta.khatun@baust.edu.bd",
+        "personal_email": "",
+        "education": [
+            "BBA & MBA (Accounting and Information System), Rajshahi University"
+        ],
+        "areas_of_interest": [
+            "Environmental Accounting",
+            "Forensic accounting",
+            "Modern technology and accounting"
+        ],
+        "experience": null,
+        "publications": null,
+        "research": "Modern technology and accounting, Environmental accounting, Forensic accounting.",
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-most-mukta-khatun.jpg"
+    },
+    {
+        "order": 13,
+        "name": "Md. Anarul Islam",
+        "designation": "Computer Operator",
+        "profile_url": "https://baust.edu.bd/ais/employees/md-anarul-islam/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2024/04/WhatsApp-Image-2024-04-04-at-12.53.07-PM-1.jpeg",
+        "phone": "01705902326",
+        "email": "anarulranasdp@gmail.com",
+        "personal_email": "",
+        "education": [
+            "BA (Hons), MA (Hons)"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-md-anarul-islam.jpg"
+    },
+    {
+        "order": 14,
+        "name": "Amena Akter",
+        "designation": "Lecturer",
+        "profile_url": "https://baust.edu.bd/ais/employees/amena-akter/",
+        "photo": "https://baust.edu.bd/ais/wp-content/uploads/sites/24/2025/08/amena-1.jpg",
+        "phone": "",
+        "email": "",
+        "personal_email": "",
+        "education": [
+            "BBA and MBA in Accounting & Information Systems, Comilla University"
+        ],
+        "areas_of_interest": [],
+        "experience": null,
+        "publications": null,
+        "research": null,
+        "achievements": null,
+        "seminars": null,
+        "training": null,
+        "others": null,
+        "local_photo": "/images/departments/ais/faculty/ais-amena-akter.jpg"
+    }
+]

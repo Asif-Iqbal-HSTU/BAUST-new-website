@@ -1,0 +1,868 @@
+[
+{
+"slug": "vc",
+"name": "Office of the Vice Chancellor",
+"members": [
+{
+"office": "vc",
+"name": "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
+"designation": "Vice Chancellor",
+"photo": "/images/offices/vc/1.jpeg",
+"tier": 1,
+"order": 1,
+"phone": null,
+"email": "vc@baust.edu.bd",
+"education": [
+"B.Sc. & M.Sc. in Mechanical Engineering (ME), BUET"
+]
+},
+{
+"office": "vc",
+"name": "Mohammad Shariful Islam Khan",
+"designation": "PS to Vice Chancellor",
+"photo": "/images/offices/vc/2.jpeg",
+"tier": 4,
+"order": 2,
+"phone": "01716889495",
+"email": "pstovc@baust.edu.bd",
+"education": [
+"MBA"
+]
+},
+{
+"office": "vc",
+"name": "Md. Zainal Abedin",
+"designation": "PA to Vice Chancellor",
+"photo": "/images/offices/vc/3.jpg",
+"tier": 4,
+"order": 3,
+"phone": "01966619555",
+"email": null,
+"education": []
+},
+{
+"office": "vc",
+"name": "Md. Taha Mia",
+"designation": "Runner for Vice Chancellor",
+"photo": "/images/offices/vc/4.jpeg",
+"tier": 4,
+"order": 4,
+"phone": "01753557134",
+"email": "taharanu32@gmail.com",
+"education": []
+}
+]
+},
+{
+"slug": "treasurer",
+"name": "Office of the Treasurer",
+"members": [
+{
+"office": "treasurer",
+"name": "Lt Col Md Shameem Reza, PhD (retd)",
+"designation": "Treasurer",
+"photo": "/images/offices/treasurer/1.jpeg",
+"tier": 1,
+"order": 1,
+"phone": null,
+"email": "treasurer@baust.edu.bd",
+"education": []
+},
+{
+"office": "treasurer",
+"name": "Ummay Saihun",
+"designation": "Acting Director (Finance)",
+"photo": "/images/offices/treasurer/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01769662697 (Off)",
+"email": "deputy_director.fa@baust.edu.bd",
+"education": [
+"MBA (Marketing), BBA (Marketing)"
+]
+},
+{
+"office": "treasurer",
+"name": "Bulbul Islam",
+"designation": "Accountant",
+"photo": "/images/offices/treasurer/3.jpg",
+"tier": 4,
+"order": 3,
+"phone": "01715499930",
+"email": "bulbulraselbd@gmail.com",
+"education": [
+"BBS (Hon's), MBS"
+]
+},
+{
+"office": "treasurer",
+"name": "Md Humaun Kabir",
+"designation": "Assistant Accountant",
+"photo": "/images/offices/treasurer/4.jpg",
+"tier": 4,
+"order": 4,
+"phone": "01721857397",
+"email": "humaunk748@gmail.com",
+"education": [
+"BA (Pass)"
+]
+},
+{
+"office": "treasurer",
+"name": "Sgt (Clk) Md Wahidur Nabi (Retd)",
+"designation": "Assistant Accountant",
+"photo": "/images/offices/treasurer/5.jpg",
+"tier": 4,
+"order": 5,
+"phone": "01914118295",
+"email": "wahidnabi1974@gmail.com",
+"education": []
+},
+{
+"office": "treasurer",
+"name": "Md Sheikh Shamimul Islam",
+"designation": "Cashier",
+"photo": "/images/offices/treasurer/6.jpg",
+"tier": 4,
+"order": 6,
+"phone": "01811399671",
+"email": "shamimshehan@gmail.com",
+"education": [
+"B Com"
+]
+},
+{
+"office": "treasurer",
+"name": "Md Shariful Islam",
+"designation": "Messenger",
+"photo": "/images/offices/treasurer/7.jpg",
+"tier": 4,
+"order": 7,
+"phone": "01723805692",
+"email": "sharifis1985@gmail.com",
+"education": []
+}
+]
+},
+{
+"slug": "controller-of-examination",
+"name": "Controller of Examination",
+"members": [
+{
+"office": "controller-of-examination",
+"name": "Lt Col Syed Salahuddin Nayan, SUP, BGBM, BGOM, psc, Inf",
+"designation": "Controller of Examinations",
+"photo": "/images/offices/controller-of-examination/1.jpg",
+"tier": 1,
+"order": 1,
+"phone": null,
+"email": "controller@baust.edu.bd",
+"education": [
+"MDS (Strategy), MSS (Criminology & Criminal Justice), DU, MSS(HR), JU"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "Muhammad Solaiman",
+"designation": "Deputy Controller of Examinations",
+"photo": "/images/offices/controller-of-examination/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01911368275",
+"email": "deputy_controller@baust.edu.bd",
+"education": [
+"B.A.(Hons), DU",
+"MBA (HRM), HSTU"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "S M Sayed Bin Shafi",
+"designation": "Assistant Controller of Examination",
+"photo": "/images/offices/controller-of-examination/3.jpeg",
+"tier": 4,
+"order": 3,
+"phone": "01722006998",
+"email": "sayed@baust.edu.bd",
+"education": [
+"Bachelor of Pharmacy and Master of Pharmacy (UODA)"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "Md. Nazrul Islam",
+"designation": "Section Officer",
+"photo": "/images/offices/controller-of-examination/4.jpg",
+"tier": 4,
+"order": 4,
+"phone": "01795741085",
+"email": "nazrulexam@baust.edu.bd",
+"education": [
+"BSS, MSS (Economics), MBA (Finance), BUBT"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "Md. Asif Hossain",
+"designation": "IT Officer (Controller of Examination)",
+"photo": "/images/offices/controller-of-examination/5.png",
+"tier": 4,
+"order": 5,
+"phone": "01719207069",
+"email": "asifhossain@baust.edu.bd",
+"education": [
+"B.Sc. (Engg) in CSE (BAUST), M.Sc. (Engg) in CSE (IU)"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "Guljar Hossan",
+"designation": "Assistant Officer",
+"photo": "/images/offices/controller-of-examination/6.jpeg",
+"tier": 4,
+"order": 6,
+"phone": null,
+"email": "udcbaust985@gmail.com",
+"education": [
+"BSS (Degree), EMSS (ISLM), Rajshahi University (Continue)"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "Md. Nabir Hossain",
+"designation": "Computer Operator",
+"photo": "/images/offices/controller-of-examination/7.jpg",
+"tier": 4,
+"order": 7,
+"phone": "01773828779",
+"email": "nabir664.nh@gmail.com",
+"education": [
+"BSS (Pass)"
+]
+},
+{
+"office": "controller-of-examination",
+"name": "Md. Atiqul Islam",
+"designation": "Dispatch Rider",
+"photo": "/images/offices/controller-of-examination/8.jpg",
+"tier": 4,
+"order": 8,
+"phone": "+8801982231823",
+"email": null,
+"education": []
+},
+{
+"office": "controller-of-examination",
+"name": "Md. Insanur Rahman",
+"designation": "Office Assistant",
+"photo": "/images/offices/controller-of-examination/9.jpeg",
+"tier": 4,
+"order": 9,
+"phone": "01721406008",
+"email": "registrar@baust.edu.bd",
+"education": [
+"B.S.S"
+]
+}
+]
+},
+{
+"slug": "ict-wing-archive",
+"name": "ICT Wing & Archive",
+"members": [
+{
+"office": "ict-wing-archive",
+"name": "Taher Muhammad Mahdee",
+"designation": "Director, ICT Wing & Archive ; Associate Professor (Dept. of CSE)",
+"photo": "/images/offices/ict-wing-archive/1.jpeg",
+"tier": 1,
+"order": 1,
+"phone": "01769662717 (Off), +8801717244737",
+"email": "mahdee@baust.edu.bd",
+"education": [
+"M.Sc. (Thesis), B.Sc. (Hons) in CSE"
+]
+},
+{
+"office": "ict-wing-archive",
+"name": "Md. Ruhulamin Siddique",
+"designation": "Assistant Software Engineer",
+"photo": "/images/offices/ict-wing-archive/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01780780785",
+"email": "ruhulamin@baust.edu.bd",
+"education": [
+"B.Sc. Engineering (RUET), M.Sc. Engineering in ICT (KUET)"
+]
+},
+{
+"office": "ict-wing-archive",
+"name": "Dhiraj Chandra Barman",
+"designation": "Assistant Server Security Engineer",
+"photo": "/images/offices/ict-wing-archive/3.jpeg",
+"tier": 4,
+"order": 3,
+"phone": "01735438839",
+"email": "dhiraj@baust.edu.bd",
+"education": [
+"B.Sc in Engineering in Electronic and Telecommunication Engineering (PUST)"
+]
+},
+{
+"office": "ict-wing-archive",
+"name": "Md. Alamgir Hoque",
+"designation": "Assistant Network Engineer",
+"photo": "/images/offices/ict-wing-archive/4.jpg",
+"tier": 4,
+"order": 4,
+"phone": "01716-460776",
+"email": "alamgir@baust.edu.bd",
+"education": [
+"B.Sc in Computer Science and Engineering Master of Business Administration (MBA)"
+]
+},
+{
+"office": "ict-wing-archive",
+"name": "Md. Asif Iqbal",
+"designation": "Assistant Software Engineer",
+"photo": "/images/offices/ict-wing-archive/5.jpeg",
+"tier": 4,
+"order": 5,
+"phone": "01725215111",
+"email": "asif.ase@baust.edu.bd",
+"education": [
+"B.Sc in Computer Science and Engineering"
+]
+},
+{
+"office": "ict-wing-archive",
+"name": "Md. Emon Mia",
+"designation": "IT Technician",
+"photo": "/images/offices/ict-wing-archive/6.jpg",
+"tier": 4,
+"order": 6,
+"phone": "01761863093",
+"email": "marufjahanemon@gamil.com",
+"education": [
+"BBS- National University"
+]
+},
+{
+"office": "ict-wing-archive",
+"name": "Maidul Islam",
+"designation": "IT Techinican",
+"photo": "/images/offices/ict-wing-archive/7.jpeg",
+"tier": 4,
+"order": 7,
+"phone": "01745635069",
+"email": "maidul.diu@gmail.com",
+"education": [
+"Diploma in Electronic Engineering"
+]
+}
+]
+},
+{
+"slug": "deans-of-faculties",
+"name": "Deans of Faculties",
+"members": [
+{
+"office": "deans-of-faculties",
+"name": "Brig Gen Mohammad Mobarak Hossain Majumder , psc",
+"designation": "Dean, Faculty of ECE",
+"photo": "/images/offices/deans-of-faculties/1.jpeg",
+"tier": 1,
+"order": 1,
+"phone": "01769675550",
+"email": "dean_ece@baust.edu.bd",
+"education": [
+"B.Sc. & M.Sc. in Mechanical Engineering (ME), BUET"
+]
+},
+{
+"office": "deans-of-faculties",
+"name": "Professor Dr. Md. Shah Alam",
+"designation": "Dean, Faculty of Business Studies",
+"photo": "/images/offices/deans-of-faculties/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01769662723",
+"email": "dean_bs@baust.edu.bd",
+"education": [
+"B.Com (Hons) in Accounting, M.Com in Accounting, PhD in Commerce"
+]
+},
+{
+"office": "deans-of-faculties",
+"name": "Professor Md. Jahurul Islam",
+"designation": "Professor & Dean, Faculty of Science & Humanities",
+"photo": "/images/offices/deans-of-faculties/3.jpg",
+"tier": 4,
+"order": 3,
+"phone": "01717142817",
+"email": "dean_sh@baust.edu.bd",
+"education": [
+"B.A. (Hons.), & M.A. in English, M. Phil"
+]
+},
+{
+"office": "deans-of-faculties",
+"name": "Prof. Dr. Imtiaz Ahmed Choudhury",
+"designation": "Professor (IPE) & Dean, Faculty of ME",
+"photo": "/images/offices/deans-of-faculties/4.jpg",
+"tier": 4,
+"order": 4,
+"phone": "+8801769675557 (Office) +8801726644025 (Personal)",
+"email": "dean_me@baust.edu.bd",
+"education": [
+"B.Sc Engg. (BUET), M.Eng. (AIT), M.Sc. (USA), Ph.D (Ireland)"
+]
+},
+{
+"office": "deans-of-faculties",
+"name": "Professor Dr. Md. Mahmudul Hasan",
+"designation": "Dean (In-Charge), Faculty of CE",
+"photo": "/images/offices/deans-of-faculties/5.png",
+"tier": 4,
+"order": 5,
+"phone": "01769-662720",
+"email": "dean_ce@baust.edu.bd",
+"education": [
+"B.Sc Engg.(Civil), KUET, M. Engg & PhD (Civil & Environmental Engg.) Ritsumeikan"
+]
+}
+]
+},
+{
+"slug": "proctors-office",
+"name": "Proctor's Office",
+"members": [
+{
+"office": "proctors-office",
+"name": "Md. Zaber Hossain",
+"designation": "Associate Professor",
+"photo": "/images/offices/proctors-office/1.jpeg",
+"tier": 1,
+"order": 1,
+"phone": "01769662706 (Official)",
+"email": "proctor@baust.edu.bd",
+"education": [
+"Proctor"
+]
+},
+{
+"office": "proctors-office",
+"name": "Md. Golam Shahariar",
+"designation": "Assistant Professor (English)",
+"photo": "/images/offices/proctors-office/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01773609216",
+"email": "shahariareng@baust.edu.bd",
+"education": [
+"Assistant Proctor"
+]
+},
+{
+"office": "proctors-office",
+"name": "Fatema Khatun",
+"designation": "Assistant Professor (Economics)",
+"photo": "/images/offices/proctors-office/3.jpg",
+"tier": 4,
+"order": 3,
+"phone": "01303124952",
+"email": "fatemadba@baust.edu.bd",
+"education": [
+"Assistant Proctor"
+]
+},
+{
+"office": "proctors-office",
+"name": "Abdullah Al Asif",
+"designation": "Lecturer (CSE)",
+"photo": "/images/offices/proctors-office/4.jpeg",
+"tier": 4,
+"order": 4,
+"phone": "01343132304",
+"email": "aasif@baust.edu.bd",
+"education": [
+"Assistant Proctor"
+]
+},
+{
+"office": "proctors-office",
+"name": "Md. Zakerul Islum",
+"designation": "Computer Operator",
+"photo": "/images/offices/proctors-office/5.jpeg",
+"tier": 4,
+"order": 5,
+"phone": null,
+"email": null,
+"education": []
+},
+{
+"office": "proctors-office",
+"name": "Mohammad Shakil Molla",
+"designation": "MLSS",
+"photo": "/images/offices/proctors-office/6.jpg",
+"tier": 4,
+"order": 6,
+"phone": null,
+"email": "registrar@baust.edu.bd",
+"education": []
+}
+]
+},
+{
+"slug": "asw",
+"name": "Office of the Adviser of Students' Welfare (ASW)",
+"members": [
+{
+"office": "asw",
+"name": "Rakibul Islam",
+"designation": "Assistant Professor & Head of the Dept.",
+"photo": "/images/offices/asw/1.jpg",
+"tier": 1,
+"order": 1,
+"phone": "01723913191",
+"email": "asw@baust.edu.bd",
+"education": [
+"Adviser of Students' Welfare (ASW)"
+]
+},
+{
+"office": "asw",
+"name": "Goutam Saha",
+"designation": "Assistant Professor,BBA",
+"photo": "/images/offices/asw/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01980389616",
+"email": "sahagoutamcou@baust.edu.bd",
+"education": [
+"Assistant Adviser of Students' Welfare (AASW)"
+]
+},
+{
+"office": "asw",
+"name": "Sifat Hossain",
+"designation": "Assistant Professor , EEE",
+"photo": "/images/offices/asw/3.jpg",
+"tier": 4,
+"order": 3,
+"phone": "01753685642",
+"email": "sifat@baust.edu.bd",
+"education": [
+"Assistant Adviser of Students’ Welfare (AASW)"
+]
+},
+{
+"office": "asw",
+"name": "Clerk",
+"designation": "",
+"photo": null,
+"tier": 4,
+"order": 4,
+"phone": null,
+"email": null,
+"education": [
+"Office of ASW"
+]
+},
+{
+"office": "asw",
+"name": "Supporting Staff",
+"designation": "",
+"photo": null,
+"tier": 4,
+"order": 5,
+"phone": null,
+"email": "registrar@baust.edu.bd",
+"education": [
+"Office of ASW"
+]
+}
+]
+},
+{
+"slug": "admission-office",
+"name": "Admission Office",
+"members": [
+{
+"office": "admission-office",
+"name": "Md. Kazi Nazmul Haque",
+"designation": "Deputy Registrar (Academic)",
+"photo": "/images/offices/admission-office/1.jpeg",
+"tier": 1,
+"order": 1,
+"phone": "01769675554",
+"email": "dr_academic@baust.edu.bd",
+"education": [
+"MSS (Pub Ad, IU), MBA, HRM, M.Phil, BRUR"
+]
+},
+{
+"office": "admission-office",
+"name": "Md. Shah Alam",
+"designation": "Information Officer",
+"photo": "/images/offices/admission-office/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01769-675588",
+"email": "info.officer@baust.edu.bd",
+"education": [
+"LLB(Hons.), LLM (International Law) University of Rajshahi"
+]
+},
+{
+"office": "admission-office",
+"name": "Syed Fokhrul Islam",
+"designation": "Computer Operator",
+"photo": "/images/offices/admission-office/3.jpeg",
+"tier": 4,
+"order": 3,
+"phone": "01737481689",
+"email": "fakrulislambaust@gmail.com",
+"education": [
+"B.S.S (Pass)"
+]
+},
+{
+"office": "admission-office",
+"name": "Md. Emdadul Haque",
+"designation": "Storeman",
+"photo": "/images/offices/admission-office/4.jpeg",
+"tier": 4,
+"order": 4,
+"phone": "01300129542",
+"email": "emdadul@gmail.com",
+"education": [
+"H.S.C"
+]
+},
+{
+"office": "admission-office",
+"name": "Most. Runa Parvin",
+"designation": "Messenger",
+"photo": "/images/offices/admission-office/5.jpeg",
+"tier": 4,
+"order": 5,
+"phone": "01724122021",
+"email": "m.runparvin@gmail.com",
+"education": [
+"B.S.S (Pass)"
+]
+},
+{
+"office": "admission-office",
+"name": "Md. Iqbal Mahmud",
+"designation": "Section Officer",
+"photo": "/images/offices/admission-office/6.jpeg",
+"tier": 4,
+"order": 6,
+"phone": "01884525807",
+"email": "iqbalmahmud.pr@gmail.com",
+"education": [
+"BSS (Hons), MSS, JU"
+]
+},
+{
+"office": "admission-office",
+"name": "Julfiker Ali",
+"designation": "Assistant Office Secretary",
+"photo": "/images/offices/admission-office/7.jpeg",
+"tier": 4,
+"order": 7,
+"phone": "01786-278922",
+"email": "julfiker@baust.edu.bd",
+"education": [
+"Masters (Kamil), Islamic Arabic University"
+]
+},
+{
+"office": "admission-office",
+"name": "Shaiid Sadakatul Bari",
+"designation": "Academic Support Supervisor",
+"photo": "/images/offices/admission-office/8.jpeg",
+"tier": 4,
+"order": 8,
+"phone": "01701655559",
+"email": "shaiidbari@gmail.com",
+"education": [
+"B.com (Hon's), National University"
+]
+},
+{
+"office": "admission-office",
+"name": "Mst. Rashida Begum",
+"designation": "Academic Support Assistant (ASA)",
+"photo": "/images/offices/admission-office/9.jpg",
+"tier": 4,
+"order": 9,
+"phone": "01785379849",
+"email": "brashida773@gmail.com",
+"education": [
+"BSS, National University"
+]
+}
+]
+},
+{
+"slug": "librarian",
+"name": "Office of the Librarian",
+"members": [
+{
+"office": "librarian",
+"name": "Professor Dr. S.M. Jahangir Alam",
+"designation": "Librarian (In Charge)",
+"photo": "/images/offices/librarian/1.jpg",
+"tier": 1,
+"order": 1,
+"phone": "01766128002",
+"email": "jahangir@baust.edu.bd",
+"education": [
+"Ph.D. (Doctor of Engineering",
+"Specialized in AI & Computer Vision)",
+"Xiamen Universityrld rank~300), China"
+]
+},
+{
+"office": "librarian",
+"name": "Md. Saiful Alom Milon",
+"designation": "Deputy Librarian",
+"photo": "/images/offices/librarian/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": "01769662699 (Off), 01992371721(Pers)",
+"email": "central_library@baust.edu.bd",
+"education": [
+"B.A. (Hons), DU, M.A. (Information Science & Library Management) , DU, M.Phil (Pursuing)"
+]
+},
+{
+"office": "librarian",
+"name": "Farhana Zesmin",
+"designation": "Cataloguer",
+"photo": "/images/offices/librarian/3.jpg",
+"tier": 4,
+"order": 3,
+"phone": "01920358465",
+"email": "zesmin91@gmail.com",
+"education": [
+"MA (Information Science & Library Management), DU"
+]
+},
+{
+"office": "librarian",
+"name": "Md. Abdullah Al Mamun",
+"designation": "Cataloguer",
+"photo": "/images/offices/librarian/4.jpeg",
+"tier": 4,
+"order": 4,
+"phone": "01919172075",
+"email": "mdabdullahal389@gmail.com",
+"education": [
+"MSS (Information Science & Library Management), RU"
+]
+},
+{
+"office": "librarian",
+"name": "Md. Morshed",
+"designation": "Book Sorter",
+"photo": "/images/offices/librarian/5.jpg",
+"tier": 4,
+"order": 5,
+"phone": "01733449414",
+"email": "morshedulmd602@gmail.com",
+"education": [
+"BSS (Pass)"
+]
+},
+{
+"office": "librarian",
+"name": "Md. Ramjan Ali",
+"designation": "Library Atendent",
+"photo": "/images/offices/librarian/6.jpeg",
+"tier": 4,
+"order": 6,
+"phone": "01986532682",
+"email": "registrar@baust.edu.bd",
+"education": [
+"S.S.C"
+]
+}
+]
+},
+{
+"slug": "complaint-committee",
+"name": "Complaint Committee",
+"members": [
+{
+"office": "complaint-committee",
+"name": "Mst. Rubina Aktar",
+"designation": "President of Complaint Committee",
+"photo": "/images/offices/complaint-committee/1.jpg",
+"tier": 1,
+"order": 1,
+"phone": "01751185796",
+"email": "hdeee@baust.edu.bd",
+"education": [
+"Associate Professor & Head, Dept. of EEE"
+]
+},
+{
+"office": "complaint-committee",
+"name": "Md. Abu Rayhan",
+"designation": "Member of Complaint Committee",
+"photo": "/images/offices/complaint-committee/2.jpg",
+"tier": 4,
+"order": 2,
+"phone": null,
+"email": null,
+"education": [
+"Assistant Professor, Dept. of Arts & Science"
+]
+},
+{
+"office": "complaint-committee",
+"name": "Ms. Bilkis Akter",
+"designation": "Member of Complaint Committee",
+"photo": "/images/offices/complaint-committee/3.png",
+"tier": 4,
+"order": 3,
+"phone": null,
+"email": null,
+"education": [
+"Asst. Professor (Statistics), Cant. Public School & College, Saidpur"
+]
+},
+{
+"office": "complaint-committee",
+"name": "Ms. Ferdousi Yeasmin",
+"designation": "Member of Complaint Committee",
+"photo": "/images/offices/complaint-committee/4.png",
+"tier": 4,
+"order": 4,
+"phone": null,
+"email": null,
+"education": [
+"Lecturer (Bangla) Cant. Public School & College, Saidpur"
+]
+},
+{
+"office": "complaint-committee",
+"name": "Lima Nasrin Eni",
+"designation": "Member Secretary of Complaint Committee",
+"photo": "/images/offices/complaint-committee/5.jpg",
+"tier": 4,
+"order": 5,
+"phone": null,
+"email": "registrar@baust.edu.bd",
+"education": [
+"Asst. Professor, Dept. of Business Administration"
+]
+}
+]
+}
+]

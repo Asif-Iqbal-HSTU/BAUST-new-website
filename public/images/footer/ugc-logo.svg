@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="294.08" height="443.77" version="1.1" viewBox="0 0 294.08 443.77" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <title>UGC Bangladesh Logo</title>
+ <g transform="translate(-.99239 -.18731)">
+  <g transform="translate(.70711 .09375)" fill-rule="evenodd" stroke-width="2.74">
+   <g fill="#38339a" stroke="#38329e">
+    <path d="m257.04 92.486v281.71a32.35 32.35 135 0 1-32.35 32.35h-154.74a32.35 32.35 45 0 1-32.35-32.35v-281.71h-35.814v314.06h-0.12891v3.9434a32 32 45 0 0 32 32h226.99a32.35 32.35 135 0 0 32.35-32.35v-3.5933h-0.13477v-314.06z" style="paint-order:fill markers stroke"/>
+    <path d="m91.492 92.486a32.35 32.35 0 0 0-32.352 32.35v216.15a32.35 32.35 0 0 0 32.352 32.35h111.67a32.35 32.35 0 0 0 32.35-32.35v-109.49h-64.193v27.5h28.379v60.043a18.625 18.625 0 0 1-18.625 18.625h-67.486a18.625 18.625 0 0 1-18.625-18.625v-172.26a18.625 18.625 0 0 1 18.625-18.625h67.486a18.625 18.625 0 0 1 18.625 18.625v44.34h35.814v-66.289a32.35 32.35 0 0 0-32.35-32.35z" style="paint-order:fill markers stroke"/>
+    <path d="m119.15 183.85v105.01a17.678 17.678 45 0 0 17.678 17.678h38.674v-24.281h-29.482v-91.799h29.482v-24.281h-38.674a17.678 17.678 135 0 0-17.678 17.678z" style="paint-order:fill markers stroke"/>
+   </g>
+   <path d="m117.4 18.88a34.422 34.422 0 0 1 46.933-12.924 34.422 34.422 0 0 1 12.925 46.933 34.422 34.422 0 0 1-46.933 12.926 34.422 34.422 0 0 1-12.927-46.933" fill="#e82023" stroke="#e82023" style="paint-order:fill markers stroke"/>
+  </g>
+ </g>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:title>UGC Bangladesh Logo</dc:title>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+</svg>

@@ -1,0 +1,326 @@
+[
+{
+"name": "Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (Retd)",
+"designation": "Registrar (BAUST)",
+"photo": "/images/Office of the registrar/REG01.jpeg",
+"phone": "01769675551(Office)",
+"email": "registrar@baust.edu.bd (Office)",
+"education": [],
+"office": "registrar",
+"tier": 1,
+"order": 1
+},
+{
+"name": "Major Nasim Hossain, Inf (Retd)",
+"designation": "Additional Registrar (In-Charge)",
+"photo": "/images/Office of the registrar/REG02.jpg",
+"phone": "01769675579",
+"email": "addl_registrar@baust.edu.bd (Official)\nnasimhossain3260@gmail.com (Personal)",
+"education": [
+"MBA (HR)"
+],
+"office": "registrar",
+"tier": 2,
+"order": 2
+},
+{
+"name": "Md. Atiqur Rahman",
+"designation": "Additional Director (HR)",
+"photo": "/images/Office of the registrar/REG03.jpeg",
+"phone": "01711573041",
+"email": "atiq1972@yahoo.com",
+"education": [
+"LL.B (Hons), LL.M"
+],
+"office": "registrar",
+"tier": 3,
+"order": 3
+},
+{
+"name": "Md. Kazi Nazmul Haque",
+"designation": "Deputy Registrar (Academic)",
+"photo": "/images/Office of the registrar/REG04.jpeg",
+"phone": "01769675554",
+"email": "dr_academic@baust.edu.bd\nkazibaust@gmail.com",
+"education": [
+"BSS (Hons), MSS (Public Administration), Islamic University, MBA (HRM), Ph.D. (On going), BRUR"
+],
+"office": "registrar",
+"tier": 3,
+"order": 4
+},
+{
+"name": "Md. Rustom Ali",
+"designation": "Deputy Registrar, (Admin)",
+"photo": "/images/Office of the registrar/REG05.jpg",
+"phone": "01714229643, 01769675559",
+"email": "deputy_registrar@baust.edu.bd (Official)\nrustomdu87@gmail.com (Personal)",
+"education": [
+"BSS (Hons), MSS, DU"
+],
+"office": "registrar",
+"tier": 3,
+"order": 5
+},
+{
+"name": "Mohammad Shariful Islam Khan",
+"designation": "Assistant Registrar (Procurement)",
+"photo": "/images/Office of the registrar/REG25.jpeg",
+"phone": "",
+"email": "",
+"education": [],
+"office": "registrar",
+"tier": 4,
+"order": 6
+},
+{
+"name": "Fowzia Jahan",
+"designation": "Medical Officer",
+"photo": "/images/Office of the registrar/REG06.jpg",
+"phone": "01717415380",
+"email": "fowzia39th@gmail.com",
+"education": [
+"MBBS, DMUD"
+],
+"office": "registrar",
+"tier": 4,
+"order": 7
+},
+{
+"name": "Md. Shah Alam",
+"designation": "Information Officer",
+"photo": "/images/Office of the registrar/REG07.jpg",
+"phone": "01769-675588",
+"email": "info.officer@baust.edu.bd",
+"education": [
+"LLB(Hons.), LLM (International Law) University of Rajshahi"
+],
+"office": "registrar",
+"tier": 4,
+"order": 8
+},
+{
+"name": "Md. Iqbal Mahmud",
+"designation": "Section Officer",
+"photo": "/images/Office of the registrar/REG08.jpeg",
+"phone": "01884525807",
+"email": "iqbalmahmud.pr@gmail.com\niqbal.so@baust.edu.bd",
+"education": [
+"BSS (Hons), MSS, JU"
+],
+"office": "registrar",
+"tier": 4,
+"order": 9
+},
+{
+"name": "Sabrina Sultana Sinthi",
+"designation": "Section Officer (Psychologist)",
+"photo": "/images/Office of the registrar/REG26.jpeg",
+"phone": "",
+"email": "",
+"education": [],
+"office": "registrar",
+"tier": 4,
+"order": 10
+},
+{
+"name": "Kazi Md. Ahsanuzzaman",
+"designation": "Office Supervisor",
+"photo": "/images/Office of the registrar/REG09.jpg",
+"phone": "+8801779410456",
+"email": "ahsanzaman28@gmail.com",
+"education": [
+"B. Pharm (Honâs)- State University of Bangladesh"
+],
+"office": "registrar",
+"tier": 4,
+"order": 11
+},
+{
+"name": "Al Mohid",
+"designation": "PA to Registrar",
+"photo": "/images/Office of the registrar/REG10.jpg",
+"phone": "+8801758855949",
+"email": "mohidudcbaust@yahoo.com",
+"education": [
+"B.Com- National University"
+],
+"office": "registrar",
+"tier": 4,
+"order": 12
+},
+{
+"name": "Sgt BM Rafiqul Islam (Retd)",
+"designation": "Senior Office Assistant",
+"photo": "/images/Office of the registrar/REG11.jpg",
+"phone": "+8801712353981",
+"email": "bmrafique.baust.sdp@gmail.com",
+"education": [],
+"office": "registrar",
+"tier": 4,
+"order": 13
+},
+{
+"name": "Miraz Hossain",
+"designation": "Sub Assistant Engineer",
+"photo": "/images/Office of the registrar/REG12.jpeg",
+"phone": "01306769300",
+"email": "mirajhossain01306769300@gmail.com",
+"education": [
+"Diploma In Civil Engineering"
+],
+"office": "registrar",
+"tier": 4,
+"order": 14
+},
+{
+"name": "Shaiid Md. Sadakatul Bari",
+"designation": "Academic Support Supervisor",
+"photo": "/images/Office of the registrar/REG13.jpeg",
+"phone": "+8801701655559",
+"email": "shaiidbari@gmail.com",
+"education": [
+"B.com (Honâs)- National University"
+],
+"office": "registrar",
+"tier": 4,
+"order": 15
+},
+{
+"name": "Md. Abu Toiab",
+"designation": "Computer Operator",
+"photo": "/images/Office of the registrar/REG14.jpg",
+"phone": "+8801710139371",
+"email": "abutoiab1993@gmail.com",
+"education": [
+"BA (Fazil)- Islamic University, Kushtia"
+],
+"office": "registrar",
+"tier": 4,
+"order": 16
+},
+{
+"name": "Sgt Md. Mozaffor Hossain (Retd)",
+"designation": "Medical Assistant",
+"photo": "/images/Office of the registrar/REG15.jpg",
+"phone": "+8801712645975",
+"email": "mujafforscc@gmail.com",
+"education": [
+"Diploma in nursing 4 Years"
+],
+"office": "registrar",
+"tier": 4,
+"order": 17
+},
+{
+"name": "Halima Khatun Shuravi",
+"designation": "Nurse (Medical centre)",
+"photo": "/images/Office of the registrar/REG16.jpeg",
+"phone": "01755-249857",
+"email": "halimasurovi956@gmail.com",
+"education": [
+"B. Sc in Nursing"
+],
+"office": "registrar",
+"tier": 4,
+"order": 18
+},
+{
+"name": "Sgt Md. Abdul Hamid (Retd)",
+"designation": "Security Supervisor",
+"photo": "/images/Office of the registrar/REG17.jpg",
+"phone": "01740356249",
+"email": "",
+"education": [],
+"office": "registrar",
+"tier": 4,
+"order": 19
+},
+{
+"name": "Razia Sumi",
+"designation": "Computer Operator",
+"photo": "/images/Office of the registrar/REG18.jpg",
+"phone": "+8801950690433",
+"email": "raziasumi61@gmail.com",
+"education": [
+"BBS- National University"
+],
+"office": "registrar",
+"tier": 4,
+"order": 20
+},
+{
+"name": "Md. Arif Hossain",
+"designation": "Office Assistant",
+"photo": "/images/Office of the registrar/REG19.jpg",
+"phone": "01775030600",
+"email": "arifhossainsdp1@gmail.com",
+"education": [
+"Masters of Business Studies"
+],
+"office": "registrar",
+"tier": 4,
+"order": 21
+},
+{
+"name": "Mst. Rashida Begum",
+"designation": "Academic Support Assistant (ASA)",
+"photo": "/images/Office of the registrar/REG20.jpg",
+"phone": "+8801785379849",
+"email": "brashida773@gmail.com",
+"education": [
+"BSS- National University"
+],
+"office": "registrar",
+"tier": 4,
+"order": 22
+},
+{
+"name": "Md. Noman",
+"designation": "Electrician",
+"photo": "/images/Office of the registrar/REG21.jpg",
+"phone": "01724949900",
+"email": "",
+"education": [],
+"office": "registrar",
+"tier": 4,
+"order": 23
+},
+{
+"name": "Md. Omar Faruk",
+"designation": "Storeman",
+"photo": "/images/Office of the registrar/REG22.jpg",
+"phone": "01303895114",
+"email": "omarfaruk.baust@gmail.com",
+"education": [
+"H.S.C"
+],
+"office": "registrar",
+"tier": 4,
+"order": 24
+},
+{
+"name": "Md.Taleb",
+"designation": "Book Sorter",
+"photo": "/images/Office of the registrar/REG23.jpeg",
+"phone": "01723684844",
+"email": "talebbaust@gmail.com",
+"education": [
+"H.S.C"
+],
+"office": "registrar",
+"tier": 4,
+"order": 25
+},
+{
+"name": "Md.Nazmul",
+"designation": "Carpenter",
+"photo": "/images/Office of the registrar/REG24.jpg",
+"phone": "01729-888609",
+"email": "nazmulislam9198@gmail.com",
+"education": [],
+"office": "registrar",
+"tier": 4,
+"order": 26
+}
+]

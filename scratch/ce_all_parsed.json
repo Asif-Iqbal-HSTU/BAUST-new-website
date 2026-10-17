@@ -1,0 +1,350 @@
+{
+  "publications": [
+    {
+      "type": "Journal Paper",
+      "citation": "Md. Shafiquzzaman, Md. Mahmudul Hasan , Husnain Haider, Quazi Hamidul Bari, Yassine EL-Ghoul, Jun Nakajima (2022). Arsenic removal by household-based ceramic filters: Evaluating mode of operations and influence of groundwater compositions. Journal of Water Process Engineering 46 (2022) 102598. (Elsevier Publication)",
+      "link": "https://www.sciencedirect.com/science/article/abs/pii/S2214714422000411"
+    },
+    {
+      "type": "Journal Paper",
+      "citation": "Md. Shafiquzzaman, A.K.M. Ashadullah, Husnain Haider, Md. Mahmudul Hasan , Mohammad Shafiul Azam, Mohammad T. Alresheedi, Saleem S. AlSaleem and A. R. Ghumman (2021). Assessment of biomass production and greywater treatment capability of algal-based membrane bioreactor. International Journal of Environmental Science and Technology, 10.1007. (Springer-Verlag GmbH Germany, part of Springer Nature 2020)",
+      "link": "https://link.springer.com/article/10.1007/s13762-021-03678-4"
+    },
+    {
+      "type": "Journal Paper",
+      "citation": "Md. Mahmudul Hasan , Md. Asaduzzaman Pial, M. Shahriar Arafat, Md Jihad Miah and M. Shamim Miah (2022). Influence of raw greywater on compressive strength of concrete. Magazine of Civil Engineering, 100 (8), 10010. (St. Petersburg, Russian Federation) DOI:10.18720/MCE.100.10",
+      "link": "https://www.researchgate.net/publication/349533786_Influence_of_raw_greywater_on_compressive_strength_of_concrete"
+    },
+    {
+      "type": "Journal Paper",
+      "citation": "Mir Abdul Kuddus, Md. Izharul Haque Azad (2017). Laboratory Investigation on Performance of Strengthening Techniques of RCC Beam. American Journal of Civil Engineering and Architecture,5(1), pp 25-28. doi:10.12691/ajcea-5-1-4",
+      "link": "http://pubs.sciepub.com/ajcea/5/1/4/index.html#Cor"
+    },
+    {
+      "type": "Journal Paper",
+      "citation": "Md. Mahmudul Hasan , Koushik Basak and Kazi Rayhan (2018). Roadside urination and public sanitation facilities in Dhaka, Bangladesh. Journal of Advanced Civil Engineering Practice and Research.",
+      "link": "https://www.researchgate.net/publication/330349442_Roadside_urination_and_public_sanitation_facilities_in_Dhaka_Bangladesh#fullTextFileContent"
+    },
+    {
+      "type": "Journal Paper",
+      "citation": "Md. Mahmudur Rahman, Md. Mahmudul Hasan and Jun Nakajima (2015). Categories and water quality of artificial water storage ponds in rural areas of Khulna, Bangladesh. Journal of Water and Environment Technology , Vol.13, No.6.",
+      "link": "https://www.researchgate.net/publication/283556233_Categories_and_Water_Quality_of_Artificial_Water_Storage_Ponds_in_Rural_Areas_of_Khulna_Bangladesh"
+    },
+    {
+      "type": "Conference Paper",
+      "citation": "Md. Izharul Haque Azad , Abu Saif Md. Nasim Uddin (2022).Experimental Study on The Effect of Incorporating Marble Dust As a Substitute of Sand in Concrete. Proceedings of the 6th International Conference on Civil Engineering for Sustainable Development (ICCESD 2022), 10~12 February 2022, KUET, Khulna, Bangladesh (ISBN- 978-984-35-1972-6)",
+      "link": "http://iccesd.com/proc_2022/Papers/STE-01166.pdf"
+    },
+    {
+      "type": "Conference Paper",
+      "citation": "Md Fazzle Rabby , S.K. Adhikary (2022).Uncertainty Based Assessment of Drought Using Standardized Precipitation Index-A Case Study. 6th International Conference on Advances in Civil Engineering (ICACE-2022) 21-23 December 2022 CUET, Chattogram, Bangladesh",
+      "link": "https://www.kuet.ac.bd/webportal/ppmv2/uploads/1673708849Rabby%20and%20Sajal-ICACE-2022.pdf"
+    },
+    {
+      "type": "Conference Paper",
+      "citation": "Armana Sabiha Huq, Md. Sadman Islam , Kamol Debnath Dip, Md Chana Ullah (2021). An iRAP Based Risk Impact Analysis at National Highway-1 for a Proposed Route Connecting Coastal Areas of Bangladesh. 18th IRF World Meeting &amp; Exhibition November 7-10, 2021 \u2013 Dubai, UAE",
+      "link": "https://www.researchgate.net/publication/356584910_An_iRAP_Based_Risk_Impact_Analysis_at_National_Highway-1_for_a_Proposed_Route_Connecting_Coastal_Areas_of_Bangladesh"
+    },
+    {
+      "type": "Conference Paper",
+      "citation": "M. F. Rabby &amp; S. K. Adhikary (2024). Uncertainty Based Assessment of Drought Using Standardized Precipitation Index-A Case Study. Proceedings of the 6th International Conference on Advances in Civil Engineering",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-99-3826-1_10"
+    }
+  ],
+  "theses": [
+    {
+      "sl": "1",
+      "title": "Solid Waste Quantification and Characterization in a University Campus and Recommendations for Sustainable Management: A Case Study of BAUST, Saidpur, Bangladesh",
+      "students": "Md. Arnob Karim Urnisha Roy Chowdhury",
+      "student_ids": "200105013 200105021",
+      "supervisor": "Dr.Md. Mahmudul Hasan",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/DMH.pdf"
+    },
+    {
+      "sl": "2",
+      "title": "Experimental Investigation on the Feasibility Study of Using Steel Fiber in Concrete",
+      "students": "Rahat Ali Md. Abu Helal",
+      "student_ids": "200105009 200105023",
+      "supervisor": "Md. Izharul Haque Azad",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/IHA_ID_20010500923.pdf"
+    },
+    {
+      "sl": "3",
+      "title": "Lab Assessment on the Mechanical Properties of Concrete with the Partial Replacement of Natural Fine Aggregate with Brick Dust",
+      "students": "Jarin Tasmin Tisha Md. Abdul Malek",
+      "student_ids": "200105001 200105016",
+      "supervisor": "Md. Izharul Haque Azad",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/IHA_ID_20010500116.pdf"
+    },
+    {
+      "sl": "4",
+      "title": "Experimental Investigation on the Effect of Jute Fiber on the Mechanical Properties of Concrete",
+      "students": "Md Abrar Jahin Tonu",
+      "student_ids": "200105017",
+      "supervisor": "Kh. Shihab Uddin Ahmed",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/KSA_ID_200105017.pdf"
+    },
+    {
+      "sl": "5",
+      "title": "Experimental Investigation on the Study on Behavior of the Natural Fiber (Jute) Reinforced Concrete",
+      "students": "Most. Tasrin Akter Rozi",
+      "student_ids": "200105006",
+      "supervisor": "Kh. Shihab Uddin Ahmed",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/KSA_ID_200105006.pdf"
+    },
+    {
+      "sl": "6",
+      "title": "Traffic Conditions (Situation, Congestion/Problem, and Recommendation) at Specific Sites in Rangpur City Corporation Area, Bangladesh",
+      "students": "Abu Syied Hasan Utsho SheikhKhoshruzzaman Arpita Deb Roy",
+      "student_ids": "200105010 200105012 200105015",
+      "supervisor": "Md. Faysal Kabir",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/MFK.pdf"
+    },
+    {
+      "sl": "7",
+      "title": "A Study to Understand the Travel, Behavioral Pattern of Commuters with Economic Downturn and Inflation in Bangladesh",
+      "students": "Zubair Reaz Saumake Ghosh Sehanur Rahman",
+      "student_ids": "200105014 200105018 200105022",
+      "supervisor": "Ahasanul Haque Hashib",
+      "pdf_link": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/03/AH.pdf"
+    },
+    {
+      "sl": "&#8211;",
+      "title": "&#8211;",
+      "students": "&#8211;",
+      "student_ids": "&#8211;",
+      "supervisor": "&#8211;",
+      "pdf_link": null
+    }
+  ],
+  "voice": {
+    "title": "The Civil Engineering Journey \u2014 Student Perspective",
+    "author": "Abu Helal",
+    "student_id": "200105023",
+    "batch": "Student of 1st Batch, CE, BAUST",
+    "image": "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/411534913_716464300512745_1030433681170754741_n.jpg",
+    "profile_link": "https://www.facebook.com/abu.helal.75286",
+    "reflection": "A vibrant reflection on academic growth, engineering ethics, hands-on survey camps, and building lasting camaraderie at the Department of Civil Engineering, BAUST Saidpur."
+  },
+  "job_holders": [
+    {
+      "sl": "1",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Urnisha Roy Chowdhury",
+      "position": "BOQ Coordinator, Maam International"
+    },
+    {
+      "sl": "2",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Md. Abu Syied Hasan Utsho",
+      "position": "Engineer, Environment and Infrastructure Management Solution (EIMS) Limited"
+    },
+    {
+      "sl": "3",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Arpita Deb Roy",
+      "position": "Assistant Engineer, The Contractors"
+    },
+    {
+      "sl": "4",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Md. Arnob Karim",
+      "position": "Assistant Engineer, Abdul Monem Limited"
+    },
+    {
+      "sl": "5",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Md Abrar Jahin Tonu",
+      "position": "Project Engineer, Idris Holding Ltd."
+    },
+    {
+      "sl": "6",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Rahat Ali",
+      "position": "Structural Engineer, ACI Building Design &amp; Construction"
+    },
+    {
+      "sl": "7",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Jarin Tasmin Tisha",
+      "position": ""
+    },
+    {
+      "sl": "8",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Saumake ghosh",
+      "position": "Remote Job, Success IT"
+    },
+    {
+      "sl": "9",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Md. Sehanur Rahman",
+      "position": ""
+    },
+    {
+      "sl": "10",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Md Waqar Ahmed Imteaz",
+      "position": "Business, Unique Group"
+    },
+    {
+      "sl": "11",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Md. Rockybul Islam",
+      "position": "Assistant Engineer, Luxury Asset Development Ltd, Narayanganj,Dhaka"
+    },
+    {
+      "sl": "12",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Md. Naimul Islam",
+      "position": "Site Engineer, The Engineers\u00a0 Builders"
+    },
+    {
+      "sl": "13",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Md. Washim Akram",
+      "position": ""
+    },
+    {
+      "sl": "14",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Md. Sayedur Rahman Mahin",
+      "position": "Civil Engineer ( BIWTA, Kanchpur Project), SS Rahman Group"
+    },
+    {
+      "sl": "15",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Md Robiul Alam Rimon",
+      "position": "Ecommerce Mentor, Gardenage LLC"
+    },
+    {
+      "sl": "16",
+      "batch": "11th",
+      "year": "2024",
+      "name": "Ahmadullah Hossain Raihan",
+      "position": "Executive Engineer, S. A. Traders"
+    }
+  ],
+  "higher_studies": [
+    {
+      "sl": "1",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Md. Abu Helal",
+      "institution": "MSc in Civil Engineering, Khulna University of Engineering &amp; Technology (KUET)"
+    },
+    {
+      "sl": "2",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Zubair Reaz",
+      "institution": "MSc in Civil Engineering, Ahsanullah University of Science and Technology"
+    },
+    {
+      "sl": "3",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Md. Abdul Malek",
+      "institution": "MSc in Civil Engineering, Khulna University of Engineering &amp; Technology (KUET)"
+    },
+    {
+      "sl": "4",
+      "batch": "10th",
+      "year": "2024",
+      "name": "Sheikh Khoshruzzaman",
+      "institution": "Master of Business Administration (MBA), University of Wales Trinity Saint David, London"
+    }
+  ],
+  "assoc_committee": [
+    {
+      "designation": "President",
+      "name": "Md. Abu Helal",
+      "contact": "01795748743"
+    },
+    {
+      "designation": "Coordinator &amp; Treasurer",
+      "name": "Zubair Reaz",
+      "contact": "01774516589"
+    },
+    {
+      "designation": "Vice President, Liaison &amp; Public Relations",
+      "name": "Urnisha Roy Chowdhury",
+      "contact": "01792929263"
+    },
+    {
+      "designation": "Vice President, Research &amp; Development",
+      "name": "Md. Abdul Malek",
+      "contact": "01837691013"
+    },
+    {
+      "designation": "Vice President, Member Relation",
+      "name": "Rifat Ara",
+      "contact": "01797734845"
+    },
+    {
+      "designation": "Secretary General",
+      "name": "Md. Waqar Ahmed Imteaz",
+      "contact": "01974604857"
+    },
+    {
+      "designation": "Secretary, Project Management",
+      "name": "Amit Sharma",
+      "contact": ""
+    },
+    {
+      "designation": "Secretary, Publication &amp; Communication",
+      "name": "Md. Sayedur Rahman Mahin",
+      "contact": "01623455479"
+    },
+    {
+      "designation": "Joint Secretary General",
+      "name": "Md. Abu Syied Hasan",
+      "contact": "01319998499"
+    },
+    {
+      "designation": "Secretary, Finance",
+      "name": "Arpita Deb Roy",
+      "contact": "01777293767"
+    },
+    {
+      "designation": "Members of executive committee",
+      "name": "Sheikh Khoshruzzaman",
+      "contact": "+4407387912690"
+    },
+    {
+      "designation": "Members of executive committee",
+      "name": "Md. Arnob Karim",
+      "contact": "01098727325"
+    },
+    {
+      "designation": "Members of executive committee",
+      "name": "Md Abrar Jahin Tonu",
+      "contact": "01954411860"
+    },
+    {
+      "designation": "Members of executive committee",
+      "name": "Rahat Ali",
+      "contact": "01734160376"
+    },
+    {
+      "designation": "Members of executive committee",
+      "name": "Saumake ghosh",
+      "contact": "01772478449"
+    }
+  ]
+}

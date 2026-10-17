@@ -1,0 +1,886 @@
+{
+ "dba": [
+  {
+   "name": "Dr. Md. Shah Alam",
+   "designation": "Professor",
+   "photo": "/images/departments/dba/faculty/dba-dr-md-shah-alam.jpg",
+   "email": "shahmdalam@yahoo.com",
+   "phone": "+8801714425307",
+   "education": [
+    "B.Com (Hons) in Accounting, M.Com in Accounting, PhD in Commerce"
+   ]
+  },
+  {
+   "name": "Dr. Md. Anowar Hossain",
+   "designation": "Associate Professor & Head of the Dept.",
+   "photo": "/images/departments/dba/faculty/dba-dr-md-anowar-hossain.jpg",
+   "email": "headbba@baust.edu.bd",
+   "phone": "+8801769675568",
+   "education": [
+    "BBA & MBA (Finance & Banking), RU PhD, RU"
+   ]
+  },
+  {
+   "name": "Md. Zaber Hossain",
+   "designation": "Associate Professor & (MBA Program Coordinator)",
+   "photo": "/images/departments/dba/faculty/dba-md-zaber-hossain.jpg",
+   "email": "hossain.zaber478@gmail.com",
+   "phone": "+8801922626111",
+   "education": [
+    "BBA and MBA in Marketing (Rajshahi University)"
+   ]
+  },
+  {
+   "name": "Goutam Saha",
+   "designation": "Assistant Professor in Marketing",
+   "photo": "/images/departments/dba/faculty/dba-goutam-saha.jpg",
+   "email": "sahagoutamcou@baust.edu.bd",
+   "phone": "01980389616",
+   "education": [
+    "BBA and MBA in Marketing, Comilla University"
+   ]
+  },
+  {
+   "name": "Shamima Islam",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/dba/faculty/dba-shamima-islam.jpg",
+   "email": "bonihstu@gmail.com",
+   "phone": "01746261308",
+   "education": [
+    "BBA, MBA in Finance (HSTU)"
+   ]
+  },
+  {
+   "name": "Samiya Bint Halim",
+   "designation": "Assistant Professor (Marketing)",
+   "photo": "/images/departments/dba/faculty/dba-samiya-bint-halim.jpg",
+   "email": "samiya177mkt@gmail.com",
+   "phone": "01683326275",
+   "education": [
+    "MBA & BBA (Marketing), University of Dhaka"
+   ]
+  },
+  {
+   "name": "Md. Rabiul Awal",
+   "designation": "Assistant Professor in Management",
+   "photo": "/images/departments/dba/faculty/dba-md-rabiul-awal.jpg",
+   "email": "rabiul.ru.mgt18@baust.edu.bd",
+   "phone": "01740299855",
+   "education": [
+    "BBA in Management & MBA in Human Resource Management, University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Md. Shahadat Hossain",
+   "designation": "Assistant Professor in Management",
+   "photo": "/images/departments/dba/faculty/dba-md-shahadat-hossain.jpg",
+   "email": "shahadatju343@baust.edu.bd",
+   "phone": "01856563486",
+   "education": [
+    "BBA in Management Studies & MBA in Human Resource Management, Jahangirnagar University"
+   ]
+  },
+  {
+   "name": "Farhana Rahman",
+   "designation": "Assistant Professor (Management)",
+   "photo": "/images/departments/dba/faculty/dba-farhana-rahman.jpg",
+   "email": "farhanadba@baust.edu.bd",
+   "phone": "01785493421",
+   "education": [
+    "BBA & MBA in Management, RU"
+   ]
+  },
+  {
+   "name": "Md. Ridoy Hasan",
+   "designation": "Assistant Professor (Management)",
+   "photo": "/images/departments/dba/faculty/dba-md-ridoy-hasan.jpg",
+   "email": "ridoydba@baust.edu.bd",
+   "phone": "01701057975",
+   "education": [
+    "BBA (Management) & MBA (HRM), RU"
+   ]
+  },
+  {
+   "name": "Fatema Khatun",
+   "designation": "Assistant Professor (Economics)",
+   "photo": "/images/departments/dba/faculty/dba-fatema-khatun.jpg",
+   "email": "fatemadba@baust.edu.bd",
+   "phone": "01303124952",
+   "education": [
+    "BSS (Economics) & MSS (Economics), KU"
+   ]
+  },
+  {
+   "name": "Momtaj Parvin",
+   "designation": "Lecturer (Finance) & Department Program Coordinator (DPC)",
+   "photo": "/images/departments/dba/faculty/dba-momtaj-parvin.jpg",
+   "email": "momtaj@baust.edu.bd",
+   "phone": "+8801719898634",
+   "education": [
+    "BBA & MBA (Finance and Banking), Pabna University of Science and Technology"
+   ]
+  },
+  {
+   "name": "Mridul Kanti Das",
+   "designation": "Lecturer (Management)",
+   "photo": "/images/departments/dba/faculty/dba-mridul-kanti-das.jpg",
+   "email": "mridulkanti2012@gmail.com",
+   "phone": "01754803230",
+   "education": [
+    "BBA (Management) & MBA (Human Resource Management), Comilla University"
+   ]
+  },
+  {
+   "name": "Md. Merajul Islam",
+   "designation": "Lecturer (Finance)",
+   "photo": "/images/departments/dba/faculty/dba-md-merajul-islam.jpg",
+   "email": "merajul@baust.edu.bd",
+   "phone": "+8801773432552",
+   "education": [
+    "BBA & MBA (Finance and Banking), Pabna University of Science and Technology"
+   ]
+  },
+  {
+   "name": "Habiba Akter Sreete",
+   "designation": "Lecturer (Finance)",
+   "photo": "/images/departments/dba/faculty/dba-habiba-akter-sreete.jpg",
+   "email": null,
+   "phone": "01834427961",
+   "education": [
+    "BBA (Finance) BAUST, Saidpur & MBA (Finance) IBA, University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Shake Farhan",
+   "designation": "Lecturer (Management)",
+   "photo": "/images/departments/dba/faculty/dba-shake-farhan.jpg",
+   "email": "farhan@baust.edu.bd",
+   "phone": "01790450600",
+   "education": [
+    "BBA (Management) & MBA (HRM), University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Syeda Farzana Yasmin",
+   "designation": "Lecturer (Marketing)",
+   "photo": "/images/departments/dba/faculty/dba-syeda-farzana-yasmin.jpg",
+   "email": "syedafarzana@baust.edu.bd",
+   "phone": "01704001483",
+   "education": [
+    "BBA & MBA (Marketing), University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Professor Dr. Shaikh Mostak Ahammad",
+   "designation": "Professor",
+   "photo": "/images/departments/dba/faculty/dba-professor-dr-shaikh-mostak-ahammad.jpg",
+   "email": "shaikhmostak@yahoo.com",
+   "phone": "+8801712083786",
+   "education": [
+    "Department of Accounting, HSTU"
+   ]
+  },
+  {
+   "name": "Professor Dr. Mohammad Thoufiqul Islam",
+   "designation": "Professor",
+   "photo": "/images/departments/dba/faculty/dba-professor-dr-mohammad-thoufiqul-islam.jpg",
+   "email": "thoufiq@du.ac.bd",
+   "phone": "+8801713130808",
+   "education": [
+    "Ph.D (Japan), MA (Korea), MBA (DU)"
+   ]
+  },
+  {
+   "name": "Md. Abdul Alim Mahmud",
+   "designation": "Commissioner of Police, Rangpur Division",
+   "photo": null,
+   "email": "alimmahmud@gmail.com",
+   "phone": "01712005485",
+   "education": [
+    "B.sc. Engineering Civ (BUET) MBA (MIST, DU), MDS (NU) FIEB, Diploma in Engineering Machinery (EIEC/PLA UST, Nanjing, China) Former Head, Department of Management, MIST Former Head/A Dean, Faculty of Business Studies, BUP"
+   ]
+  },
+  {
+   "name": "Lt Col Md Farid Alam, psc, PEng (retd)",
+   "designation": "Adjunct Faculty",
+   "photo": "/images/departments/dba/faculty/dba-lt-col-md-farid-alam-psc-peng-retd.jpg",
+   "email": "farid@baust.edu.bd",
+   "phone": "01769675555",
+   "education": [
+    "B.sc. Engineering Civ (BUET) MBA (MIST, DU), MDS (NU) FIEB, Diploma in Engineering Machinery (EIEC/PLA UST, Nanjing, China) Former Head, Department of Management, MIST Former Head/A Dean, Faculty of Business Studies, BUP"
+   ]
+  },
+  {
+   "name": "Dr. Mohammad Bin Amin",
+   "designation": "Associate Professor",
+   "photo": "/images/departments/dba/faculty/dba-dr-mohammad-bin-amin.jpg",
+   "email": "binamin@baust.edu.bd",
+   "phone": "+8801726326106",
+   "education": [
+    "BBA and MBA in Management, DU; Ph.D. in Supply Chain Management, University of Debrecen, Hungary"
+   ]
+  },
+  {
+   "name": "Mohotarema Rashid",
+   "designation": "Assistant Professor (On Study Leave)",
+   "photo": "/images/departments/dba/faculty/dba-mohotarema-rashid.jpg",
+   "email": "rashidnira925@gmail.com",
+   "phone": "+8801776459308",
+   "education": [
+    "BBA and MBA in Finance (University of Dhaka)"
+   ]
+  },
+  {
+   "name": "Nazmun Nahar Shova",
+   "designation": "Assistant Professor (Finance)",
+   "photo": "/images/departments/dba/faculty/dba-nazmun-nahar-shova.jpg",
+   "email": "nnshova@baust.edu.bd",
+   "phone": "01789908628",
+   "education": [
+    "BBA and MBA (Banking & Insurance), RU"
+   ]
+  }
+ ],
+ "ais": [
+  {
+   "name": "Dr. Md. Shah Alam",
+   "designation": "Professor",
+   "photo": "/images/departments/ais/faculty/ais-dr-md-shah-alam.jpg",
+   "email": "shahmdalam@yahoo.com",
+   "phone": "01769662723",
+   "education": [
+    "B.Com (Hons) in Accounting, M.Com in Accounting, PhD in Commerce"
+   ]
+  },
+  {
+   "name": "Rakibul Islam",
+   "designation": "Assistant Professor and Head",
+   "photo": "/images/departments/ais/faculty/ais-rakibul-islam.jpg",
+   "email": "headais@baust.edu.bd",
+   "phone": "+8801723913191",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems (HSTU)"
+   ]
+  },
+  {
+   "name": "Md. Azmir Sharif",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/ais/faculty/ais-md-azmir-sharif.jpg",
+   "email": "azmir@baust.edu.bd",
+   "phone": "+8801719251411",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems (HSTU)"
+   ]
+  },
+  {
+   "name": "Md. Hafizul Islam",
+   "designation": "Lecturer & Program Coordinator",
+   "photo": "/images/departments/ais/faculty/ais-md-hafizul-islam.jpg",
+   "email": "hafizul013ais@baust.edu.bd",
+   "phone": "01722268977",
+   "education": [
+    "BBA & MBA (Accounting and Information System), University of Barishal."
+   ]
+  },
+  {
+   "name": "Md. Saifur Rahman",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-md-saifur-rahman.jpg",
+   "email": "saifur@baust.edu.bd",
+   "phone": "+8801670521079",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems, Noakhali Science and Technology University(NSTU)"
+   ]
+  },
+  {
+   "name": "Rezaul Karim",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-rezaul-karim.jpg",
+   "email": "rezaul@baust.edu.bd",
+   "phone": "+8801718061296",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems (HSTU)"
+   ]
+  },
+  {
+   "name": "Md. Kamrul Hassan Tuhin, ITP",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-md-kamrul-hassan-tuhin-itp.jpg",
+   "email": "kamrultuhin@baust.edu.bd",
+   "phone": "01690090415",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems, Comilla University"
+   ]
+  },
+  {
+   "name": "Munira Joynob Nur",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-munira-joynob-nur.jpg",
+   "email": "munirajoynob27pabna@gmail.com",
+   "phone": "01868310027",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems, Pabna University of Science and Technology (PUST)."
+   ]
+  },
+  {
+   "name": "Suraiya Akter",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-suraiya-akter.jpg",
+   "email": "suraiaakter58@gmail.com",
+   "phone": "+8801758300112",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems, JKKNIU"
+   ]
+  },
+  {
+   "name": "Mst. Nurjahan Akter",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-mst-nurjahan-akter.jpg",
+   "email": null,
+   "phone": "01762971410",
+   "education": [
+    "BBA and MBA in Accounting & Information Systems ,Jagannath University"
+   ]
+  },
+  {
+   "name": "Sanzida Begum",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/ais/faculty/ais-sanzida-begum.jpg",
+   "email": "sanzidamunia@baust.edu.bd",
+   "phone": "01740921632",
+   "education": [
+    "BBA & MBA (Accounting & Information Systems), Noakhali Science & Technology University (NSTU)"
+   ]
+  },
+  {
+   "name": "Most. Mukta Khatun",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/ais/faculty/ais-most-mukta-khatun.jpg",
+   "email": "mukta.khatun@baust.edu.bd",
+   "phone": "01780261233",
+   "education": [
+    "BBA & MBA (Accounting and Information System), Rajshahi University"
+   ]
+  },
+  {
+   "name": "Md. Anarul Islam",
+   "designation": "Computer Operator",
+   "photo": "/images/departments/ais/faculty/ais-md-anarul-islam.jpg",
+   "email": "anarulranasdp@gmail.com",
+   "phone": "01705902326",
+   "education": [
+    "BA (Hons), MA (Hons)"
+   ]
+  },
+  {
+   "name": "Amena Akter",
+   "designation": "Lecturer",
+   "photo": "/images/departments/ais/faculty/ais-amena-akter.jpg",
+   "email": null,
+   "phone": null,
+   "education": [
+    "BBA and MBA in Accounting & Information Systems, Comilla University"
+   ]
+  }
+ ],
+ "eng": [
+  {
+   "name": "Professor Md. Jahurul Islam",
+   "designation": "Professor & Dean (FSH)",
+   "photo": "/images/departments/eng/faculty/eng-professor-md-jahurul-islam.jpg",
+   "email": "jislam@baust.edu.bd",
+   "phone": "01717142817",
+   "education": [
+    "B.A. (Hons.), & M.A. in English, RU; Dip. TEFL, Sydney, M. Phil in Editing, RU"
+   ]
+  },
+  {
+   "name": "Md. Ashikullah",
+   "designation": "Associate Professor & Head",
+   "photo": "/images/departments/eng/faculty/eng-md-ashikullah.jpg",
+   "email": "hdenglish@baust.edu.bd",
+   "phone": "01769662701",
+   "education": [
+    "MA in ELT (IML, DU)"
+   ]
+  },
+  {
+   "name": "Most. Mushfeka Zannat",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/eng/faculty/eng-most-mushfeka-zannat.jpg",
+   "email": "mushfekazannat14@gmail.com",
+   "phone": "01750452921",
+   "education": [
+    "B.A.(Hon's) in English, M.A. in Applied Linguistics and ELT, JU"
+   ]
+  },
+  {
+   "name": "Md. Golam Shahariar",
+   "designation": "Assistant Professor & Asst. Proctor",
+   "photo": "/images/departments/eng/faculty/eng-md-golam-shahariar.jpg",
+   "email": "shahariareng@baust.edu.bd",
+   "phone": "01773609216",
+   "education": [
+    "BA (Hons.) in English; MA in English, JnU, Dhaka"
+   ]
+  },
+  {
+   "name": "Md. Al-Amin",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/eng/faculty/eng-md-al-amin.jpg",
+   "email": "mdalamin@baust.edu.bd",
+   "phone": "01812069242",
+   "education": [
+    "MA in ELTAL, BA (Hons) in English, BUP"
+   ]
+  },
+  {
+   "name": "Aftab Ur Rahaman Zahin",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/eng/faculty/eng-aftab-ur-rahaman-zahin.jpg",
+   "email": "azahin@baust.edu.bd",
+   "phone": "01741774428",
+   "education": [
+    "B.A.(Hons.) in English, BUP; M.A. in English, BUP"
+   ]
+  },
+  {
+   "name": "Md. Maruf Hossan",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-md-maruf-hossan.jpg",
+   "email": "maruf@baust.edu.bd",
+   "phone": "01676270571",
+   "education": [
+    "B.A.(Hons.) in English, JU M.A.(ALELT), JU"
+   ]
+  },
+  {
+   "name": "Riyad Ahamed",
+   "designation": "Lecturer & Dept. Program Coordinator(DPC)/G2",
+   "photo": "/images/departments/eng/faculty/eng-riyad-ahamed.jpg",
+   "email": "riyad@baust.edu.bd",
+   "phone": "01316020390",
+   "education": [
+    "B.A.(Hons.) in English, M.A. in ELT, BAUST"
+   ]
+  },
+  {
+   "name": "Nishat Tasneem",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-nishat-tasneem.jpg",
+   "email": "nishat@baust.edu.bd",
+   "phone": "01737909192",
+   "education": [
+    "M.A in ELT"
+   ]
+  },
+  {
+   "name": "Tamanna Sharmin",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-tamanna-sharmin.jpg",
+   "email": "tamanna@baust.edu.bd",
+   "phone": "01794972984",
+   "education": [
+    "M.A. in ELT, BAUST"
+   ]
+  },
+  {
+   "name": "K. M. Salman Samil Sumon",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-k-m-salman-samil-sumon.jpg",
+   "email": "salman@baust.edu.bd",
+   "phone": "+8801754001361",
+   "education": [
+    "B.A. (Hons.) in English & M.A. in ELTAL, BUP"
+   ]
+  },
+  {
+   "name": "Rakhi Das Gupta",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-rakhi-das-gupta.jpg",
+   "email": "rakhidas@baust.edu.bd",
+   "phone": "01722453558",
+   "education": [
+    "BA (Hons.), MA in English, NSTU"
+   ]
+  },
+  {
+   "name": "Maliha Mouly",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-maliha-mouly.jpg",
+   "email": "malihamouly20@gmail.com",
+   "phone": "01314156348",
+   "education": [
+    "BA (Hons) and MA in English Literature, RU"
+   ]
+  },
+  {
+   "name": "Bipploby Guha Tuktuki",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-bipploby-guha-tuktuki.jpg",
+   "email": "bgt@baust.edu.bd",
+   "phone": "01317368636",
+   "education": [
+    "BA (Hons) and MA in English Literature and Cult. Stud., GSTU"
+   ]
+  },
+  {
+   "name": "Mst. Tahora Khatun",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-mst-tahora-khatun.jpg",
+   "email": "tohurakhatun4@gmail.com",
+   "phone": "01767518820",
+   "education": [
+    "BA (Hons.) in English; MA in English, SUST"
+   ]
+  },
+  {
+   "name": "Md. Eshan Shahriar",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-md-eshan-shahriar.jpg",
+   "email": "eshanshahriar@baust.edu.bd",
+   "phone": "01785538463",
+   "education": [
+    "BA (Hons.) in English, RU; MA in ELT, JU"
+   ]
+  },
+  {
+   "name": "Jannatul Ferdous",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-jannatul-ferdous.jpg",
+   "email": "jannatulferdousmou1998@gmail.com",
+   "phone": "01701559894",
+   "education": [
+    "BA(Hons) in English, BAUST; MA in ELT, DIU; MA in TESOL, DU"
+   ]
+  },
+  {
+   "name": "Farhin Faruque",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/eng/faculty/eng-farhin-faruque.jpg",
+   "email": "farhin.disha13@baust.edu.bd",
+   "phone": "01701042657",
+   "education": [
+    "BA (Hons) and MA in English, RU"
+   ]
+  },
+  {
+   "name": "Tahera Zobaida Maliha",
+   "designation": "Lecturer",
+   "photo": "/images/departments/eng/faculty/eng-tahera-zobaida-maliha.jpg",
+   "email": "tzmaliha@baust.edu.bd",
+   "phone": "01793590803",
+   "education": [
+    "BA (Hons) in English, MA in Applied Linguistics and ELT"
+   ]
+  },
+  {
+   "name": "Afsana Tanti Moni",
+   "designation": "Teaching Assistant",
+   "photo": "/images/departments/eng/faculty/eng-afsana-tanti-moni.jpg",
+   "email": "tantimoni036@gmail.com",
+   "phone": "01888579705",
+   "education": [
+    "B.A.(Hons.) in English, BAUST; M.A. (Enrolled) in ELT, BAUST"
+   ]
+  },
+  {
+   "name": "Md. Abu Talim",
+   "designation": "Computer Operator",
+   "photo": "/images/departments/eng/faculty/eng-md-abu-talim.jpg",
+   "email": "mdabutalim1988@gmail.com",
+   "phone": "01939525150",
+   "education": [
+    "Masters (kamil), Islamic Arabic University, Dhaka"
+   ]
+  },
+  {
+   "name": "Md. Azgor Ali",
+   "designation": "MLSS",
+   "photo": "/images/departments/eng/faculty/eng-md-azgor-ali.jpg",
+   "email": "azgorali428@gmail.com",
+   "phone": "01768245908",
+   "education": []
+  },
+  {
+   "name": "Md. Shamim Hossain",
+   "designation": "Cleaner",
+   "photo": "/images/departments/eng/faculty/eng-md-shamim-hossain.jpg",
+   "email": null,
+   "phone": "01927662264",
+   "education": []
+  }
+ ],
+ "as": [
+  {
+   "name": "Md. Mizanur Rahman",
+   "designation": "Associate Professor & Head of the Dept.",
+   "photo": "/images/departments/as/faculty/as-md-mizanur-rahman.jpg",
+   "email": "mathmasum@gmail.com",
+   "phone": "01769662707",
+   "education": [
+    "MS (Thesis), B.Sc (Hons) in Mathematics, University of Dhaka"
+   ]
+  },
+  {
+   "name": "Most. Ummey Kulsum",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/as/faculty/as-most-ummey-kulsum.jpg",
+   "email": "ummeykulsum@baust.edu.bd",
+   "phone": "01723564965",
+   "education": [
+    "M.Sc. (Thesis) & B.Sc. (Honours) in Applied Mathematics (Rajshahi University)"
+   ]
+  },
+  {
+   "name": "Shahanaj Pervin",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/as/faculty/as-shahanaj-pervin.jpg",
+   "email": "shahanajrumath@gmail.com",
+   "phone": "01728913047",
+   "education": [
+    "B.Sc. (Honours), & M.Sc. in Mathematics, Rajshahi University"
+   ]
+  },
+  {
+   "name": "Irfan Raju",
+   "designation": "Assistant Professor",
+   "photo": "/images/departments/as/faculty/as-irfan-raju.jpg",
+   "email": "irfan@baust.edu.bd",
+   "phone": "01743810588",
+   "education": [
+    "M.Sc. (Thesis) & B.Sc. (Hons) in Mathematics University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Nur Hasan Mahmud Shahen",
+   "designation": "Assistant Professor & Additional Director-2, Institutional Quality Assurance Cell (IQAC)",
+   "photo": "/images/departments/as/faculty/as-nur-hasan-mahmud-shahen.jpg",
+   "email": "nhmshahen@baust.edu.bd",
+   "phone": "+8801712861029",
+   "education": [
+    "B.Sc. (Hons), M.Sc. (Thesis) in Applied Mathematics & Ph.D (Pursuing-BUET)"
+   ]
+  },
+  {
+   "name": "Foyjonnesa",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-foyjonnesa.jpg",
+   "email": "foyjonnesamath@baust.edu.bd",
+   "phone": "01521117939",
+   "education": [
+    "PhD (Pursuing), BUET M.Sc (Thesis) & B.Sc in Mathematics, RU"
+   ]
+  },
+  {
+   "name": "Jobayad Bhuiyan",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-jobayad-bhuiyan.jpg",
+   "email": "jobayadmat002@gmail.com",
+   "phone": "01969659716",
+   "education": [
+    "B.Sc in Mathematics and M.Sc in Applied Mathematics (BSMRSTU)"
+   ]
+  },
+  {
+   "name": "Md Nurul Huda",
+   "designation": "Professor",
+   "photo": "/images/departments/as/faculty/as-md-nurul-huda.jpg",
+   "email": "huda8632@yahoo.com",
+   "phone": "01769990502",
+   "education": [
+    "(Wing Commander)"
+   ]
+  },
+  {
+   "name": "Dr. Md. Zafar Iqbal Khan",
+   "designation": "Professor",
+   "photo": "/images/departments/as/faculty/as-dr-md-zafar-iqbal-khan.jpg",
+   "email": "zikhan@math.buet.ac.bd",
+   "phone": "+8801914573949",
+   "education": [
+    "Ph. D, (Tokyo University of Agriculture and Technology, JAPAN), M. Phil. (BUET), M. Sc. in Applied Mathematics (DU), B. Sc.(Hons.) in Mathematics (DU)"
+   ]
+  },
+  {
+   "name": "Md. Abu Rayhan",
+   "designation": "Associate Professor",
+   "photo": "/images/departments/as/faculty/as-md-abu-rayhan.jpg",
+   "email": "rayhan4302@gmail.com",
+   "phone": "01769662710",
+   "education": [
+    "B.Sc. (Hons.), M.Sc. (Thesis), RU Pursuing PhD (CUET)"
+   ]
+  },
+  {
+   "name": "Shabnur Akter",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-shabnur-akter.jpg",
+   "email": "shabnur@baust.edu.bd",
+   "phone": "01796195545",
+   "education": [
+    "B.Sc (Hons.in Physics), M.Sc (Thesis ) , HSTU Dinajpur"
+   ]
+  },
+  {
+   "name": "Shefael Kabir Joarder",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-shefael-kabir-joarder.jpg",
+   "email": "sunit.shefael@gmail.com",
+   "phone": "+8801772229158",
+   "education": [
+    "B.Sc (Hons.in Physics), M.Sc (Thesis ) , RU"
+   ]
+  },
+  {
+   "name": "Md. Ridwanul Hasan",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-md-ridwanul-hasan.jpg",
+   "email": "ridwan@baust.edu.bd",
+   "phone": "01736598895",
+   "education": [
+    "Masters of Science in Physics (Thesis); Bachelor of Science in Physics. Mawlana Bhashani Science and Technology University (MBSTU)"
+   ]
+  },
+  {
+   "name": "Dr. Kazi Mohammad Anamoul Haque",
+   "designation": "Associate Professor",
+   "photo": "/images/departments/as/faculty/as-dr-kazi-mohammad-anamoul-haque.jpg",
+   "email": "anamnano@gmail.com",
+   "phone": "+8801769675597",
+   "education": [
+    "B.Sc.(Hons.), M.Sc., Ph. D.(SUST)"
+   ]
+  },
+  {
+   "name": "Md. Nahid Parvez Roni",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-md-nahid-parvez-roni.jpg",
+   "email": "nahidparvezchem@gmail.com",
+   "phone": "01518618667",
+   "education": [
+    "B.Sc , RU & M.Sc (Physical Chemistry), RU"
+   ]
+  },
+  {
+   "name": "Md. Abu Saleh",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-md-abu-saleh.jpg",
+   "email": "saleh@baust.edu.bd",
+   "phone": "01684616673",
+   "education": [
+    "B.Sc. (Hons) in Chemistry and MS in Organic Chemistry (Thesis), (SUST)"
+   ]
+  },
+  {
+   "name": "Md. Mahbub Rahman",
+   "designation": "Associate Professor",
+   "photo": "/images/departments/as/faculty/as-md-mahbub-rahman.jpg",
+   "email": "mahbub@baust.edu.bd",
+   "phone": "01769662709",
+   "education": [
+    "B.S.S. and M.S.S in Sociology University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Lt Col Prof. Dr. Md Shameem Reza (Retd)",
+   "designation": "Professor",
+   "photo": "/images/departments/as/faculty/as-lt-col-prof-dr-md-shameem-reza-retd.jpg",
+   "email": "treasurer@baust.edu.bd",
+   "phone": "+8801769662723",
+   "education": [
+    "PhD (RU)"
+   ]
+  },
+  {
+   "name": "Rakibul Hasan",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-rakibul-hasan.jpg",
+   "email": "rakibulhasanbangla440@gmail.com",
+   "phone": "01746420879",
+   "education": [
+    "B.A (Honours); M.A. Bangla, CU"
+   ]
+  },
+  {
+   "name": "Md. Tarikal Nasir",
+   "designation": "Assistant Professor (Physics)",
+   "photo": "/images/departments/as/faculty/as-md-tarikal-nasir.jpg",
+   "email": "tarikalnasir@baust.edu.bd",
+   "phone": "01710438243",
+   "education": [
+    "B.Sc (Honours), M.Sc in Physics, RU, Pursuing PhD (QUT, Australia)"
+   ]
+  },
+  {
+   "name": "Md. Mehadi Hassan",
+   "designation": "Assistant Professor (Chemistry)",
+   "photo": "/images/departments/as/faculty/as-md-mehadi-hassan.jpg",
+   "email": "mehadi@baust.edu.bd",
+   "phone": "01912413885",
+   "education": [
+    "B.S. (Hons.) (DU), M.Eng.(TUT, Japan)"
+   ]
+  },
+  {
+   "name": "Md. Mahbubul Alam",
+   "designation": "Lecturer (Chemistry)",
+   "photo": "/images/departments/as/faculty/as-md-mahbubul-alam.jpg",
+   "email": "mmalam.che@gmail.com",
+   "phone": "01723492794",
+   "education": [
+    "B.Sc (Hon's), MS (Thesis), M.Phil, SUST"
+   ]
+  },
+  {
+   "name": "Md. Khorshed Alam",
+   "designation": "Assistant Professor (Mathematics)",
+   "photo": "/images/departments/as/faculty/as-md-khorshed-alam.jpg",
+   "email": "khorshedamath@gmail.com",
+   "phone": "01710437341",
+   "education": [
+    "B.Sc. (Honours), & M.Sc. (Thesis) in Applied Mathematics, University of Rajshahi"
+   ]
+  },
+  {
+   "name": "Abu Sohel",
+   "designation": "Lab Technician (Chemistry)",
+   "photo": "/images/departments/as/faculty/as-abu-sohel.jpg",
+   "email": null,
+   "phone": "01729895556",
+   "education": [
+    "B.Sc & M.Sc in Chemistry (NU)"
+   ]
+  },
+  {
+   "name": "Guljar Hossan",
+   "designation": "Assistant Officer",
+   "photo": "/images/departments/as/faculty/as-guljar-hossan.jpg",
+   "email": "udcbaust985@gmail.com",
+   "phone": "01737926985",
+   "education": [
+    "BSS (Degree) EMSS (ISLM), Rajshahi University"
+   ]
+  },
+  {
+   "name": "Md. Mahamudul Hasan",
+   "designation": "Lab Assistant (Physics)",
+   "photo": "/images/departments/as/faculty/as-md-mahamudul-hasan.jpg",
+   "email": "mahmudul25524@gmail.com",
+   "phone": "01928599487",
+   "education": [
+    "B.Sc. & M.Sc. in Physics (NU)"
+   ]
+  },
+  {
+   "name": "Zannatul Safa",
+   "designation": "Lecturer",
+   "photo": "/images/departments/as/faculty/as-zannatul-safa.jpg",
+   "email": "zannatulsafa92@baust.edu.bd",
+   "phone": "01992371722",
+   "education": [
+    "BA (Hons), MA in History, RU"
+   ]
+  }
+ ]
+}

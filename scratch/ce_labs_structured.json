@@ -1,0 +1,455 @@
+{
+  "practical-surveying-lab": {
+    "name": "Practical Surveying Lab",
+    "slug": "practical-surveying-lab",
+    "description": "Surveying is vital for informed planning, construction, and management of land and infrastructure. It provides precise measurements of land boundaries, elevations, and contours, essential for designing buildings, roads, and utilities. In real estate, surveying defines property boundaries, preventing disputes and ensuring legal land ownership. For agriculture, it aids in irrigation planning and optimizing land use, supporting sustainable practices.\n\nSurveying is also crucial for environmental conservation, helping assess habitat changes, track deforestation, and monitor climate impacts like rising sea levels. It plays a key role in mapping and navigation, forming the basis of GPS technology and supporting efficient logistics. In disaster management, surveying identifies flood zones and fault lines, enabling risk assessment and response planning.\n\nTheodolite Surveying\n\nPlane Table Surveying",
+    "equipment": [
+      "Chain Surveying",
+      "Compass Traverse Surveying",
+      "Plane Table Surveying",
+      "Leveling and Contouring",
+      "Theodolite and Tacheometry",
+      "Curve Setting",
+      "House Setting"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/10/1-2.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/10/2-2.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/10/3-2.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/10/4-1.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/10/5-1.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2024/10/6-1.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/01/Habibur-Sir-CE-240x300.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg"
+    ]
+  },
+  "drawing-lab-2": {
+    "name": "Civil Engineering Drawing Lab",
+    "slug": "drawing-lab-2",
+    "description": "Civil engineering drawing is a critical aspect of the design and construction process, providing a visual blueprint that guides every phase of a project. These drawings serve as detailed representations of infrastructure projects like roads, bridges, buildings, and water systems, translating complex design ideas into standardized formats that contractors, engineers, and builders can follow.\n\nIn today\u2019s technology-driven world, computer-aided design software like AutoCAD, Revit, and ArchiCAD have revolutionized traditional hand-drawn plans, turning them into accurate, editable digital models. These tools enable efficient revisions, 3D visualization, and smooth collaboration across multidisciplinary teams, greatly enhancing the planning and execution of civil engineering projects.\n\nHowever, hand-drawing enables students to unlock into their creativity and imagination, enhancing their skills in solving architectural challenges and developing more effective solutions for structural design. The expert faculties in the Department of Civil Engineering at BAUST upholds high standards to foster creativity and innovative thinking, preparing students to become the next generation of engineers for the nation.",
+    "equipment": [
+      "History and importance of Civil Engineering Drawing ,Drawing accessories and their uses",
+      "Line drawing",
+      "Lettering and Numbering: Drawing of standard letters and numbers",
+      "Drawing of linear geometric figures: pentagon, hexagon, octagon",
+      "Drawing of curved geometric figures: ellipse, parabola, hyperbola. First and third angle projections",
+      "Concept of isometric view, oblique view, theory of projections",
+      "Drawing of isometric view of 3D objects such as cube, prism, pyramid, cone and cylinder",
+      "Section of cubes, pyramids, cones, prisms, etc",
+      "Concept on Plan, elevation and section of single storied building",
+      "Drawing of Plan and elevation of single storied and a multistoried building"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2022/01/Drawing-lab.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/08/IMG202308170925001-scaled.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/08/IMG202308170931161-scaled.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/dra-2.jpg"
+    ]
+  },
+  "strength-of-materials-lab-sm-lab": {
+    "name": "Engineering Materials Lab (Concrete Lab)",
+    "slug": "strength-of-materials-lab-sm-lab",
+    "description": "Common engineering materials in civil engineering include concrete, steel, wood, bricks, and asphalt, each serving unique roles in construction due to their distinct properties. Each material is chosen based on the structural needs, environmental conditions, and design requirements of the project, contributing to safe and efficient construction in civil engineering. Modern engineering also sees the use of advanced materials like carbon fiber and nanomaterials, which offer remarkable strength-to-weight ratios and enhanced properties, opening new possibilities in fields of Civil Engineering.\n\nThe Engineering Materials Lab in the Department of Civil Engineering at BAUST offers students valuable hands-on experience in testing various materials, including brick, stone aggregates, sand, cement, concrete, and soil. With a wide array of equipment available, the lab enables students to conduct undergraduate thesis work and pursue research projects under the guidance of experienced faculty within the department.\n\nSpecific Gravity Testing Apparatus\n\nTensile Strength Tester",
+    "equipment": [
+      "Determination of Normal Consistency of Cement with Vicat\u2019s Apparatus",
+      "Determination of Initial Setting Time of Cement with Vicat\u2019s Apparatus",
+      "Test for Direct Compressive Strength of Cement Mortar",
+      "Sieve Analysis of Fine and Coarse Aggregate",
+      "Specific Gravity (Relative Density) and Absorption Capacity of Fine Aggregate",
+      "Specific Gravity and Absorption Capacity of Coarse Aggregate",
+      "Unit Weight and Voids in Aggregate",
+      "Resistance to Degradation of Small Size Coarse Aggregate by Abrasion and Impact of the Los Angeles Machine",
+      "Determination of Slump, Air Content of Concrete and Compressive Strength of Cylindrical Concrete Specimens",
+      "Determination of Splitting Tensile Strength of Cylindrical Concrete Specimens",
+      "Sampling and Testing of Brick for Efflorescence, Compressive Strength and Absorption"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-4-scaled.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-1-scaled-e1730385796792.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-2-scaled.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-5-scaled-e1730385888212.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-11-e1730385392800.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-12-e1730385422985.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-7-scaled-e1730386023342.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-6-scaled-e1730385960720.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-10-e1730386075783.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/WhatsApp-Image-2023-12-03-at-15.35.49_b5a7745c-e1730386243826.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/mat-3-e1730386304480.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/UTEST.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/f-61658-439x550-1.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg"
+    ]
+  },
+  "structural-mechanics-lab-sm-lab-2": {
+    "name": "Strength of Materials Lab (SM Lab)",
+    "slug": "structural-mechanics-lab-sm-lab-2",
+    "description": "Universal Testing Machine (UTM)\n\nStudents Performing Lab Test using UTM\n\nCharpy Impact Test Machine\n\nRockwell/Brinell Hardness Testing Machine",
+    "equipment": [
+      "Tension Test of Mild Steel Specimen",
+      "Compression Test of Timber Specimen",
+      "Direct Shear Test of Mild Steel Specimen",
+      "Impact Test of Mild Steel Specimen",
+      "Hardness Test of Metals",
+      "Compression Test of Helical Spring",
+      "Static Bending Test of Timber Beam",
+      "Buckling Test of Slender Column",
+      "Basics of Shear Force and Bending Moment",
+      "Basics of Shear Center"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-1-scaled-e1730395717818.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-5-e1730395756348.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-2-scaled-e1730395811660.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-3-scaled-e1730395844290.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-4-scaled-e1730395890833.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-6-e1730395926631.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-8.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-9.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/SM-7-650x366.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/photo_topiula.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg"
+    ]
+  },
+  "geotechnical-engineering-lab": {
+    "name": "Geotechnical Engineering Lab",
+    "slug": "geotechnical-engineering-lab",
+    "description": "Shrinkage Limit Test Apparatus\n\nLiquid Limit Test Apparatus\n\nConsolidation Test Apparatus\n\nUnconfined Compression Test Apparatus",
+    "equipment": [
+      "Field Identification of Soil",
+      "Grain Size Analysis by Sieves",
+      "Grain Size Analysis by Hydrometer",
+      "Determination of Specific Gravity of Soil",
+      "Determination of Moisture Content and Atterberg Limits",
+      "Permeability Test",
+      "Standard Proctor Compaction Test",
+      "Determination of Relative Density of Sand",
+      "Unconfined Compression Test",
+      "Tri-axial Compression Test",
+      "Direct Shear Test",
+      "Consolidation Test",
+      "Lab in-charge",
+      "Md. Aiman Wasee",
+      "Lecturer",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "+801744984093 (Official)",
+      "Lab Technician",
+      "Md. Ahedul Islam",
+      "Lab Technician",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "01515-235618",
+      "Lab Assistant",
+      "Tushar Ahmmed",
+      "Lab Assistant",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "01811341297"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/srinkage-limit-test.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-1-650x488.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-5-354x550.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-7-355x550.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-6-650x261.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-2-650x415.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-9-370x550.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/geo-4-413x550.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Picture2-1.jpg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Tushar-Ahmmed-434x550-1.jpg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg"
+    ]
+  },
+  "transportation-engineering-lab": {
+    "name": "Transportation Engineering Lab",
+    "slug": "transportation-engineering-lab",
+    "description": "Loss on Heating Test Apparatus\n\nDuctility Test\n\nAIV &amp; CBR Test Machine\n\nSolubility Test Apparatus",
+    "equipment": [
+      "Tests on Aggregates",
+      "Aggregate Impact value",
+      "Aggregate Crushing Value",
+      "Ten Percent Fines Value",
+      "Determination of Flakiness Index",
+      "Determination of Elongation Index",
+      "Determination of Angularity Number",
+      "Tests on Bituminous Material",
+      "Specific Gravity of Bituminous Material",
+      "Loss on Heating of Oil &amp; Asphaltic Compound",
+      "Penetration of Bituminous Material",
+      "Softening Point of Bituminous Material (Ring &amp; Ball Method)",
+      "Solubility of Bituminous Material",
+      "Ductility of Bituminous Material",
+      "Flash &amp; Fire Points of Bituminous Material (Cleveland Open Cup Method)",
+      "CBR and Bituminous Mix Design",
+      "California Bearing Ratio (CBR)",
+      "Marshall Method of Mix Design",
+      "Traffic Engineering",
+      "Traffic (Roadway Capacity)",
+      "Traffic (Saturation Flow)",
+      "Lab in-charge",
+      "Anzuman Ara Priya",
+      "Lecturer",
+      "Department of Civil Engineering, BAUST",
+      "\ud83d\udcde",
+      "+8801724902127",
+      "Lab Technician",
+      "Md. Ahedul Islam",
+      "Lab Technician",
+      "01515235618",
+      "Lab Assistant",
+      "Md. Saikat Hossain",
+      "Lab Assistant",
+      "01793063416"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Transport.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-10.34.39-AM.jpeg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/20231130_092437-01.jpeg-413x550.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-10.13.58-AM-1.jpeg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2023-12-04-at-14.05.27_b663642b-650x488-1.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/1723304467582-01-Anzuman-Ara-Priya-e1729574728980-449x550-1.jpeg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Soikot-hosain-402x550-1.jpg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg"
+    ]
+  },
+  "environmental-engineering-lab": {
+    "name": "Environmental Engineering Lab",
+    "slug": "environmental-engineering-lab",
+    "description": "BOD Test Apparatus\n\nOven used for TC &amp; FC\n\nSpectrophotometer\n\nTurbidity Meter",
+    "equipment": [
+      "Determination of pH of Water",
+      "Determination of DO in Water",
+      "Determination of Temperature of Water",
+      "Determination of Electrical Conductivity of Water",
+      "Determination of Salinity of Water",
+      "Determination of Color of Water",
+      "Determination of Turbidity of Water",
+      "Determination of Solid Contents of Water",
+      "Determination of Carbon-dioxide of Water",
+      "Determination of Hardness of Water",
+      "Determination of Alkalinity of Water",
+      "Determination of Iron Concentration of Water",
+      "Determination of Arsenic in Water",
+      "Determination of Ammonia, Nitrate and Nitrite in Water",
+      "Determination of Biological Oxygen Demand of Water",
+      "Determination of Chemical Oxygen Demand of Water",
+      "Determination of Chloride Concentration of Water",
+      "Determination of Phosphate, Sulphate and Free Chlorine in Water",
+      "Lab in-charge",
+      "Dr. Md. Mahmudul Hasan",
+      "Professor and Head of the Dept.",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "01769-662720 (Office)",
+      "017121-26942 (Personal)",
+      "Lab Technician",
+      "Md. Ahedul Islam",
+      "Lab Technician",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "017868-34668",
+      "Lab Assistant",
+      "Md. Saikat Hossain",
+      "Lab Assistant",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "01793063416"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-10.45.33-AM.jpeg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-10.29.07-AM.jpeg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Envo1.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Envo2.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Envo.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/IMG20231204085642-413x550.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/IMG20231204085728-413x550.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2020/02/HoD-profile-pic-247x300.jpg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Soikot-hosain-402x550-1.jpg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg"
+    ]
+  },
+  "open-channel-flow-lab": {
+    "name": "Open Channel Flow Lab",
+    "slug": "open-channel-flow-lab",
+    "description": "The open channel flow laboratory is a specialized facility in civil engineering education focused on studying the behavior of water and other fluids in channels without full enclosure, such as rivers, canals, and spillways. It provides practical insights into fluid flow dynamics critical for water resources and hydraulic engineering.",
+    "equipment": [
+      "Measuring velocity distribution, flow rates, and energy losses.",
+      "Observing critical, subcritical, and supercritical flows.",
+      "Relevance to Civil Engineering:",
+      "Hydraulic Structures:",
+      "Designing efficient canals, culverts, and spillways.",
+      "Flood Management: Analyzing flow behavior for flood risk assessment.",
+      "Irrigation Engineering: Improving channel designs for optimal water distribution.",
+      "Learning Outcomes:",
+      "Validate theoretical principles such as Manning\u2019s equation and specific energy concepts.",
+      "Gain skills in flow visualization and measurements.",
+      "Understand environmental impacts and flow-related challenges.",
+      "Muti-purpose Tilting Flume",
+      "Demonstration on Class",
+      "Super-Critical to Sub-critical Flow",
+      "Flow over Broad-Crested Weir",
+      "Flow Beneath Sluice Gate",
+      "Reservoir",
+      "Experiment on Broad-crested weir",
+      "Experiment on Sluice gate",
+      "Experiment on Venture flume",
+      "Experiment on Parshall flume",
+      "Experiment on Cut-throat flume",
+      "Experiment on Hydraulic jump",
+      "Experiment on Velocity distribution profile",
+      "Experiment on Manning\u2019s roughness coefficient",
+      "Experiment on Specific energy and Specific force",
+      "Lab in-charge",
+      "Punom Roy",
+      "Lecturer",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "\ud83d\udcde+8801303056351",
+      "Lab Technician",
+      "Md. Ahedul Islam",
+      "Lab Technician",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "01515235618",
+      "Lab Assistant",
+      "Md. Saikat Hossain",
+      "Lab Assistant",
+      "Department of Civil Engineering, BAUST, Saidpur",
+      "01793063416"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/IMG20231203144352-01-1-650x346.jpeg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/WhatsApp-Image-2023-12-27-at-12.13.04_c1a11ee3-650x488.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/WhatsApp-Image-2023-12-20-at-15.00.08_89f35a3a-650x488.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/WhatsApp-Image-2023-12-20-at-15.00.09_3710554e-650x488.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/WhatsApp-Image-2023-12-20-at-15.00.10_47a34c6e-650x488.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/12/WhatsApp-Image-2023-12-20-at-15.01.33_c181aa63-650x488.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/08/photo_2026-08-08_22-46-04.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Soikot-hosain-402x550-1.jpg",
+      "https://s.w.org/images/core/emoji/14.0.0/svg/1f4de.svg"
+    ]
+  },
+  "fluid-mechanics-lab": {
+    "name": "Fluid Mechanics Lab",
+    "slug": "fluid-mechanics-lab",
+    "description": "1. General Instruction For Fluid Mechanics Sessional\n\n2. Proof of Bernoulli\u2019s theorem\n\n3. Determination of centre of pressure\n\n4. Flow through a Venturi meter",
+    "equipment": [
+      "Measuring and analyzing fluid properties such as viscosity, density, and flow rate.",
+      "Observing and validating principles like Bernoulli&#8217;s theorem and continuity equation.",
+      "Studying energy losses in pipes and channels due to friction and turbulence.",
+      "Develop an understanding of fluid mechanics fundamentals.",
+      "Gain skills in conducting experiments and analyzing data."
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2022/01/FM-lab-650x332.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/FM-1-scaled-e1732163760410.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/FM-2-scaled.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/photo_topiula.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/WhatsApp-Image-2026-07-28-at-9.34.18-AM.jpeg"
+    ]
+  },
+  "computer-lab": {
+    "name": "Computer Lab",
+    "slug": "computer-lab",
+    "description": "A computer laboratory is a vital facility for civil engineering students, providing access to specialized software and computational tools essential for modern engineering practices. It supports theoretical learning and enhances practical skills required in planning, analysis, design, and management of civil engineering projects.",
+    "equipment": [
+      "Roots of Equations",
+      "Numerical Differentiation and Integration",
+      "System of Linear Equations",
+      "Ordinary Differential Equations",
+      "Curve Fitting and Interpolation",
+      "AutoCAD",
+      "Basics of 2D Drawing",
+      "Building Plan",
+      "Sections of Building, Culvert, Beam, Column, Slab,, Foundation etc.",
+      "ETABS/SAP 2000",
+      "High Rise RCC Building Design and Analysis",
+      "Steel Structure Design",
+      "Programming Languages",
+      "C or C++ Programming Language"
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2022/01/Computer-lab-2.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2022/01/Computer-lab-1.jpg"
+    ]
+  },
+  "workshop-lab": {
+    "name": "Mechanical Workshop Lab",
+    "slug": "workshop-lab",
+    "description": "Peoples in Mechanical Workshop Lab\n\nLab In-Charge\n\nKh. Shihab Uddin Ahmed\n\nLecturer",
+    "equipment": [
+      "Advanced laboratory apparatus and test benches matching BAETE / Washington Accord specifications."
+    ],
+    "objectives": [
+      "Develop hands-on laboratory testing proficiency and quantitative data analysis skills.",
+      "Bridge theoretical principles with ASTM, BS, and BNBC standard testing codes.",
+      "Prepare students for capstone structural analysis, design projects, and field engineering challenges."
+    ],
+    "images": [
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-10.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-4.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-7.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-8.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-6.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-5.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-3.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/shop-2.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2023/03/Shop-1.jpg",
+      "https://baust.edu.bd/ce/wp-content/uploads/sites/26/2022/03/f-61658-240x300.jpg",
+      "http://baust.edu.bd/ce/wp-content/uploads/sites/26/2026/07/Md.-Ahedul-Islam_BAUST-22165-241x300-1.jpg"
+    ]
+  }
+}

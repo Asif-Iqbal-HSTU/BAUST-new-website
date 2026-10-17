@@ -1,0 +1,72 @@
+# Dependencies (installed in container)
+node_modules
+vendor
+
+# Version control
+.git
+.gitattributes
+.gitignore
+
+# IDE & Editor
+.idea
+.vscode
+*.swp
+*.swo
+.trunk
+
+# Environment files (sensitive)
+.env
+.env.backup
+.env.production
+
+# Build artifacts (rebuilt in image)
+public/build
+public/hot
+
+# On Windows checkouts `public/storage` is a real directory rather than a
+# symlink, so it duplicates every uploaded file already present in
+# `storage/app/public` — ~2.4GB sent twice per build. The entrypoint recreates
+# it as a symlink (`php artisan storage:link`) on boot, so it must not ship.
+public/storage
+
+# Testing
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# CI/CD & GitHub
+.github
+
+# Worktrees
+.claude
+
+# Docker files (avoid recursive context)
+compose*.yml
+docker-compose*.yml
+
+# Scraper artefacts & scratch files (not part of the app).
+# NOTE: the `scratch/` directory itself is kept — artisan data-import commands
+# (e.g. UpdateCeSourceData) read JSON from it at runtime.
+tmp
+files to instruct
+*.py
+*.zip
+scraped_*.json
+parsed_*.json
+scratch_*.json
+
+# Database dump: mounted into the mysql container by compose, never needed
+# inside the app image.
+backup.sql
+
+# Misc
+*.md
+LICENSE
+.editorconfig
+.prettierrc
+.prettierignore
+eslint.config.js
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*

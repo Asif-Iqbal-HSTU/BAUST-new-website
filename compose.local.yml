@@ -1,0 +1,29 @@
+# =============================================================================
+# Local development override for compose.yml.
+#
+#   docker compose -f compose.yml -f compose.local.yml up -d --build
+#
+# Differences from production:
+#   * no Cloudflare tunnel (parked behind an unused profile, so no token needed)
+#   * plain HTTP on http://localhost:8086, so secure-only cookies are disabled
+#   * debug mode + debug logging
+# Production is untouched: `docker compose up -d --build` still starts the
+# tunnel and keeps the hardened defaults from compose.yml.
+# =============================================================================
+
+services:
+  app:
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_URL=http://localhost:8086
+      - LOG_LEVEL=debug
+      # Laravel would otherwise mark the session cookie Secure, which the
+      # browser drops over plain HTTP — every login/CSRF check would fail.
+      - SESSION_SECURE_COOKIE=false
+
+  # Kept in the compose file for parity, but never started locally: a service
+  # with a profile only runs when that profile is explicitly requested.
+  cloudflared:
+    profiles:
+      - tunnel
