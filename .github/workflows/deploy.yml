@@ -39,8 +39,9 @@ jobs:
             docker compose up -d --build --remove-orphans
             docker image prune -f
 
+            PORT=$(grep -E '^APP_PORT=' .env | cut -d= -f2 | tr -d '"')
             for i in $(seq 1 30); do
-              if curl -fsS http://127.0.0.1:8086/up > /dev/null; then
+              if curl -fsS "http://127.0.0.1:${PORT:-8086}/up" > /dev/null; then
                 echo "Deployed $(git rev-parse --short HEAD)"
                 exit 0
               fi
