@@ -12,6 +12,17 @@ if [ -n "$TZ" ] && [ -f "/usr/share/zoneinfo/$TZ" ]; then
     echo "$TZ" > /etc/timezone
 fi
 
+# The storage volume only receives the image's storage/ skeleton when it is
+# empty on first mount; a volume restored from a backup (e.g. uploads only)
+# lacks these and Laravel then 500s on every request.
+mkdir -p \
+    /var/www/html/storage/app/public \
+    /var/www/html/storage/framework/cache/data \
+    /var/www/html/storage/framework/sessions \
+    /var/www/html/storage/framework/testing \
+    /var/www/html/storage/framework/views \
+    /var/www/html/storage/logs
+
 # Require the secrets that must never fall back to a weak default.
 : "${APP_KEY:?APP_KEY must be set (compose reads it from .env)}"
 : "${DB_DATABASE:?DB_DATABASE must be set}"
