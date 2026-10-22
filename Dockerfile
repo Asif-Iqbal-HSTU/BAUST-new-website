@@ -8,7 +8,7 @@
 # then build the frontend in the same image with a temporary Node toolchain,
 # then strip Node.
 # =============================================================================
-FROM php:8.4-fpm-alpine AS production
+FROM php:8.4.27-fpm-alpine AS production
 
 # Metadata labels
 LABEL maintainer="BAUST IT" \
