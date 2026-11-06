@@ -25,7 +25,7 @@ function sectionPages(): array
         '/research' => 'research.research-publication',
         '/admission/apply-online-instruction' => 'admission.apply-online-instruction',
         '/admission/program-offering' => 'admission.offered-programs',
-        '/admission/admission-requirment' => 'admission.admission-requirements',
+        '/admission/admission-requirements' => 'admission.admission-requirements',
         '/admission/admission-procedure' => 'admission.admission-procedure',
         '/admission/tuition-fees' => 'admission.tuition-fees',
         '/admission/waiver-and-financial-aid' => 'admission.waiver-and-financial-aid',
