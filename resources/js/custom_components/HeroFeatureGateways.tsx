@@ -46,7 +46,7 @@ const MODERN_CARDS: ModernCardItem[] = [
         highlights: [
             'Patronized by Bangladesh Army & UGC recognized',
             '10 Engineering, Technology & Business departments',
-            'Lush green, secure 50+ acre campus in Saidpur'
+            'Lush green, secure campus in Saidpur Cantonment'
         ],
         primaryAction: {
             label: 'Explore BAUST Story',

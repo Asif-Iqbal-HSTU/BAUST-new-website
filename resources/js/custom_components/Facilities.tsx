@@ -36,9 +36,9 @@ const FACILITIES: FacilityItem[] = [
     {
         id: 'wifi',
         category: 'Digital Connectivity',
-        badge: 'Starlink Powered',
+        badge: 'Optical Fiber Network',
         title: 'Wifi Campus',
-        description: 'Equipped with next-generation Starlink satellite internet and optical fiber. Active network expansion is underway to achieve 100% seamless coverage across every corner of the campus.',
+        description: 'Equipped with high-speed optical fiber internet. Active network expansion is underway to achieve 100% seamless coverage across every corner of the campus.',
         image: '/images/green_campus-960.webp',
         link: '/facilities#wifi',
         buttonText: 'View Wifi & Coverage',

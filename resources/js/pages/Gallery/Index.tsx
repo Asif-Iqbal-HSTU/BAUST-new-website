@@ -212,7 +212,7 @@ const CURATED_PHOTOS: GalleryPhoto[] = [
         category: 'student-life',
         categoryLabel: 'Halls & Student Life',
         image: '/images/halls/abbas_uddin_hall.jpg',
-        description: 'Modern residential complex for male students featuring high-speed Starlink WiFi, reading rooms, and indoor games.',
+        description: 'Modern residential complex for male students featuring high-speed WiFi, reading rooms, and indoor games.',
         tag: 'Male Residence'
     },
     {

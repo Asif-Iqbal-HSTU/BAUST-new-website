@@ -157,7 +157,7 @@ export default function FacilitiesIndex() {
                     <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/green_campus.jpg')" }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-950/85 via-gray-900/30 to-transparent" />
                     <div className="absolute bottom-0 inset-x-0 p-8 sm:p-10 text-white max-w-3xl">
-                        <h1 className="text-2xl sm:text-4xl font-extrabold leading-tight drop-shadow">A campus built for learning and living</h1>
+                        <h1 className="text-2xl sm:text-4xl font-bold leading-tight drop-shadow">A campus built for learning and living</h1>
                         <p className="mt-3 text-sm sm:text-base text-gray-100/90 leading-relaxed">BAUST offers 100% residential facilities, campus-wide high-speed internet, modern multimedia classrooms and well-equipped laboratories — a complete environment for academic and personal growth.</p>
                     </div>
                 </section>
@@ -165,15 +165,15 @@ export default function FacilitiesIndex() {
                 {/* Wi-Fi */}
                 <section id="wifi" className="scroll-mt-24 grid lg:grid-cols-2 gap-8 items-center">
                     <div className="order-2 lg:order-1">
-                        <SectionHeading icon={Wifi} kicker="Next-Gen Connectivity" title="Wi-Fi Campus (Starlink Enabled)" />
+                        <SectionHeading icon={Wifi} kicker="Next-Gen Connectivity" title="Wi-Fi Campus" />
                         <p className="text-[15px] text-gray-600 leading-relaxed">
-                            Reliable high-speed internet is essential to modern education and engineering research. BAUST is proud to integrate advanced <span className="font-semibold text-emerald-700">Starlink satellite internet</span> alongside dedicated optical fiber lines, bringing low-latency, high-bandwidth connectivity to our students and faculty.
+                            Reliable high-speed internet is essential to modern education and engineering research. BAUST uses <span className="font-semibold text-emerald-700">dedicated optical fiber lines</span> to bring low-latency, high-bandwidth connectivity to our students and faculty.
                         </p>
                         <p className="mt-4 text-[15px] text-gray-600 leading-relaxed">
                             Wi-Fi access points are actively operational throughout major academic complexes, departmental laboratories, and student residential halls. To ensure every student enjoys uninterrupted connectivity, our IT & Networking team is actively expanding infrastructure to resolve occasional dead zones and deliver complete, 100% blanket wireless coverage across every corner of the campus grounds.
                         </p>
                         <div className="mt-6 flex flex-wrap gap-3">
-                            {['Starlink Satellite Connectivity', 'Dedicated Optical Fiber', 'Halls & Lab Coverage', 'Ongoing Blanket Expansion'].map((t) => (
+                            {['Dedicated Optical Fiber', 'Halls & Lab Coverage', 'Ongoing Blanket Expansion'].map((t) => (
                                 <span key={t} className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-emerald-100"><Wifi className="w-3.5 h-3.5" /> {t}</span>
                             ))}
                         </div>
@@ -333,7 +333,7 @@ export default function FacilitiesIndex() {
                             <div className="relative z-10 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
                                 <div className="max-w-2xl">
                                     <div className="inline-flex items-center gap-2 bg-white/15 text-white text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"><BookOpen className="w-3.5 h-3.5" /> Central Library</div>
-                                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">A resource-rich Central Library</h2>
+                                    <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">A resource-rich Central Library</h2>
                                     <p className="mt-3 text-emerald-50/90 text-sm leading-relaxed">Explore the library's collection overview, e-resources, membership procedure, opening hours, user policy and photo gallery.</p>
                                 </div>
                                 <span className="inline-flex items-center gap-2 bg-white text-emerald-700 font-bold text-sm px-6 py-3 rounded-xl shadow-lg group-hover:gap-3 transition-all flex-shrink-0">Visit the Library <ArrowRight className="w-4 h-4" /></span>

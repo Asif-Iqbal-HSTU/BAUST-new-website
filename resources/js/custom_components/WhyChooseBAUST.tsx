@@ -123,10 +123,10 @@ const PILLARS: Pillar[] = [
         badge: '40+ Specialized Labs',
         title: 'Cutting-Edge Laboratories & Research',
         tagline: 'Theory Transformed into Practice',
-        description: 'Equipped with modern CNC machinery, fluid mechanics apparatus, robotics kits, and computing clusters with Starlink internet to mentor future innovators and researchers.',
+        description: 'Equipped with modern CNC machinery, fluid mechanics apparatus, robotics kits, and computing clusters with high-speed internet to mentor future innovators and researchers.',
         highlights: [
             '40+ specialized labs spanning Computing, Mechanical, Civil & EEE',
-            'Next-generation Starlink satellite & fiber connectivity',
+            'High-speed optical fiber connectivity',
             'Active research mentorship and IEEE Student Branch activities',
         ],
         link: '/facilities#laboratories',
@@ -217,7 +217,7 @@ export default function WhyChooseBAUST() {
                         <Sparkles size={14} className="text-emerald-600 dark:text-emerald-400" />
                         The BAUST Advantage
                     </span>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
                         Why Choose <span className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 bg-clip-text text-transparent">BAUST?</span>
                     </h2>
                     <p className="mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
