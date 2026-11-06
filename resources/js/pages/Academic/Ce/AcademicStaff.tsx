@@ -76,7 +76,8 @@ export default function CeAcademicStaff({ department, staff }: { department?: Ce
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
 
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
-    const activeStaff = staff.filter(m => m.status !== 'ex_faculty');
+    const maternityLeaveStaff = staff.filter(m => m.status === 'maternity_leave');
+    const activeStaff = staff.filter(m => m.status !== 'ex_faculty' && m.status !== 'maternity_leave');
 
 
     useEffect(() => {
@@ -119,6 +120,21 @@ export default function CeAcademicStaff({ department, staff }: { department?: Ce
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             {activeStaff.map((member) => (
+                                <StaffCard key={member.id} member={member} onClick={() => setSelectedMember(member)} />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Staff on Maternity Leave */}
+                {maternityLeaveStaff.length > 0 && (
+                    <section className="pt-8">
+                        <div className="flex items-center gap-4 mb-8">
+                            <h2 className="text-2xl font-bold text-gray-900">Staff on Maternity Leave</h2>
+                            <div className="h-0.5 flex-grow bg-gradient-to-r from-pink-100 to-transparent" />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {maternityLeaveStaff.map((member) => (
                                 <StaffCard key={member.id} member={member} onClick={() => setSelectedMember(member)} />
                             ))}
                         </div>

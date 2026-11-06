@@ -165,9 +165,12 @@ class ImportWordPressMembers extends Command
                           ->first();
 
             if ($existing) {
-                // Preserve study_leave status if already set in the database
+                // Preserve leave statuses if already set in the database
                 if ($existing->status === 'study_leave') {
                     $memberData['status'] = 'study_leave';
+                }
+                if ($existing->status === 'maternity_leave') {
+                    $memberData['status'] = 'maternity_leave';
                 }
                 $existing->update($memberData);
             } else {

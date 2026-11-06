@@ -64,7 +64,8 @@ function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () =>
 export default function IctStaff({ department, staff }: { department?: DeptInfo | null; staff: FacultyMember[] }) {
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
-    const activeStaff = staff.filter(m => m.status !== 'ex_faculty');
+    const maternityLeaveStaff = staff.filter(m => m.status === 'maternity_leave');
+    const activeStaff = staff.filter(m => m.status !== 'ex_faculty' && m.status !== 'maternity_leave');
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -94,7 +95,7 @@ export default function IctStaff({ department, staff }: { department?: DeptInfo 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 
                 <div className="max-w-3xl mb-12">
-                    <h1 className="text-3xl font-extrabold text-gray-900 mb-4 italic tracking-tight">Academic Staff</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-4 italic tracking-tight">Academic Staff</h1>
                     <p className="text-gray-600 text-lg">
                         {pageText(department, 'staff_intro', 'Meet our dedicated support team who ensure the smooth operation of our laboratory facilities and department offices.')}
                     </p>
@@ -106,6 +107,18 @@ export default function IctStaff({ department, staff }: { department?: DeptInfo 
                         <section>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                                 {activeStaff.map((member) => (
+                                    <StaffCard key={member.id} member={member} onClick={() => setSelectedMember(member)} />
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {/* Staff on Maternity Leave */}
+                    {maternityLeaveStaff.length > 0 && (
+                        <section className="pt-8">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-8 border-l-4 border-slate-300 pl-4 uppercase tracking-wider">Staff on Maternity Leave</h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                                {maternityLeaveStaff.map((member) => (
                                     <StaffCard key={member.id} member={member} onClick={() => setSelectedMember(member)} />
                                 ))}
                             </div>

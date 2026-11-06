@@ -116,6 +116,8 @@ class DepartmentMemberController extends Controller
             $request->merge(['status' => 'ex_faculty']);
         } elseif (in_array($rawStatus, ['study_leave', 'leave', 'study-leave'])) {
             $request->merge(['status' => 'study_leave']);
+        } elseif (in_array($rawStatus, ['maternity_leave', 'maternity-leave', 'maternity'])) {
+            $request->merge(['status' => 'maternity_leave']);
         } else {
             $request->merge(['status' => 'active']);
         }
@@ -181,7 +183,7 @@ class DepartmentMemberController extends Controller
             'education' => 'nullable|array',
             'type' => 'required|in:permanent,contractual,adjunct',
             'employment_type' => 'required|in:faculty,staff',
-            'status' => 'required|in:active,study_leave,ex_faculty',
+            'status' => 'required|in:active,study_leave,maternity_leave,ex_faculty',
             'category' => 'nullable|string',
             'is_head' => 'nullable|boolean',
             'biography' => 'nullable|string',
@@ -270,6 +272,8 @@ class DepartmentMemberController extends Controller
             $request->merge(['status' => 'ex_faculty']);
         } elseif (in_array($rawStatus, ['study_leave', 'leave', 'study-leave'])) {
             $request->merge(['status' => 'study_leave']);
+        } elseif (in_array($rawStatus, ['maternity_leave', 'maternity-leave', 'maternity'])) {
+            $request->merge(['status' => 'maternity_leave']);
         } else {
             $request->merge(['status' => 'active']);
         }
@@ -335,7 +339,7 @@ class DepartmentMemberController extends Controller
             'education' => 'nullable|array',
             'type' => 'required|in:permanent,contractual,adjunct',
             'employment_type' => 'required|in:faculty,staff',
-            'status' => 'required|in:active,study_leave,ex_faculty',
+            'status' => 'required|in:active,study_leave,maternity_leave,ex_faculty',
             'category' => 'nullable|string',
             'is_head' => 'nullable|boolean',
             'biography' => 'nullable|string',

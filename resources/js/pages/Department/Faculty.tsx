@@ -46,6 +46,11 @@ function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () 
                             On Study Leave
                         </span>
                     )}
+                    {member.status === 'maternity_leave' && (
+                        <span className="inline-block bg-pink-100 text-pink-800 text-[10px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full">
+                            On Maternity Leave
+                        </span>
+                    )}
                 </div>
 
                 {/* Contact Info */}
@@ -99,6 +104,7 @@ export default function DepartmentFaculty({ department, tabs, members }: DeptPag
     const contractualFaculty = filtered.filter(m => m.type === 'contractual' && m.status === 'active');
     const adjunctFaculty = filtered.filter(m => m.type === 'adjunct' && m.status === 'active');
     const studyLeaveFaculty = filtered.filter(m => m.status === 'study_leave');
+    const maternityLeaveFaculty = filtered.filter(m => m.status === 'maternity_leave');
     const exFaculty = filtered.filter(m => m.status === 'ex_faculty');
 
     // Extract HOD to highlight at the top
@@ -277,6 +283,21 @@ export default function DepartmentFaculty({ department, tabs, members }: DeptPag
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 opacity-80 hover:opacity-100 transition-opacity">
                                 {studyLeaveFaculty.map((member) => (
+                                    <FacultyCard key={member.id} member={member} onClick={() => setSelectedMember(member)} />
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {/* Faculty on Maternity Leave */}
+                    {maternityLeaveFaculty.length > 0 && (
+                        <section>
+                             <div className="flex items-center gap-4 mb-8">
+                                <h2 className="text-2xl font-bold text-gray-900">Faculty on Maternity Leave</h2>
+                                <div className="h-0.5 flex-grow bg-gradient-to-r from-pink-100 to-transparent" />
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 opacity-80 hover:opacity-100 transition-opacity">
+                                {maternityLeaveFaculty.map((member) => (
                                     <FacultyCard key={member.id} member={member} onClick={() => setSelectedMember(member)} />
                                 ))}
                             </div>

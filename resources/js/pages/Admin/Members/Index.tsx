@@ -432,6 +432,10 @@ export default function Index({ members, filters, isSingleDept }: Props) {
                                                                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
                                                                     On Study Leave
                                                                 </span>
+                                                            ) : member.status === 'maternity_leave' ? (
+                                                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-pink-50 dark:bg-pink-950/50 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-800">
+                                                                    On Maternity Leave
+                                                                </span>
                                                             ) : member.status === 'ex_faculty' ? (
                                                                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-neutral-800 text-slate-700 dark:text-neutral-300 border border-slate-300 dark:border-neutral-700">
                                                                     Ex-Member

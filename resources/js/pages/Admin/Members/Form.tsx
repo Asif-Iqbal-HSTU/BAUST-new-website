@@ -361,6 +361,8 @@ export default function Form({ member, departments = [] }: Props) {
                     ? 'Ex-Member'
                     : data.status === 'study_leave'
                     ? 'On Study Leave'
+                    : data.status === 'maternity_leave'
+                    ? 'On Maternity Leave'
                     : 'Active Member';
 
                 setData('photo_file', null);
@@ -768,6 +770,7 @@ export default function Form({ member, departments = [] }: Props) {
                                     >
                                         <option value="active">Active Member</option>
                                         <option value="study_leave">On Study Leave</option>
+                                        <option value="maternity_leave">On Maternity Leave</option>
                                         <option value="ex_faculty">Ex-Member (Former Faculty / Staff)</option>
                                     </select>
                                     {errors.status && <p className="text-xs text-red-500 font-semibold">{errors.status}</p>}
@@ -1205,9 +1208,11 @@ export default function Form({ member, departments = [] }: Props) {
                                             ? 'bg-slate-100 text-slate-700 dark:bg-neutral-800 dark:text-neutral-300 border border-slate-300 dark:border-neutral-700'
                                             : data.status === 'study_leave'
                                             ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200'
+                                            : data.status === 'maternity_leave'
+                                            ? 'bg-pink-100 text-pink-800 dark:bg-pink-950/60 dark:text-pink-300 border border-pink-200'
                                             : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200'
                                     }`}>
-                                        {data.status === 'ex_faculty' ? 'Ex-Member' : data.status === 'study_leave' ? 'On Study Leave' : 'Active Member'}
+                                        {data.status === 'ex_faculty' ? 'Ex-Member' : data.status === 'study_leave' ? 'On Study Leave' : data.status === 'maternity_leave' ? 'On Maternity Leave' : 'Active Member'}
                                     </span>
                                 </div>
                             )}

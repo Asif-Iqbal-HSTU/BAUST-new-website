@@ -38,7 +38,7 @@ export interface FacultyMember {
     department: string;
     type: string;
     employment_type?: string;
-    status: 'active' | 'study_leave' | 'ex_faculty' | string;
+    status: 'active' | 'study_leave' | 'maternity_leave' | 'ex_faculty' | string;
     category: string | null;
 }
 
@@ -328,7 +328,7 @@ export default function ProfileModal({ member, onClose }: ProfileModalProps) {
             return (
                 <div key={secIdx} className="mb-6 last:mb-0">
                     {sectionTitle && (
-                        <h4 className="text-xs font-extrabold text-emerald-800 bg-emerald-50 border-l-4 border-emerald-600 px-3 py-1.5 rounded-r-md uppercase tracking-wider mb-4 mt-6 first:mt-0">
+                        <h4 className="text-xs font-bold text-emerald-800 bg-emerald-50 border-l-4 border-emerald-600 px-3 py-1.5 rounded-r-md uppercase tracking-wider mb-4 mt-6 first:mt-0">
                             {sectionTitle}
                         </h4>
                     )}
@@ -569,6 +569,11 @@ export default function ProfileModal({ member, onClose }: ProfileModalProps) {
                                     On Study Leave
                                 </span>
                             )}
+                            {member.status === 'maternity_leave' && (
+                                <span className="bg-pink-50 text-pink-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-pink-100">
+                                    On Maternity Leave
+                                </span>
+                            )}
                             {member.status === 'ex_faculty' && (
                                 <span className="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-slate-200">
                                     Ex-Member
@@ -713,7 +718,7 @@ export default function ProfileModal({ member, onClose }: ProfileModalProps) {
                                             {/* Biography */}
                                             {member.biography && checkHasContent(member.biography) && (
                                                 <div>
-                                                    <h4 className="text-xs font-extrabold text-gray-400 uppercase tracking-widest mb-3">Academic Biography</h4>
+                                                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Academic Biography</h4>
                                                     {renderTabContent(member.biography)}
                                                 </div>
                                             )}
@@ -721,7 +726,7 @@ export default function ProfileModal({ member, onClose }: ProfileModalProps) {
                                             {/* Areas of Interest */}
                                             {areas.length > 0 && (
                                                 <div>
-                                                    <h4 className="text-xs font-extrabold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                                                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
                                                         <Sparkles className="w-4 h-4 text-emerald-600" />
                                                         Areas of Interest
                                                     </h4>
@@ -738,7 +743,7 @@ export default function ProfileModal({ member, onClose }: ProfileModalProps) {
                                             {/* Education */}
                                             {member.education && member.education.length > 0 && (
                                                 <div>
-                                                    <h4 className="text-xs font-extrabold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                                                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
                                                         <GraduationCap className="w-4 h-4 text-emerald-600" />
                                                         Academic Degrees & Qualifications
                                                     </h4>
@@ -765,7 +770,7 @@ export default function ProfileModal({ member, onClose }: ProfileModalProps) {
                                         </div>
                                     ) : (
                                         <div className="animate-in fade-in duration-200">
-                                            <h4 className="text-xs font-extrabold text-gray-400 uppercase tracking-widest mb-4">
+                                            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
                                                 {currentTabObj.label}
                                             </h4>
                                             {currentTabObj.hasData ? (

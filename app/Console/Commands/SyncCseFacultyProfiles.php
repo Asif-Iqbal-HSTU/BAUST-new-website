@@ -187,7 +187,7 @@ class SyncCseFacultyProfiles extends Command
                 'designation' => $designation,
                 'category' => $item['category'] ?? $member->category ?? 'lecturer',
                 'type' => $type,
-                'status' => $status,
+                'status' => $member->status === 'maternity_leave' ? 'maternity_leave' : $status,
                 'order' => $order,
                 'photo' => $photo,
                 'phone' => !empty($item['phone']) ? $item['phone'] : $member->phone,

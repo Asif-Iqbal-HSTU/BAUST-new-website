@@ -59,7 +59,7 @@ export interface FacultyMember {
     department?: string;
     type: 'permanent' | 'contractual' | 'adjunct';
     employment_type: 'faculty' | 'staff';
-    status: 'active' | 'study_leave' | 'ex_faculty' | string;
+    status: 'active' | 'study_leave' | 'maternity_leave' | 'ex_faculty' | string;
     category: string | null;
 }
 

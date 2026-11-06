@@ -64,6 +64,11 @@ function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () 
                             On Study Leave
                         </span>
                     )}
+                    {member.status === 'maternity_leave' && (
+                        <span className="inline-block bg-pink-50 text-pink-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-pink-200">
+                            On Maternity Leave
+                        </span>
+                    )}
                 </div>
 
                 {/* Contact Info */}
@@ -128,7 +133,8 @@ export default function DbaFaculty({ department, members }: Props) {
     };
 
     const exFaculty = members.filter(m => m.status === 'ex_faculty');
-    const activeFaculty = members.filter(m => m.status !== 'ex_faculty');
+    const maternityLeaveFaculty = members.filter(m => m.status === 'maternity_leave');
+    const activeFaculty = members.filter(m => m.status !== 'ex_faculty' && m.status !== 'maternity_leave');
 
     // Filter by type (permanent/adjunct)
     const typeFiltered = activeFaculty.filter(m => (m.type || 'permanent') === facultyType);
@@ -254,6 +260,25 @@ export default function DbaFaculty({ department, members }: Props) {
                         <h3 className="text-lg font-bold text-gray-800">No faculty members found</h3>
                         <p className="text-gray-500 text-sm mt-1">Try adjusting your search criteria or category filter.</p>
                     </div>
+                )}
+
+                {/* Faculty on Maternity Leave */}
+                {maternityLeaveFaculty.length > 0 && (
+                    <section className="mt-16">
+                        <div className="flex items-center gap-4 mb-8">
+                            <h2 className="text-2xl font-bold text-gray-900">Faculty on Maternity Leave</h2>
+                            <div className="h-0.5 flex-grow bg-gradient-to-r from-pink-100 to-transparent" />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 opacity-85 hover:opacity-100 transition-opacity">
+                            {maternityLeaveFaculty.map((member) => (
+                                <FacultyCard
+                                    key={member.id}
+                                    member={member}
+                                    onClick={() => handleOpenModal(member)}
+                                />
+                            ))}
+                        </div>
+                    </section>
                 )}
 
                 {/* Ex Faculty Members */}

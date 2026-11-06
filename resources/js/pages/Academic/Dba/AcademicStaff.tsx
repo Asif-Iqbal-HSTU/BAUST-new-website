@@ -76,7 +76,8 @@ function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () =>
 export default function DbaAcademicStaff({ department, staff }: Props) {
     const [selectedMember, setSelectedMember] = useState<FacultyMember | null>(null);
 
-    const activeStaff = staff.filter(m => m.status !== 'ex_faculty');
+    const maternityLeaveStaff = staff.filter(m => m.status === 'maternity_leave');
+    const activeStaff = staff.filter(m => m.status !== 'ex_faculty' && m.status !== 'maternity_leave');
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
 
     useEffect(() => {
@@ -132,6 +133,25 @@ export default function DbaAcademicStaff({ department, staff }: Props) {
                             Staff details for the Department of Business Administration are maintained by the departmental office. For administrative inquiries, please contact <span className="font-semibold text-emerald-700">dba@baust.edu.bd</span>.
                         </p>
                     </div>
+                )}
+
+                {/* Staff on Maternity Leave */}
+                {maternityLeaveStaff.length > 0 && (
+                    <section className="mt-16 pt-10">
+                        <div className="flex items-center gap-4 mb-8">
+                            <h2 className="text-2xl font-bold text-gray-900">Staff on Maternity Leave</h2>
+                            <div className="h-0.5 flex-grow bg-gradient-to-r from-pink-100 to-transparent" />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 hover:opacity-100 transition-opacity">
+                            {maternityLeaveStaff.map((member) => (
+                                <StaffCard
+                                    key={member.id}
+                                    member={member}
+                                    onClick={() => handleOpenModal(member)}
+                                />
+                            ))}
+                        </div>
+                    </section>
                 )}
 
                 {/* Ex Academic Staff / Officers */}
