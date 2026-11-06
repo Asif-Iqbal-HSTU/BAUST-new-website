@@ -1,5 +1,7 @@
 import { Head, Link, router } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
+import ReorderHandle, { reorderRowClass } from '@/components/reorder-handle';
+import { useDragReorder } from '@/hooks/use-drag-reorder';
 import { type BreadcrumbItem } from '@/types';
 import { index, create, edit, destroy } from '@/routes/admin/faculties';
 import { manage as manageOffice } from '@/routes/admin/offices';
@@ -24,6 +26,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Index({ faculties }: Props) {
+    const reorder = useDragReorder(faculties, '/admin/faculties/reorder');
     const handleDelete = (id: number, name: string) => {
         if (confirm(`Delete "${name}"? This also removes its Dean's Office member list (Dean, Coordinator, staff). This cannot be undone.`)) {
             router.delete(destroy(id).url);
@@ -39,7 +42,7 @@ export default function Index({ faculties }: Props) {
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Faculties & Dean's Offices</h1>
                         <p className="text-sm text-gray-500">
-                            Create, edit, or remove faculties (e.g. FME, FECE) and manage each Dean's Office page content.
+                            Create, edit, or remove faculties (e.g. FME, FECE) and manage each Dean's Office page content. Drag rows by the handle (or use ↑ ↓) to change their order.
                         </p>
                     </div>
 
@@ -56,6 +59,7 @@ export default function Index({ faculties }: Props) {
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="border-b border-gray-100 dark:border-neutral-800 bg-gray-50 dark:bg-neutral-850 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                    <th className="py-3 px-2 w-12"></th>
                                     <th className="py-3 px-6">Code</th>
                                     <th className="py-3 px-6">Faculty Name</th>
                                     <th className="py-3 px-6">Departments</th>
@@ -65,8 +69,15 @@ export default function Index({ faculties }: Props) {
                             </thead>
                             <tbody className="divide-y divide-gray-100 dark:divide-neutral-800 text-sm text-gray-700 dark:text-gray-300">
                                 {faculties.length > 0 ? (
-                                    faculties.map((f) => (
-                                        <tr key={f.id} className="hover:bg-gray-50/50 dark:hover:bg-neutral-850/50 transition-colors">
+                                    reorder.items.map((f, idx) => (
+                                        <tr
+                                            key={f.id}
+                                            {...reorder.rowProps(idx)}
+                                            className={`hover:bg-gray-50/50 dark:hover:bg-neutral-850/50 transition-colors ${reorderRowClass(reorder.isDragging(idx), reorder.isOver(idx))}`}
+                                        >
+                                            <td className="py-4 px-2">
+                                                <ReorderHandle index={idx} count={reorder.items.length} onUp={() => reorder.moveUp(idx)} onDown={() => reorder.moveDown(idx)} />
+                                            </td>
                                             <td className="py-4 px-6">
                                                 <span className="uppercase inline-block bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-2 py-0.5 rounded">
                                                     {f.code}
@@ -102,7 +113,7 @@ export default function Index({ faculties }: Props) {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan={5} className="py-8 text-center text-gray-400">
+                                        <td colSpan={6} className="py-8 text-center text-gray-400">
                                             No faculties found.
                                         </td>
                                     </tr>

@@ -63,8 +63,8 @@ class CseDepartmentController extends Controller
     public function visionMission()
     {
         $dept = Department::where('slug', 'cse')->first();
-        $peos = $dept ? $dept->obes()->where('type', 'peo')->where('is_active', true)->get() : [];
-        $plos = $dept ? $dept->obes()->where('type', 'plo')->where('is_active', true)->get() : [];
+        $peos = $dept ? $dept->obes()->where('type', 'peo')->where('is_active', true)->orderBy('order')->get() : [];
+        $plos = $dept ? $dept->obes()->where('type', 'plo')->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Cse/VisionMission', [
             'department' => $dept,
@@ -75,6 +75,7 @@ class CseDepartmentController extends Controller
 
     public function faculty()
     {
+        $dept = Department::where('slug', 'cse')->first();
         $members = DepartmentMember::where('department', 'cse')
             ->facultyVisible()
             ->orderBy('type', 'asc') // Permanent first, then adjunct/contractual
@@ -82,18 +83,21 @@ class CseDepartmentController extends Controller
             ->get();
 
         return Inertia::render('Academic/Cse/Faculty', [
+            'department' => $dept,
             'members' => $members
         ]);
     }
 
     public function academicStaff()
     {
+        $dept = Department::where('slug', 'cse')->first();
         $staff = DepartmentMember::where('department', 'cse')
             ->staffVisible()
             ->orderBy('order')
             ->get();
 
         return Inertia::render('Academic/Cse/AcademicStaff', [
+            'department' => $dept,
             'staff' => $staff
         ]);
     }
@@ -101,7 +105,7 @@ class CseDepartmentController extends Controller
     public function curriculum()
     {
         $dept = Department::where('slug', 'cse')->first();
-        $curricula = $dept ? $dept->curricula()->where('is_active', true)->get() : [];
+        $curricula = $dept ? $dept->curricula()->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Cse/Curriculum', [
             'department' => $dept,
@@ -112,16 +116,19 @@ class CseDepartmentController extends Controller
     public function alumni()
     {
         $dept = Department::where('slug', 'cse')->first();
-        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->first() : null;
+        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->orderBy('order')->first() : null;
+        $alumniMembers = $dept ? $dept->alumni()->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Cse/Alumni', [
             'department' => $dept,
             'alumni' => $alumni,
+            'alumniMembers' => $alumniMembers,
         ]);
     }
 
     public function events()
     {
+        $dept = Department::where('slug', 'cse')->first();
         $events = Notice::active()
             ->forDepartment('cse')
             ->whereHas('categories', function($q) {
@@ -131,6 +138,7 @@ class CseDepartmentController extends Controller
             ->get();
 
         return Inertia::render('Academic/Cse/Events', [
+            'department' => $dept,
             'events' => $events
         ]);
     }
@@ -138,6 +146,7 @@ class CseDepartmentController extends Controller
     public function eventDetail($slug)
     {
         $event = Notice::active()
+            ->forDepartment('cse')
             ->where('slug', $slug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -161,7 +170,7 @@ class CseDepartmentController extends Controller
     public function achievements()
     {
         $dept = Department::where('slug', 'cse')->first();
-        $achievements = $dept ? $dept->achievements()->where('is_active', true)->get() : [];
+        $achievements = $dept ? $dept->achievements()->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Cse/Achievements', [
             'department' => $dept,
@@ -169,24 +178,26 @@ class CseDepartmentController extends Controller
         ]);
     }
 
-    public function laboratory($slug)
+    /** /cse/laboratories: open the first active lab, or an empty state when none exist. */
+    public function laboratory($slug = null)
     {
         $dept = Department::where('slug', 'cse')->first();
-        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->get() : [];
-        $lab = $allLabs->firstWhere('slug', $slug) ?: $allLabs->first();
+        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : collect();
+        $lab = $slug ? $allLabs->firstWhere('slug', $slug) : $allLabs->first();
+        abort_if($slug && !$lab, 404);
 
         return Inertia::render('Academic/Cse/Laboratory', [
             'department' => $dept,
             'lab' => $lab,
             'allLabs' => $allLabs,
-            'labSlug' => $slug,
+            'labSlug' => $lab?->slug,
         ]);
     }
 
     public function society()
     {
         $dept = Department::where('slug', 'cse')->first();
-        $society = $dept ? $dept->societies()->where('slug', 'cse-society')->where('is_active', true)->first() : null;
+        $society = $dept ? $dept->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->orderBy('order')->first() : null;
 
         return Inertia::render('Academic/Cse/CseSociety', [
             'department' => $dept,

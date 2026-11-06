@@ -116,11 +116,13 @@ class IpeDepartmentController extends Controller
     public function alumni()
     {
         $dept = Department::where('slug', 'ipe')->first();
-        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->first() : null;
+        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->orderBy('order')->first() : null;
+        $alumniList = $dept ? $dept->alumni()->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Ipe/Alumni', [
             'department' => $dept,
             'alumni' => $alumni,
+            'alumniList' => $alumniList,
         ]);
     }
 
@@ -144,6 +146,7 @@ class IpeDepartmentController extends Controller
     public function eventDetail($slug)
     {
         $event = Notice::active()
+            ->forDepartment('ipe')
             ->where('slug', $slug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -178,21 +181,22 @@ class IpeDepartmentController extends Controller
     public function laboratory($slug = null)
     {
         $dept = Department::where('slug', 'ipe')->first();
-        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : [];
-        $lab = $slug ? ($allLabs->firstWhere('slug', $slug) ?: $allLabs->first()) : $allLabs->first();
+        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : collect();
+        $lab = $slug ? $allLabs->firstWhere('slug', $slug) : $allLabs->first();
+        abort_if($slug && !$lab, 404);
 
         return Inertia::render('Academic/Ipe/Laboratory', [
             'department' => $dept,
             'lab' => $lab,
             'allLabs' => $allLabs,
-            'labSlug' => $slug ?: ($lab?->slug ?? 'production-process-lab'),
+            'labSlug' => $lab?->slug,
         ]);
     }
 
     public function society()
     {
         $dept = Department::where('slug', 'ipe')->first();
-        $society = $dept ? $dept->societies()->where('slug', 'ipe-society')->where('is_active', true)->first() : null;
+        $society = $dept ? $dept->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->orderBy('order')->first() : null;
 
         return Inertia::render('Academic/Ipe/IpeSociety', [
             'department' => $dept,

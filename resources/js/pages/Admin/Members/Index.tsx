@@ -50,6 +50,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function Index({ members, filters, isSingleDept }: Props) {
     const { auth, flash } = usePage<SharedData>().props;
     const user = auth.user;
+    const programs = (auth as { manages?: { programs: { slug: string; short_name: string }[] } | null }).manages?.programs ?? [];
 
     const [items, setItems] = useState<Member[]>(members.data);
     const [draggedIdx, setDraggedIdx] = useState<number | null>(null);
@@ -277,6 +278,7 @@ export default function Index({ members, filters, isSingleDept }: Props) {
                                 <option value="eng">English (ENG)</option>
                                 <option value="as">Arts & Sciences (AS)</option>
                                 <option value="mba">MBA Program</option>
+                                <option value="ma-elt">MA in English (ELT) Program</option>
                             </select>
                         </div>
 
@@ -290,9 +292,23 @@ export default function Index({ members, filters, isSingleDept }: Props) {
                     <div className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-2xl p-4 shadow-xs flex items-center justify-between gap-4">
                         <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Department:</span>
-                            <span className="font-bold text-emerald-600 uppercase">
-                                {user.department ? `${user.department.toUpperCase()} Department` : 'Your Department'}
-                            </span>
+                            {programs.length > 0 ? (
+                                // Focal points also run their faculty's programs (e.g. MBA)
+                                <select
+                                    value={filters.department || user.department || ''}
+                                    onChange={handleDepartmentFilterChange}
+                                    className="text-sm rounded-xl border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-gray-900 dark:text-white py-2 px-3.5 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500"
+                                >
+                                    <option value={user.department || ''}>{(user.department || '').toUpperCase()} Department</option>
+                                    {programs.map((p) => (
+                                        <option key={p.slug} value={p.slug}>{p.short_name} Program</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                <span className="font-bold text-emerald-600 uppercase">
+                                    {user.department ? `${user.department.toUpperCase()} Department` : 'Your Department'}
+                                </span>
+                            )}
                         </div>
                         <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                             {items.length} Members

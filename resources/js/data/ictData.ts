@@ -51,10 +51,24 @@ export interface FacultyMember {
     department?: string;
 }
 
-export const NOTICES = [
-    { date: '19', month: 'Feb', title: 'Joyful Celebration of 10th Raising Day & Pitha Utshab by the ICT Department' },
-    { date: '05', month: 'Feb', title: 'Publication of Results Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '14', month: 'Jan', title: 'Final Examination Result of Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '27', month: 'Jan', title: 'Publication of Results Summer 2024 (ICT)' },
-    { date: '13', month: 'Jun', title: 'Publication of Results Final Winter 2024 (ICT)' },
-];
+/** Department profile row (`departments` table) as passed by the controller. */
+export interface DeptInfo {
+    id: number;
+    slug: string;
+    name: string;
+    short_name: string;
+    faculty?: string | null;
+    tagline?: string | null;
+    established?: string | null;
+    about?: string | null;
+    vision?: string | null;
+    mission?: string | null;
+    hod_name?: string | null;
+    hod_designation?: string | null;
+    hod_photo?: string | null;
+    hod_message?: string | null;
+    accreditation_badge?: string | null;
+    accreditation_title?: string | null;
+    accreditation_text?: string | null;
+    page_texts?: Record<string, string> | null;
+}

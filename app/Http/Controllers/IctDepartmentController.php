@@ -116,11 +116,13 @@ class IctDepartmentController extends Controller
     public function alumni()
     {
         $dept = Department::where('slug', 'ict')->first();
-        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->first() : null;
+        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->orderBy('order')->first() : null;
+        $alumniMembers = $dept ? $dept->alumni()->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Ict/Alumni', [
             'department' => $dept,
             'alumni' => $alumni,
+            'alumniMembers' => $alumniMembers,
         ]);
     }
 
@@ -144,6 +146,7 @@ class IctDepartmentController extends Controller
     public function eventDetail($slug)
     {
         $event = Notice::active()
+            ->forDepartment('ict')
             ->where('slug', $slug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -178,30 +181,33 @@ class IctDepartmentController extends Controller
     public function laboratories($slug = null)
     {
         $dept = Department::where('slug', 'ict')->first();
-        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : [];
-        $lab = $slug ? ($allLabs->firstWhere('slug', $slug) ?: $allLabs->first()) : $allLabs->first();
+        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : collect();
+        $lab = $slug ? $allLabs->firstWhere('slug', $slug) : $allLabs->first();
+        abort_if($slug && !$lab, 404);
 
         return Inertia::render('Academic/Ict/Laboratory', [
             'department' => $dept,
             'lab' => $lab,
             'allLabs' => $allLabs,
-            'labSlug' => $slug ?: ($lab?->slug ?? 'computer-programming-software-engineering-lab'),
+            'labSlug' => $lab?->slug,
         ]);
     }
 
     public function research()
     {
         $dept = Department::where('slug', 'ict')->first();
+        $researches = $dept ? $dept->researches()->where('is_active', true)->orderBy('order')->get() : [];
 
         return Inertia::render('Academic/Ict/Research', [
             'department' => $dept,
+            'researches' => $researches,
         ]);
     }
 
     public function society()
     {
         $dept = Department::where('slug', 'ict')->first();
-        $society = $dept ? $dept->societies()->where('slug', 'ict-society')->where('is_active', true)->first() : null;
+        $society = $dept ? $dept->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->orderBy('order')->first() : null;
 
         return Inertia::render('Academic/Ict/IctSociety', [
             'department' => $dept,

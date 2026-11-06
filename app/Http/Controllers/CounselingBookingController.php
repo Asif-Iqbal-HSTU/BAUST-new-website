@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CounselingRequestConfirmation;
+use App\Mail\CounselingRequestReceived;
 use App\Models\CounselingSession;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CounselingBookingController extends Controller
@@ -48,6 +51,14 @@ class CounselingBookingController extends Controller
             'confidential_message' => $validated['confidential_message'] ?? null,
             'status'               => 'pending',
         ]);
+
+        // Queued, so a mail server hiccup never blocks or fails the booking itself
+        try {
+            Mail::to(config('mail.recipients.counseling'))->queue(new CounselingRequestReceived($session));
+            Mail::to($session->email)->queue(new CounselingRequestConfirmation($session));
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         if ($request->header('X-Inertia')) {
             return back()->with('booking_success', [

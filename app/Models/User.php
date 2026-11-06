@@ -31,6 +31,9 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    /** Per-request cache for managedFaculty(). */
+    private array $managedFacultyCache = [];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -56,7 +59,9 @@ class User extends Authenticatable
 
     public function isDeptAdmin(): bool
     {
-        return $this->role === 'dept_admin';
+        // A dept_admin without an assigned department (e.g. a self-registered
+        // account, since the column defaults to dept_admin) has no privileges.
+        return $this->role === 'dept_admin' && ! empty($this->department);
     }
 
     public function isIqacAdmin(): bool
@@ -78,6 +83,91 @@ class User extends Authenticatable
      * Departments/offices/IQAC content owners who can submit a Media Coverage
      * Requisition to the PR Office ahead of an event (policy §3.5.1).
      */
+    /**
+     * Sections (Administration, Library, Research, Admission menus) whose pages
+     * this user edits: a section admin has one; the super admin has all.
+     *
+     * @return list<string>
+     */
+    public function managedSections(): array
+    {
+        if ($this->isSuperAdmin()) {
+            return array_keys(SitePage::SECTIONS);
+        }
+
+        return array_keys(array_filter(SitePage::SECTIONS, fn ($s) => $s['role'] === $this->role));
+    }
+
+    public function isSectionAdmin(): bool
+    {
+        return ! $this->isSuperAdmin() && $this->managedSections() !== [];
+    }
+
+    public function canManageSection(?string $section): bool
+    {
+        return $section !== null && in_array($section, $this->managedSections(), true);
+    }
+
+    /** An office admin (e.g. Treasurer) who maintains a few named pages, not a whole menu. */
+    public function isPageAdmin(): bool
+    {
+        return isset(SitePage::PAGE_ADMINS[$this->role]);
+    }
+
+    /**
+     * Individual site pages assigned to a page admin.
+     *
+     * @return list<string>
+     */
+    public function managedPageKeys(): array
+    {
+        return SitePage::PAGE_ADMINS[$this->role]['pages'] ?? [];
+    }
+
+    public function canManageSitePage(SitePage $page): bool
+    {
+        return $this->canManageSection($page->section) || in_array($page->key, $this->managedPageKeys(), true);
+    }
+
+    public function isAdmissionAdmin(): bool
+    {
+        return $this->role === SitePage::SECTIONS['admission']['role'];
+    }
+
+    /**
+     * Office staff lists: super admin all; the Administration admin the
+     * university offices (not faculty Dean's offices); Library/Admission admins
+     * and page admins (Treasurer) their own office; faculty focal points their
+     * faculty's Dean's office.
+     */
+    public function canManageOffice(?string $office): bool
+    {
+        if ($office === null) {
+            return false;
+        }
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+        if (in_array($office, SitePage::PAGE_ADMINS[$this->role]['offices'] ?? [], true)) {
+            return true;
+        }
+
+        $isFaculty = Faculty::where('slug', $office)->exists();
+        if ($isFaculty) {
+            return $this->canManageFaculty($office);
+        }
+        if ($this->role === SitePage::SECTIONS['administration']['role']) {
+            return true;
+        }
+        foreach (SitePage::SECTION_OFFICES as $section => $offices) {
+            if ($this->canManageSection($section) && in_array($office, $offices, true)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function canSubmitMediaRequest(): bool
     {
         return $this->isSuperAdmin() || $this->isDeptAdmin() || $this->isIqacAdmin();
@@ -99,7 +189,50 @@ class User extends Authenticatable
             return true;
         }
 
-        return $this->isDeptAdmin() && $this->department === $dept;
+        return $dept !== null && in_array($dept, $this->manageableDepartmentSlugs(), true);
+    }
+
+    /**
+     * The faculty (Dean's office) a focal point helps run: the one whose
+     * department list includes their department.
+     */
+    public function managedFaculty(): ?Faculty
+    {
+        if (! $this->isDeptAdmin()) {
+            return null;
+        }
+
+        if (! array_key_exists('faculty', $this->managedFacultyCache)) {
+            $this->managedFacultyCache['faculty'] = Faculty::whereJsonContains('department_slugs', $this->department)->orderBy('order')->first();
+        }
+
+        return $this->managedFacultyCache['faculty'];
+    }
+
+    /**
+     * Department pages a focal point may edit: their own department plus the
+     * degree programs (e.g. MBA, MA in English (ELT)) run by their faculty.
+     *
+     * @return list<string>
+     */
+    public function manageableDepartmentSlugs(): array
+    {
+        if (! $this->isDeptAdmin()) {
+            return [];
+        }
+
+        $programs = array_values(array_intersect(Department::PROGRAM_SLUGS, $this->managedFaculty()?->department_slugs ?? []));
+
+        return array_values(array_unique([$this->department, ...$programs]));
+    }
+
+    public function canManageFaculty(?string $facultySlug): bool
+    {
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+
+        return $facultySlug !== null && $this->managedFaculty()?->slug === $facultySlug;
     }
 
     /**
@@ -108,7 +241,9 @@ class User extends Authenticatable
      * - super_admin: any notice.
      * - pro (Public Relations Officer): university-wide notices (no department)
      *   plus News/Events/Achievements/Conferences items for any department.
-     * - dept_admin: only notices scoped to their own department.
+     * - admission_admin: university-wide Admission Notices.
+     * - dept_admin: only notices scoped to a department they manage (their own
+     *   or a program of their faculty).
      */
     public function canManageNotice(\App\Models\Notice $notice): bool
     {
@@ -120,6 +255,10 @@ class User extends Authenticatable
             return $notice->department === null || $notice->isPrCategory();
         }
 
-        return $this->isDeptAdmin() && $this->department === $notice->department;
+        if ($this->isAdmissionAdmin()) {
+            return $notice->department === null && $notice->categories()->where('slug', 'admission-notice')->exists();
+        }
+
+        return $this->isDeptAdmin() && $notice->department !== null && $this->canManageDepartment($notice->department);
     }
 }

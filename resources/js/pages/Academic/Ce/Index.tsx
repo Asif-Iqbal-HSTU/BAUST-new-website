@@ -5,51 +5,8 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME, FacultyMember } from '@/data/ceData';
-import {
-    BadgeCheck,
-    ChevronLeft,
-    ChevronRight,
-    Building2,
-    GraduationCap,
-    Compass,
-    Leaf,
-    Users,
-    Award,
-    Briefcase,
-    FlaskConical,
-    Globe,
-    Cpu,
-    BookOpen,
-    Layers,
-    Target,
-    Trophy,
-    ShieldCheck,
-    Sparkles,
-} from 'lucide-react';
-
-const ICON_MAP: Record<string, React.ReactNode> = {
-    Building2: <Building2 className="w-7 h-7" />,
-    GraduationCap: <GraduationCap className="w-7 h-7" />,
-    Compass: <Compass className="w-7 h-7" />,
-    Leaf: <Leaf className="w-7 h-7" />,
-    Users: <Users className="w-7 h-7" />,
-    Award: <Award className="w-7 h-7" />,
-    Briefcase: <Briefcase className="w-7 h-7" />,
-    FlaskConical: <FlaskConical className="w-7 h-7" />,
-    Globe: <Globe className="w-7 h-7" />,
-    Cpu: <Cpu className="w-7 h-7" />,
-    BookOpen: <BookOpen className="w-7 h-7" />,
-    Layers: <Layers className="w-7 h-7" />,
-    Target: <Target className="w-7 h-7" />,
-    Trophy: <Trophy className="w-7 h-7" />,
-    ShieldCheck: <ShieldCheck className="w-7 h-7" />,
-    Sparkles: <Sparkles className="w-7 h-7" />,
-};
-
-function renderHighlightIcon(name?: string | null) {
-    if (name && ICON_MAP[name]) return ICON_MAP[name];
-    return <Building2 className="w-7 h-7" />;
-}
+import { BadgeCheck, ChevronLeft, ChevronRight, Building2 } from 'lucide-react';
+import { deptIcon, pageText } from '@/lib/dept-icons';
 
 interface SlideItem {
     id?: number;
@@ -57,7 +14,6 @@ interface SlideItem {
     title?: string | null;
     subtitle?: string | null;
     caption?: string | null;
-    badge?: string | null;
 }
 
 interface HighlightItem {
@@ -92,6 +48,7 @@ interface DeptInfo {
     accreditation_badge?: string | null;
     accreditation_title?: string | null;
     accreditation_text?: string | null;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -104,51 +61,12 @@ interface Props {
     notices: any[];
 }
 
-const DEFAULT_SLIDES: SlideItem[] = [
-    { title: "Sticker Design Competition & Creative Showcase", image: "/images/departments/ce/slider/slide1.jpg", badge: "Student Innovation" },
-    { title: "Congratulations to Our Proud Alumni", image: "/images/departments/ce/slider/slide2.jpg", badge: "Alumni Pride" },
-    { title: "Welcoming New Faculty Members", image: "/images/departments/ce/slider/slide3.jpg", badge: "Academic Faculty" },
-    { title: "Industrial Attachments at Leading Organizations", image: "/images/departments/ce/slider/slide4.jpg", badge: "Industry Linkage" },
-    { title: "Leadership in Engineering Education", image: "/images/departments/ce/slider/slide5.jpg", badge: "Academic Excellence" },
-    { title: "Graduation Thesis & Capstone Project Defense", image: "/images/departments/ce/slider/slide6.jpg", badge: "Research & Defense" },
-    { title: "BAUST Creative Minds Expo 2.0", image: "/images/departments/ce/slider/slide7.jpg", badge: "Sustainable Expo" },
-    { title: "Departmental Board Viva & Assessment", image: "/images/departments/ce/slider/slide8.jpg", badge: "OBE Assessment" },
-];
-
-const DEFAULT_STATS: StatItem[] = [
-    { value: '450+', label: 'Undergraduate Students' },
-    { value: '28+', label: 'Faculty & Staff Members' },
-    { value: '11', label: 'Specialized Laboratories' },
-    { value: '100%', label: 'OBE Aligned Curriculum' },
-];
-
-const DEFAULT_HIGHLIGHTS: HighlightItem[] = [
-    {
-        icon: 'GraduationCap',
-        title: 'Outcome Based Education (OBE)',
-        text: 'Curriculum aligned with international BAETE Washington Accord standards covering all 5 core CE branches.',
-    },
-    {
-        icon: 'Building2',
-        title: '11 State-of-the-Art Laboratories',
-        text: 'Comprehensive testing facilities including SM Lab, Geotechnical, Transportation, Environmental, and Open Channel Flow.',
-    },
-    {
-        icon: 'Compass',
-        title: 'Practical Surveying & Field Camps',
-        text: 'Hands-on intensive field work using digital total stations, leveling instruments, and GIS tools.',
-    },
-    {
-        icon: 'Leaf',
-        title: 'Environmental & Sustainable Infrastructure',
-        text: 'Active research in climate resilience, waste reduction, water treatment, and green engineering materials.',
-    },
-];
-
 export default function CeIndex({ department, slides, highlights, stats, headOfDept, facultyPreview, notices }: Props) {
-    const activeSlides = (slides && slides.length > 0) ? slides : DEFAULT_SLIDES;
-    const activeHighlights = (highlights && highlights.length > 0) ? highlights : DEFAULT_HIGHLIGHTS;
-    const activeStats = (stats && stats.length > 0) ? stats : DEFAULT_STATS;
+    const activeSlides = slides ?? [];
+    const activeHighlights = highlights ?? [];
+    const activeStats = stats ?? [];
+    const shortName = department?.short_name || 'CE';
+    const deptName = department?.name || CE_DEPT_NAME;
 
     const [isHeadMsgOpen, setIsHeadMsgOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -163,12 +81,12 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
     const formatDate = (dateStr: string) => {
         try {
             const d = new Date(dateStr);
-            if (isNaN(d.getTime())) return { day: '15', month: 'JUL' };
+            if (isNaN(d.getTime())) return { day: '--', month: '' };
             const day = d.getDate().toString().padStart(2, '0');
             const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
             return { day, month: months[d.getMonth()] };
         } catch {
-            return { day: '15', month: 'JUL' };
+            return { day: '--', month: '' };
         }
     };
 
@@ -181,25 +99,30 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
         }
     }, [isHeadMsgOpen]);
 
-    const hodName = department?.hod_name || headOfDept?.name || 'Professor Dr. Md. Mahmudul Hasan';
-    const hodDesignation = department?.hod_designation || headOfDept?.designation || 'Dean, Faculty of Civil Engineering & Head of Department';
-    const hodPhoto = department?.hod_photo || headOfDept?.photo || '/images/ce/members/md_mahmudul_hasan.jpg';
-    const defaultHodMessage = `Welcome to the Department of Civil Engineering (CE) at Bangladesh Army University of Science and Technology (BAUST), Saidpur. Civil Engineering is the foundation of national development, shaping transportation networks, resilient buildings, clean water supplies, and sustainable environmental systems.\n\nSince our inception in December 2019, our department has been committed to providing an exceptional educational experience through modern Outcome-Based Education (OBE) curricula, 11 dedicated state-of-the-art laboratories, and an experienced faculty body. Our students gain extensive hands-on experience through practical surveying camps, laboratory investigations, structural CAD design, and field attachments.\n\nWe emphasize ethical discipline, research innovation, and environmental responsibility, empowering our graduates to lead public and private infrastructure development both at home and internationally. I invite you to explore our department and join us in building a better world.`;
-    const hodMessage = department?.hod_message || defaultHodMessage;
-    const hodParagraphs = hodMessage.split('\n\n').filter(Boolean);
+    const hodName = department?.hod_name || headOfDept?.name || '';
+    const hodDesignation = department?.hod_designation || headOfDept?.designation || 'Head of the Department';
+    const hodPhoto = department?.hod_photo || headOfDept?.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(hodName || shortName)}&background=059669&color=fff&size=176`;
+    const hodMessage = department?.hod_message || '';
+    const hodParagraphs = hodMessage.split(/\r?\n\s*\r?\n|\\n\\n/).map(p => p.trim()).filter(Boolean);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title={`Department of ${department?.short_name || 'CE'} - BAUST`} />
+            <Head title={`${deptName} - BAUST`} />
             <Navbar />
-            <PageHero title={department?.name || "Department of Civil Engineering (CE)"} subtitle={null} compact={true} />
+            <PageHero title={deptName} subtitle={pageText(department, 'home_hero_subtitle', '') || null} compact={true} />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Home" tabs={CE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
 
-                {/* Highlights Slider + Accreditation, side by side */}
+                {/* Highlights Slider + OBE card, side by side */}
                 <section className="grid lg:grid-cols-3 gap-6 items-stretch">
                     <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                        {activeSlides.length === 0 && (
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 to-emerald-950 flex flex-col justify-end p-6 sm:p-10">
+                                <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug max-w-3xl">{deptName}</h3>
+                                {department?.tagline && <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">{department.tagline}</p>}
+                            </div>
+                        )}
                         {activeSlides.map((slide, idx) => (
                             <div
                                 key={idx}
@@ -208,16 +131,11 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10">
-                                    {slide.badge && (
-                                        <span className="inline-block px-3 py-1 bg-emerald-500/80 backdrop-blur-md text-white text-xs font-bold rounded-full mb-3 uppercase tracking-wider">
-                                            {slide.badge}
-                                        </span>
-                                    )}
                                     {slide.title && (
                                         <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
                                     )}
-                                    {(slide.subtitle || slide.caption) && (
-                                        <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">{slide.subtitle || slide.caption}</p>
+                                    {(slide.caption || slide.subtitle) && (
+                                        <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">{slide.caption || slide.subtitle}</p>
                                     )}
                                 </div>
                             </div>
@@ -245,7 +163,7 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                         )}
                     </div>
 
-                    {/* Accreditation card */}
+                    {/* OBE program card */}
                     <div className="lg:col-span-1 bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
                         <div className="h-1.5 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500" />
                         <div className="p-7 flex flex-col flex-grow justify-center">
@@ -253,27 +171,27 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                                 <BadgeCheck className="w-9 h-9 text-amber-600" strokeWidth={2} />
                             </div>
                             <span className="w-fit bg-amber-100 text-amber-800 text-[11px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full mb-3">
-                                {department?.accreditation_badge || 'IEB-BAETE'}
+                                {department?.accreditation_badge || 'OBE Curriculum'}
                             </span>
                             <h3 className="text-lg font-bold text-gray-900 leading-snug">
                                 {department?.accreditation_title || 'Outcome-Based Education Program'}
                             </h3>
                             <p className="text-sm text-gray-500 mt-3 leading-relaxed">
-                                {department?.accreditation_text || 'The Department of Civil Engineering offers a 4-year undergraduate B.Sc. in Civil Engineering program designed in line with Outcome-Based Education (OBE) and Washington Accord accreditation criteria.'}
+                                {department?.accreditation_text || 'The Department of Civil Engineering offers a 4-year undergraduate B.Sc. in Civil Engineering program designed in line with Outcome-Based Education (OBE) principles.'}
                             </p>
                         </div>
                     </div>
                 </section>
 
                 {/* Quick Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                {activeStats.length > 0 && <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                     {activeStats.map((st, idx) => (
                         <div key={st.id ?? idx} className="bg-white rounded-2xl p-6 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all">
                             <div className="text-3xl sm:text-4xl font-black text-emerald-700">{st.value}</div>
                             <div className="text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-wider mt-1">{st.label}</div>
                         </div>
                     ))}
-                </div>
+                </div>}
 
                 {/* Two-column: Message from Head + Notices */}
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -305,7 +223,7 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                                             {p}
                                         </p>
                                     ))}
-                                    <div className="mt-4 flex justify-end">
+                                    {hodParagraphs.length > 0 && <div className="mt-4 flex justify-end">
                                         <button 
                                             onClick={() => setIsHeadMsgOpen(true)}
                                             className="text-emerald-700 font-bold hover:underline flex items-center gap-1 group cursor-pointer"
@@ -313,7 +231,7 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                                             Read full message
                                             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                                         </button>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
@@ -361,22 +279,22 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                 </div>
 
                 {/* Why CE at BAUST? */}
-                <div>
+                {activeHighlights.length > 0 && <div>
                     <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
-                        Why CE at <span className="text-emerald-700">BAUST</span>?
+                        Why {shortName} at <span className="text-emerald-700">BAUST</span>?
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {activeHighlights.map((item, idx) => (
                             <div key={item.id ?? idx} className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                                    {renderHighlightIcon(item.icon)}
+                                    {(() => { const Icon = deptIcon(item.icon, Building2); return <Icon className="w-7 h-7" />; })()}
                                 </div>
                                 <h3 className="text-[15px] font-bold text-gray-900 mb-2">{item.title}</h3>
                                 <p className="text-[13px] text-gray-500 leading-relaxed">{item.text || item.description}</p>
                             </div>
                         ))}
                     </div>
-                </div>
+                </div>}
 
                 {/* Faculty Preview */}
                 <div>
@@ -435,7 +353,7 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                                     <p className="font-bold text-gray-900 mt-2">{hodName}</p>
                                     <p className="text-sm text-emerald-700 font-semibold">{hodDesignation}</p>
                                     <p className="text-[13px] text-gray-500 mt-1">
-                                        Department of {department?.short_name || 'CE'}, BAUST
+                                        {deptName}, BAUST
                                     </p>
                                 </div>
                             </div>

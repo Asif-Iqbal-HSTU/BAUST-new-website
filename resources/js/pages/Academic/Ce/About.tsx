@@ -28,21 +28,10 @@ interface Props {
     stats?: StatItem[];
 }
 
-const DEFAULT_STATS: StatItem[] = [
-    { value: '450+', label: 'Undergraduate Students' },
-    { value: '28+', label: 'Faculty & Staff Members' },
-    { value: '11', label: 'Specialized Laboratories' },
-    { value: '100%', label: 'OBE Aligned Curriculum' },
-];
-
-const DEFAULT_ABOUT = `Civil engineering is the backbone of modern civilization—one of the oldest and most far-reaching disciplines in engineering. Civil engineers are the architects of infrastructure, shaping the physical world while ensuring environmental sustainability. From towering skyscrapers to sprawling dams, from cutting-edge suspension bridges to offshore drilling platforms, and from flood management to environmental protection, civil engineers make it all possible. They tackle challenges like earthquake resistance, pollution control, and sustainable development, all while managing projects and ensuring quality. In essence, civil engineers shape the history of nations and design a future built to last.
-
-The Department of Civil Engineering (CE) at BAUST embarked on its mission in December 2019, with the goal of producing top-tier civil engineers. Offering a comprehensive four-year B.Sc. degree in Civil Engineering, the department embraces a clear vision backed by strategic missions. Our Outcome-Based Education (OBE) system and cutting-edge curriculum cover the full spectrum of civil engineering fields, empowering students to specialize in areas that align with their career goals. Students first build a strong foundation in basic sciences, mathematics, humanities, social sciences, and management before diving into core civil engineering subjects. Specializations offered include Structural Engineering, Environmental Engineering, Geotechnical Engineering, Transportation Engineering, and Water Resources Engineering.`;
-
 export default function CeAbout({ department, stats }: Props) {
-    const activeStats = (stats && stats.length > 0) ? stats : DEFAULT_STATS;
-    const aboutText = department?.about || DEFAULT_ABOUT;
-    const aboutParagraphs = aboutText.split('\n\n').filter(Boolean);
+    const activeStats = stats ?? [];
+    const aboutText = department?.about || '';
+    const aboutParagraphs = aboutText.split(/\r?\n\s*\r?\n|\\n\\n/).map(p => p.trim()).filter(Boolean);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -74,14 +63,14 @@ export default function CeAbout({ department, stats }: Props) {
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {activeStats.length > 0 && <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {activeStats.map((stat, idx) => (
                                 <div key={stat.id ?? idx} className="text-center p-5 rounded-2xl bg-emerald-50/60 border border-emerald-100/50">
                                     <p className="text-2xl font-extrabold text-emerald-700">{stat.value}</p>
                                     <p className="text-xs text-gray-500 font-semibold mt-1 uppercase tracking-wider">{stat.label}</p>
                                 </div>
                             ))}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </main>

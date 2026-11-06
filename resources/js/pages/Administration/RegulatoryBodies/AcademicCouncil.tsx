@@ -5,149 +5,22 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import { User, Award, Mail, Phone, Briefcase, GraduationCap } from 'lucide-react';
 
-interface Member {
+export interface Member {
+    position: string;
     name: string;
     designation: string;
-    position: string;
-    image: string;
+    photo: string;
     phone?: string;
     email?: string;
 }
 
-const councilMembers: Member[] = [
-    {
-        name: "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
-        designation: "Vice Chancellor",
-        position: "Chairman",
-        image: "/images/Academic Council/Mobarak.jpeg",
-        phone: "+8801769675550 (Off)",
-        email: "vc@baust.edu.bd"
-    },
-    {
-        name: "Brig Gen Abdul Wares Khan, sup, psc",
-        designation: "Commandant, EMEC&S, Saidpur Cantonment",
-        position: "Member",
-        image: "https://placehold.co/400x400/0f5132/ffffff?text=Portrait",
-    },
-    {
-        name: "Prof. Dr. Mohammad Ali",
-        designation: "Professor, Dept. of ME, BUET",
-        position: "Member",
-        image: "/images/Academic Council/mohammad ali.jpg",
-    },
-    {
-        name: "Prof. Dr. Muhammad Masroor Ali",
-        designation: "Professor, Dept. of CSE, BUET",
-        position: "Member",
-        image: "/images/Academic Council/masroor.jpg",
-    },
-    {
-        name: "Prof. Dr. Md. Aynal Haque",
-        designation: "Professor, Dept. EEE, BUET",
-        position: "Member",
-        image: "/images/Academic Council/aynal.jpg",
-    },
-    {
-        name: "Prof. Dr. Mohammad Thoufiqul Islam",
-        designation: "Professor, Dept. of Management, DU",
-        position: "Member",
-        image: "/images/Academic Council/thoufiqul.jpg",
-    },
-    {
-        name: "Prof. Md. Jahurul Islam",
-        designation: "Dean, Faculty of SH, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/jahurul.jpg",
-        phone: "01717142817",
-        email: "dean_sh@baust.edu.bd"
-    },
-    {
-        name: "Prof. Dr. Imtiaz Ahmed Choudhury",
-        designation: "Professor, Head of the ME Dept., and Dean, Faculty of ME",
-        position: "Member",
-        image: "/images/Academic Council/imtiaz.jpg",
-        phone: "+8801769675557",
-        email: "headipe@baust.edu.bd"
-    },
-    {
-        name: "Prof. Dr. Md. Shah Alam",
-        designation: "Dean, Faculty of BS, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/shah alam.jpg",
-    },
-    {
-        name: "Prof. Dr. S.M. Jahangir Alam",
-        designation: "Professor, Dept. of CSE, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/jahangir.jpg",
-    },
-    {
-        name: "Prof. Dr. Mahmudul Hasan",
-        designation: "Head, Dept. of CE, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/mahmudul.jpg",
-    },
-    {
-        name: "Associate Prof. Dr. Mst. Rubina Aktar",
-        designation: "Head, Dept. of EEE, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/rubina.jpg",
-    },
-    {
-        name: "Associate Professor Md. Mizanur Rahman",
-        designation: "Head, Dept. of Arts & Sciences, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/mizanur.jpg",
-    },
-    {
-        name: "Associate Prof. Engr. Md. Mamun Hossain",
-        designation: "Head, Dept. of Information and Communication Engineering (ICT), BAUST",
-        position: "Member",
-        image: "/images/Academic Council/mamun.jpeg",
-        phone: "01769675577",
-        email: "mhossain@baust.edu.bd"
-    },
-    {
-        name: "Associate Professor Dr. Md Nakib Hayat Chowdhury",
-        designation: "Associate Professor and Head (CSE), BAUST",
-        position: "Member",
-        image: "/images/Academic Council/nakib.jpg",
-        phone: "01703899959",
-        email: "nakib@baust.edu.bd"
-    },
-    {
-        name: "Associate Prof. Dr. Md. Anowar Hossain",
-        designation: "Head, BBA, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/anowar.jpg",
-    },
-    {
-        name: "Associate Prof. Md. Ashikullah",
-        designation: "Head, English, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/ashikullah.jpg",
-    },
-    {
-        name: "Assistant Prof. Rakibul Islam",
-        designation: "Head, AIS, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/rakibul.jpg",
-        phone: "01723913191",
-        email: "headais@baust.edu.bd"
-    },
-    {
-        name: "Md. Ariful Alam",
-        designation: "Assistant Professor and Head, Department of IPE, BAUST",
-        position: "Member",
-        image: "/images/Academic Council/ariful.jpg",
-    },
-    {
-        name: "Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (LPR)",
-        designation: "Registrar, BAUST",
-        position: "Member Secretary",
-        image: "/images/Academic Council/kawsar.jpeg",
-    }
-];
+export interface AcademicCouncilContent {
+    hero: { title: string; subtitle: string };
+    chairman_heading: string;
+    chairman: Member | null;
+    members_heading: string;
+    members: Member[];
+}
 
 // Treat missing images and old "Portrait" text placeholders as no-image.
 const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrait/i.test(src);
@@ -155,7 +28,7 @@ const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrai
 // Member photo with a graceful person-icon fallback (instead of a "Portrait" placeholder).
 const MemberImage = ({ member, isChairman = false }: { member: Member; isChairman?: boolean }) => {
     const [failed, setFailed] = React.useState(false);
-    const showFallback = failed || isPlaceholderImage(member.image);
+    const showFallback = failed || isPlaceholderImage(member.photo);
 
     return (
         <div className={`${isChairman ? 'w-32 sm:w-44' : 'w-24 sm:w-32 md:w-36'} aspect-square flex-shrink-0 relative overflow-hidden bg-emerald-50 border-r border-gray-50`}>
@@ -165,7 +38,7 @@ const MemberImage = ({ member, isChairman = false }: { member: Member; isChairma
                 </div>
             ) : (
                 <img
-                    src={member.image}
+                    src={member.photo}
                     alt={member.name}
                     loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -229,19 +102,16 @@ const MemberCard = ({ member, isChairman = false }: { member: Member, isChairman
     </div>
 );
 
-export default function AcademicCouncil() {
-    const chairman = councilMembers.find(m => m.position === 'Chairman');
-    const members = councilMembers.filter(m => m.position !== 'Chairman');
+export default function AcademicCouncil({ content }: { content: AcademicCouncilContent }) {
+    const chairman = content.chairman;
+    const members = content.members ?? [];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Academic Council - BAUST" />
+            <Head title={`${content.hero.title} - BAUST`} />
             <Navbar />
 
-            <PageHero 
-                title="Academic Council" 
-                subtitle="The Apex Academic Regulatory Body"
-            />
+            <PageHero title={content.hero.title} subtitle={content.hero.subtitle} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 {/* Chairman Section */}
@@ -249,7 +119,7 @@ export default function AcademicCouncil() {
                     <div className="mb-24">
                         <div className="flex items-center justify-center gap-4 mb-12">
                             <div className="h-px bg-emerald-200 w-16" />
-                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">The Chairman</h2>
+                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.chairman_heading}</h2>
                             <div className="h-px bg-emerald-200 w-16" />
                         </div>
                         <MemberCard member={chairman} isChairman={true} />
@@ -260,7 +130,7 @@ export default function AcademicCouncil() {
                 <div>
                     <div className="flex items-center justify-center gap-4 mb-12">
                         <div className="h-px bg-emerald-200 w-16" />
-                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">Council Members</h2>
+                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.members_heading}</h2>
                         <div className="h-px bg-emerald-200 w-16" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

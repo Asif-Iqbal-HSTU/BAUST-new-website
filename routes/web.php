@@ -8,6 +8,8 @@ use App\Models\Department;
 use App\Models\DepartmentMember;
 use App\Models\Notice;
 
+Route::get('/sitemap.xml', App\Http\Controllers\SitemapController::class)->name('sitemap');
+
 Route::get('/', function () {
     $notices = Notice::active()
         ->whereHas('categories', function ($q) {
@@ -81,29 +83,28 @@ Route::get('/about/accreditation', function () {
     return Inertia::render('About/Accreditation');
 })->name('about.accreditation');
 
+Route::get('/contact-us', function () {
+    return Inertia::render('Contact');
+})->name('contact');
+
 Route::get('/about/message-from-chief-of-army-staff', function () {
     return Inertia::render('About/MessageFromArmyChief');
 })->name('about.message-from-chief-of-army-staff');
 
-Route::get('/administration/regulatory-bodies/board-of-trustees', function () {
-    return Inertia::render('Administration/RegulatoryBodies/BoardOfTrustees');
-})->name('administration.bot');
+Route::get('/administration/regulatory-bodies/board-of-trustees', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'administration.board-of-trustees')->defaults('component', 'Administration/RegulatoryBodies/BoardOfTrustees')->name('administration.bot');
 
-Route::get('/administration/regulatory-bodies/syndicate-members', function () {
-    return Inertia::render('Administration/RegulatoryBodies/SyndicateMembers');
-})->name('administration.syndicate');
+Route::get('/administration/regulatory-bodies/syndicate-members', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'administration.syndicate-members')->defaults('component', 'Administration/RegulatoryBodies/SyndicateMembers')->name('administration.syndicate');
 
-Route::get('/administration/regulatory-bodies/academic-council', function () {
-    return Inertia::render('Administration/RegulatoryBodies/AcademicCouncil');
-})->name('administration.academic-council');
+Route::get('/administration/regulatory-bodies/academic-council', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'administration.academic-council')->defaults('component', 'Administration/RegulatoryBodies/AcademicCouncil')->name('administration.academic-council');
 
-Route::get('/administration/regulatory-bodies/finance-committee', function () {
-    return Inertia::render('Administration/RegulatoryBodies/FinanceCommittee');
-})->name('administration.finance-committee');
+Route::get('/administration/regulatory-bodies/finance-committee', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'administration.finance-committee')->defaults('component', 'Administration/RegulatoryBodies/FinanceCommittee')->name('administration.finance-committee');
 
-Route::get('/administration/regulatory-bodies/discipline-committee', function () {
-    return Inertia::render('Administration/RegulatoryBodies/DisciplineCommittee');
-})->name('administration.discipline-committee');
+Route::get('/administration/regulatory-bodies/discipline-committee', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'administration.discipline-committee')->defaults('component', 'Administration/RegulatoryBodies/DisciplineCommittee')->name('administration.discipline-committee');
 
 foreach (array_keys(App\Models\OfficeMember::offices()) as $officeSlug) {
     Route::get('/administration/offices/'.$officeSlug, [App\Http\Controllers\OfficeController::class, 'show'])
@@ -157,8 +158,7 @@ Route::prefix('cse')->group(function() {
     Route::get('/events', [CseDepartmentController::class, 'events'])->name('academic.cse.events');
     Route::get('/events/{slug}', [CseDepartmentController::class, 'eventDetail'])->name('academic.cse.events.show');
     Route::get('/achievements', [CseDepartmentController::class, 'achievements'])->name('academic.cse.achievements');
-    Route::get('/laboratories/{slug}', [CseDepartmentController::class, 'laboratory'])->name('academic.cse.laboratory');
-    Route::redirect('/laboratories', '/cse/laboratories/programming-os');
+    Route::get('/laboratories/{slug?}', [CseDepartmentController::class, 'laboratory'])->name('academic.cse.laboratories');
     Route::redirect('/research/publications', '/research#publications');
     Route::redirect('/research/areas', '/research#projects');
     Route::get('/cse-society', [CseDepartmentController::class, 'society'])->name('academic.cse.society');
@@ -275,9 +275,8 @@ Route::get('/facilities', function () {
     return Inertia::render('Facilities/Index');
 })->name('facilities.index');
 
-Route::get('/facilities/library', function () {
-    return Inertia::render('Facilities/Library');
-})->name('facilities.library');
+Route::get('/facilities/library', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'library.central-library')->defaults('component', 'Facilities/Library')->name('facilities.library');
 Route::redirect('/library', '/facilities/library');
 
 // Legacy baust.edu.bd sub-paths -> merged Facilities page sections
@@ -304,68 +303,55 @@ Route::redirect('/apply', 'https://admission.baust.edu.bd/apply');
 Route::redirect('/apply-online', 'https://admission.baust.edu.bd/apply');
 Route::redirect('/admission/apply-online', 'https://admission.baust.edu.bd/apply');
 
-Route::get('/admission/apply-online-instruction', function () {
-    return Inertia::render('Admission/ApplyOnlineInstruction');
-})->name('admission.apply-online-instruction');
+Route::get('/admission/apply-online-instruction', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.apply-online-instruction')->defaults('component', 'Admission/ApplyOnlineInstruction')->name('admission.apply-online-instruction');
 
-Route::get('/admission/program-offering', function () {
-    return Inertia::render('Admission/OfferedPrograms');
-})->name('admission.program-offering');
+Route::get('/admission/program-offering', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.offered-programs')->defaults('component', 'Admission/OfferedPrograms')->name('admission.program-offering');
 
-Route::get('/admission/admission-requirment', function () {
-    return Inertia::render('Admission/AdmissionRequirements');
-})->name('admission.admission-requirement');
+Route::get('/admission/admission-requirment', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.admission-requirements')->defaults('component', 'Admission/AdmissionRequirements')->name('admission.admission-requirement');
 
-Route::get('/admission/admission-procedure', function () {
-    return Inertia::render('Admission/AdmissionProcedure');
-})->name('admission.admission-procedure');
+Route::get('/admission/admission-procedure', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.admission-procedure')->defaults('component', 'Admission/AdmissionProcedure')->name('admission.admission-procedure');
 
-Route::get('/admission/tuition-fees', function () {
-    return Inertia::render('Admission/TuitionFees');
-})->name('admission.tuition-fees');
+Route::get('/admission/tuition-fees', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.tuition-fees')->defaults('component', 'Admission/TuitionFees')->name('admission.tuition-fees');
 
-Route::get('/admission/waiver-and-financial-aid', function () {
-    return Inertia::render('Admission/WaiverAndFinancialAid');
-})->name('admission.waiver-and-financial-aid');
+Route::get('/admission/waiver-and-financial-aid', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.waiver-and-financial-aid')->defaults('component', 'Admission/WaiverAndFinancialAid')->name('admission.waiver-and-financial-aid');
 
-Route::get('/admission/tuition-fee-payment-procedure', function () {
-    return Inertia::render('Admission/PaymentProcedure');
-})->name('admission.payment-procedure');
+Route::get('/admission/tuition-fee-payment-procedure', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.payment-procedure')->defaults('component', 'Admission/PaymentProcedure')->name('admission.payment-procedure');
 
-Route::get('/admission/dress-code', function () {
-    return Inertia::render('Admission/DressCode');
-})->name('admission.dress-code');
+Route::get('/admission/dress-code', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.dress-code')->defaults('component', 'Admission/DressCode')->name('admission.dress-code');
 
-Route::get('/admission/credit-transfer-policy', function () {
-    return Inertia::render('Admission/CreditTransferPolicy');
-})->name('admission.credit-transfer-policy');
+Route::get('/admission/credit-transfer-policy', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.credit-transfer-policy')->defaults('component', 'Admission/CreditTransferPolicy')->name('admission.credit-transfer-policy');
 
-Route::get('/admission/cancel-policy', function () {
-    return Inertia::render('Admission/CancelPolicy');
-})->name('admission.cancel-policy');
+Route::get('/admission/cancel-policy', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.cancel-policy')->defaults('component', 'Admission/CancelPolicy')->name('admission.cancel-policy');
 Route::redirect('/admission-cancel-policy', '/admission/cancel-policy');
 
-Route::get('/admission/academic-calendar', function () {
-    return Inertia::render('Admission/AcademicCalendar');
-})->name('admission.academic-calendar');
-Route::get('/about/academic-calendar', function () {
-    return Inertia::render('Admission/AcademicCalendar');
-})->name('about.academic-calendar');
+Route::get('/admission/academic-calendar', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.academic-calendar')->defaults('component', 'Admission/AcademicCalendar')->name('admission.academic-calendar');
+Route::get('/about/academic-calendar', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'admission.academic-calendar')->defaults('component', 'Admission/AcademicCalendar')->name('about.academic-calendar');
 
 // Legacy /dress-code -> canonical admission path
 Route::redirect('/dress-code', '/admission/dress-code');
 
 // Research & Publication (single merged page)
-Route::get('/research', function () {
-    return Inertia::render('Research/Index');
-})->name('research.index');
+Route::get('/research', [App\Http\Controllers\SitePageController::class, 'show'])
+    ->defaults('key', 'research.research-publication')->defaults('component', 'Research/Index')->name('research.index');
 Route::redirect('/research/publications', '/research#publications');
 Route::redirect('/research/projects', '/research#projects');
 Route::redirect('/administration/offices/journal-office', '/research#cell');
 
 // Non-engineering departments (Business Administration, Accounting & IS, English,
 // Arts & Sciences) and the MBA program - DB-driven, rendered with the same layout as CSE
-foreach (['dba', 'ais', 'eng', 'as', 'mba'] as $deptSlug) {
+foreach (['dba', 'ais', 'eng', 'as', 'mba', 'ma-elt'] as $deptSlug) {
     Route::prefix($deptSlug)->name('academic.'.$deptSlug.'.')->group(function () use ($deptSlug) {
         Route::get('/', [App\Http\Controllers\DepartmentController::class, 'show'])->defaults('dept', $deptSlug)->name('index');
         Route::get('/about', [App\Http\Controllers\DepartmentController::class, 'about'])->defaults('dept', $deptSlug)->name('about');
@@ -421,12 +407,7 @@ Route::redirect('/category/news-events', '/archive/notices?category=news-events'
 Route::redirect('/category/admission-notice', '/archive/notices?category=admission-notice');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        if (\Illuminate\Support\Facades\Auth::user()?->isPsychologist()) {
-            return redirect()->route('admin.counseling.index');
-        }
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', App\Http\Controllers\DashboardController::class)->name('dashboard');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         // Confidential Psychological Counseling Sessions (strictly restricted to psychologist@baust.edu.bd)
@@ -435,14 +416,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('counseling-sessions/{session}', [App\Http\Controllers\Admin\CounselingSessionAdminController::class, 'destroy'])->name('counseling.destroy');
         Route::get('counseling-sessions/{id}/privacy-audit', [App\Http\Controllers\Admin\CounselingSessionAdminController::class, 'privacyAudit'])->name('counseling.audit');
 
-        Route::match(['post', 'put', 'patch'], 'members/reorder', [App\Http\Controllers\Admin\DepartmentMemberController::class, 'reorder'])->name('members.reorder');
-        Route::get('members/reorder', function () {
-            return redirect()->route('admin.members.index');
+        Route::middleware('can:manage-members')->group(function () {
+            Route::match(['post', 'put', 'patch'], 'members/reorder', [App\Http\Controllers\Admin\DepartmentMemberController::class, 'reorder'])->name('members.reorder');
+            Route::get('members/reorder', function () {
+                return redirect()->route('admin.members.index');
+            });
+            Route::match(['post', 'put', 'patch'], 'members/{member}', [App\Http\Controllers\Admin\DepartmentMemberController::class, 'update'])->name('members.update');
+            Route::resource('members', App\Http\Controllers\Admin\DepartmentMemberController::class)->except(['update']);
         });
-        Route::match(['post', 'put', 'patch'], 'members/{member}', [App\Http\Controllers\Admin\DepartmentMemberController::class, 'update'])->name('members.update');
-        Route::resource('members', App\Http\Controllers\Admin\DepartmentMemberController::class)->except(['update']);
-        Route::resource('notices', App\Http\Controllers\Admin\NoticeController::class);
-        Route::get('notices-archive-register', [App\Http\Controllers\Admin\NoticeController::class, 'archiveRegister'])->name('notices.archive-register');
+        Route::middleware('can:manage-notices')->group(function () {
+            Route::resource('notices', App\Http\Controllers\Admin\NoticeController::class);
+            Route::get('notices-archive-register', [App\Http\Controllers\Admin\NoticeController::class, 'archiveRegister'])->name('notices.archive-register');
+        });
 
         // Media Coverage Requisitions (dept/office/IQAC admins submit; PRO/super_admin triage)
         Route::post('media-requests/{mediaRequest}/receive', [App\Http\Controllers\Admin\MediaCoverageRequestController::class, 'receive'])->name('media-requests.receive');
@@ -453,6 +438,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/', [App\Http\Controllers\Admin\IqacController::class, 'manage'])->name('manage');
             Route::post('settings', [App\Http\Controllers\Admin\IqacController::class, 'updateSettings'])->name('settings');
             Route::post('collection/{type}', [App\Http\Controllers\Admin\IqacController::class, 'storeItem'])->name('items.store');
+            Route::post('collection/{type}/reorder', [App\Http\Controllers\Admin\IqacController::class, 'reorderItems'])->name('items.reorder');
             Route::post('collection/{type}/{id}', [App\Http\Controllers\Admin\IqacController::class, 'updateItem'])->name('items.update');
             Route::delete('collection/{type}/{id}', [App\Http\Controllers\Admin\IqacController::class, 'destroyItem'])->name('items.destroy');
         });
@@ -463,23 +449,51 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('{slug}', [App\Http\Controllers\Admin\DepartmentController::class, 'manage'])->name('manage');
             Route::post('{slug}/profile', [App\Http\Controllers\Admin\DepartmentController::class, 'updateProfile'])->name('profile');
             Route::post('{slug}/collection/{type}', [App\Http\Controllers\Admin\DepartmentController::class, 'storeItem'])->name('items.store');
+            Route::post('{slug}/collection/{type}/reorder', [App\Http\Controllers\Admin\DepartmentController::class, 'reorderItems'])->name('items.reorder');
             Route::post('{slug}/collection/{type}/{id}', [App\Http\Controllers\Admin\DepartmentController::class, 'updateItem'])->name('items.update');
             Route::delete('{slug}/collection/{type}/{id}', [App\Http\Controllers\Admin\DepartmentController::class, 'destroyItem'])->name('items.destroy');
         });
 
+        // Update requests from any admin to the developer (super admin)
+        Route::get('update-requests/attachments/{attachment}', [App\Http\Controllers\Admin\UpdateRequestController::class, 'attachment'])->name('update-requests.attachment');
+        Route::post('update-requests/{updateRequest}/comments', [App\Http\Controllers\Admin\UpdateRequestController::class, 'comment'])->name('update-requests.comment');
+        Route::post('update-requests/{updateRequest}/status', [App\Http\Controllers\Admin\UpdateRequestController::class, 'updateStatus'])->name('update-requests.status');
+        Route::resource('update-requests', App\Http\Controllers\Admin\UpdateRequestController::class)
+            ->only(['index', 'create', 'store', 'show', 'destroy'])
+            ->parameters(['update-requests' => 'updateRequest']);
+
+        // Pages under the Administration, Library, Research and Admission menus
+        // (each section admin edits their own section; see Admin\SitePageController)
+        Route::prefix('site-pages')->name('site-pages.')->middleware('can:manage-site-pages')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\SitePageController::class, 'index'])->name('index');
+            Route::get('{key}', [App\Http\Controllers\Admin\SitePageController::class, 'edit'])->name('edit');
+            Route::post('{key}', [App\Http\Controllers\Admin\SitePageController::class, 'update'])->name('update');
+            Route::post('{key}/reset', [App\Http\Controllers\Admin\SitePageController::class, 'reset'])->name('reset');
+            Route::post('{key}/upload', [App\Http\Controllers\Admin\SitePageController::class, 'upload'])->name('upload');
+        });
+
         // Administrative offices (Office of the Registrar, ...)
-        Route::prefix('offices')->name('offices.')->middleware('can:manage-departments')->group(function () {
-            Route::get('/', [App\Http\Controllers\Admin\OfficeController::class, 'index'])->name('index');
+        Route::prefix('offices')->name('offices.')->group(function () {
+            Route::get('/', [App\Http\Controllers\Admin\OfficeController::class, 'index'])->name('index')->middleware('can:manage-offices');
+        });
+        Route::prefix('offices')->name('offices.')->middleware('can:manage-offices,office')->group(function () {
             Route::get('{office}', [App\Http\Controllers\Admin\OfficeController::class, 'manage'])->name('manage');
             Route::post('{office}/members', [App\Http\Controllers\Admin\OfficeController::class, 'storeItem'])->name('members.store');
+            Route::post('{office}/members/reorder', [App\Http\Controllers\Admin\OfficeController::class, 'reorderItems'])->name('members.reorder');
             Route::post('{office}/members/{id}', [App\Http\Controllers\Admin\OfficeController::class, 'updateItem'])->name('members.update');
             Route::delete('{office}/members/{id}', [App\Http\Controllers\Admin\OfficeController::class, 'destroyItem'])->name('members.destroy');
         });
 
-        // Faculty Dean's Offices (super_admin only: create/edit/delete faculties and their page content)
-        Route::resource('faculties', App\Http\Controllers\Admin\FacultyController::class)
-            ->except(['show'])
+        // Faculty Dean's Offices: super_admin creates/deletes/reorders faculties; the
+        // faculty's department focal points edit its page (checked in the controller).
+        Route::post('faculties/reorder', [App\Http\Controllers\Admin\FacultyController::class, 'reorder'])
+            ->name('faculties.reorder')
             ->middleware('can:manage-faculties');
+        Route::resource('faculties', App\Http\Controllers\Admin\FacultyController::class)
+            ->except(['show', 'edit', 'update'])
+            ->middleware('can:manage-faculties');
+        Route::resource('faculties', App\Http\Controllers\Admin\FacultyController::class)
+            ->only(['edit', 'update']);
     });
 });
 

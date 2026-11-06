@@ -16,12 +16,19 @@ class DepartmentMemberController extends Controller
         $query = DepartmentMember::query();
 
         if ($user->isDeptAdmin()) {
-            $query->where('department', $user->department);
-        } elseif ($request->query('department')) {
-            $query->where('department', $request->query('department'));
+            // Their department, plus any program of their faculty (e.g. MBA).
+            $manageable = $user->manageableDepartmentSlugs();
+            $picked = $request->query('department');
+            // One department at a time (default: their own) so the list can be drag-reordered.
+            $query->where('department', in_array($picked, $manageable, true) ? $picked : $user->department);
+            $isSingleDept = true;
+        } else {
+            if ($request->query('department')) {
+                $query->where('department', $request->query('department'));
+            }
+            $isSingleDept = $request->filled('department');
         }
 
-        $isSingleDept = $user->isDeptAdmin() || $request->filled('department');
         $perPage = (int)$request->query('per_page', $isSingleDept ? 100 : 25);
         $members = $query->orderBy('department')->orderBy('order')->paginate($perPage)->withQueryString();
 
@@ -30,6 +37,26 @@ class DepartmentMemberController extends Controller
             'filters' => $request->only(['department']),
             'isSingleDept' => $isSingleDept,
         ]);
+    }
+
+    /** Departments offered in the member form: all for super admin, the managed ones for a focal point. */
+    private function departmentOptions()
+    {
+        $user = auth()->user();
+        $query = \App\Models\Department::orderBy('name');
+        if ($user->isDeptAdmin()) {
+            $query->whereIn('slug', $user->manageableDepartmentSlugs());
+        }
+
+        return $query->get(['name', 'short_name', 'slug']);
+    }
+
+    /** A focal point may file a member under any department they manage; default is their own. */
+    private function departmentFor($user, Request $request): string
+    {
+        $picked = $request->input('department');
+
+        return in_array($picked, $user->manageableDepartmentSlugs(), true) ? $picked : $user->department;
     }
 
     public function reorder(Request $request)
@@ -48,7 +75,7 @@ class DepartmentMemberController extends Controller
                 foreach ($validated['ordered_ids'] as $index => $id) {
                     $query = DepartmentMember::where('id', $id);
                     if ($user->isDeptAdmin()) {
-                        $query->where('department', $user->department);
+                        $query->whereIn('department', $user->manageableDepartmentSlugs());
                     }
                     $query->update(['order' => $index + 1]);
                 }
@@ -56,7 +83,7 @@ class DepartmentMemberController extends Controller
                 foreach ($validated['orders'] as $item) {
                     $query = DepartmentMember::where('id', $item['id']);
                     if ($user->isDeptAdmin()) {
-                        $query->where('department', $user->department);
+                        $query->whereIn('department', $user->manageableDepartmentSlugs());
                     }
                     $query->update(['order' => $item['order']]);
                 }
@@ -72,7 +99,7 @@ class DepartmentMemberController extends Controller
  
     public function create()
     {
-        $departments = \App\Models\Department::orderBy('name')->get(['name', 'short_name', 'slug']);
+        $departments = $this->departmentOptions();
 
         return Inertia::render('Admin/Members/Form', [
             'member' => null,
@@ -85,12 +112,10 @@ class DepartmentMemberController extends Controller
         $user = auth()->user();
  
         $rawStatus = strtolower(trim((string)$request->input('status', 'active')));
-        if (in_array($rawStatus, ['ex', 'ex_faculty', 'ex_member', 'ex-member', 'ex-faculty', 'former', 'inactive'])) {
+        if (in_array($rawStatus, ['ex', 'ex_faculty', 'ex_officer', 'ex_member', 'ex-member', 'ex-faculty', 'former', 'inactive'])) {
             $request->merge(['status' => 'ex_faculty']);
         } elseif (in_array($rawStatus, ['study_leave', 'leave', 'study-leave'])) {
             $request->merge(['status' => 'study_leave']);
-        } elseif ($rawStatus === 'ex_officer') {
-            $request->merge(['status' => 'ex_officer']);
         } else {
             $request->merge(['status' => 'active']);
         }
@@ -167,8 +192,9 @@ class DepartmentMemberController extends Controller
             'seminars' => 'nullable|string',
             'training' => 'nullable|string',
             'others' => 'nullable|string',
+            'specialization' => 'nullable|string|max:255',
             'areas_of_interest' => 'nullable|array',
-            'order' => 'required|integer',
+            'order' => 'nullable|integer',
             'photo_file' => 'nullable|image|max:2048',
             'photo_url' => 'nullable|string',
         ];
@@ -185,7 +211,7 @@ class DepartmentMemberController extends Controller
  
         // Force department if dept_admin
         if ($user->isDeptAdmin()) {
-            $data['department'] = $user->department;
+            $data['department'] = $this->departmentFor($user, $request);
         }
  
         $data['education'] = $validated['education'] ?? [];
@@ -202,6 +228,9 @@ class DepartmentMemberController extends Controller
             $data['photo'] = null;
         }
  
+        // New members go to the end; the list is reordered by drag and drop.
+        $data['order'] ??= (int) DepartmentMember::where('department', $data['department'])->max('order') + 1;
+
         DepartmentMember::create($data);
  
         return redirect()->route('admin.members.index')->with('success', 'Department member added successfully.');
@@ -220,7 +249,7 @@ class DepartmentMemberController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        $departments = \App\Models\Department::orderBy('name')->get(['name', 'short_name', 'slug']);
+        $departments = $this->departmentOptions();
  
         return Inertia::render('Admin/Members/Form', [
             'member' => $member,
@@ -237,12 +266,10 @@ class DepartmentMemberController extends Controller
         }
 
         $rawStatus = strtolower(trim((string)$request->input('status', 'active')));
-        if (in_array($rawStatus, ['ex', 'ex_faculty', 'ex_member', 'ex-member', 'ex-faculty', 'former', 'inactive'])) {
+        if (in_array($rawStatus, ['ex', 'ex_faculty', 'ex_officer', 'ex_member', 'ex-member', 'ex-faculty', 'former', 'inactive'])) {
             $request->merge(['status' => 'ex_faculty']);
         } elseif (in_array($rawStatus, ['study_leave', 'leave', 'study-leave'])) {
             $request->merge(['status' => 'study_leave']);
-        } elseif ($rawStatus === 'ex_officer') {
-            $request->merge(['status' => 'ex_officer']);
         } else {
             $request->merge(['status' => 'active']);
         }
@@ -319,8 +346,9 @@ class DepartmentMemberController extends Controller
             'seminars' => 'nullable|string',
             'training' => 'nullable|string',
             'others' => 'nullable|string',
+            'specialization' => 'nullable|string|max:255',
             'areas_of_interest' => 'nullable|array',
-            'order' => 'required|integer',
+            'order' => 'nullable|integer',
             'photo_file' => 'nullable|image|max:2048',
             'photo_url' => 'nullable|string',
         ];
@@ -336,7 +364,7 @@ class DepartmentMemberController extends Controller
         unset($data['photo_url']);
  
         if ($user->isDeptAdmin()) {
-            $data['department'] = $user->department;
+            $data['department'] = $this->departmentFor($user, $request);
         }
  
         $data['education'] = $validated['education'] ?? $member->education ?? [];
@@ -359,6 +387,10 @@ class DepartmentMemberController extends Controller
             $data['photo'] = null;
         }
  
+        if (! isset($data['order'])) {
+            unset($data['order']);
+        }
+
         $member->update($data);
 
         return redirect()->back()->with('success', 'Department member updated successfully.');

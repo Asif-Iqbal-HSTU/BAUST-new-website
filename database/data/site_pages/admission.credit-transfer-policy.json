@@ -1,0 +1,33 @@
+{
+    "title": "Credit Transfer Policy",
+    "content": {
+        "browser_title": "Credit Transfer Policy",
+        "hero": {
+            "title": "Credit Transfer Policy",
+            "subtitle": "Transferring earned credits into BAUST programs"
+        },
+        "overview": {
+            "heading": "Policy Overview",
+            "text": "BAUST allows eligible students to transfer academic credits earned at recognised institutions, subject to evaluation against its own curriculum. The complete rules, eligibility and evaluation criteria are set out in the official policy document.",
+            "highlights": [
+                "Evaluated against BAUST curriculum",
+                "Approved by the Academic Council",
+                "Subject to eligibility criteria",
+                "Applies to recognised institutions"
+            ]
+        },
+        "download_cta": {
+            "caption": "Offline Access",
+            "label": "Download Policy"
+        },
+        "policy_document": {
+            "heading": "Official Policy Document",
+            "subheading": "Credit Transfer Policy (approved 19 December 2022).",
+            "pdf": "/images/admission/Credit-Transfer-Policy.pdf",
+            "full_view_label": "Full View",
+            "preview_label": "Policy Document Preview",
+            "unavailable_heading": "Preview Unavailable",
+            "unavailable_text": "Your browser doesn't support embedded PDF previews. Please use the download button to view the policy."
+        }
+    }
+}

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
+import ReorderHandle, { reorderRowClass } from '@/components/reorder-handle';
+import { useDragReorder } from '@/hooks/use-drag-reorder';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import {
     Plus,
@@ -36,6 +38,7 @@ interface Dept {
     accreditation_badge?: string | null;
     accreditation_title?: string | null;
     accreditation_text?: string | null;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -53,8 +56,36 @@ interface Props {
     studentVoices?: Item[];
     galleries?: Item[];
     alumni?: Item[];
+    labPeople?: Item[];
+    memberOptions?: { id: number; name: string; designation: string | null }[];
     iconOptions: string[];
+    /** Current default text per page-text key used by this department's pages. */
+    pageTextDefaults?: Record<string, string>;
 }
+
+const PAGE_TEXT_LABELS: Record<string, string> = {
+    home_hero_subtitle: 'Home page — hero subtitle',
+    staff_intro: 'Academic Staff page — intro paragraph',
+    curriculum_intro: 'Curriculum page — intro paragraph',
+    curriculum_obe_note: 'Curriculum page — OBE note',
+    labs_intro: 'Laboratories page — intro paragraph (above the lab list)',
+    research_intro: 'Research publications page — intro paragraph',
+    achievements_intro: 'Achievements page — intro paragraph',
+    alumni_intro: 'Alumni page — intro paragraph',
+    society_intro: 'Society / Clubs page — intro paragraph',
+    online_resources_intro: 'Online Resources page — intro paragraph',
+    events_intro: 'Events page — intro paragraph',
+    curriculum_subtitle: 'Curriculum page — banner subtitle',
+    labs_subtitle: 'Laboratories page — banner subtitle',
+    achievements_subtitle: 'Achievements page — banner subtitle',
+    alumni_subtitle: 'Alumni page — banner subtitle',
+    research_subtitle: 'Research publications page — banner subtitle',
+    thesis_subtitle: 'Thesis / research projects page — banner subtitle',
+    thesis_intro: 'Thesis / research projects page — intro paragraph',
+    alumni_association_intro: 'Alumni association page — banner subtitle',
+    gallery_subtitle: 'Photo gallery — banner subtitle',
+    video_gallery_subtitle: 'Video gallery — banner subtitle',
+};
 
 const input = 'w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none';
 const btn = 'inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors';
@@ -63,9 +94,14 @@ const lbl = 'mb-1 block text-xs font-semibold text-neutral-600 dark:text-neutral
 type FieldDef = {
     key: string;
     label: string;
-    type: 'text' | 'textarea' | 'number' | 'select' | 'image' | 'file';
-    options?: string[];
+    type: 'text' | 'textarea' | 'number' | 'select' | 'image' | 'file' | 'images';
+    /** Plain values, or value/label pairs (e.g. a laboratory id shown by its name). */
+    options?: (string | { value: string | number; label: string })[];
+    /** Suggestions offered while typing in a text field. */
+    suggestions?: string[];
     hint?: string;
+    /** For list fields stored as objects: one row per line, values separated by " | ". */
+    columns?: string[];
 };
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
@@ -80,9 +116,28 @@ function Card({ title, children }: { title: string; children: React.ReactNode })
 function Field({ def, value, iconOptions }: { def: FieldDef; value?: unknown; iconOptions: string[] }) {
     let v = '';
     if (Array.isArray(value)) {
-        v = value.map(x => typeof x === 'string' ? x : JSON.stringify(x)).join('\n');
+        v = value.map((x) => {
+            if (typeof x === 'string') return x;
+            if (def.columns && x && typeof x === 'object') {
+                const row = x as Record<string, unknown>;
+                return def.columns.map((c) => (row[c] ?? '') as string).join(' | ').replace(/(\s\|\s)+$/, '');
+            }
+            return JSON.stringify(x);
+        }).join('\n');
     } else if (value !== undefined && value !== null) {
         v = String(value);
+    }
+
+    if (def.type === 'images') {
+        return (
+            <label className="block sm:col-span-2">
+                <span className={lbl}>{def.label}</span>
+                {def.hint && <span className="mb-1 block text-[11px] text-neutral-400">{def.hint}</span>}
+                <textarea name={def.key} defaultValue={v} rows={3} className={input} />
+                <span className="mt-1.5 block text-[11px] text-neutral-500">Upload photos (added to the list above on save):</span>
+                <input type="file" name={`${def.key}_upload[]`} accept="image/*" multiple className="text-xs" />
+            </label>
+        );
     }
 
     if (def.type === 'textarea') {
@@ -100,10 +155,12 @@ function Field({ def, value, iconOptions }: { def: FieldDef; value?: unknown; ic
             <label className="block">
                 <span className={lbl}>{def.label}</span>
                 <select name={def.key} defaultValue={v} className={input}>
-                    {(def.options ?? iconOptions).map((o) => (
-                        <option key={o} value={o}>{o}</option>
-                    ))}
+                    {(def.options ?? iconOptions).map((o) => {
+                        const opt = typeof o === 'string' ? { value: o, label: o } : o;
+                        return <option key={opt.value} value={opt.value}>{opt.label}</option>;
+                    })}
                 </select>
+                {def.hint && <span className="mt-1 block text-[11px] text-neutral-400">{def.hint}</span>}
             </label>
         );
     }
@@ -140,7 +197,91 @@ function Field({ def, value, iconOptions }: { def: FieldDef; value?: unknown; ic
         <label className="block">
             <span className={lbl}>{def.label}</span>
             {def.hint && <span className="mb-1 block text-[11px] text-neutral-400">{def.hint}</span>}
-            <input type={def.type === 'number' ? 'number' : 'text'} name={def.key} defaultValue={v} className={input} />
+            <input type={def.type === 'number' ? 'number' : 'text'} name={def.key} defaultValue={v} className={input} list={def.suggestions ? `${def.key}-suggestions` : undefined} />
+            {def.suggestions && (
+                <datalist id={`${def.key}-suggestions`}>
+                    {def.suggestions.map((s) => <option key={s} value={s} />)}
+                </datalist>
+            )}
+        </label>
+    );
+}
+
+/** Which page texts are edited on which admin tab (shown above that tab's content). */
+const TAB_TEXT_KEYS: Record<string, string[]> = {
+    profile: ['staff_intro', 'events_intro'],
+    slides_stats: ['home_hero_subtitle'],
+    curricula: ['curriculum_subtitle', 'curriculum_intro', 'curriculum_obe_note'],
+    laboratories: ['labs_subtitle', 'labs_intro'],
+    achievements: ['achievements_subtitle', 'achievements_intro'],
+    societies: ['society_intro'],
+    online_resources: ['online_resources_intro'],
+    researches: ['research_subtitle', 'research_intro', 'thesis_subtitle', 'thesis_intro'],
+    galleries: ['gallery_subtitle', 'video_gallery_subtitle'],
+    alumni: ['alumni_subtitle', 'alumni_intro', 'alumni_association_intro'],
+};
+
+function PageTextsCard({ dept, keys, defaults, done }: {
+    dept: Dept;
+    keys: string[];
+    defaults: Record<string, string>;
+    done: (m: string) => void;
+}) {
+    const used = keys.filter((k) => k in defaults);
+    if (used.length === 0) return null;
+
+    const save = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        router.post(`/admin/departments/${dept.slug}/profile`, new FormData(e.currentTarget), {
+            preserveScroll: true,
+            forceFormData: true,
+            onSuccess: () => done('Page texts saved.'),
+        });
+    };
+
+    return (
+        <form onSubmit={save} key={used.map((k) => `${k}:${dept.page_texts?.[k] ?? ''}`).join('|')}>
+            <Card title="Texts on this page of the website">
+                <p className="mb-4 text-sm text-neutral-500">
+                    These are the texts currently shown on the website. Edit a box to change it; clear a box to go back to the original text.
+                </p>
+                <input type="hidden" name="name" value={dept.name} />
+                <input type="hidden" name="short_name" value={dept.short_name} />
+                <div className="grid gap-4">
+                    {used.map((key) => {
+                        const custom = dept.page_texts?.[key];
+                        const original = defaults[key];
+                        return (
+                            <label key={key} className="block">
+                                <span className={lbl}>
+                                    {PAGE_TEXT_LABELS[key] ?? key}
+                                    {custom ? <span className="ml-2 rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Edited</span> : null}
+                                </span>
+                                <textarea
+                                    name={`page_texts[${key}]`}
+                                    defaultValue={custom || original}
+                                    placeholder={original ? undefined : 'Not shown on the page unless you write something here'}
+                                    rows={3}
+                                    className={input}
+                                />
+                            </label>
+                        );
+                    })}
+                </div>
+                <button type="submit" className={`${btn} mt-5 bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm`}>
+                    <Save className="h-4 w-4" /> Save Texts
+                </button>
+            </Card>
+        </form>
+    );
+}
+
+function VisibleToggle({ checked }: { checked: boolean }) {
+    return (
+        <label className="flex items-center gap-2 sm:col-span-2">
+            <input type="hidden" name="is_active" value="0" />
+            <input type="checkbox" name="is_active" value="1" defaultChecked={checked} className="h-4 w-4 accent-emerald-600" />
+            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Show on the website</span>
         </label>
     );
 }
@@ -153,7 +294,8 @@ function Collection({
     fields,
     iconOptions,
     done,
-    describe
+    describe,
+    toggle = false
 }: {
     title: string;
     slug: string;
@@ -163,9 +305,12 @@ function Collection({
     iconOptions: string[];
     done: (m: string) => void;
     describe: (i: Item) => string;
+    /** Show a "visible on website" switch (collections with an is_active column). */
+    toggle?: boolean;
 }) {
     const [adding, setAdding] = useState(false);
     const [editing, setEditing] = useState<number | null>(null);
+    const reorder = useDragReorder(items, `/admin/departments/${slug}/collection/${type}/reorder`, done);
 
     const submit = (e: React.FormEvent<HTMLFormElement>, url: string, cb: () => void) => {
         e.preventDefault();
@@ -188,7 +333,10 @@ function Collection({
     return (
         <Card title={title}>
             <div className="space-y-3">
-                {items.map((it) => editing === it.id ? (
+                {items.length > 1 && (
+                    <p className="text-[11px] text-neutral-400">Drag rows by the handle (or use ↑ ↓) to change the order shown on the website.</p>
+                )}
+                {reorder.items.map((it, idx) => editing === it.id ? (
                     <form
                         key={it.id}
                         onSubmit={(e) => submit(e, `/admin/departments/${slug}/collection/${type}/${it.id}`, () => setEditing(null))}
@@ -196,6 +344,7 @@ function Collection({
                     >
                         <div className="grid gap-3 sm:grid-cols-2">
                             {fields.map((f) => <Field key={f.key} def={f} value={it[f.key]} iconOptions={iconOptions} />)}
+                            {toggle && <VisibleToggle checked={it.is_active !== false && it.is_active !== 0} />}
                         </div>
                         <div className="mt-3 flex gap-2">
                             <button type="submit" className={`${btn} bg-emerald-600 text-white hover:bg-emerald-700`}>
@@ -207,8 +356,16 @@ function Collection({
                         </div>
                     </form>
                 ) : (
-                    <div key={it.id} className="flex items-center justify-between gap-3 rounded-xl border border-neutral-200 p-3 dark:border-neutral-800 hover:border-emerald-200 transition-colors">
-                        <span className="truncate text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                    <div
+                        key={it.id}
+                        {...reorder.rowProps(idx)}
+                        className={`flex items-center justify-between gap-3 rounded-xl border border-neutral-200 p-3 dark:border-neutral-800 hover:border-emerald-200 transition-colors ${reorderRowClass(reorder.isDragging(idx), reorder.isOver(idx))}`}
+                    >
+                        <ReorderHandle index={idx} count={reorder.items.length} onUp={() => reorder.moveUp(idx)} onDown={() => reorder.moveDown(idx)} />
+                        <span className="flex-1 truncate text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                            {toggle && (it.is_active === false || it.is_active === 0) && (
+                                <span className="mr-2 rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold uppercase text-amber-800 dark:bg-amber-950 dark:text-amber-300">Hidden</span>
+                            )}
                             {describe(it)}
                         </span>
                         <div className="flex gap-2 flex-shrink-0">
@@ -234,6 +391,7 @@ function Collection({
                 >
                     <div className="grid gap-3 sm:grid-cols-2">
                         {fields.map((f) => <Field key={f.key} def={f} iconOptions={iconOptions} />)}
+                        {toggle && <VisibleToggle checked />}
                     </div>
                     <div className="mt-3 flex gap-2">
                         <button type="submit" className={`${btn} bg-emerald-600 text-white hover:bg-emerald-700`}>
@@ -271,7 +429,10 @@ export default function Manage({
     studentVoices = [],
     galleries = [],
     alumni = [],
-    iconOptions
+    labPeople = [],
+    memberOptions = [],
+    iconOptions,
+    pageTextDefaults = {}
 }: Props) {
     const { auth } = usePage<SharedData>().props;
     const role = (auth?.user as { role?: string } | undefined)?.role;
@@ -367,6 +528,8 @@ export default function Manage({
                     })}
                 </div>
 
+                <PageTextsCard dept={d} keys={TAB_TEXT_KEYS[activeTab] ?? []} defaults={pageTextDefaults} done={flash} />
+
                 {/* Tab 1: Profile */}
                 {activeTab === 'profile' && (
                     <form onSubmit={saveProfile}>
@@ -409,8 +572,7 @@ export default function Manage({
                             fields={[
                                 { key: 'image', label: 'Image', type: 'image' },
                                 { key: 'title', label: 'Title', type: 'text' },
-                                { key: 'caption', label: 'Caption', type: 'text' },
-                                { key: 'order', label: 'Order', type: 'number' }
+                                { key: 'caption', label: 'Caption', type: 'text' }
                             ]}
                         />
                         <Collection
@@ -423,8 +585,7 @@ export default function Manage({
                             describe={(i) => `${i.value} — ${i.label}`}
                             fields={[
                                 { key: 'value', label: 'Value (e.g. 500+)', type: 'text' },
-                                { key: 'label', label: 'Label (e.g. Students)', type: 'text' },
-                                { key: 'order', label: 'Order', type: 'number' }
+                                { key: 'label', label: 'Label (e.g. Students)', type: 'text' }
                             ]}
                         />
                         <Collection
@@ -438,8 +599,7 @@ export default function Manage({
                             fields={[
                                 { key: 'icon', label: 'Icon', type: 'select' },
                                 { key: 'title', label: 'Title', type: 'text' },
-                                { key: 'text', label: 'Description', type: 'text' },
-                                { key: 'order', label: 'Order', type: 'number' }
+                                { key: 'text', label: 'Description', type: 'text' }
                             ]}
                         />
                     </div>
@@ -451,6 +611,7 @@ export default function Manage({
                         title="Department Curricula & Syllabi"
                         slug={d.slug}
                         type="curricula"
+                        toggle
                         items={curricula}
                         iconOptions={iconOptions}
                         done={flash}
@@ -463,18 +624,19 @@ export default function Manage({
                             { key: 'credits', label: 'Total Credits (e.g. 160+ Credits)', type: 'text' },
                             { key: 'description', label: 'Overview Description', type: 'textarea' },
                             { key: 'highlights', label: 'Curriculum Highlights (One item per line)', type: 'textarea', hint: 'Enter each bullet point on a separate line' },
-                            { key: 'file', label: 'Syllabus Document (PDF)', type: 'file' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'file', label: 'Syllabus Document (PDF)', type: 'file' }
                         ]}
                     />
                 )}
 
                 {/* Tab 4: Laboratories */}
                 {activeTab === 'laboratories' && (
-                    <Collection
+                    <div className="space-y-6">
+<Collection
                         title="Department Laboratories"
                         slug={d.slug}
                         type="laboratories"
+                        toggle
                         items={laboratories}
                         iconOptions={iconOptions}
                         done={flash}
@@ -485,10 +647,41 @@ export default function Manage({
                             { key: 'description', label: 'About the Laboratory', type: 'textarea' },
                             { key: 'equipment', label: 'Equipment List (One per line)', type: 'textarea', hint: 'Enter each piece of equipment on a separate line' },
                             { key: 'objectives', label: 'Learning Objectives (One per line)', type: 'textarea', hint: 'Enter each objective on a separate line' },
-                            { key: 'images', label: 'Image URLs (One per line)', type: 'textarea', hint: 'e.g. /images/departments/cse/laboratory/programming-os/2.jpg' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'images', label: 'Photos (one URL per line)', type: 'images', hint: 'Delete a line to remove a photo, or upload new photos below' }
                         ]}
                     />
+                        <Collection
+                            title="Laboratory In-charges & Team"
+                            slug={d.slug}
+                            type="lab_people"
+                            toggle
+                            items={labPeople}
+                            iconOptions={iconOptions}
+                            done={flash}
+                            describe={(i) => `${(laboratories.find((l) => l.id === i.laboratory_id)?.name as string) ?? 'Laboratory'} — ${i.role}: ${i.name}`}
+                            fields={[
+                                {
+                                    key: 'laboratory_id',
+                                    label: 'Laboratory',
+                                    type: 'select',
+                                    options: laboratories.map((l) => ({ value: l.id, label: l.name as string })),
+                                },
+                                { key: 'role', label: 'Role', type: 'text', suggestions: ['Lab In-charge', 'Assistant Lab In-charge', 'Lab Coordinator', 'Lab Assistant', 'Lab Technician', 'Lab Attendant'] },
+                                {
+                                    key: 'member_id',
+                                    label: 'Pick from faculty & staff (optional)',
+                                    type: 'select',
+                                    options: [{ value: '', label: '— Not a listed member / type below —' }, ...memberOptions.map((m) => ({ value: m.id, label: m.designation ? `${m.name} — ${m.designation}` : m.name }))],
+                                    hint: 'Fills in the name, designation, photo, phone and email below when they are left empty.',
+                                },
+                                { key: 'name', label: 'Name', type: 'text' },
+                                { key: 'designation', label: 'Designation', type: 'text' },
+                                { key: 'phone', label: 'Phone', type: 'text' },
+                                { key: 'email', label: 'Email', type: 'text' },
+                                { key: 'photo', label: 'Photo', type: 'image' },
+                            ]}
+                        />
+                    </div>
                 )}
 
                 {/* Tab 5: Achievements */}
@@ -497,6 +690,7 @@ export default function Manage({
                         title="Notable Achievements & Awards"
                         slug={d.slug}
                         type="achievements"
+                        toggle
                         items={achievements}
                         iconOptions={iconOptions}
                         done={flash}
@@ -509,8 +703,8 @@ export default function Manage({
                             { key: 'team_title', label: 'Team Name (e.g. Team HAKO)', type: 'text' },
                             { key: 'description', label: 'Brief Description', type: 'textarea' },
                             { key: 'details', label: 'Extra Details', type: 'textarea' },
-                            { key: 'link', label: 'External Press Link / Proof URL', type: 'text' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'team_members', label: 'Team Members (one per line: Name | Batch)', type: 'textarea', columns: ['name', 'batch'], hint: 'e.g. Maria Mehedy | CSE 8th Batch' },
+                            { key: 'link', label: 'External Press Link / Proof URL', type: 'text' }
                         ]}
                     />
                 )}
@@ -521,6 +715,7 @@ export default function Manage({
                         title="Clubs & Alumni Societies"
                         slug={d.slug}
                         type="societies"
+                        toggle
                         items={societies}
                         iconOptions={iconOptions}
                         done={flash}
@@ -528,12 +723,13 @@ export default function Manage({
                         fields={[
                             { key: 'name', label: 'Society / Club Name', type: 'text' },
                             { key: 'slug', label: 'Slug (e.g. cse-society)', type: 'text' },
-                            { key: 'type', label: 'Category', type: 'select', options: ['society', 'alumni'] },
+                            { key: 'type', label: 'Category', type: 'select', options: ['society', 'club', 'alumni'] },
                             { key: 'member_count', label: 'Member Count (e.g. 500+ Members)', type: 'text' },
                             { key: 'established', label: 'Established Year (e.g. Est. 2015)', type: 'text' },
                             { key: 'description', label: 'About Society', type: 'textarea' },
-                            { key: 'committee_pdf', label: 'Executive Committee / Constitution PDF', type: 'file' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'activities', label: 'Activities (one per line: Title | Icon | Description)', type: 'textarea', columns: ['title', 'icon', 'description'], hint: `e.g. Study Tours | BookOpen | Educational visits. Icons: ${iconOptions.join(', ')}` },
+                            { key: 'committee', label: 'Committee (one per line: Role | Name | Designation | Photo URL)', type: 'textarea', columns: ['role', 'name', 'designation', 'image'], hint: 'e.g. President | Dr. A. Rahman | Professor, Dept. of CSE | /storage/members/a.jpg (photo optional)' },
+                            { key: 'committee_pdf', label: 'Executive Committee / Constitution PDF', type: 'file' }
                         ]}
                     />
                 )}
@@ -544,6 +740,7 @@ export default function Manage({
                         title="Outcome Based Education (PEO & PLO)"
                         slug={d.slug}
                         type="obes"
+                        toggle
                         items={obes}
                         iconOptions={iconOptions}
                         done={flash}
@@ -552,8 +749,7 @@ export default function Manage({
                             { key: 'type', label: 'Objective Type', type: 'select', options: ['peo', 'plo'] },
                             { key: 'code', label: 'Identifier Code (e.g. PEO-1, PLO1)', type: 'text' },
                             { key: 'title', label: 'Title / Competency', type: 'text' },
-                            { key: 'description', label: 'Outcome Description', type: 'textarea' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'description', label: 'Outcome Description', type: 'textarea' }
                         ]}
                     />
                 )}
@@ -564,6 +760,7 @@ export default function Manage({
                         title="Online Resources & Materials"
                         slug={d.slug}
                         type="online_resources"
+                        toggle
                         items={onlineResources}
                         iconOptions={iconOptions}
                         done={flash}
@@ -572,8 +769,7 @@ export default function Manage({
                             { key: 'title', label: 'Resource Title', type: 'text' },
                             { key: 'link', label: 'Google Drive / External URL', type: 'text', hint: 'Direct shareable Google Drive link or download URL' },
                             { key: 'category', label: 'Category / Semester', type: 'text', hint: 'e.g. 1st Year 1st Semester, Lecture Notes, Reference Books' },
-                            { key: 'description', label: 'Brief Description', type: 'textarea' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'description', label: 'Brief Description', type: 'textarea' }
                         ]}
                     />
                 )}
@@ -584,6 +780,7 @@ export default function Manage({
                         title="Research Publications & Thesis Projects"
                         slug={d.slug}
                         type="researches"
+                        toggle
                         items={researches}
                         iconOptions={iconOptions}
                         done={flash}
@@ -598,8 +795,7 @@ export default function Manage({
                             { key: 'supervisor', label: 'Supervisor (for thesis)', type: 'text' },
                             { key: 'students_info', label: 'Student IDs (for thesis)', type: 'text' },
                             { key: 'link', label: 'Paper / Abstract URL', type: 'text' },
-                            { key: 'pdf_file', label: 'Full Paper / Abstract PDF', type: 'file' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'pdf_file', label: 'Full Paper / Abstract PDF', type: 'file' }
                         ]}
                     />
                 )}
@@ -610,6 +806,7 @@ export default function Manage({
                         title="Student Voices & Testimonials"
                         slug={d.slug}
                         type="student_voices"
+                        toggle
                         items={studentVoices}
                         iconOptions={iconOptions}
                         done={flash}
@@ -621,8 +818,7 @@ export default function Manage({
                             { key: 'title', label: 'Story Headline / Title', type: 'text' },
                             { key: 'quote', label: 'Student Reflection / Testimonial Text', type: 'textarea' },
                             { key: 'profile_link', label: 'Social / Portfolio Link (Facebook/LinkedIn)', type: 'text' },
-                            { key: 'image', label: 'Student Photo', type: 'image' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'image', label: 'Student Photo', type: 'image' }
                         ]}
                     />
                 )}
@@ -633,6 +829,7 @@ export default function Manage({
                         title="Photo & Video Galleries"
                         slug={d.slug}
                         type="galleries"
+                        toggle
                         items={galleries}
                         iconOptions={iconOptions}
                         done={flash}
@@ -642,9 +839,8 @@ export default function Manage({
                             { key: 'title', label: 'Album / Video Title', type: 'text' },
                             { key: 'category', label: 'Category / Occasion', type: 'text', hint: 'e.g. Field Survey, Department Life, Lab Facilities' },
                             { key: 'description', label: 'Description / Captions', type: 'textarea' },
-                            { key: 'images', label: 'Photo URLs (one per line)', type: 'textarea', hint: 'Enter photo URLs, one per line (e.g. /images/departments/ce/gallery/ce_photo_1.jpg)' },
-                            { key: 'video_url', label: 'Video URL (Local MP4 path or YouTube)', type: 'text', hint: 'e.g. /videos/ce/BAUST_CE.mp4' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'images', label: 'Photos (one URL per line)', type: 'images', hint: 'Delete a line to remove a photo, or upload new photos below' },
+                            { key: 'video_url', label: 'Video URL (Local MP4 path or YouTube)', type: 'text', hint: 'e.g. /videos/ce/BAUST_CE.mp4' }
                         ]}
                     />
                 )}
@@ -655,6 +851,7 @@ export default function Manage({
                         title="Alumni Information (Job Holders & Higher Studies)"
                         slug={d.slug}
                         type="alumni"
+                        toggle
                         items={alumni}
                         iconOptions={iconOptions}
                         done={flash}
@@ -664,8 +861,9 @@ export default function Manage({
                             { key: 'name', label: 'Alumnus Full Name', type: 'text' },
                             { key: 'batch', label: 'Batch (e.g. 10th, 11th)', type: 'text' },
                             { key: 'passing_year', label: 'Passing / Graduation Year (e.g. 2024)', type: 'text' },
-                            { key: 'designation', label: 'Position / Institution / Degree', type: 'text', hint: 'Job title & company (e.g. BOQ Coordinator, Maam Intl) OR degree & institution (e.g. MSc in CE, KUET)' },
-                            { key: 'order', label: 'Display Order', type: 'number' }
+                            { key: 'designation', label: 'Position / Degree', type: 'text', hint: 'Job title (e.g. BOQ Coordinator) OR degree (e.g. MSc in CE)' },
+                            { key: 'organization', label: 'Organization / Institution', type: 'text', hint: 'Company (e.g. Maam Intl) OR university (e.g. KUET)' },
+                            { key: 'image', label: 'Photo', type: 'image' }
                         ]}
                     />
                 )}

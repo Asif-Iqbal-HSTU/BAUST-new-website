@@ -21,4 +21,8 @@ export default defineConfig({
     esbuild: {
         jsx: 'automatic',
     },
+    // The SSR bundle runs in the container without node_modules: bundle every dependency into it.
+    ssr: {
+        noExternal: true,
+    },
 });

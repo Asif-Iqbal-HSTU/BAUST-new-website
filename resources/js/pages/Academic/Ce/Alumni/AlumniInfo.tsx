@@ -4,25 +4,18 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
-import { Briefcase, GraduationCap, Search, Award, Building, UserCheck } from 'lucide-react';
+import { CE_TABS, CE_DEPT_NAME, AlumniPerson } from '@/data/ceData';
+import { Briefcase, GraduationCap, Search } from 'lucide-react';
+import { pageText } from '@/lib/dept-icons';
 
-interface Alumnus {
-    id: number;
-    type: 'job_holder' | 'higher_study';
-    name: string;
-    batch?: string | null;
-    passing_year?: string | null;
-    designation?: string | null;
-    organization?: string | null;
-    order: number;
-}
+type Alumnus = AlumniPerson;
 
 interface DeptInfo {
     id: number;
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -40,12 +33,37 @@ export default function CeAlumniInfo({ department, jobHolders = [], higherStudie
             a.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             (a.batch && a.batch.toLowerCase().includes(searchTerm.toLowerCase())) ||
             (a.designation && a.designation.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (a.organization && a.organization.toLowerCase().includes(searchTerm.toLowerCase())) ||
             (a.passing_year && a.passing_year.includes(searchTerm))
         );
     };
 
     const filteredJobs = filterAlumni(jobHolders);
     const filteredStudies = filterAlumni(higherStudies);
+    const shortName = department?.short_name || 'CE';
+
+    const renderName = (item: Alumnus, bg: string) => {
+        const avatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=${bg}&color=fff&size=64`;
+        return (
+            <div className="flex items-center gap-3">
+                <img
+                    src={item.image || avatar}
+                    alt={item.name}
+                    className="w-9 h-9 rounded-full object-cover object-top flex-shrink-0 bg-gray-100"
+                    onError={(e) => { e.currentTarget.src = avatar; }}
+                />
+                <span>{item.name}</span>
+            </div>
+        );
+    };
+
+    const renderPosition = (item: Alumnus) => (
+        <>
+            {item.designation && <span className="block">{item.designation}</span>}
+            {item.organization && <span className="block text-xs text-gray-500">{item.organization}</span>}
+            {!item.designation && !item.organization && '—'}
+        </>
+    );
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -53,7 +71,7 @@ export default function CeAlumniInfo({ department, jobHolders = [], higherStudie
             <Navbar />
             <PageHero 
                 title="Alumni Information" 
-                subtitle="Celebrating the Professional Careers & Global Academic Pathways of BAUST Civil Engineers" 
+                subtitle={pageText(department, 'alumni_subtitle', `Celebrating the Professional Careers & Global Academic Pathways of BAUST ${shortName} Graduates`)} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Alumni" tabs={CE_TABS} />
@@ -71,7 +89,7 @@ export default function CeAlumniInfo({ department, jobHolders = [], higherStudie
                             Alumni Career & Higher Studies Directory
                         </h2>
                         <p className="text-emerald-100/90 text-sm sm:text-base mt-4 leading-relaxed text-justify">
-                            Our graduates excel as structural engineers, project managers, and researchers in renowned multinational organizations like Abdul Monem Limited, EIMS, ACI, and prestigious universities worldwide.
+                            {pageText(department, 'alumni_intro', 'Our graduates excel as structural engineers, project managers, and researchers in renowned multinational organizations like Abdul Monem Limited, EIMS, ACI, and prestigious universities worldwide.')}
                         </p>
                     </div>
                 </div>
@@ -156,12 +174,12 @@ export default function CeAlumniInfo({ department, jobHolders = [], higherStudie
                                                     <td className="p-4 text-center font-bold text-gray-400">{idx + 1}</td>
                                                     <td className="p-4">
                                                         <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-lg">
-                                                            {item.batch || '10th'}
+                                                            {item.batch || '—'}
                                                         </span>
                                                     </td>
-                                                    <td className="p-4 font-semibold text-gray-500">{item.passing_year || '2024'}</td>
-                                                    <td className="p-4 font-bold text-gray-900">{item.name}</td>
-                                                    <td className="p-4 text-gray-600 font-medium">{item.designation || 'Engineer'}</td>
+                                                    <td className="p-4 font-semibold text-gray-500">{item.passing_year || '—'}</td>
+                                                    <td className="p-4 font-bold text-gray-900">{renderName(item, '059669')}</td>
+                                                    <td className="p-4 text-gray-600 font-medium">{renderPosition(item)}</td>
                                                 </tr>
                                             ))
                                         ) : (
@@ -209,12 +227,12 @@ export default function CeAlumniInfo({ department, jobHolders = [], higherStudie
                                                     <td className="p-4 text-center font-bold text-gray-400">{idx + 1}</td>
                                                     <td className="p-4">
                                                         <span className="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-lg">
-                                                            {item.batch || '10th'}
+                                                            {item.batch || '—'}
                                                         </span>
                                                     </td>
-                                                    <td className="p-4 font-semibold text-gray-500">{item.passing_year || '2024'}</td>
-                                                    <td className="p-4 font-bold text-gray-900">{item.name}</td>
-                                                    <td className="p-4 text-teal-900 font-medium">{item.designation}</td>
+                                                    <td className="p-4 font-semibold text-gray-500">{item.passing_year || '—'}</td>
+                                                    <td className="p-4 font-bold text-gray-900">{renderName(item, '0d9488')}</td>
+                                                    <td className="p-4 text-teal-900 font-medium">{renderPosition(item)}</td>
                                                 </tr>
                                             ))
                                         ) : (

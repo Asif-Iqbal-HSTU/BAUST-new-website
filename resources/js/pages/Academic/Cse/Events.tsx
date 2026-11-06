@@ -4,8 +4,9 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { CSE_TABS, CSE_DEPT_NAME } from '@/data/cseData';
-import { Calendar, MapPin, Clock, ArrowRight, ExternalLink, Megaphone } from 'lucide-react';
+import { CSE_TABS, CSE_DEPT_NAME, type DeptInfo } from '@/data/cseData';
+import { pageText } from '@/lib/dept-icons';
+import { Calendar, ArrowRight, ExternalLink, Megaphone } from 'lucide-react';
 
 interface Notice {
     id: number;
@@ -17,22 +18,23 @@ interface Notice {
     categories?: { name: string; slug: string }[];
 }
 
-export default function Events({ events }: { events: Notice[] }) {
+export default function Events({ events, department }: { events: Notice[]; department?: DeptInfo | null }) {
+    const shortName = department?.short_name || 'CSE';
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="News & Events - CSE - BAUST" />
+            <Head title={`News & Events - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
                 title="News & Events" 
-                subtitle="Stay Updated with Departmental Highlights" 
+                subtitle={pageText(department, 'events_intro', 'Stay Updated with Departmental Highlights')} 
                 compact={true} 
             />
-            <DeptSubNav departmentName={CSE_DEPT_NAME} activeTab="Events" tabs={CSE_TABS} />
+            <DeptSubNav departmentName={department?.name || CSE_DEPT_NAME} activeTab="Events" tabs={CSE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="flex items-center gap-4 mb-12">
                     <Megaphone className="text-emerald-600 w-8 h-8" />
-                    <h2 className="text-3xl font-black text-gray-900">Latest from CSE</h2>
+                    <h2 className="text-3xl font-black text-gray-900">Latest from {shortName}</h2>
                     <div className="h-px flex-grow bg-emerald-100" />
                 </div>
 

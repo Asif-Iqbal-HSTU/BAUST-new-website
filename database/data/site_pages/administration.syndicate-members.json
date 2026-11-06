@@ -1,0 +1,101 @@
+{
+    "title": "Syndicate Members",
+    "content": {
+        "hero": {
+            "title": "Syndicate Members",
+            "subtitle": "Regulatory Body of the University"
+        },
+        "chairman_heading": "The Chairman",
+        "chairman": {
+            "position": "Chairman",
+            "name": "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
+            "designation": "Vice Chancellor",
+            "photo": "/images/Syndicate Members/Syn1.jpeg",
+            "phone": "+8801769675550",
+            "email": "vc@baust.edu.bd"
+        },
+        "members_heading": "Syndicate Members",
+        "members": [
+            {
+                "position": "Member",
+                "name": "Lt Col Dr. Md Shameem Reza (Retd)",
+                "designation": "Treasurer, BAUST",
+                "photo": "/images/Syndicate Members/Syn2.jpeg",
+                "phone": "01769675555",
+                "email": "treasurer@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Dr. Maglub Al Nur",
+                "designation": "Professor, ME, BUET",
+                "photo": "/images/Syndicate Members/Syn3.jpg",
+                "phone": "01711020042",
+                "email": "maglub@me.buet.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Professor Md. Jahurul Islam",
+                "designation": "Dean, Faculty of SH, BAUST",
+                "photo": "/images/Syndicate Members/Syn4.jpg",
+                "phone": "01717142817",
+                "email": "dean_sh@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Professor Dr. Imtiaz Ahmed Choudhury",
+                "designation": "Head, Dept. of ME, BAUST",
+                "photo": "/images/Syndicate Members/Syn5.jpg",
+                "phone": "01726644025, 01721241869",
+                "email": "headme@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Md. Mahbubul Hoque Patwary",
+                "designation": "Additional Secretary (University), Secondary and Higher Education Division, Ministry of Education, Dhaka",
+                "photo": "/images/Syndicate Members/Syn6.jpg",
+                "phone": "01712901556",
+                "email": "addsec.university@shed.gov.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Brig Gen Md Anisur Rahman, ndc, afwc, psc (Retd)",
+                "designation": "AWT (Education Div), Dhaka Cantt",
+                "photo": "https://placehold.co/400x400/0f5132/ffffff?text=Portrait",
+                "phone": "01726156256",
+                "email": "edndivawt@gmail.com"
+            },
+            {
+                "position": "Member",
+                "name": "Brigadier General Md Rashidul Islam, SUP, ndu, afwc, psc, M.Phil",
+                "designation": "Managing Director, AWT, Dhaka Cantt",
+                "photo": "https://placehold.co/400x400/0f5132/ffffff?text=Portrait",
+                "phone": "01769012554",
+                "email": "wrrehabsec@gmail.com"
+            },
+            {
+                "position": "Member",
+                "name": "Col Muhammad Rubayat Zamil, BSP",
+                "designation": "Colonel Admin, Rangpur Area",
+                "photo": "/images/Syndicate Members/Syn7.jpg",
+                "phone": "01769-662070",
+                "email": "rubayat37bma@gmail.com"
+            },
+            {
+                "position": "Member",
+                "name": "Dr. M. Abdul Hannan",
+                "designation": "Professor, Dept of Law University of Rajshahi",
+                "photo": "/images/Syndicate Members/Syn8.jpg",
+                "phone": "01712138057",
+                "email": "mahannan.law@ru.ac.bd, ahannanlaw@yahoo.com"
+            },
+            {
+                "position": "Member Secretary",
+                "name": "Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (LPR)",
+                "designation": "Registrar, BAUST",
+                "photo": "/images/Syndicate Members/Syn9.jpeg",
+                "phone": "01769675551(Office)",
+                "email": "registrar@baust.edu.bd (Office)"
+            }
+        ]
+    }
+}

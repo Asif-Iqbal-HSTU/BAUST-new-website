@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Head, router } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
+import ReorderHandle, { reorderRowClass } from '@/components/reorder-handle';
+import { useDragReorder } from '@/hooks/use-drag-reorder';
 import { type BreadcrumbItem } from '@/types';
 import { Plus, Trash2, Save, ImageIcon } from 'lucide-react';
 
@@ -135,6 +137,7 @@ function CollectionEditor({
 }) {
     const [adding, setAdding] = useState(false);
     const [editing, setEditing] = useState<number | null>(null);
+    const reorder = useDragReorder(items, `/admin/iqac/collection/${type}/reorder`, onDone);
 
     const submit = (e: React.FormEvent<HTMLFormElement>, url: string, done: () => void) => {
         e.preventDefault();
@@ -160,7 +163,10 @@ function CollectionEditor({
     return (
         <SectionCard title={title} subtitle={subtitle}>
             <div className="space-y-3">
-                {items.map((item) =>
+                {items.length > 1 && (
+                    <p className="text-[11px] text-neutral-400">Drag rows by the handle (or use ↑ ↓) to change the order shown on the website.</p>
+                )}
+                {reorder.items.map((item, idx) =>
                     editing === item.id ? (
                         <form
                             key={item.id}
@@ -182,8 +188,13 @@ function CollectionEditor({
                             </div>
                         </form>
                     ) : (
-                        <div key={item.id} className="flex items-center justify-between gap-3 rounded-xl border border-neutral-200 p-3 dark:border-neutral-800">
-                            <span className="truncate text-sm text-neutral-700 dark:text-neutral-300">{describe(item)}</span>
+                        <div
+                            key={item.id}
+                            {...reorder.rowProps(idx)}
+                            className={`flex items-center justify-between gap-3 rounded-xl border border-neutral-200 p-3 dark:border-neutral-800 ${reorderRowClass(reorder.isDragging(idx), reorder.isOver(idx))}`}
+                        >
+                            <ReorderHandle index={idx} count={reorder.items.length} onUp={() => reorder.moveUp(idx)} onDown={() => reorder.moveDown(idx)} />
+                            <span className="flex-1 truncate text-sm text-neutral-700 dark:text-neutral-300">{describe(item)}</span>
                             <div className="flex flex-shrink-0 gap-2">
                                 <button onClick={() => setEditing(item.id)} className={`${btn} bg-neutral-100 text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300`}>
                                     Edit
@@ -364,7 +375,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                         { key: 'image', label: 'Image', type: 'image' },
                         { key: 'title', label: 'Title', type: 'text' },
                         { key: 'date_label', label: 'Date label', type: 'text' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
 
@@ -379,7 +389,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                     fields={[
                         { key: 'value', label: 'Value', type: 'text' },
                         { key: 'label', label: 'Label', type: 'text' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
 
@@ -393,7 +402,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                     fields={[
                         { key: 'icon', label: 'Icon', type: 'select' },
                         { key: 'label', label: 'Label', type: 'text' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
 
@@ -407,7 +415,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                     describe={(i) => i.text as string}
                     fields={[
                         { key: 'text', label: 'Text', type: 'text' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
 
@@ -425,7 +432,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                         { key: 'affiliation', label: 'Affiliation', type: 'text' },
                         { key: 'credentials', label: 'Credentials', type: 'textarea' },
                         { key: 'is_lead', label: 'Highlight as lead (director)', type: 'checkbox' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
 
@@ -439,7 +445,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                     fields={[
                         { key: 'date_label', label: 'Date label', type: 'text' },
                         { key: 'title', label: 'Title', type: 'text' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
 
@@ -452,7 +457,6 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
                     describe={(i) => i.text as string}
                     fields={[
                         { key: 'text', label: 'Text', type: 'textarea' },
-                        { key: 'order', label: 'Order', type: 'number' },
                     ]}
                 />
             </div>

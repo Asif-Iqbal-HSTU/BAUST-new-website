@@ -1,0 +1,207 @@
+{
+    "title": "Central Library",
+    "content": {
+        "browser_title": "Central Library - BAUST",
+        "hero": {
+            "title": "Central Library",
+            "subtitle": "The Knowledge Resource & Research Hub of BAUST"
+        },
+        "stats": [
+            { "value": "10,000+", "label": "Printed Books" },
+            { "value": "15+", "label": "BAS-LiCoB Databases" },
+            { "value": "3,500+", "label": "Wiley E-Books" },
+            { "value": "100%", "label": "Digitized Access" }
+        ],
+        "tab_labels": {
+            "overview": "Overview & Hours",
+            "membership": "Membership & Policy",
+            "resources": "E-Resources",
+            "collections": "Collections Overview",
+            "gallery": "Gallery & Contacts"
+        },
+        "overview": {
+            "badge": "The Heart of BAUST",
+            "heading": "Welcome to the Knowledge Resource Center",
+            "paragraphs": [
+                "Bangladesh Army University of Science and Technology (BAUST), Saidpur, hosts a modern and resourceful library designed to meet the academic, research, and general learning needs of students, faculty members, and staff. The library acts as the heart of our institution, preserving research results and providing critical access to literature for lesson preparation and academic advancement.",
+                "Our catalog is fully integrated with digital databases and houses a vast and diverse physical collection of textbooks, references, monographs, and periodicals."
+            ],
+            "catalog_button_label": "OPAC Online Catalog",
+            "catalog_link": "http://library.baust.edu.bd/",
+            "image": "https://www.baust.edu.bd/wp-content/uploads/2021/12/Photo-650x488.jpg",
+            "image_alt": "BAUST Library Interior",
+            "fallback_image": "https://placehold.co/650x488/0f5132/ffffff?text=BAUST+Central+Library",
+            "mission_title": "Our Mission",
+            "mission_text": "To provide comprehensive information resources, research databases, and modern services in support of the research, teaching, and learning needs of the entire BAUST community, fostering a culture of academic rigor and curiosity.",
+            "vision_title": "Our Vision",
+            "vision_text": "To build a world-class Knowledge Resource Centre and deliver innovative learning services, digital library solutions, and rich collections utilizing the latest 21st-century technological advancements for research and learning communities."
+        },
+        "opening_hours": {
+            "badge": "Timing Schedule",
+            "heading": "Official Library Operating Hours",
+            "description": "The library maintains regular operating hours during weekdays and select hours on weekends to maximize student accessibility.",
+            "seasonal_schedules": [
+                {
+                    "title": "Summer Schedule",
+                    "time": "08:00 AM - 06:00 PM",
+                    "description": "Applicable from 01 March to 14 November. Extended evening hours to support student learning.",
+                    "date_range": "01 Mar – 14 Nov"
+                },
+                {
+                    "title": "Winter Schedule",
+                    "time": "08:30 AM - 04:30 PM",
+                    "description": "Applicable from 15 November to 28 February. Adjusting to winter seasonal daylight hours.",
+                    "date_range": "15 Nov – 28 Feb"
+                }
+            ],
+            "weekly_title": "Weekly Coverage",
+            "weekly_days": [
+                { "days": "Sunday – Thursday", "status": "Open", "closed": false },
+                { "days": "Saturday", "status": "10 AM - 02 PM", "closed": false },
+                { "days": "Friday", "status": "Closed", "closed": true }
+            ],
+            "location": "Main Campus, Library Hall"
+        },
+        "membership": {
+            "badge": "Access & Enrollment",
+            "heading": "Library Membership Procedure",
+            "description": "Becoming a member of the BAUST Central Library allows you to borrow physical resources, access digital e-resource kiosks, and utilize the study cubicles.",
+            "steps": [
+                {
+                    "title": "Automatic Registration",
+                    "description": "All students, faculty members, and officers are automatically registered upon admission or onboarding by the library administration."
+                },
+                {
+                    "title": "Semester Course Validation",
+                    "description": "Student library membership validity is dynamically extended each semester, dependent upon valid registration of academic courses."
+                },
+                {
+                    "title": "University Smart Card ID",
+                    "description": "Smart Cards serve as the official library barcode access key. Borrowing requires verification at the circulation counter."
+                }
+            ],
+            "account_title": "Library Database Account",
+            "account_text": "You can check your borrowing history, search book availability, and request reservations online through our integrated web catalog.",
+            "account_button_label": "Access Database",
+            "account_link": "http://library.baust.edu.bd/"
+        },
+        "policies": {
+            "kicker": "Guidelines",
+            "heading": "Library User Policies",
+            "description": "We maintain a strict academic environment inside the library. Users are requested to read and abide by the following library rules.",
+            "rule_label": "Rule No.",
+            "rules": [
+                "All personal bags, coats, jackets, umbrellas, etc. are to be kept in the pigeonhole near the security desk before entry.",
+                "Group study, gossiping, loud discussions, eating, drinking, and smoking are strictly prohibited inside the library premises.",
+                "Students are requested to handle all library property (fittings, furniture, equipment, books, journals, CDs, PCs) with extreme care.",
+                "Mobile phones must be kept on silent/switched off mode. Phone conversations are strictly prohibited inside the reading rooms.",
+                "No book shall be issued to students for reading room use or home loan within the last 30 minutes before the daily closing time."
+            ]
+        },
+        "e_resources": {
+            "badge": "Digital Consortium",
+            "heading": "Access Electronic & Online Databases",
+            "description": "To support advanced research, graduation projects, and course preparation, BAUST provides high-speed terminal connections to global electronic journals, databases, and library consortia. E-resource access is configured via campus IP addresses, allowing automatic authorization when browsing within the university network.",
+            "wiley_title": "Wiley UGC Consortium E-Books",
+            "wiley_text": "BAUST Library subscribes to **3,500 Wiley online e-books** in perpetual mode (lifetime access) covering life, health, physical sciences, social sciences, and the humanities through the UDL Consortium.",
+            "wiley_catalogue_label": "Download Wiley Books Catalogue",
+            "wiley_catalogue_link": "https://www.wileyindia.com/Wiley_Online_Resources/UGC%20Bangladesh/UGC%20Bangladesh.html",
+            "image": "https://www.baust.edu.bd/wp-content/uploads/2021/12/e-resource-corner-1.jpg",
+            "image_alt": "E-Resource Corner at BAUST",
+            "fallback_image": "https://placehold.co/650x488/0f5132/ffffff?text=E-Resource+Corner",
+            "consortium_heading": "i) BAS-LiCoB Consortium Journals & Databases",
+            "consortium_description": "Formerly known as the Bangladesh INASP-PERI Consortium (BIPC), these premium scientific research databases are accessible inside the campus IP network.",
+            "consortium_resources": [
+                { "name": "American Institute of Physics (AIP)", "url": "https://aip.scitation.org/" },
+                { "name": "American Physical Society", "url": "https://journals.aps.org/search" },
+                { "name": "American Society of Agricultural & Biological Engineers (ASABE)", "url": "https://elibrary.asabe.org/" },
+                { "name": "American Society of Civil Engineers (ASCE)", "url": "https://ascelibrary.org/" },
+                { "name": "American Society of Mechanical Engineers (ASME)", "url": "https://asmedigitalcollection.asme.org/" },
+                { "name": "Cambridge University Press (CUP)", "url": "https://www.cambridge.org/core" },
+                { "name": "De Gruyter Online Journals (inc LIS)", "url": "https://www.degruyter.com/search?t1=BB" },
+                { "name": "EBSCO including CMMC", "url": "https://search.ebscohost.com/" },
+                { "name": "Indian Journals", "url": "http://www.indianjournals.com/" },
+                { "name": "International Forestry Review", "url": "https://www.cabi.org/ifr/" },
+                { "name": "Nature Publishing Group", "url": "https://www.nature.com/" },
+                { "name": "Oxford Journals", "url": "https://academic.oup.com/journals" },
+                { "name": "Project MUSE eBooks", "url": "https://muse.jhu.edu/" },
+                { "name": "Project MUSE Journals", "url": "https://muse.jhu.edu/" },
+                { "name": "Springer Link", "url": "https://link.springer.com/" }
+            ],
+            "open_access_heading": "ii) Open Access (Free) Academic Portals",
+            "open_access_description": "Free, public repository systems recommended for research, reference material, thesis compiling, and general education resources.",
+            "open_access_resources": [
+                { "name": "AGORA Portal", "url": "https://www.fao.org/agora/en/" },
+                { "name": "ARDI Database", "url": "https://www.wipo.int/ardi/en/#" },
+                { "name": "HINARI Access to Research", "url": "https://www.who.int/hinari/en/" },
+                { "name": "OARE Environmental Science", "url": "https://www.unep.org/explore-topics/environment-under-review/what-we-do/information-management/online-access-research" },
+                { "name": "Goali Law Resources", "url": "http://www.ilo.org/goali/lang--en/index.htm" },
+                { "name": "Bangladesh Journals Online (BanglaJOL)", "url": "https://www.banglajol.info/" },
+                { "name": "Directory of Open Access Books (DOAB)", "url": "https://www.doabooks.org/" },
+                { "name": "Indian Open Access Journals (Open Science)", "url": "https://www.opensciencepublications.com/" }
+            ]
+        },
+        "collections": {
+            "badge": "Academic Holdings",
+            "heading": "Departmental Book Holdings & Catalogs",
+            "description": "BAUST Central Library holds dedicated sections containing reference text and specialized books mapping exactly to the curricula of all active departments. Detailed physical book registers and computerized databases are organized for:",
+            "departments": [
+                { "name": "Computer Science and Engineering", "code": "CSE", "description": "Comprehensive books on algorithms, software engineering, databases, AI, web development, and networking." },
+                { "name": "Electrical and Electronic Engineering", "code": "EEE", "description": "Reference volumes on power systems, telecommunication, signal processing, and electronics engineering." },
+                { "name": "Mechanical Engineering", "code": "ME", "description": "Core textbooks on thermodynamics, fluid mechanics, fluid dynamics, design, and automotive technologies." },
+                { "name": "Industrial and Production Engineering", "code": "IPE", "description": "Standard works on operations research, manufacturing processes, supply chain management, and safety protocols." },
+                { "name": "Civil Engineering", "code": "CE", "description": "Essential books covering structural design, geotechnics, environmental engineering, and concrete technology." },
+                { "name": "Business Administration", "code": "BBA", "description": "Diverse materials on marketing, organizational behavior, financial accounting, strategic management, and economics." },
+                { "name": "Department of English", "code": "ENGLISH", "description": "Classical and modern literature, linguistics, grammar guides, communications, and language development texts." }
+            ],
+            "card_footer_label": "Reference Available",
+            "search_button_label": "Search Books",
+            "search_link": "http://library.baust.edu.bd/",
+            "cta_heading": "Search the OPAC Catalog System",
+            "cta_description": "Already have a specific title or author in mind? Access our online library management system to perform direct keyword query search and reservation.",
+            "cta_button_label": "Launch Online Search Catalog",
+            "cta_link": "http://library.baust.edu.bd/"
+        },
+        "gallery": {
+            "kicker": "Visuals",
+            "heading": "Library Gallery",
+            "description": "Explore images of the reading room, library stacks, and e-resource kiosks.",
+            "photos": [
+                {
+                    "title": "Central Reading Hall",
+                    "caption": "Spacious & quiet reading environment",
+                    "image": "https://www.baust.edu.bd/wp-content/uploads/2021/12/Photo-650x488.jpg",
+                    "image_alt": "Library Reading Room",
+                    "fallback_image": "https://placehold.co/650x488/0f5132/ffffff?text=Reading+Hall"
+                },
+                {
+                    "title": "E-Resource Corner",
+                    "caption": "Broadband access terminals & journals",
+                    "image": "https://www.baust.edu.bd/wp-content/uploads/2021/12/e-resource-corner-1.jpg",
+                    "image_alt": "E-Resource Desk",
+                    "fallback_image": "https://placehold.co/650x488/0f5132/ffffff?text=E-Resources"
+                },
+                {
+                    "title": "Book Shelf Stacks",
+                    "caption": "Physical catalog index of 10,000+ volumes",
+                    "image": "https://www.baust.edu.bd/wp-content/uploads/2021/12/Photo-1-650x488.jpg",
+                    "image_alt": "Book Shelves Stacks",
+                    "fallback_image": "https://placehold.co/650x488/0f5132/ffffff?text=Book+Shelves"
+                }
+            ]
+        },
+        "contacts": {
+            "kicker": "Assistance",
+            "heading": "Library Contacts",
+            "description": "Need help with borrowing accounts, registering smart cards, or e-resource access? Contact our librarian office.",
+            "contact_name": "Md. Saiful Alom Milon",
+            "contact_designation": "Deputy Librarian",
+            "contact_office": "BAUST Library Administration",
+            "contact_methods": [
+                { "label": "Email Address", "value": "central_library@baust.edu.bd", "link": "mailto:central_library@baust.edu.bd" },
+                { "label": "Office Mobile", "value": "+88 01769-662699", "link": "tel:+8801769662699" },
+                { "label": "Personal Mobile", "value": "+88 01992-371721", "link": "tel:+8801992371721" }
+            ]
+        }
+    }
+}

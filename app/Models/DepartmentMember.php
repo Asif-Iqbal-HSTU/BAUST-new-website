@@ -60,18 +60,22 @@ class DepartmentMember extends Model
         return in_array($category, self::TEACHING_RANKS, true);
     }
 
-    /** Active faculty, plus ex-members whose rank is a teaching rank (for the Faculty page). */
+    /**
+     * Faculty, plus Teaching Assistants (listed with the faculty members, not the
+     * academic staff), plus ex-members whose rank is a teaching rank (Faculty page).
+     */
     public function scopeFacultyVisible($query)
     {
         return $query->where(function ($q) {
             $q->where('employment_type', 'faculty')
+                ->orWhere('category', 'teaching_assistant')
                 ->orWhere(function ($q2) {
                     $q2->where('status', 'ex_faculty')->whereIn('category', self::TEACHING_RANKS);
                 });
         });
     }
 
-    /** Active staff, plus ex-members whose rank is not a teaching rank (for the Academic Staff/Officer page). */
+    /** Staff (never Teaching Assistants), plus ex-members whose rank is not a teaching rank (Academic Staff/Officer page). */
     public function scopeStaffVisible($query)
     {
         return $query->where(function ($q) {
@@ -79,6 +83,6 @@ class DepartmentMember extends Model
                 ->orWhere(function ($q2) {
                     $q2->where('status', 'ex_faculty')->whereNotIn('category', self::TEACHING_RANKS);
                 });
-        });
+        })->where(fn ($q) => $q->whereNull('category')->orWhere('category', '!=', 'teaching_assistant'));
     }
 }

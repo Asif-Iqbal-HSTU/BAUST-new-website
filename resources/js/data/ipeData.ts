@@ -19,23 +19,7 @@ export const IPE_TABS = [
         ]
     },
     { name: 'Curriculum', href: `${IPE_BASE_PATH}/curriculum` },
-    {
-        name: 'Laboratories',
-        children: [
-            { name: 'Machine Shop and Production Process Lab', href: `${IPE_BASE_PATH}/laboratories/production-process-lab` },
-            { name: 'Foundry and Welding Shop', href: `${IPE_BASE_PATH}/laboratories/simulation-lab` },
-            { name: 'Engineering Drawing Lab', href: `${IPE_BASE_PATH}/laboratories/engineering-drawing-lab` },
-            { name: 'CAD and Simulation Lab', href: `${IPE_BASE_PATH}/laboratories/cad-cam-lab` },
-            { name: 'Materials Handling & Maintenance Engineering Lab', href: `${IPE_BASE_PATH}/laboratories/machine-tool-lab` },
-            { name: 'Ergonomics & Safety Management Lab', href: `${IPE_BASE_PATH}/laboratories/ergonomics-safety-management-lab` },
-            { name: 'Measurement, Instrumentation and Quality Control Lab', href: `${IPE_BASE_PATH}/laboratories/measurement-quality-control-lab` },
-            { name: 'Metallurgy Lab', href: `${IPE_BASE_PATH}/laboratories/metrology-lab` },
-            { name: 'Strength of Materials Lab', href: `${IPE_BASE_PATH}/laboratories/strength-of-materials-lab` },
-            { name: 'Mechanics of Machinery Lab', href: `${IPE_BASE_PATH}/laboratories/mechanics-of-machinery-lab` },
-            { name: 'Fluid Mechanics and Machinery Lab', href: `${IPE_BASE_PATH}/laboratories/fluid-mechanics-and-machinery-lab` },
-            { name: 'Thermodynamics & Heat Transfer Lab', href: `${IPE_BASE_PATH}/laboratories/thermodynamics-heat-transfer-lab` },
-        ]
-    },
+    { name: 'Laboratories', href: `${IPE_BASE_PATH}/laboratories` },
     { name: 'Online Resources', href: `${IPE_BASE_PATH}/online-resources` },
     { name: 'Alumni', href: `${IPE_BASE_PATH}/alumni` },
     { name: 'Events', href: `${IPE_BASE_PATH}/events` },
@@ -67,11 +51,74 @@ export interface FacultyMember {
     department?: string;
 }
 
-export const NOTICES = [
-    { date: '21', month: 'Feb', title: 'Publication of Results Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '07', month: 'Feb', title: 'Final Examination Result of Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '22', month: 'Jan', title: 'Seminar on Supply Chain Management & Industry 4.0 Applications' },
-    { date: '15', month: 'Jan', title: 'Industrial Tour to Walton Hi-Tech Industries PLC' },
-    { date: '05', month: 'Jan', title: 'Lean Six Sigma Green Belt Certification Workshop' },
-];
-//
+export interface SocietyActivity {
+    title: string;
+    icon?: string | null;
+    description?: string | null;
+}
+
+export interface SocietyCommitteeMember {
+    role?: string | null;
+    name: string;
+    designation?: string | null;
+    image?: string | null;
+}
+
+export interface SocietyData {
+    id?: number;
+    name: string;
+    slug: string;
+    type: 'society' | 'club' | 'alumni' | string;
+    description?: string | null;
+    member_count?: string | null;
+    established?: string | null;
+    committee_pdf?: string | null;
+    activities?: (SocietyActivity | string)[] | null;
+    committee?: SocietyCommitteeMember[] | null;
+}
+
+/** Activities are `{title, icon, description}` from the admin; older seeds stored plain strings. */
+export function societyActivities(society?: SocietyData | null): SocietyActivity[] {
+    return (society?.activities ?? [])
+        .map(a => (typeof a === 'string' ? { title: a } : a))
+        .filter(a => a && a.title);
+}
+
+export interface AlumniPerson {
+    id: number;
+    type: 'job_holder' | 'higher_study';
+    name: string;
+    batch?: string | null;
+    passing_year?: string | null;
+    designation?: string | null;
+    organization?: string | null;
+    image?: string | null;
+}
+
+export interface AchievementItem {
+    id?: number;
+    title: string;
+    type?: string | null;
+    icon?: string | null;
+    color?: string | null;
+    description?: string | null;
+    details?: string | null;
+    team_title?: string | null;
+    team_members?: { name: string; batch?: string | null }[] | null;
+    link?: string | null;
+}
+
+/** Static class map for the admin's achievement colours (Tailwind needs literal class names). */
+export const ACHIEVEMENT_COLORS: Record<string, { badge: string; icon: string; border: string }> = {
+    emerald: { badge: 'bg-emerald-100 text-emerald-800', icon: 'bg-emerald-50 text-emerald-600', border: 'hover:border-emerald-200' },
+    blue: { badge: 'bg-blue-100 text-blue-800', icon: 'bg-blue-50 text-blue-600', border: 'hover:border-blue-200' },
+    purple: { badge: 'bg-purple-100 text-purple-800', icon: 'bg-purple-50 text-purple-600', border: 'hover:border-purple-200' },
+    amber: { badge: 'bg-amber-100 text-amber-800', icon: 'bg-amber-50 text-amber-600', border: 'hover:border-amber-200' },
+    pink: { badge: 'bg-pink-100 text-pink-800', icon: 'bg-pink-50 text-pink-600', border: 'hover:border-pink-200' },
+    rose: { badge: 'bg-rose-100 text-rose-800', icon: 'bg-rose-50 text-rose-600', border: 'hover:border-rose-200' },
+    indigo: { badge: 'bg-indigo-100 text-indigo-800', icon: 'bg-indigo-50 text-indigo-600', border: 'hover:border-indigo-200' },
+};
+
+export function achievementColor(color?: string | null) {
+    return ACHIEVEMENT_COLORS[color ?? ''] ?? ACHIEVEMENT_COLORS.emerald;
+}

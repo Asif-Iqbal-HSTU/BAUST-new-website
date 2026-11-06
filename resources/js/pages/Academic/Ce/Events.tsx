@@ -5,6 +5,7 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
+import { pageText } from '@/lib/dept-icons';
 import { Calendar, ArrowRight, ExternalLink, Megaphone } from 'lucide-react';
 
 interface Notice {
@@ -18,22 +19,29 @@ interface Notice {
     categories?: { name: string; slug: string }[];
 }
 
-export default function Events({ events }: { events: Notice[] }) {
+interface DeptInfo {
+    name: string;
+    short_name: string;
+    page_texts?: Record<string, string> | null;
+}
+
+export default function Events({ department, events }: { department?: DeptInfo | null; events: Notice[] }) {
+    const shortName = department?.short_name || 'CE';
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="News & Events - CE - BAUST" />
+            <Head title={`News & Events - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
                 title="News & Events" 
-                subtitle="Stay Updated with Civil Engineering Highlights" 
+                subtitle={pageText(department, 'events_intro', `Stay Updated with ${shortName} Department Highlights`)} 
                 compact={true} 
             />
-            <DeptSubNav departmentName={CE_DEPT_NAME} activeTab="Events" tabs={CE_TABS} />
+            <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Events" tabs={CE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="flex items-center gap-4 mb-12">
                     <Megaphone className="text-emerald-600 w-8 h-8" />
-                    <h2 className="text-3xl font-black text-gray-900">Latest from CE</h2>
+                    <h2 className="text-3xl font-black text-gray-900">Latest from {shortName}</h2>
                     <div className="h-px flex-grow bg-emerald-100" />
                 </div>
 

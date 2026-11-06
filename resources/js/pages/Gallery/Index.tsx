@@ -145,7 +145,7 @@ const CURATED_PHOTOS: GalleryPhoto[] = [
         category: 'academics',
         categoryLabel: 'Academics & Labs',
         image: '/images/departments/cse/slider/ieb-accreditation.jpg',
-        description: 'Official board certification validating outcome-based education standards of BAUST engineering degrees.',
+        description: 'Official board certification validating the outcome-based education standards of the CSE, ME and IPE programs at BAUST.',
         tag: 'Accreditation'
     },
     {

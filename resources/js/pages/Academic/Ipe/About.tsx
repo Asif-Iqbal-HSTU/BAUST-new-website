@@ -29,23 +29,10 @@ interface Props {
     stats?: StatItem[];
 }
 
-const DEFAULT_STATS: StatItem[] = [
-    { value: '350+', label: 'Current Students' },
-    { value: '24+', label: 'Faculty & Staff' },
-    { value: '12', label: 'Specialized Labs' },
-    { value: '96%', label: 'Placement & Higher Studies' },
-];
-
-const DEFAULT_ABOUT = `Industrial and Production Engineering (IPE) is a globally valued engineering discipline that optimizes processes, improves workplace productivity, and ensures operational quality across modern manufacturing and service sectors. The Department of IPE at Bangladesh Army University of Science and Technology (BAUST) began its journey in 2016 and has established itself as an engineering education leader.
-
-The department offers a 4-year B.Sc. Engineering curriculum blending manufacturing processes, operations research, supply chain management, ergonomics, and quality control. With 12 dedicated laboratories and an active student chapter (IEOM), our students acquire real-world problem-solving skills suited for leading multinational corporations and research institutions.
-
-Our graduates are equipped with Outcome-Based Education (OBE) principles and technical mastery in CAD/CAM, ergonomics simulation, operations modeling, and Lean Six Sigma methodologies, allowing immediate placement across garments/textile supply chains, electronics manufacturing, pharmaceuticals, logistics, and foreign higher studies.`;
-
 export default function IpeAbout({ department, stats }: Props) {
-    const activeStats = (stats && stats.length > 0) ? stats : DEFAULT_STATS;
-    const aboutText = department?.about || department?.description || DEFAULT_ABOUT;
-    const aboutParagraphs = aboutText.split('\n\n').filter(Boolean);
+    const activeStats = stats ?? [];
+    const aboutText = department?.about || department?.description || '';
+    const aboutParagraphs = aboutText.split(/\r?\n\s*\r?\n|\\n\\n/).map(p => p.trim()).filter(Boolean);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -77,14 +64,14 @@ export default function IpeAbout({ department, stats }: Props) {
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {activeStats.length > 0 && <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {activeStats.map((stat, idx) => (
                                 <div key={stat.id ?? idx} className="text-center p-5 rounded-2xl bg-emerald-50/60 border border-emerald-100/50">
                                     <p className="text-2xl font-extrabold text-emerald-700">{stat.value}</p>
                                     <p className="text-xs text-gray-500 font-semibold mt-1 uppercase tracking-wider">{stat.label}</p>
                                 </div>
                             ))}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </main>

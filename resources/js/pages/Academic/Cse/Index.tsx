@@ -4,50 +4,9 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { CSE_TABS, CSE_DEPT_NAME, FacultyMember } from '@/data/cseData';
-import {
-    BadgeCheck,
-    ChevronLeft,
-    ChevronRight,
-    Cpu,
-    BookOpen,
-    Award,
-    Briefcase,
-    GraduationCap,
-    FlaskConical,
-    Users,
-    Globe,
-    Building2,
-    Lightbulb,
-    Layers,
-    Target,
-    Trophy,
-    ShieldCheck,
-    Sparkles,
-} from 'lucide-react';
-
-const ICON_MAP: Record<string, React.ReactNode> = {
-    Cpu: <Cpu className="w-7 h-7" />,
-    BookOpen: <BookOpen className="w-7 h-7" />,
-    Award: <Award className="w-7 h-7" />,
-    Briefcase: <Briefcase className="w-7 h-7" />,
-    GraduationCap: <GraduationCap className="w-7 h-7" />,
-    FlaskConical: <FlaskConical className="w-7 h-7" />,
-    Users: <Users className="w-7 h-7" />,
-    Globe: <Globe className="w-7 h-7" />,
-    Building2: <Building2 className="w-7 h-7" />,
-    Lightbulb: <Lightbulb className="w-7 h-7" />,
-    Layers: <Layers className="w-7 h-7" />,
-    Target: <Target className="w-7 h-7" />,
-    Trophy: <Trophy className="w-7 h-7" />,
-    ShieldCheck: <ShieldCheck className="w-7 h-7" />,
-    Sparkles: <Sparkles className="w-7 h-7" />,
-};
-
-function renderHighlightIcon(name?: string | null) {
-    if (name && ICON_MAP[name]) return ICON_MAP[name];
-    return <Cpu className="w-7 h-7" />;
-}
+import { CSE_TABS, CSE_DEPT_NAME, FacultyMember, type DeptInfo } from '@/data/cseData';
+import { deptIcon, pageText } from '@/lib/dept-icons';
+import { BadgeCheck, ChevronLeft, ChevronRight, Cpu } from 'lucide-react';
 
 interface SlideItem {
     id?: number;
@@ -61,63 +20,12 @@ interface HighlightItem {
     icon?: string | null;
     title: string;
     text?: string | null;
-    description?: string | null;
 }
-
-const DEFAULT_SLIDES: SlideItem[] = [
-    { image: '/images/departments/cse/slider/ieb-accreditation.jpg', title: 'IEB Accreditation Certificate', caption: null },
-    { image: '/images/departments/cse/slider/with-vc.jpeg', title: 'With the Honorable Vice Chancellor', caption: null },
-    { image: '/images/departments/cse/slider/robotics-runners-up.png', title: 'Robotics Competition — Runners Up', caption: null },
-    { image: '/images/departments/cse/slider/girls-programming-contest.png', title: 'Participants — National Girls Programming Contest', caption: null },
-];
-
-const DEFAULT_HIGHLIGHTS: HighlightItem[] = [
-    {
-        icon: 'Cpu',
-        title: 'Modern Laboratories',
-        text: 'State-of-the-art computer labs equipped with the latest hardware and software for hands-on learning.',
-    },
-    {
-        icon: 'GraduationCap',
-        title: 'Qualified Faculty',
-        text: 'Learn from highly qualified professors and researchers with diverse academic and industry backgrounds.',
-    },
-    {
-        icon: 'FlaskConical',
-        title: 'Research Focused',
-        text: 'Strong emphasis on cutting-edge research in AI, Machine Learning, IoT, and Data Science.',
-    },
-    {
-        icon: 'Briefcase',
-        title: 'Industry Ready',
-        text: 'Outcome-based curriculum designed to produce graduates ready for the global tech industry.',
-    },
-];
 
 interface StatItem {
     id?: number;
     value: string;
     label: string;
-}
-
-interface DeptInfo {
-    id: number;
-    slug: string;
-    name: string;
-    short_name: string;
-    faculty?: string | null;
-    tagline?: string | null;
-    established?: string | null;
-    about?: string | null;
-    vision?: string | null;
-    mission?: string | null;
-    hod_name?: string | null;
-    hod_designation?: string | null;
-    hod_photo?: string | null;
-    hod_message?: string | null;
-    accreditation_badge?: string | null;
-    accreditation_title?: string | null;
-    accreditation_text?: string | null;
 }
 
 interface Props {
@@ -131,8 +39,9 @@ interface Props {
 }
 
 export default function CseHome({ department, slides, highlights, stats, headOfDept, facultyPreview, notices }: Props) {
-    const activeSlides = (slides && slides.length > 0) ? slides : DEFAULT_SLIDES;
-    const activeHighlights = (highlights && highlights.length > 0) ? highlights : DEFAULT_HIGHLIGHTS;
+    const activeSlides = slides ?? [];
+    const activeHighlights = highlights ?? [];
+    const shortName = department?.short_name || 'CSE';
 
     const [isHeadMsgOpen, setIsHeadMsgOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -169,15 +78,16 @@ export default function CseHome({ department, slides, highlights, stats, headOfD
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title={`Department of ${department?.short_name || 'CSE'} - BAUST`} />
+            <Head title={`Department of ${shortName} - BAUST`} />
             <Navbar />
-            <PageHero title={department?.name || "Department of Computer Science and Engineering (CSE)"} subtitle={null} compact={true} />
+            <PageHero title={department?.name || CSE_DEPT_NAME} subtitle={pageText(department, 'home_hero_subtitle', '') || null} compact={true} />
             <DeptSubNav departmentName={department?.short_name || CSE_DEPT_NAME} activeTab="Home" tabs={CSE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
 
                 {/* Highlights Slider + Accreditation, side by side */}
                 <section className="grid lg:grid-cols-3 gap-6 items-stretch">
+                {activeSlides.length > 0 && (
                 <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
                     {activeSlides.map((slide, idx) => (
                         <div
@@ -218,9 +128,10 @@ export default function CseHome({ department, slides, highlights, stats, headOfD
                         </>
                     )}
                 </div>
+                )}
 
                 {/* Accreditation card */}
-                <div className="lg:col-span-1 bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                <div className={`${activeSlides.length > 0 ? 'lg:col-span-1' : 'lg:col-span-3'} bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col`}>
                     <div className="h-1.5 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500" />
                     <div className="p-7 flex flex-col flex-grow justify-center">
                         <div className="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center mb-5">
@@ -295,6 +206,9 @@ export default function CseHome({ department, slides, highlights, stats, headOfD
                                 <Link href="/archive/notices?department=cse" className="text-xs text-emerald-700 font-bold hover:underline cursor-pointer">View All →</Link>
                             </div>
                             <div className="space-y-3">
+                                {notices.length === 0 && (
+                                    <p className="text-sm text-gray-400 text-center py-8">No notices published yet.</p>
+                                )}
                                 {notices.map((notice, idx) => {
                                     const { day, month } = formatDate(notice.published_at);
                                     return (
@@ -321,22 +235,24 @@ export default function CseHome({ department, slides, highlights, stats, headOfD
                 </div>
 
                 {/* Why CSE at BAUST? */}
+                {activeHighlights.length > 0 && (
                 <div>
                     <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
-                        Why CSE at <span className="text-emerald-700">BAUST</span>?
+                        Why {shortName} at <span className="text-emerald-700">BAUST</span>?
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {activeHighlights.map((item, idx) => (
                             <div key={item.id ?? idx} className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                                    {renderHighlightIcon(item.icon)}
+                                    {React.createElement(deptIcon(item.icon, Cpu), { className: 'w-7 h-7' })}
                                 </div>
                                 <h3 className="text-[15px] font-bold text-gray-900 mb-2">{item.title}</h3>
-                                <p className="text-[13px] text-gray-500 leading-relaxed">{item.text || item.description}</p>
+                                <p className="text-[13px] text-gray-500 leading-relaxed">{item.text}</p>
                             </div>
                         ))}
                     </div>
                 </div>
+                )}
 
                 {/* Faculty Preview */}
                 <div>
@@ -395,7 +311,7 @@ export default function CseHome({ department, slides, highlights, stats, headOfD
                                     <p className="font-bold text-gray-900 mt-2">{hodName}</p>
                                     <p className="text-sm text-emerald-700 font-semibold">{hodDesignation}</p>
                                     <p className="text-[13px] text-gray-500 mt-1">
-                                        Department of {department?.short_name || 'CSE'}, BAUST
+                                        Department of {shortName}, BAUST
                                     </p>
                                 </div>
                             </div>

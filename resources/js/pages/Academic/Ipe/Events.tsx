@@ -4,7 +4,8 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { IPE_TABS, IPE_DEPT_NAME, NOTICES } from '@/data/ipeData';
+import { IPE_TABS, IPE_DEPT_NAME } from '@/data/ipeData';
+import { pageText } from '@/lib/dept-icons';
 import { Calendar, ArrowRight, Megaphone } from 'lucide-react';
 
 interface EventNotice {
@@ -21,17 +22,11 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 export default function IpeEvents({ department, events }: { department?: DeptInfo | null; events: EventNotice[] }) {
-    const list: EventNotice[] = events && events.length > 0 ? events : NOTICES.map((n, i) => ({
-        id: i,
-        title: n.title,
-        slug: '#',
-        published_at: `2026-02-${n.date}`,
-        excerpt: `Stay informed with the latest updates from the Department of IPE: "${n.title}"`,
-        description: null,
-    }));
+    const list: EventNotice[] = events ?? [];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -39,7 +34,7 @@ export default function IpeEvents({ department, events }: { department?: DeptInf
             <Navbar />
             <PageHero 
                 title="News & Events" 
-                subtitle={`Stay Updated with ${department?.short_name || 'IPE'} Department Highlights`} 
+                subtitle={pageText(department, 'events_intro', `Stay Updated with ${department?.short_name || 'IPE'} Department Highlights`)} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || IPE_DEPT_NAME} activeTab="Events" tabs={IPE_TABS} />
@@ -55,10 +50,11 @@ export default function IpeEvents({ department, events }: { department?: DeptInf
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {list.map((event) => {
                             const date = new Date(event.published_at);
-                            const day = isNaN(date.getTime()) ? '15' : date.toLocaleString('default', { day: '2-digit' });
-                            const month = isNaN(date.getTime()) ? 'FEB' : date.toLocaleString('default', { month: 'short' });
-                            const year = isNaN(date.getTime()) ? 2026 : date.getFullYear();
-                            const link = event.slug && event.slug !== '#' ? `/ipe/events/${event.slug}` : '#';
+                            const valid = !isNaN(date.getTime());
+                            const day = valid ? date.toLocaleString('default', { day: '2-digit' }) : '--';
+                            const month = valid ? date.toLocaleString('default', { month: 'short' }) : '';
+                            const year = valid ? date.getFullYear() : '';
+                            const link = event.slug ? `/ipe/events/${event.slug}` : '#';
 
                             return (
                                 <div key={event.id} className="bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group h-full">

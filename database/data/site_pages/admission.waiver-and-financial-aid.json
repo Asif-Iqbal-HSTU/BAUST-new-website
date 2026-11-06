@@ -1,0 +1,49 @@
+{
+    "title": "Waiver & Financial Aid",
+    "content": {
+        "browser_title": "Waiver & Financial Aid",
+        "hero": {
+            "title": "Waiver & Financial Aid",
+            "subtitle": "Scholarships, Grants & Fee Reductions"
+        },
+        "intro": {
+            "heading": "Invest in Your Future",
+            "text": "At BAUST, we believe financial constraints should not hinder talent. Explore our extensive waiver policies and financial aid schemes designed to support meritorious and deserving students."
+        },
+        "documents": {
+            "document_label": "Document",
+            "items": [
+                {
+                    "title": "General Waiver Policy",
+                    "description": "Comprehensive guidelines on tuition fee waivers for various categories of students.",
+                    "pdf": "/images/admission/waiver1.pdf"
+                },
+                {
+                    "title": "Financial Aid Schemes",
+                    "description": "Specific financial aid programs and special scholarship opportunities available for the current session.",
+                    "pdf": "/images/admission/waiver2.pdf"
+                }
+            ]
+        },
+        "key_benefits": {
+            "heading": "Key Benefits",
+            "items": [
+                "Merit-based tuition fee waivers",
+                "Special grants for siblings",
+                "Financial aid for needy students",
+                "Freedom Fighter quota benefits"
+            ]
+        },
+        "download_cta": {
+            "caption": "Offline Access",
+            "label": "Download Selection"
+        },
+        "preview": {
+            "full_view_label": "Full View",
+            "preview_label": "PDF Document Preview",
+            "unavailable_heading": "Unable to load preview",
+            "unavailable_text": "Your browser doesn't support direct PDF previews. Please use the button below to view the document.",
+            "view_document_label": "View Document"
+        }
+    }
+}

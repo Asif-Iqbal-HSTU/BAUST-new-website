@@ -5,105 +5,22 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import { User, Award, Mail, Phone, Briefcase, GraduationCap, MapPin } from 'lucide-react';
 
-interface Member {
+export interface Member {
+    position: string;
     name: string;
     designation: string;
-    position: string;
-    image: string;
+    photo: string;
     phone?: string;
     email?: string;
 }
 
-const syndicateMembers: Member[] = [
-    {
-        name: "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
-        designation: "Vice Chancellor",
-        position: "Chairman",
-        image: "/images/Syndicate Members/Syn1.jpeg",
-        phone: "+8801769675550",
-        email: "vc@baust.edu.bd"
-    },
-    {
-        name: "Lt Col Dr. Md Shameem Reza (Retd)",
-        designation: "Treasurer, BAUST",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn2.jpeg",
-        phone: "01769675555",
-        email: "treasurer@baust.edu.bd"
-    },
-    {
-        name: "Dr. Maglub Al Nur",
-        designation: "Professor, ME, BUET",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn3.jpg",
-        phone: "01711020042",
-        email: "maglub@me.buet.edu.bd"
-    },
-    {
-        name: "Professor Md. Jahurul Islam",
-        designation: "Dean, Faculty of SH, BAUST",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn4.jpg",
-        phone: "01717142817",
-        email: "dean_sh@baust.edu.bd"
-    },
-    {
-        name: "Professor Dr. Imtiaz Ahmed Choudhury",
-        designation: "Head, Dept. of ME, BAUST",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn5.jpg",
-        phone: "01726644025, 01721241869",
-        email: "headme@baust.edu.bd"
-    },
-    {
-        name: "Md. Mahbubul Hoque Patwary",
-        designation: "Additional Secretary (University), Secondary and Higher Education Division, Ministry of Education, Dhaka",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn6.jpg",
-        phone: "01712901556",
-        email: "addsec.university@shed.gov.bd"
-    },
-    {
-        name: "Brig Gen Md Anisur Rahman, ndc, afwc, psc (Retd)",
-        designation: "AWT (Education Div), Dhaka Cantt",
-        position: "Member",
-        image: "https://placehold.co/400x400/0f5132/ffffff?text=Portrait",
-        phone: "01726156256",
-        email: "edndivawt@gmail.com"
-    },
-    {
-        name: "Brigadier General Md Rashidul Islam, SUP, ndu, afwc, psc, M.Phil",
-        designation: "Managing Director, AWT, Dhaka Cantt",
-        position: "Member",
-        image: "https://placehold.co/400x400/0f5132/ffffff?text=Portrait",
-        phone: "01769012554",
-        email: "wrrehabsec@gmail.com"
-    },
-    {
-        name: "Col Muhammad Rubayat Zamil, BSP",
-        designation: "Colonel Admin, Rangpur Area",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn7.jpg",
-        phone: "01769-662070",
-        email: "rubayat37bma@gmail.com"
-    },
-    {
-        name: "Dr. M. Abdul Hannan",
-        designation: "Professor, Dept of Law University of Rajshahi",
-        position: "Member",
-        image: "/images/Syndicate Members/Syn8.jpg",
-        phone: "01712138057",
-        email: "mahannan.law@ru.ac.bd, ahannanlaw@yahoo.com"
-    },
-    {
-        name: "Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (LPR)",
-        designation: "Registrar, BAUST",
-        position: "Member Secretary",
-        image: "/images/Syndicate Members/Syn9.jpeg",
-        phone: "01769675551(Office)",
-        email: "registrar@baust.edu.bd (Office)"
-    }
-];
+export interface SyndicateMembersContent {
+    hero: { title: string; subtitle: string };
+    chairman_heading: string;
+    chairman: Member | null;
+    members_heading: string;
+    members: Member[];
+}
 
 // Treat missing images and old "Portrait" text placeholders as no-image.
 const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrait/i.test(src);
@@ -111,7 +28,7 @@ const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrai
 // Member photo with a graceful person-icon fallback (instead of a "Portrait" placeholder).
 const MemberImage = ({ member, isChairman = false }: { member: Member; isChairman?: boolean }) => {
     const [failed, setFailed] = React.useState(false);
-    const showFallback = failed || isPlaceholderImage(member.image);
+    const showFallback = failed || isPlaceholderImage(member.photo);
 
     return (
         <div className={`${isChairman ? 'w-32 sm:w-44' : 'w-24 sm:w-32 md:w-36'} aspect-square flex-shrink-0 relative overflow-hidden bg-emerald-50 border-r border-gray-50`}>
@@ -121,7 +38,7 @@ const MemberImage = ({ member, isChairman = false }: { member: Member; isChairma
                 </div>
             ) : (
                 <img
-                    src={member.image}
+                    src={member.photo}
                     alt={member.name}
                     loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -185,19 +102,16 @@ const MemberCard = ({ member, isChairman = false }: { member: Member, isChairman
     </div>
 );
 
-export default function SyndicateMembers() {
-    const chairman = syndicateMembers.find(m => m.position === 'Chairman');
-    const members = syndicateMembers.filter(m => m.position !== 'Chairman');
+export default function SyndicateMembers({ content }: { content: SyndicateMembersContent }) {
+    const chairman = content.chairman;
+    const members = content.members ?? [];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Syndicate Members - BAUST" />
+            <Head title={`${content.hero.title} - BAUST`} />
             <Navbar />
 
-            <PageHero 
-                title="Syndicate Members" 
-                subtitle="Regulatory Body of the University"
-            />
+            <PageHero title={content.hero.title} subtitle={content.hero.subtitle} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 {/* Chairman Section */}
@@ -205,7 +119,7 @@ export default function SyndicateMembers() {
                     <div className="mb-24">
                         <div className="flex items-center justify-center gap-4 mb-12">
                             <div className="h-px bg-emerald-200 w-16" />
-                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">The Chairman</h2>
+                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.chairman_heading}</h2>
                             <div className="h-px bg-emerald-200 w-16" />
                         </div>
                         <MemberCard member={chairman} isChairman={true} />
@@ -216,7 +130,7 @@ export default function SyndicateMembers() {
                 <div>
                     <div className="flex items-center justify-center gap-4 mb-12">
                         <div className="h-px bg-emerald-200 w-16" />
-                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">Syndicate Members</h2>
+                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.members_heading}</h2>
                         <div className="h-px bg-emerald-200 w-16" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">

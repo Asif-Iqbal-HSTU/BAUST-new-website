@@ -6,6 +6,7 @@ import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
 import { FileText, Download, Eye, BookOpen, Clock, Award, ShieldCheck } from 'lucide-react';
+import { pageText } from '@/lib/dept-icons';
 
 interface CurriculumItem {
     id?: number;
@@ -24,6 +25,8 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    accreditation_badge?: string | null;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -31,39 +34,19 @@ interface Props {
     curricula?: CurriculumItem[];
 }
 
-const DEFAULT_CURRICULA: CurriculumItem[] = [
-    {
-        year: "2022",
-        title: "B.Sc. in Civil Engineering (OBE Based 2022)",
-        description: "Latest Outcome-Based Education (OBE) curriculum approved by UGC and aligned with BAETE Washington Accord standards.",
-        highlights: ["Structural & Earthquake Engineering", "Environmental & Water Resources", "Geotechnical & Transportation Engineering", "Industrial Attachment & Capstone Thesis"],
-        file: "/files/departments/ce/curriculum/Syllabus-2022.pdf",
-        degree: "Bachelor of Science in Civil Engineering",
-        duration: "4 Years (8 Semesters)",
-        credits: "160 Credits",
-    },
-    {
-        year: "2019",
-        title: "B.Sc. in Civil Engineering Syllabus (2019)",
-        description: "Foundational undergraduate curriculum covering fundamental civil engineering principles, survey camps, and laboratory competencies.",
-        highlights: ["Foundational Engineering Sciences", "Core Civil Engineering Laboratories", "Intensive Survey Camp"],
-        file: "/files/departments/ce/curriculum/Syllabus-2019.pdf",
-        degree: "Bachelor of Science in Civil Engineering",
-        duration: "4 Years (8 Semesters)",
-        credits: "160 Credits",
-    }
-];
-
 export default function CeCurriculum({ department, curricula }: Props) {
-    const list = (curricula && curricula.length > 0) ? curricula : DEFAULT_CURRICULA;
+    const list = curricula ?? [];
+    const first = list[0];
+    const deptName = department?.name || CE_DEPT_NAME;
+    const shortName = department?.short_name || 'CE';
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
             <Head title={`Curriculum - ${department?.short_name || 'CE'} - BAUST`} />
             <Navbar />
             <PageHero 
-                title={department?.name ? `Curriculum - ${department.name}` : "Department of Civil Engineering (CE)"} 
-                subtitle="Academic Syllabi & Outcome-Based Education Structure" 
+                title={`Curriculum - ${deptName}`} 
+                subtitle={pageText(department, 'curriculum_subtitle', "Academic Syllabi & Outcome-Based Education Structure")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Curriculum" tabs={CE_TABS} />
@@ -78,31 +61,31 @@ export default function CeCurriculum({ department, curricula }: Props) {
                             Academic Framework
                         </span>
                         <h2 className="text-2xl sm:text-4xl font-black mt-4 leading-tight">
-                            Undergraduate Civil Engineering Curriculum
+                            Undergraduate {shortName} Curriculum
                         </h2>
                         <p className="text-emerald-100/90 text-sm sm:text-base mt-4 leading-relaxed text-justify">
-                            The Department of Civil Engineering offers a 4-year (8-semester) Bachelor of Science degree designed to balance rigorous mathematical theory with hands-on testing across 11 specialized laboratories. Our OBE framework equips students for professional licensing and leadership.
+                            {pageText(department, 'curriculum_intro', `The ${deptName} offers a 4-year (8-semester) Bachelor of Science degree designed to balance rigorous mathematical theory with hands-on testing in specialized laboratories. Our OBE framework equips students for professional licensing and leadership.`)}
                         </p>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-8 pt-8 border-t border-emerald-700/50">
                             <div className="flex items-center gap-3">
                                 <Clock className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                                 <div>
                                     <p className="text-xs text-emerald-300 font-semibold uppercase">Duration</p>
-                                    <p className="text-sm font-bold text-white">4 Years (8 Terms)</p>
+                                    <p className="text-sm font-bold text-white">{first?.duration || '4 Years (8 Terms)'}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Award className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                                 <div>
                                     <p className="text-xs text-emerald-300 font-semibold uppercase">Total Credits</p>
-                                    <p className="text-sm font-bold text-white">160.0 Credits</p>
+                                    <p className="text-sm font-bold text-white">{first?.credits || '160.0 Credits'}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3 col-span-2 sm:col-span-1">
                                 <ShieldCheck className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                                 <div>
-                                    <p className="text-xs text-emerald-300 font-semibold uppercase">Accreditation</p>
-                                    <p className="text-sm font-bold text-white">OBE / Washington Accord</p>
+                                    <p className="text-xs text-emerald-300 font-semibold uppercase">Curriculum Framework</p>
+                                    <p className="text-sm font-bold text-white">{department?.accreditation_badge || 'OBE Curriculum'}</p>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +98,10 @@ export default function CeCurriculum({ department, curricula }: Props) {
                         <BookOpen className="text-emerald-700 w-6 h-6" />
                         <h3 className="text-2xl font-bold text-gray-900">Approved Curricula & Syllabi</h3>
                     </div>
+
+                    {list.length === 0 && (
+                        <p className="text-center text-gray-400 py-12">No curriculum documents have been published yet.</p>
+                    )}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {list.map((item, idx) => (

@@ -5,7 +5,8 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
-import { Play, Video, Film, Sparkles, Building2 } from 'lucide-react';
+import { Video, Film } from 'lucide-react';
+import { pageText } from '@/lib/dept-icons';
 
 interface GalleryVideo {
     id: number;
@@ -47,6 +48,12 @@ const FALLBACK_VIDEOS: GalleryVideo[] = [
     }
 ];
 
+/** Returns the embeddable URL for a YouTube link, or null for any other (local) video. */
+function youtubeEmbedUrl(url: string): string | null {
+    const match = url.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+}
+
 export default function CeGalleryVideos({ department, videos = [] }: Props) {
     const list = videos.length > 0 ? videos : FALLBACK_VIDEOS;
 
@@ -56,7 +63,7 @@ export default function CeGalleryVideos({ department, videos = [] }: Props) {
             <Navbar />
             <PageHero 
                 title="Video Gallery" 
-                subtitle="Departmental Documentaries, Field Camps, Lab Tours, and Student Features" 
+                subtitle={pageText(department, 'video_gallery_subtitle', "Departmental Documentaries, Field Camps, Lab Tours, and Student Features")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Gallery" tabs={CE_TABS} />
@@ -71,7 +78,7 @@ export default function CeGalleryVideos({ department, videos = [] }: Props) {
                             Video Showcase
                         </span>
                         <h2 className="text-2xl sm:text-4xl font-black mt-4 leading-tight">
-                            Civil Engineering in Motion
+                            {department?.short_name || 'CE'} in Motion
                         </h2>
                         <p className="text-emerald-100/90 text-sm sm:text-base mt-4 leading-relaxed text-justify">
                             Watch our official departmental documentaries exploring the cutting-edge laboratories, survey camps, student innovations, and academic environment of Civil Engineering at BAUST.
@@ -90,7 +97,16 @@ export default function CeGalleryVideos({ department, videos = [] }: Props) {
                             
                             {/* Video Player Box */}
                             <div className="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
-                                {video.video_url ? (
+                                {video.video_url && youtubeEmbedUrl(video.video_url) ? (
+                                    <iframe
+                                        src={youtubeEmbedUrl(video.video_url)!}
+                                        title={video.title}
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        loading="lazy"
+                                    />
+                                ) : video.video_url ? (
                                     <video 
                                         controls 
                                         preload="metadata" 
@@ -131,9 +147,8 @@ export default function CeGalleryVideos({ department, videos = [] }: Props) {
                                 <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400 font-medium">
                                     <span className="flex items-center gap-1.5">
                                         <Video className="w-4 h-4 text-emerald-600" />
-                                        Department of Civil Engineering
+                                        {department?.name || CE_DEPT_NAME}
                                     </span>
-                                    <span>Full HD 1080p</span>
                                 </div>
                             </div>
                         </div>

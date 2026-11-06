@@ -12,7 +12,7 @@ class OfficeController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Offices/Index', [
-            'offices' => collect(OfficeMember::offices())->map(fn ($cfg, $slug) => [
+            'offices' => collect(OfficeMember::offices())->filter(fn ($cfg, $slug) => auth()->user()->canManageOffice($slug))->map(fn ($cfg, $slug) => [
                 'slug' => $slug,
                 'name' => $cfg['name'],
                 'count' => OfficeMember::where('office', $slug)->count(),
@@ -34,6 +34,7 @@ class OfficeController extends Controller
     {
         $data = $this->validated($request);
         $data['office'] = $office;
+        $data['order'] ??= (int) OfficeMember::where('office', $office)->where('tier', $data['tier'])->max('order') + 1;
         $this->applyPhoto($request, $data, null);
         OfficeMember::create($data);
 
@@ -48,6 +49,20 @@ class OfficeController extends Controller
         $member->update($data);
 
         return back()->with('success', 'Member updated.');
+    }
+
+    /** Save a drag-and-drop order within a tier: `ordered_ids` become order 1..n. */
+    public function reorderItems(Request $request, string $office)
+    {
+        $ids = $request->validate(['ordered_ids' => 'required|array', 'ordered_ids.*' => 'integer'])['ordered_ids'];
+
+        \DB::transaction(function () use ($ids, $office) {
+            foreach (array_values($ids) as $i => $id) {
+                OfficeMember::where('office', $office)->whereKey($id)->update(['order' => $i + 1]);
+            }
+        });
+
+        return back()->with('success', 'Order updated.');
     }
 
     public function destroyItem(string $office, int $id)
@@ -74,7 +89,9 @@ class OfficeController extends Controller
         unset($v['photo_file'], $v['photo_url'], $v['education']);
         $v['education'] = $edu;
         $v['tier'] = $v['tier'] ?? 4;
-        $v['order'] = $v['order'] ?? 0;
+        if (! isset($v['order'])) {
+            unset($v['order']); // ordering is done by drag and drop (reorderItems)
+        }
 
         return $v;
     }

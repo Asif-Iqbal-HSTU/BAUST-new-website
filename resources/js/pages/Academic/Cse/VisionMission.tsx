@@ -4,7 +4,7 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { CSE_TABS, CSE_DEPT_NAME } from '@/data/cseData';
+import { CSE_TABS, CSE_DEPT_NAME, type DeptInfo } from '@/data/cseData';
 
 interface ObeItem {
     id?: number;
@@ -14,48 +14,17 @@ interface ObeItem {
     description: string;
 }
 
-interface DeptInfo {
-    id: number;
-    slug: string;
-    name: string;
-    short_name: string;
-    vision?: string | null;
-    mission?: string | null;
-}
-
 interface Props {
     department?: DeptInfo | null;
     peos?: ObeItem[];
     plos?: ObeItem[];
 }
 
-const DEFAULT_PEOS: ObeItem[] = [
-    { code: 'PEO-1', title: 'Career Advancement', description: 'Graduates will progress in their chosen profession and achieve career advancement in their respective field.' },
-    { code: 'PEO-2', title: 'Ethical Leadership', description: 'Graduates will demonstrate ethical behavior, teamwork, and leadership in professional environments.' },
-    { code: 'PEO-3', title: 'Technical Innovation', description: 'Graduates will identify, develop, and apply relevant and evolving technologies to contribute effectively in professional and entrepreneurial roles.' },
-    { code: 'PEO-4', title: 'Sustainable Development', description: 'Graduates will apply their knowledge and skills aligned with relevant Sustainable Development Goals for societal development.' },
-];
-
-const DEFAULT_PLOS: ObeItem[] = [
-    { code: 'PLO1', title: 'Engineering knowledge', description: 'Apply the knowledge of mathematics, science, engineering fundamentals and an engineering specialization to the solution of complex engineering problems.' },
-    { code: 'PLO2', title: 'Problem analysis', description: 'Identify, formulate, research the literature and analyze complex engineering problems and reach substantiated conclusions using first principles of mathematics, the natural sciences and the engineering sciences.' },
-    { code: 'PLO3', title: 'Design/development of solutions', description: 'Design solutions for complex engineering problems and design system components or processes that meet the specified needs with appropriate consideration for public health and safety as well as cultural, societal and environmental concerns.' },
-    { code: 'PLO4', title: 'Investigation', description: 'Conduct investigations of complex problems, considering design of experiments, analysis and interpretation of data and synthesis of information to provide valid conclusions.' },
-    { code: 'PLO5', title: 'Modern tool usage', description: 'Create, select and apply appropriate techniques, resources and modern engineering and IT tools including prediction and modeling to complex engineering activities with an understanding of the limitations.' },
-    { code: 'PLO6', title: 'The engineer and society', description: 'Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.' },
-    { code: 'PLO7', title: 'Environment and sustainability', description: 'Understand the impact of the professional engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.' },
-    { code: 'PLO8', title: 'Ethics', description: 'Apply ethical principles and commit to professional ethics and responsibilities and norms of the engineering practice.' },
-    { code: 'PLO9', title: 'Individual and team work', description: 'Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.' },
-    { code: 'PLO10', title: 'Communication', description: 'Communicate effectively on complex engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports.' },
-    { code: 'PLO11', title: 'Project management and finance', description: 'Demonstrate knowledge and understanding of the engineering and management principles and apply these to one\'s own work, as a member and leader in a team, to manage projects.' },
-    { code: 'PLO12', title: 'Life-long learning', description: 'Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.' },
-];
-
 const DEFAULT_VISION = "The Department of Computer Science and Engineering aspires to produce highly competent and skilled students to excel in research and innovation for sustainable development.";
 
 export default function CseVisionMission({ department, peos: peosProp, plos: plosProp }: Props) {
-    const activePeos = (peosProp && peosProp.length > 0) ? peosProp : DEFAULT_PEOS;
-    const activePlos = (plosProp && plosProp.length > 0) ? plosProp : DEFAULT_PLOS;
+    const activePeos = peosProp ?? [];
+    const activePlos = plosProp ?? [];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -137,6 +106,7 @@ export default function CseVisionMission({ department, peos: peosProp, plos: plo
                 </div>
 
                 {/* PEOs */}
+                {activePeos.length > 0 && (
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                     <div className="h-2 w-full bg-gradient-to-r from-violet-500 via-purple-400 to-violet-600" />
                     <div className="p-8 lg:p-12">
@@ -161,7 +131,10 @@ export default function CseVisionMission({ department, peos: peosProp, plos: plo
                     </div>
                 </div>
 
+                )}
+
                 {/* PLOs */}
+                {activePlos.length > 0 && (
                 <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                     <div className="h-2 w-full bg-gradient-to-r from-amber-500 via-orange-400 to-amber-600" />
                     <div className="p-8 lg:p-12">
@@ -185,6 +158,7 @@ export default function CseVisionMission({ department, peos: peosProp, plos: plo
                         </div>
                     </div>
                 </div>
+                )}
 
             </main>
             <Footer />

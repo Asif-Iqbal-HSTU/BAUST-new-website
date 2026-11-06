@@ -52,6 +52,7 @@ interface Props {
 }
 
 export default function EventDetail({ event, relatedEvents, department }: Props) {
+    const shortName = department?.short_name || 'IPE';
     const pubDate = new Date(event.published_at);
     const formattedDate = isNaN(pubDate.getTime())
         ? event.published_at
@@ -64,11 +65,11 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title={`${event.title} - IPE - BAUST`} />
+            <Head title={`${event.title} - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
                 title={event.title} 
-                subtitle="Department of Industrial and Production Engineering (IPE)" 
+                subtitle={department?.name || IPE_DEPT_NAME} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.name || IPE_DEPT_NAME} activeTab="Events" tabs={IPE_TABS} />
@@ -78,7 +79,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8 overflow-x-auto pb-1">
                     <Link href="/" className="hover:text-emerald-700 transition-colors">Home</Link>
                     <span className="text-gray-300">/</span>
-                    <Link href="/ipe" className="hover:text-emerald-700 transition-colors">IPE</Link>
+                    <Link href="/ipe" className="hover:text-emerald-700 transition-colors">{shortName}</Link>
                     <span className="text-gray-300">/</span>
                     <Link href="/ipe/events" className="hover:text-emerald-700 transition-colors">News & Events</Link>
                     <span className="text-gray-300">/</span>
@@ -95,7 +96,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-gray-100">
                                     <div className="flex flex-wrap items-center gap-2">
                                         <span className="bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
-                                            IPE Department
+                                            {shortName} Department
                                         </span>
                                         {event.categories?.map(cat => (
                                             <span
@@ -208,13 +209,13 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                                         className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 hover:text-emerald-800 transition-colors group"
                                     >
                                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                                        Back to IPE News & Events
+                                        Back to {shortName} News & Events
                                     </Link>
                                     <Link
                                         href="/archive/notices?department=ipe"
                                         className="text-xs font-semibold text-gray-400 hover:text-emerald-700 transition-colors"
                                     >
-                                        View Full IPE Archive →
+                                        View Full {shortName} Archive →
                                     </Link>
                                 </div>
                             </div>
@@ -228,7 +229,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
                                 <h3 className="font-extrabold text-gray-900 text-base mb-4 flex items-center gap-2">
                                     <span className="w-1.5 h-5 bg-emerald-600 rounded-full" />
-                                    More News from IPE
+                                    More News from {shortName}
                                 </h3>
                                 <div className="space-y-3 divide-y divide-gray-50">
                                     {relatedEvents.map(re => {
@@ -269,7 +270,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                             <ul className="space-y-2 text-sm font-medium">
                                 <li>
                                     <Link href="/ipe" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                                        IPE Homepage
+                                        {shortName} Homepage
                                     </Link>
                                 </li>
                                 <li>
@@ -289,7 +290,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                                 </li>
                                 <li>
                                     <Link href="/ipe/ipe-society" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-                                        IEOM Student Chapter & IPE Club
+                                        {shortName} Society
                                     </Link>
                                 </li>
                             </ul>

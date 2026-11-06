@@ -70,3 +70,11 @@ storage/logs/*
 storage/framework/cache/*
 storage/framework/sessions/*
 storage/framework/views/*
+
+# test001: data that travels via volumes, not the image
+vps-bundle
+storage/app/public
+Notices to upload
+EEE slider images
+*.png
+.env.*

@@ -1,0 +1,173 @@
+{
+    "title": "Academic Council",
+    "content": {
+        "hero": {
+            "title": "Academic Council",
+            "subtitle": "The Apex Academic Regulatory Body"
+        },
+        "chairman_heading": "The Chairman",
+        "chairman": {
+            "position": "Chairman",
+            "name": "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
+            "designation": "Vice Chancellor",
+            "photo": "/images/Academic Council/Mobarak.jpeg",
+            "phone": "+8801769675550 (Off)",
+            "email": "vc@baust.edu.bd"
+        },
+        "members_heading": "Council Members",
+        "members": [
+            {
+                "position": "Member",
+                "name": "Brig Gen Abdul Wares Khan, sup, psc",
+                "designation": "Commandant, EMEC&S, Saidpur Cantonment",
+                "photo": "https://placehold.co/400x400/0f5132/ffffff?text=Portrait",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Mohammad Ali",
+                "designation": "Professor, Dept. of ME, BUET",
+                "photo": "/images/Academic Council/mohammad ali.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Muhammad Masroor Ali",
+                "designation": "Professor, Dept. of CSE, BUET",
+                "photo": "/images/Academic Council/masroor.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Md. Aynal Haque",
+                "designation": "Professor, Dept. EEE, BUET",
+                "photo": "/images/Academic Council/aynal.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Mohammad Thoufiqul Islam",
+                "designation": "Professor, Dept. of Management, DU",
+                "photo": "/images/Academic Council/thoufiqul.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Md. Jahurul Islam",
+                "designation": "Dean, Faculty of SH, BAUST",
+                "photo": "/images/Academic Council/jahurul.jpg",
+                "phone": "01717142817",
+                "email": "dean_sh@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Imtiaz Ahmed Choudhury",
+                "designation": "Professor, Head of the ME Dept., and Dean, Faculty of ME",
+                "photo": "/images/Academic Council/imtiaz.jpg",
+                "phone": "+8801769675557",
+                "email": "headipe@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Md. Shah Alam",
+                "designation": "Dean, Faculty of BS, BAUST",
+                "photo": "/images/Academic Council/shah alam.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. S.M. Jahangir Alam",
+                "designation": "Professor, Dept. of CSE, BAUST",
+                "photo": "/images/Academic Council/jahangir.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Mahmudul Hasan",
+                "designation": "Head, Dept. of CE, BAUST",
+                "photo": "/images/Academic Council/mahmudul.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Associate Prof. Dr. Mst. Rubina Aktar",
+                "designation": "Head, Dept. of EEE, BAUST",
+                "photo": "/images/Academic Council/rubina.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Associate Professor Md. Mizanur Rahman",
+                "designation": "Head, Dept. of Arts & Sciences, BAUST",
+                "photo": "/images/Academic Council/mizanur.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Associate Prof. Engr. Md. Mamun Hossain",
+                "designation": "Head, Dept. of Information and Communication Engineering (ICT), BAUST",
+                "photo": "/images/Academic Council/mamun.jpeg",
+                "phone": "01769675577",
+                "email": "mhossain@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Associate Professor Dr. Md Nakib Hayat Chowdhury",
+                "designation": "Associate Professor and Head (CSE), BAUST",
+                "photo": "/images/Academic Council/nakib.jpg",
+                "phone": "01703899959",
+                "email": "nakib@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Associate Prof. Dr. Md. Anowar Hossain",
+                "designation": "Head, BBA, BAUST",
+                "photo": "/images/Academic Council/anowar.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Associate Prof. Md. Ashikullah",
+                "designation": "Head, English, BAUST",
+                "photo": "/images/Academic Council/ashikullah.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Assistant Prof. Rakibul Islam",
+                "designation": "Head, AIS, BAUST",
+                "photo": "/images/Academic Council/rakibul.jpg",
+                "phone": "01723913191",
+                "email": "headais@baust.edu.bd"
+            },
+            {
+                "position": "Member",
+                "name": "Md. Ariful Alam",
+                "designation": "Assistant Professor and Head, Department of IPE, BAUST",
+                "photo": "/images/Academic Council/ariful.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member Secretary",
+                "name": "Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (LPR)",
+                "designation": "Registrar, BAUST",
+                "photo": "/images/Academic Council/kawsar.jpeg",
+                "phone": "",
+                "email": ""
+            }
+        ]
+    }
+}

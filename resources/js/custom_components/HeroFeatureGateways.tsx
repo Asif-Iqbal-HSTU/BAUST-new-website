@@ -75,7 +75,7 @@ const MODERN_CARDS: ModernCardItem[] = [
         highlights: [
             'Direct online application with real-time tracking',
             'Merit scholarships & tuition fee waivers',
-            'BAETE-accredited engineering curricula'
+            'BAETE-accredited CSE, ME & IPE programs'
         ],
         primaryAction: {
             label: 'Apply Online Now',

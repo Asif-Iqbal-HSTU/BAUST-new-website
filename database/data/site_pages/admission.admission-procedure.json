@@ -1,0 +1,78 @@
+{
+    "title": "Admission Procedure",
+    "content": {
+        "meta_title": "Admission Procedure - BAUST",
+        "hero": {
+            "title": "Admission Procedure",
+            "subtitle": "Rules, Procedures & Formalities"
+        },
+        "selection_rules": {
+            "heading": "Post-Selection Rules",
+            "rules": [
+                {
+                    "title": "Fixed Admission Period",
+                    "description": "Candidates have to complete admission formalities within a fixed period of time as decided by the admission committee. Failure to do so will warrant automatic cancellation."
+                },
+                {
+                    "title": "Class Attendance Requirement",
+                    "description": "Any student failing to attend class within two weeks of commencement will warrant cancellation of admission and forfeiture of all fees, including security deposit."
+                },
+                {
+                    "title": "Waiting List Policy",
+                    "description": "Waiting lists will be prepared and displayed by the admission committee as per merit and be notified as per requirements."
+                },
+                {
+                    "title": "Department Allotment",
+                    "description": "Departments will be allotted based on merit position in the admission test at the end of admission. Individual choices will be given preference as far as possible."
+                }
+            ]
+        },
+        "required_documents": {
+            "heading": "Required Documents",
+            "documents": [
+                "Original SSC/Dakhil certificates & transcripts",
+                "Original HSC/Alim certificates & transcripts",
+                "3 copies of recent passport size colored photos (attested)",
+                "Character certificate from the last institute",
+                "Nationality certificate (UP Chairman/Municipality)"
+            ],
+            "quota_heading": "Additional Documents for Quota Applicants",
+            "quota_documents": [
+                {
+                    "quota_type": "Freedom Fighter",
+                    "detail": "Original Freedom Fighter certificate of parents issued by the Ministry of FF Affairs."
+                },
+                {
+                    "quota_type": "Tribal Citizen",
+                    "detail": "Original certificate issued by local UP chairman and countersigned by DC."
+                },
+                {
+                    "quota_type": "Military Personnel",
+                    "detail": "Certificate of authenticity issued by respective commanding officers/Record Office."
+                }
+            ]
+        },
+        "medical_checkup": {
+            "heading": "Medical Check-up",
+            "description": "All provisionally selected candidates must undergo a medical check-up at the BAUST medical center.",
+            "tests_label": "Submit Reports for:",
+            "tests": [
+                "Blood Group",
+                "Blood for CBC",
+                "HBs. Ag",
+                "Urine R/E"
+            ],
+            "warning": "The medical authority will decide on the final physical fitness of candidates for admission."
+        },
+        "guardian_consent": {
+            "heading": "Guardian's Consent",
+            "description": "Both candidates and their parents/guardians must render a consent certificate accepting terms and conditions formulated by BAUST."
+        },
+        "apply_cta": {
+            "heading": "Start Application",
+            "subtitle": "Ready to join our community?",
+            "button_label": "Apply Now",
+            "apply_url": "http://admission.baust.edu.bd"
+        }
+    }
+}

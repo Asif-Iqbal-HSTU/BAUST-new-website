@@ -4,7 +4,8 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { ICT_TABS, ICT_DEPT_NAME, NOTICES } from '@/data/ictData';
+import { ICT_TABS, ICT_DEPT_NAME, type DeptInfo } from '@/data/ictData';
+import { pageText } from '@/lib/dept-icons';
 import { Calendar, ArrowRight, ExternalLink, Megaphone } from 'lucide-react';
 
 interface EventNotice {
@@ -15,29 +16,17 @@ interface EventNotice {
     excerpt?: string | null;
 }
 
-interface DeptInfo {
-    id: number;
-    name: string;
-    short_name: string;
-    slug: string;
-}
-
 export default function IctEvents({ department, events }: { department?: DeptInfo | null; events: EventNotice[] }) {
-    const list = events && events.length > 0 ? events : NOTICES.map((n, i) => ({
-        id: i,
-        title: n.title,
-        slug: '#',
-        published_at: `2026-02-${n.date}`,
-        excerpt: `Celebrate and catch up with details on the latest event of the ICT Department: "${n.title}"`
-    }));
+    const list = events ?? [];
+    const shortName = department?.short_name || 'ICT';
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="News & Events - ICT - BAUST" />
+            <Head title={`News & Events - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
                 title="News & Events" 
-                subtitle="Stay Updated with ICT Department Highlights" 
+                subtitle={pageText(department, 'events_intro', `Stay Updated with ${shortName} Department Highlights`)} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.name || ICT_DEPT_NAME} activeTab="Events" tabs={ICT_TABS} />
@@ -45,7 +34,7 @@ export default function IctEvents({ department, events }: { department?: DeptInf
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="flex items-center gap-4 mb-12">
                     <Megaphone className="text-emerald-600 w-8 h-8" />
-                    <h2 className="text-3xl font-black text-gray-900">Latest from ICT</h2>
+                    <h2 className="text-3xl font-black text-gray-900">Latest from {shortName}</h2>
                     <div className="h-px flex-grow bg-emerald-100" />
                 </div>
 
@@ -69,7 +58,7 @@ export default function IctEvents({ department, events }: { department?: DeptInf
                                             <div className="h-px flex-grow bg-gray-100" />
                                         </div>
 
-                                        <Link href={event.slug !== '#' ? `/ict/events/${event.slug}` : '#'} className="flex-grow">
+                                        <Link href={`/ict/events/${event.slug}`} className="flex-grow">
                                             <h3 className="text-lg font-bold text-gray-900 mb-4 group-hover:text-emerald-700 transition-colors line-clamp-3">
                                                 {event.title}
                                             </h3>
@@ -87,7 +76,7 @@ export default function IctEvents({ department, events }: { department?: DeptInf
                                                 {year}
                                             </div>
                                             <Link 
-                                                href={event.slug !== '#' ? `/ict/events/${event.slug}` : '#'}
+                                                href={`/ict/events/${event.slug}`}
                                                 className="flex items-center gap-1.5 text-emerald-600 text-xs font-bold hover:gap-3 transition-all"
                                             >
                                                 Read More <ArrowRight size={14} />

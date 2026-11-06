@@ -7,17 +7,79 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Department extends Model
 {
-    /** Degree programs run as their own site but staffed by other departments' faculty. */
-    public const PROGRAM_SLUGS = ['mba'];
+    /**
+     * Degree programs run as their own site but staffed by other departments'
+     * faculty. The focal points of the program's faculty (faculties.department_slugs)
+     * manage it.
+     */
+    public const PROGRAM_SLUGS = ['mba', 'ma-elt'];
 
     protected $fillable = [
         'slug', 'name', 'short_name', 'faculty', 'tagline', 'established',
         'accreditation_badge', 'accreditation_title', 'accreditation_text',
         'about', 'vision', 'mission', 'hod_name', 'hod_designation',
-        'hod_photo', 'hod_message', 'is_active', 'order',
+        'hod_photo', 'hod_message', 'page_texts', 'is_active', 'order',
     ];
 
-    protected $casts = ['is_active' => 'boolean'];
+    /**
+     * Free-text blocks on department pages (intros, subtitles) that a focal
+     * point can override from the admin; pages fall back to their defaults.
+     */
+    public const PAGE_TEXT_KEYS = [
+        'home_hero_subtitle',
+        'staff_intro',
+        'curriculum_intro',
+        'curriculum_obe_note',
+        'labs_intro',
+        'research_intro',
+        'achievements_intro',
+        'alumni_intro',
+        'society_intro',
+        'online_resources_intro',
+        'events_intro',
+        'curriculum_subtitle',
+        'labs_subtitle',
+        'achievements_subtitle',
+        'alumni_subtitle',
+        'research_subtitle',
+        'thesis_subtitle',
+        'thesis_intro',
+        'alumni_association_intro',
+        'gallery_subtitle',
+        'video_gallery_subtitle',
+    ];
+
+    protected $casts = ['is_active' => 'boolean', 'page_texts' => 'array'];
+
+    /**
+     * The text each page shows when the focal point hasn't overridden it, for
+     * the keys this department's pages use (database/data/page_text_defaults.json,
+     * extracted from the pages' pageText() defaults).
+     *
+     * @return array<string, string>
+     */
+    public function pageTextDefaults(): array
+    {
+        static $all = null;
+        $all ??= json_decode(file_get_contents(database_path('data/page_text_defaults.json')), true);
+        $templates = $all[$this->slug] ?? $all['_generic'] ?? [];
+
+        $vars = [
+            '{name}' => $this->name,
+            '{short_name}' => $this->short_name,
+            '{tagline}' => (string) $this->tagline,
+            '{lab_count}' => (string) $this->laboratories()->where('is_active', true)->count(),
+        ];
+
+        $defaults = [];
+        foreach (self::PAGE_TEXT_KEYS as $key) {
+            if (array_key_exists($key, $templates)) {
+                $defaults[$key] = strtr($templates[$key], $vars);
+            }
+        }
+
+        return $defaults;
+    }
 
     public function slides(): HasMany
     {
@@ -77,6 +139,12 @@ class Department extends Model
     public function galleries(): HasMany
     {
         return $this->hasMany(DepartmentGallery::class)->orderBy('order');
+    }
+
+    /** Everyone managing this department's laboratories (admin list, all of them). */
+    public function labPeople(): HasMany
+    {
+        return $this->hasMany(DepartmentLabPerson::class)->orderBy('order');
     }
 
     public function alumni(): HasMany

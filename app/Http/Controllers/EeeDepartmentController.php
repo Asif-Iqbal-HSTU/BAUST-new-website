@@ -116,11 +116,13 @@ class EeeDepartmentController extends Controller
     public function alumni()
     {
         $dept = Department::where('slug', 'eee')->first();
-        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->first() : null;
+        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->orderBy('order')->first() : null;
+        $alumniMembers = $dept ? $dept->alumni()->where('is_active', true)->get() : [];
 
         return Inertia::render('Academic/Eee/Alumni', [
             'department' => $dept,
             'alumni' => $alumni,
+            'alumniMembers' => $alumniMembers,
         ]);
     }
 
@@ -144,6 +146,7 @@ class EeeDepartmentController extends Controller
     public function eventDetail($slug)
     {
         $event = Notice::active()
+            ->forDepartment('eee')
             ->where('slug', $slug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -179,20 +182,21 @@ class EeeDepartmentController extends Controller
     {
         $dept = Department::where('slug', 'eee')->first();
         $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : [];
-        $lab = $slug ? ($allLabs->firstWhere('slug', $slug) ?: $allLabs->first()) : $allLabs->first();
+        $lab = $slug ? collect($allLabs)->firstWhere('slug', $slug) : collect($allLabs)->first();
+        abort_if($slug && ! $lab, 404);
 
         return Inertia::render('Academic/Eee/Laboratory', [
             'department' => $dept,
             'lab' => $lab,
             'allLabs' => $allLabs,
-            'labSlug' => $slug ?: ($lab?->slug ?? 'dc-circuit-laboratory'),
+            'labSlug' => $lab?->slug,
         ]);
     }
 
     public function society()
     {
         $dept = Department::where('slug', 'eee')->first();
-        $society = $dept ? $dept->societies()->where('slug', 'eee-society')->where('is_active', true)->first() : null;
+        $society = $dept ? $dept->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->orderBy('order')->first() : null;
 
         return Inertia::render('Academic/Eee/EeeSociety', [
             'department' => $dept,

@@ -5,16 +5,25 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { ME_TABS, ME_DEPT_NAME } from '@/data/meData';
-import { Trophy, Award, Calendar } from 'lucide-react';
+import { Trophy, Award, Users, ExternalLink } from 'lucide-react';
+import { deptIcon, pageText } from '@/lib/dept-icons';
+
+interface TeamMember {
+    name?: string | null;
+    batch?: string | null;
+}
 
 interface AchievementItem {
     id?: number;
     title: string;
+    type?: string | null;
+    icon?: string | null;
+    color?: string | null;
     description?: string | null;
     details?: string | null;
-    date?: string | null;
-    category?: string | null;
-    image?: string | null;
+    team_title?: string | null;
+    team_members?: (TeamMember | string)[] | null;
+    link?: string | null;
 }
 
 interface DeptInfo {
@@ -22,6 +31,7 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -29,29 +39,19 @@ interface Props {
     achievements?: AchievementItem[];
 }
 
-const DEFAULT_ACHIEVEMENTS: AchievementItem[] = [
-    {
-        title: 'National Robotics Championship - Runners-up',
-        category: 'Competition',
-        date: '2025',
-        description: 'A student team from the ME department developed an autonomous wall-following and obstacle-avoiding bot, securing second place in the National Robolympiad.'
-    },
-    {
-        title: 'Research Publications in High-Impact Journals',
-        category: 'Research',
-        date: '2025',
-        description: 'ME faculty and students published groundbreaking papers in reputed Elsevier and Springer journals focusing on CFD modeling, thermal-fluid dynamics, and bio-composite materials.'
-    },
-    {
-        title: 'Successful Fabrication of Eco-Friendly Commuter Vehicle Prototype',
-        category: 'Innovation',
-        date: '2024',
-        description: 'As part of the final year capstone design project, students successfully designed and manufactured a high-efficiency single-passenger commuter vehicle shell utilizing lightweight carbon composites.'
-    }
-];
+const COLOR_CLASSES: Record<string, { tag: string; icon: string }> = {
+    emerald: { tag: 'bg-emerald-100 text-emerald-800', icon: 'bg-emerald-50 text-emerald-600' },
+    blue: { tag: 'bg-blue-100 text-blue-800', icon: 'bg-blue-50 text-blue-600' },
+    purple: { tag: 'bg-purple-100 text-purple-800', icon: 'bg-purple-50 text-purple-600' },
+    amber: { tag: 'bg-amber-100 text-amber-800', icon: 'bg-amber-50 text-amber-600' },
+    pink: { tag: 'bg-pink-100 text-pink-800', icon: 'bg-pink-50 text-pink-600' },
+    rose: { tag: 'bg-rose-100 text-rose-800', icon: 'bg-rose-50 text-rose-600' },
+    indigo: { tag: 'bg-indigo-100 text-indigo-800', icon: 'bg-indigo-50 text-indigo-600' },
+};
 
 export default function MeAchievements({ department, achievements: achievementsProp }: Props) {
-    const list = achievementsProp && achievementsProp.length > 0 ? achievementsProp : DEFAULT_ACHIEVEMENTS;
+    const list = achievementsProp ?? [];
+    const shortName = department?.short_name || 'ME';
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -59,7 +59,7 @@ export default function MeAchievements({ department, achievements: achievementsP
             <Navbar />
             <PageHero 
                 title={`${department?.short_name || 'ME'} Department Achievements`} 
-                subtitle="Excellence in Engineering Competitions, Scientific Research & Prototype Innovation" 
+                subtitle={pageText(department, 'achievements_subtitle', "Excellence in Engineering Competitions, Scientific Research & Prototype Innovation")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || ME_DEPT_NAME} activeTab="Achievements" tabs={ME_TABS} />
@@ -75,29 +75,33 @@ export default function MeAchievements({ department, achievements: achievementsP
                             </div>
                             <div>
                                 <h2 className="text-2xl font-bold text-gray-900">Recognitions & Honors</h2>
-                                <p className="text-sm text-gray-500 mt-0.5">Showcasing the achievements of ME faculty, researchers, and students</p>
+                                <p className="text-sm text-gray-500 mt-0.5">{pageText(department, 'achievements_intro', `Showcasing the achievements of ${shortName} faculty, researchers, and students`)}</p>
                             </div>
                         </div>
 
+                        {list.length === 0 && (
+                            <p className="text-center text-gray-400 py-10">No achievements published yet.</p>
+                        )}
+
                         <div className="space-y-6">
-                            {list.map((ach, idx) => (
+                            {list.map((ach, idx) => {
+                                const Icon = deptIcon(ach.icon, Award);
+                                const color = COLOR_CLASSES[ach.color ?? ''] ?? COLOR_CLASSES.emerald;
+                                const team = (ach.team_members ?? [])
+                                    .map((m) => (typeof m === 'string' ? { name: m, batch: null } : m))
+                                    .filter((m) => m?.name);
+                                return (
                                 <div key={ach.id ?? idx} className="p-6 sm:p-8 rounded-2xl border border-gray-100 bg-gray-50/50 hover:border-emerald-200 hover:bg-emerald-50/20 transition-all duration-300 group">
                                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                                         <div className="flex items-center gap-2">
-                                            {ach.category && (
-                                                <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full">
-                                                    {ach.category}
-                                                </span>
-                                            )}
-                                            {ach.date && (
-                                                <span className="flex items-center gap-1 text-xs text-gray-400 font-semibold">
-                                                    <Calendar size={13} />
-                                                    {ach.date}
+                                            {ach.type && (
+                                                <span className={`${color.tag} text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full`}>
+                                                    {ach.type}
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                            <Award size={18} />
+                                        <div className={`w-8 h-8 rounded-full ${color.icon} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                                            <Icon size={18} />
                                         </div>
                                     </div>
 
@@ -117,13 +121,32 @@ export default function MeAchievements({ department, achievements: achievementsP
                                         </p>
                                     )}
 
-                                    {ach.image && (
-                                        <div className="mt-4 rounded-xl overflow-hidden max-h-60 border border-gray-100">
-                                            <img src={ach.image} alt={ach.title} className="w-full h-full object-cover" />
+                                    {team.length > 0 && (
+                                        <div className="mt-4">
+                                            <p className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">
+                                                <Users size={13} />
+                                                {ach.team_title || 'Team'}
+                                            </p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {team.map((m, mIdx) => (
+                                                    <span key={mIdx} className="bg-white border border-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+                                                        {m.name}
+                                                        {m.batch && <span className="text-gray-400 font-medium"> · {m.batch}</span>}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                     )}
+
+                                    {ach.link && (
+                                        <a href={ach.link} target={ach.link.startsWith('/') ? undefined : '_blank'} rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:underline">
+                                            Learn more
+                                            <ExternalLink size={13} />
+                                        </a>
+                                    )}
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,6 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'BAUST') }}</title>
 
         <link rel="icon" type="image/png" href="/images/BAUST%20logo.png">
         <link rel="shortcut icon" type="image/png" href="/images/BAUST%20logo.png">
@@ -50,6 +49,29 @@
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
         @inertiaHead
+
+        {{-- Search & social metadata, worked out on the server (App\Support\Seo) --}}
+        @php($seo = \App\Support\Seo::forPage($page))
+        @if (! str_contains((string) ($__inertiaSsrResponse->head ?? ''), '<title'))
+            <title inertia>{{ $seo['title'] }}</title>
+        @endif
+        <meta name="description" content="{{ $seo['description'] }}">
+        <meta name="robots" content="{{ $seo['robots'] }}">
+        <link rel="canonical" href="{{ $seo['url'] }}">
+        <meta property="og:site_name" content="{{ \App\Support\Seo::UNIVERSITY }}">
+        <meta property="og:type" content="{{ $seo['type'] }}">
+        <meta property="og:title" content="{{ $seo['title'] }}">
+        <meta property="og:description" content="{{ $seo['description'] }}">
+        <meta property="og:url" content="{{ $seo['url'] }}">
+        <meta property="og:image" content="{{ $seo['image'] }}">
+        <meta property="og:locale" content="en_US">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $seo['title'] }}">
+        <meta name="twitter:description" content="{{ $seo['description'] }}">
+        <meta name="twitter:image" content="{{ $seo['image'] }}">
+        @foreach ($seo['jsonLd'] as $schema)
+            <script type="application/ld+json">{!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP) !!}</script>
+        @endforeach
     </head>
     <body class="font-sans antialiased">
         @inertia

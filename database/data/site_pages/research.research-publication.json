@@ -1,0 +1,69 @@
+{
+    "title": "Research & Publication",
+    "content": {
+        "browser_title": "Research & Publication - BAUST",
+        "hero": {
+            "title": "Research & Publication",
+            "subtitle": "Advancing knowledge through research, publications and innovation"
+        },
+        "nav_labels": {
+            "cell": "Research & Publication Cell",
+            "publications": "Publications",
+            "projects": "Projects"
+        },
+        "intro": {
+            "heading": "Research at BAUST",
+            "paragraphs": [
+                "Bangladesh Army University of Science and Technology (BAUST) is committed to advancing knowledge through quality research and scholarly publication. Across its faculties and departments, teachers and students engage in research that addresses real engineering, scientific and business challenges — supported and coordinated by the university's Research and Publication Cell.",
+                "The Cell promotes a vibrant research culture, oversees the university's publications and newsletter, and facilitates collaboration, dissemination and recognition of research output across every department."
+            ],
+            "highlighted_phrase": "Research and Publication Cell",
+            "stats": [
+                { "value": "10", "label": "Departments engaged in research" },
+                { "value": "6", "label": "Faculties across disciplines" },
+                { "value": "01", "label": "University newsletter issues" },
+                { "value": "∞", "label": "Ideas in progress" }
+            ]
+        },
+        "cell": {
+            "kicker": "The Cell",
+            "heading": "Research & Publication Cell",
+            "description": "The Research and Publication Cell coordinates research activities and scholarly publishing across the university. It is administered by a Director and Deputy Director, supported by a dedicated team.",
+            "team_members": [
+                { "name": "Dr. Kazi Mohammad Anamoul Haque", "role": "Director", "designation": "Associate Professor (Chemistry), Department of Arts and Sciences", "phone": "01769662706", "photo": "/images/departments/as/faculty/as-dr-kazi-mohammad-anamoul-haque.jpg" },
+                { "name": "Azra Sadia Sultana", "role": "Deputy Director", "designation": "Assistant Professor, Department of Electrical and Electronic Engineering", "phone": "01912991530", "photo": "/images/research/team/research-azra-sadia-sultana.jpg" },
+                { "name": "Md. Ajgor Ali", "role": "Member", "designation": "Laboratory Technician, Department of Mechanical Engineering", "phone": "01713419110", "photo": "/images/research/team/research-md-ajgor-ali.jpg" },
+                { "name": "Md. Sharier Hasan", "role": "Member", "designation": "Computer Operator", "phone": "01722400520", "photo": "/images/research/team/research-md-sharier-hasan.jpg" }
+            ]
+        },
+        "publications": {
+            "kicker": "Scholarly Output",
+            "heading": "Publications",
+            "newsletter_badge": "Newsletter",
+            "newsletter_title": "BAUST Newsletter — Issue 01",
+            "newsletter_description": "Highlights of academic and research activities across the university.",
+            "newsletter_pdf": "/images/research/BAUST-Newsletter-Issue-01.pdf",
+            "view_button_label": "View",
+            "download_button_label": "Download",
+            "departmental_heading": "Departmental Publications",
+            "departmental_description": "Research papers, journal articles and conference publications are produced across all departments of BAUST. Explore the work of each department to learn more about their faculty, research areas and scholarly contributions."
+        },
+        "projects": {
+            "kicker": "Innovation",
+            "heading": "Projects",
+            "description": "Students and faculty across every department undertake academic and applied projects — from software systems and electronics to mechanical, industrial and civil engineering, and business research. Discover departmental projects and capstone work through the department pages below."
+        },
+        "departments": [
+            { "name": "Computer Science & Engineering", "short_name": "CSE", "link": "/cse" },
+            { "name": "Information & Communication Technology", "short_name": "ICT", "link": "/ict" },
+            { "name": "Electrical & Electronic Engineering", "short_name": "EEE", "link": "/eee" },
+            { "name": "Mechanical Engineering", "short_name": "ME", "link": "/me" },
+            { "name": "Industrial & Production Engineering", "short_name": "IPE", "link": "/ipe" },
+            { "name": "Civil Engineering", "short_name": "CE", "link": "/ce" },
+            { "name": "Business Administration", "short_name": "DBA", "link": "/dba" },
+            { "name": "Accounting & Information Systems", "short_name": "AIS", "link": "/ais" },
+            { "name": "English", "short_name": "ENG", "link": "/eng" },
+            { "name": "Arts & Sciences", "short_name": "A&S", "link": "/as" }
+        ]
+    }
+}

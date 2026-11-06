@@ -5,7 +5,8 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
-import { BookOpen, ExternalLink, Search, Filter, Bookmark, GraduationCap } from 'lucide-react';
+import { BookOpen, ExternalLink, Search, Filter, FileText } from 'lucide-react';
+import { pageText } from '@/lib/dept-icons';
 
 interface Publication {
     id: number;
@@ -16,6 +17,7 @@ interface Publication {
     journal_conference?: string | null;
     year?: string | null;
     link?: string | null;
+    pdf_file?: string | null;
     order: number;
 }
 
@@ -24,6 +26,7 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -38,7 +41,8 @@ export default function CePublications({ department, publications = [] }: Props)
     const categories = ['all', ...Array.from(new Set(publications.map(p => p.category).filter(Boolean)))];
 
     const filtered = publications.filter(p => {
-        const matchesSearch = p.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const q = searchTerm.toLowerCase();
+        const matchesSearch = [p.title, p.authors, p.journal_conference, p.year].some(v => v && v.toLowerCase().includes(q));
         const matchesCat = selectedCategory === 'all' || p.category === selectedCategory;
         return matchesSearch && matchesCat;
     });
@@ -49,7 +53,7 @@ export default function CePublications({ department, publications = [] }: Props)
             <Navbar />
             <PageHero 
                 title="Research Publications" 
-                subtitle="Peer-Reviewed Journal & International Conference Articles by Civil Engineering Faculty" 
+                subtitle={pageText(department, 'research_subtitle', `Peer-Reviewed Journal & International Conference Articles by ${department?.short_name || 'CE'} Faculty`)} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Research" tabs={CE_TABS} />
@@ -67,7 +71,7 @@ export default function CePublications({ department, publications = [] }: Props)
                             Faculty Research & Scientific Contributions
                         </h2>
                         <p className="text-emerald-100/90 text-sm sm:text-base mt-4 leading-relaxed text-justify">
-                            Our faculty members actively publish groundbreaking research across water process engineering, structural strengthening, drought assessments, concrete sustainability, and road safety in premier international journals and conferences including Elsevier, Springer Nature, and KUET ICCESD.
+                            {pageText(department, 'research_intro', 'Our faculty members actively publish groundbreaking research across water process engineering, structural strengthening, drought assessments, concrete sustainability, and road safety in premier international journals and conferences including Elsevier, Springer Nature, and KUET ICCESD.')}
                         </p>
                     </div>
                 </div>
@@ -121,15 +125,33 @@ export default function CePublications({ department, publications = [] }: Props)
                                             {pub.category || 'Journal Paper'}
                                         </span>
                                         <span className="text-xs font-semibold text-gray-400">
-                                            Citation #{idx + 1}
+                                            {pub.year || `Citation #${idx + 1}`}
                                         </span>
                                     </div>
                                     
                                     <p className="text-gray-800 font-medium text-sm sm:text-base leading-relaxed text-justify">
                                         {pub.title}
                                     </p>
+                                    {pub.authors && (
+                                        <p className="text-xs sm:text-sm text-gray-600">{pub.authors}</p>
+                                    )}
+                                    {pub.journal_conference && (
+                                        <p className="text-xs sm:text-sm text-emerald-700 italic">{pub.journal_conference}</p>
+                                    )}
                                 </div>
 
+                                {(pub.link || pub.pdf_file) && <div className="flex flex-col gap-2 flex-shrink-0">
+                                {pub.pdf_file && (
+                                    <a
+                                        href={pub.pdf_file}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-all shadow-sm flex-shrink-0 group-hover:scale-105"
+                                    >
+                                        <span>PDF</span>
+                                        <FileText className="w-3.5 h-3.5" />
+                                    </a>
+                                )}
                                 {pub.link && (
                                     <a
                                         href={pub.link}
@@ -141,6 +163,7 @@ export default function CePublications({ department, publications = [] }: Props)
                                         <ExternalLink className="w-3.5 h-3.5" />
                                     </a>
                                 )}
+                                </div>}
                             </div>
                         ))
                     ) : (

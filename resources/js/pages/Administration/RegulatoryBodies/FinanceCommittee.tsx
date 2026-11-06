@@ -5,53 +5,22 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import { User, Mail, Phone } from 'lucide-react';
 
-interface Member {
+export interface Member {
+    position: string;
     name: string;
     designation: string;
-    position: string;
-    image: string;
+    photo: string;
     phone?: string;
     email?: string;
 }
 
-const financeMembers: Member[] = [
-    {
-        name: 'Maj Gen Mohammad Kamrul Hasan, SGP, SUP, ndc, hdmc, psc',
-        designation: 'GOC, 66 Infantry Division & Area Commander, Rangpur Area',
-        position: 'Chairman',
-        image: '/images/Finance Committee/goc.jpg',
-    },
-    {
-        name: 'Brig Gen Mohammad Mobarak Hossain Majumder, psc',
-        designation: 'Vice Chancellor, BAUST',
-        position: 'Member',
-        image: '/images/Finance Committee/vc.jpeg',
-    },
-    {
-        name: 'Col Muhammad Rubayat Zamil, BSP',
-        designation: 'Colonel Admin, Rangpur Area',
-        position: 'Member',
-        image: '/images/Finance Committee/col-admin.jpg',
-    },
-    {
-        name: 'Prof. Dr. Shaikh Mostak Ahammad',
-        designation: 'Dean, Faculty of Business Studies, Hajee Mohammad Danesh Science & Technology University, Dinajpur',
-        position: 'Member',
-        image: '/images/Finance Committee/mostak.jpg',
-    },
-    {
-        name: 'Associate Professor Md. Anowar Hossain',
-        designation: 'Head, Dept. of Business Administration, BAUST',
-        position: 'Member',
-        image: '/images/Finance Committee/anowar.jpg',
-    },
-    {
-        name: 'Lt Col (Retd) Dr. Md Shameem Reza',
-        designation: 'Treasurer, BAUST',
-        position: 'Member Secretary',
-        image: '/images/Finance Committee/treasurer.jpeg',
-    },
-];
+export interface FinanceCommitteeContent {
+    hero: { title: string; subtitle: string };
+    chairman_heading: string;
+    chairman: Member | null;
+    members_heading: string;
+    members: Member[];
+}
 
 // Treat missing images and old "Portrait" text placeholders as no-image.
 const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrait|no-profile/i.test(src);
@@ -59,7 +28,7 @@ const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrai
 // Member photo with a graceful person-icon fallback.
 const MemberImage = ({ member, isChairman = false }: { member: Member; isChairman?: boolean }) => {
     const [failed, setFailed] = React.useState(false);
-    const showFallback = failed || isPlaceholderImage(member.image);
+    const showFallback = failed || isPlaceholderImage(member.photo);
 
     return (
         <div className={`${isChairman ? 'w-32 sm:w-44' : 'w-24 sm:w-32 md:w-36'} aspect-square flex-shrink-0 relative overflow-hidden bg-emerald-50 border-r border-gray-50`}>
@@ -69,7 +38,7 @@ const MemberImage = ({ member, isChairman = false }: { member: Member; isChairma
                 </div>
             ) : (
                 <img
-                    src={member.image}
+                    src={member.photo}
                     alt={member.name}
                     loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -126,23 +95,23 @@ const MemberCard = ({ member, isChairman = false }: { member: Member; isChairman
     </div>
 );
 
-export default function FinanceCommittee() {
-    const chairman = financeMembers.find((m) => m.position === 'Chairman');
-    const members = financeMembers.filter((m) => m.position !== 'Chairman');
+export default function FinanceCommittee({ content }: { content: FinanceCommitteeContent }) {
+    const chairman = content.chairman;
+    const members = content.members ?? [];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Finance Committee - BAUST" />
+            <Head title={`${content.hero.title} - BAUST`} />
             <Navbar />
 
-            <PageHero title="Finance Committee" subtitle="The Apex Financial Regulatory Body" />
+            <PageHero title={content.hero.title} subtitle={content.hero.subtitle} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 {chairman && (
                     <div className="mb-24">
                         <div className="flex items-center justify-center gap-4 mb-12">
                             <div className="h-px bg-emerald-200 w-16" />
-                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">The Chairman</h2>
+                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.chairman_heading}</h2>
                             <div className="h-px bg-emerald-200 w-16" />
                         </div>
                         <MemberCard member={chairman} isChairman={true} />
@@ -152,7 +121,7 @@ export default function FinanceCommittee() {
                 <div>
                     <div className="flex items-center justify-center gap-4 mb-12">
                         <div className="h-px bg-emerald-200 w-16" />
-                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">Committee Members</h2>
+                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.members_heading}</h2>
                         <div className="h-px bg-emerald-200 w-16" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

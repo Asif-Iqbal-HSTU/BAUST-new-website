@@ -19,25 +19,7 @@ export const ME_TABS = [
         ]
     },
     { name: 'Curriculum', href: `${ME_BASE_PATH}/curriculum` },
-    {
-        name: 'Laboratories',
-        children: [
-            { name: 'Strength of Materials Lab', href: `${ME_BASE_PATH}/laboratories/strength-of-materials-lab` },
-            { name: 'Mechanics of Machinery Lab', href: `${ME_BASE_PATH}/laboratories/mechanics-of-machinery-lab` },
-            { name: 'Thermodynamics Lab', href: `${ME_BASE_PATH}/laboratories/thermodynamics-lab` },
-            { name: 'Heat Engine Lab', href: `${ME_BASE_PATH}/laboratories/heat-engine-lab` },
-            { name: 'Heat Transfer Lab', href: `${ME_BASE_PATH}/laboratories/heat-transfer-lab` },
-            { name: 'Refrigeration and Air Conditioning Lab', href: `${ME_BASE_PATH}/laboratories/refrigeration-and-air-conditioning-lab-2` },
-            { name: 'Fluid Mechanics and Machinery Lab', href: `${ME_BASE_PATH}/laboratories/fluid-mechanics-and-machinery-lab` },
-            { name: 'CAD & Simulation Lab', href: `${ME_BASE_PATH}/laboratories/cad-and-simulation-lab` },
-            { name: 'Machine Shop and Production Process Lab', href: `${ME_BASE_PATH}/laboratories/machine-shop-and-production-process-lab-2` },
-            { name: 'Welding Shop', href: `${ME_BASE_PATH}/laboratories/welding-shop-2` },
-            { name: 'Foundry Shop', href: `${ME_BASE_PATH}/laboratories/foundry-shop` },
-            { name: 'Measurement and Instrumentation Lab', href: `${ME_BASE_PATH}/laboratories/measurement-and-instrumentation-lab-2` },
-            { name: 'Materials and Metallurgy Lab', href: `${ME_BASE_PATH}/laboratories/materials-and-metallurgy-lab` },
-            { name: 'Drawing Lab', href: `${ME_BASE_PATH}/laboratories/drawing-lab-2` },
-        ]
-    },
+    { name: 'Laboratories', href: `${ME_BASE_PATH}/laboratories` },
     { name: 'Online Resources', href: `${ME_BASE_PATH}/online-resources` },
     { name: 'Alumni', href: `${ME_BASE_PATH}/alumni` },
     { name: 'Events', href: `${ME_BASE_PATH}/events` },
@@ -68,11 +50,3 @@ export interface FacultyMember {
     publications?: string | null;
     department?: string;
 }
-
-export const NOTICES = [
-    { date: '20', month: 'Feb', title: 'Publication of Results Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '06', month: 'Feb', title: 'Final Examination Result of Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '18', month: 'Jan', title: 'Workshop on Advanced SolidWorks 3D Modeling and CFD Analysis' },
-    { date: '10', month: 'Jan', title: 'Industrial Visit of 8th Batch ME Students to Barapukuria Coal Power Plant' },
-    { date: '04', month: 'Jan', title: 'Orientation Program for Spring 2026 Batch of ME Department' },
-];

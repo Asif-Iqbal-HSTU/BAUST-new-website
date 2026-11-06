@@ -55,7 +55,7 @@ export default function CeStudentVoice({ department, voices = [] }: Props) {
             <Navbar />
             <PageHero 
                 title="Student Voice" 
-                subtitle="Authentic Experiences, Reflections, and Journeys of Civil Engineering Students" 
+                subtitle={`Authentic Experiences, Reflections, and Journeys of ${department?.short_name || 'CE'} Students`} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Student Voice" tabs={CE_TABS} />

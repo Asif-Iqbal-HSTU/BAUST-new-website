@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DeptPageShell from '@/custom_components/DeptPageShell';
-import { DeptPageProps, FacultyMember, deptShort } from '@/data/departmentData';
+import { DeptInfo, DeptPageProps, FacultyMember, deptShort } from '@/data/departmentData';
+import { pageText } from '@/lib/dept-icons';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
 
 function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
@@ -56,7 +57,12 @@ function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () =>
     );
 }
 
-export default function DepartmentAcademicStaff({ department, tabs, staff }: DeptPageProps & { staff: FacultyMember[] }) {
+interface Props extends DeptPageProps {
+    department: DeptInfo & { page_texts?: Record<string, string> | null };
+    staff: FacultyMember[];
+}
+
+export default function DepartmentAcademicStaff({ department, tabs, staff }: Props) {
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
     const activeStaff = staff.filter(m => m.status !== 'ex_faculty');
@@ -93,8 +99,12 @@ export default function DepartmentAcademicStaff({ department, tabs, staff }: Dep
                 
                 <div className="max-w-3xl mb-12">
                     <h1 className="text-3xl font-extrabold text-gray-900 mb-4 italic tracking-tight">Academic Staff</h1>
-                    <p className="text-gray-600 text-lg">
-                        Meet our dedicated technical and administrative support team who ensure the smooth operation of our laboratories and academic activities.
+                    <p className="text-gray-600 text-lg whitespace-pre-line">
+                        {pageText(
+                            department,
+                            'staff_intro',
+                            'Meet our dedicated technical and administrative support team who ensure the smooth operation of our laboratories and academic activities.',
+                        )}
                     </p>
                 </div>
 

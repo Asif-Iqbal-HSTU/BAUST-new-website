@@ -29,23 +29,10 @@ interface Props {
     stats?: StatItem[];
 }
 
-const DEFAULT_STATS: StatItem[] = [
-    { value: '450+', label: 'Students' },
-    { value: '35+', label: 'Faculty & Staff' },
-    { value: '11', label: 'Laboratories' },
-    { value: '96%', label: 'Placement & Higher Studies' },
-];
-
-const DEFAULT_ABOUT = `The Department of Electrical and Electronic Engineering (EEE) is one of the oldest and largest engineering departments in BAUST. It is dedicated to training undergraduate students with the required knowledge of electrical circuits, signal systems, control theory, power engineering, and electronics technology.
-
-With the expansion of sustainable energy systems, antenna research, and smart grid automation, EEE continues to form the core framework of digital transformation and modern infrastructure. Our curriculum is tailored to ensure graduates possess strong core theoretical principles as well as deep analytical skills and hardware laboratory experience.
-
-Learning from MIST, BUET, and internationally trained professors, our students are prepared for immediate absorption in local power sectors, telecom providers, government administrations (BCS), and prestigious graduate programs globally.`;
-
 export default function EeeAbout({ department, stats }: Props) {
-    const activeStats = (stats && stats.length > 0) ? stats : DEFAULT_STATS;
-    const aboutText = department?.about || department?.description || DEFAULT_ABOUT;
-    const aboutParagraphs = aboutText.split('\n\n').filter(Boolean);
+    const activeStats = stats ?? [];
+    const aboutText = department?.about || department?.description || '';
+    const aboutParagraphs = aboutText.split(/(?:\r?\n|\\n)\s*(?:\r?\n|\\n)/).map((p) => p.trim()).filter(Boolean);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -77,6 +64,7 @@ export default function EeeAbout({ department, stats }: Props) {
                         </div>
 
                         {/* Quick Stats */}
+                        {activeStats.length > 0 && (
                         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {activeStats.map((stat, idx) => (
                                 <div key={stat.id ?? idx} className="text-center p-5 rounded-2xl bg-emerald-50/60 border border-emerald-100/50">
@@ -85,6 +73,7 @@ export default function EeeAbout({ department, stats }: Props) {
                                 </div>
                             ))}
                         </div>
+                        )}
                     </div>
                 </div>
             </main>

@@ -54,6 +54,7 @@ interface Member {
     seminars?: string | null;
     training?: string | null;
     others?: string | null;
+    specialization?: string | null;
     areas_of_interest?: string[] | null;
     phone: string | null;
     email: string | null;
@@ -89,11 +90,12 @@ interface FormState {
     seminars: string;
     training: string;
     others: string;
+    specialization: string;
     phone: string;
     email: string;
     personal_email: string;
     education: string[];
-    order: number;
+    order: number | null;
     photo_file: File | null;
     photo_url: string;
     clear_photo: boolean;
@@ -198,11 +200,12 @@ export default function Form({ member, departments = [] }: Props) {
         seminars: member?.seminars || '',
         training: member?.training || '',
         others: member?.others || '',
+        specialization: member?.specialization || '',
         phone: member?.phone || '',
         email: member?.email || '',
         personal_email: member?.personal_email || '',
         education: member?.education && member.education.length > 0 ? member.education : [''],
-        order: member?.order !== undefined ? member.order : 10,
+        order: member?.order ?? null,
         photo_file: null as File | null,
         photo_url: member?.photo && !member.photo.startsWith('/storage/') ? member.photo : '',
         clear_photo: false,
@@ -535,15 +538,43 @@ export default function Form({ member, departments = [] }: Props) {
                                         const code = e.target.value;
                                         setData('category', code);
                                         setData('designation', rankLabel(code));
+                                        // Teaching Assistants are listed with the faculty members
+                                        if (code === 'teaching_assistant') setData('employment_type', 'faculty');
                                     }}
                                     className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-xs transition-colors"
                                 >
+                                    {data.category && !RANK_OPTIONS.some(opt => opt.value === data.category) && (
+                                        <option value={data.category}>{rankLabel(data.category)}</option>
+                                    )}
                                     {RANK_OPTIONS.map(opt => (
                                         <option key={opt.value} value={opt.value}>{opt.label}</option>
                                     ))}
                                 </select>
+                                <input
+                                    type="text"
+                                    placeholder="Designation as shown publicly, e.g. Associate Professor & Head"
+                                    value={data.designation}
+                                    onChange={e => setData('designation', e.target.value)}
+                                    className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-xs transition-colors"
+                                    required
+                                />
                                 {errors.designation && <p className="text-xs text-red-500 font-semibold">{errors.designation}</p>}
-                                <p className="text-[11px] text-gray-400">Also sets Rank / Category in the section below automatically.</p>
+                                <p className="text-[11px] text-gray-400">Picking a rank fills in the designation; you can then edit the text (e.g. add "& Head").</p>
+                            </div>
+
+                            {/* Specialization */}
+                            <div className="space-y-1.5">
+                                <label className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                                    Specialization
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Power Systems, Machine Learning"
+                                    value={data.specialization}
+                                    onChange={e => setData('specialization', e.target.value)}
+                                    className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-xs transition-colors"
+                                />
+                                {errors.specialization && <p className="text-xs text-red-500 font-semibold">{errors.specialization}</p>}
                             </div>
 
                             {/* Department Scope */}
@@ -551,7 +582,7 @@ export default function Form({ member, departments = [] }: Props) {
                                 <label className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
                                     Department Scope <span className="text-emerald-600">*</span>
                                 </label>
-                                {user.role === 'super_admin' ? (
+                                {user.role === 'super_admin' || departments.length > 1 ? (
                                     <select
                                         value={data.department}
                                         onChange={e => setData('department', e.target.value)}
@@ -576,22 +607,6 @@ export default function Form({ member, departments = [] }: Props) {
                                     />
                                 )}
                                 {errors.department && <p className="text-xs text-red-500 font-semibold">{errors.department}</p>}
-                            </div>
-
-                            {/* Display Order */}
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">
-                                    Display Priority Order <span className="text-emerald-600">*</span>
-                                </label>
-                                <input
-                                    type="number"
-                                    value={data.order}
-                                    onChange={e => setData('order', parseInt(e.target.value) || 0)}
-                                    className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-xs transition-colors"
-                                    required
-                                />
-                                <p className="text-[11px] text-gray-400">Lower numbers appear first on the faculty roster (e.g. 1 = HOD).</p>
-                                {errors.order && <p className="text-xs text-red-500 font-semibold">{errors.order}</p>}
                             </div>
 
                             {/* Head of Department */}

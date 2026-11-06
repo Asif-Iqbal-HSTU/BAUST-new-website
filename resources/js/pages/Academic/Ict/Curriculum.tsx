@@ -4,7 +4,8 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { ICT_TABS, ICT_DEPT_NAME } from '@/data/ictData';
+import { ICT_TABS, ICT_DEPT_NAME, type DeptInfo } from '@/data/ictData';
+import { pageText } from '@/lib/dept-icons';
 import { FileText, Download, Eye, BookOpen, Clock, Award, ShieldCheck } from 'lucide-react';
 
 interface CurriculumItem {
@@ -14,17 +15,9 @@ interface CurriculumItem {
     description?: string | null;
     highlights?: string[] | null;
     file?: string | null;
-    filename?: string;
     duration?: string | null;
     credits?: string | null;
     degree?: string | null;
-}
-
-interface DeptInfo {
-    id: number;
-    slug: string;
-    name: string;
-    short_name: string;
 }
 
 interface Props {
@@ -32,31 +25,18 @@ interface Props {
     curricula?: CurriculumItem[];
 }
 
-const DEFAULT_SYLLABI: CurriculumItem[] = [
-    {
-        year: "Revised Version",
-        title: "B.Sc. in Information and Communication Technology Syllabus (Revised)",
-        file: "/storage/departments/ict-syllabus-revised.pdf",
-        description: "The revised outcome-based curriculum designed to meet modern industry standards, focusing on information security, wireless networks, software engineering, and Internet of Things.",
-        highlights: ["Outcome-Based Education (OBE) structure", "Advanced Wireless & Cellular Communications", "Cybersecurity & Cryptography Modules"]
-    }
-];
-
 export default function IctCurriculum({ department, curricula }: Props) {
-    const list = (curricula && curricula.length > 0) ? curricula : DEFAULT_SYLLABI;
-
-    const getFileUrl = (item: CurriculumItem) => {
-        if (item.file) return item.file;
-        return "/storage/departments/ict-syllabus-revised.pdf";
-    };
+    const list = curricula ?? [];
+    const primary = list[0];
+    const shortName = department?.short_name || 'ICT';
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title={`Curriculum - ${department?.short_name || 'ICT'} - BAUST`} />
+            <Head title={`Curriculum - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
-                title={`${department?.short_name || 'ICT'} Academic Curriculum`} 
-                subtitle="Outcome-Based Education Designed for Technological Leadership" 
+                title={`${shortName} Academic Curriculum`} 
+                subtitle={pageText(department, 'curriculum_subtitle', "Outcome-Based Education Designed for Technological Leadership")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || ICT_DEPT_NAME} activeTab="Curriculum" tabs={ICT_TABS} />
@@ -66,20 +46,20 @@ export default function IctCurriculum({ department, curricula }: Props) {
                 <div className="max-w-3xl mb-16">
                     <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
                         <BookOpen className="text-emerald-600 w-8 h-8" />
-                        {department?.short_name || 'ICT'} Course Curriculum
+                        {shortName} Course Curriculum
                     </h2>
                     <p className="text-gray-600 leading-relaxed text-lg">
-                        The Department of {department?.name || 'Information and Communication Technology'} at BAUST offers a comprehensive 4-year undergraduate program. Our curriculum is periodically updated to align with global technological shifts, industry requirements, and BAETE accreditation standards.
+                        {pageText(department, 'curriculum_intro', `The ${department?.name || 'Department of Information and Communication Technology'} at BAUST offers a comprehensive 4-year undergraduate program. Our curriculum is periodically updated to align with global technological shifts, industry requirements, and BAETE accreditation standards.`)}
                     </p>
                 </div>
 
                 {/* Quick Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
                     {[
-                        { icon: Clock, label: "Duration", value: "4 Years (8 Semesters)" },
-                        { icon: Award, label: "Total Credits", value: "161.5 Credits" },
-                        { icon: ShieldCheck, label: "Accreditation", value: "BAETE (IEB) Standards" },
-                        { icon: BookOpen, label: "Degree", value: `B.Sc. in ${department?.short_name || 'ICT'}` }
+                        { icon: Clock, label: "Duration", value: primary?.duration || "4 Years (8 Semesters)" },
+                        { icon: Award, label: "Total Credits", value: primary?.credits || "161.5 Credits" },
+                        { icon: ShieldCheck, label: "Curriculum Framework", value: department?.accreditation_badge || "OBE Curriculum" },
+                        { icon: BookOpen, label: "Degree", value: primary?.degree || `B.Sc. in ${shortName}` }
                     ].map((item, idx) => (
                         <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
@@ -100,9 +80,15 @@ export default function IctCurriculum({ department, curricula }: Props) {
                         <div className="h-px flex-grow bg-gradient-to-r from-gray-200 to-transparent" />
                     </div>
 
+                    {list.length === 0 && (
+                        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-12 text-center text-gray-400">
+                            <p className="text-lg font-medium">Syllabus documents will be published soon.</p>
+                        </div>
+                    )}
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {list.map((syllabus, idx) => {
-                            const fileUrl = getFileUrl(syllabus);
+                            const fileUrl = syllabus.file;
                             const highlights = Array.isArray(syllabus.highlights) ? syllabus.highlights : [];
 
                             return (
@@ -144,6 +130,7 @@ export default function IctCurriculum({ department, curricula }: Props) {
                                         )}
 
                                         {/* Actions */}
+                                        {fileUrl && (
                                         <div className="mt-auto flex flex-wrap gap-3">
                                             <a 
                                                 href={fileUrl}
@@ -163,6 +150,7 @@ export default function IctCurriculum({ department, curricula }: Props) {
                                                 Download PDF
                                             </a>
                                         </div>
+                                        )}
                                     </div>
                                 </div>
                             );
@@ -178,7 +166,7 @@ export default function IctCurriculum({ department, curricula }: Props) {
                     <div className="relative z-10 max-w-2xl">
                         <h3 className="text-2xl font-bold mb-4 italic">Outcome Based Education (OBE)</h3>
                         <p className="text-slate-400 leading-relaxed text-sm">
-                            The ICT curriculum is designed following the OBE framework, ensuring that students achieve specific competencies and skills by the end of their degree. We focus on continuous quality improvement (CQI) to maintain our edge in engineering education.
+                            {pageText(department, 'curriculum_obe_note', 'The ICT curriculum is designed following the OBE framework, ensuring that students achieve specific competencies and skills by the end of their degree. We focus on continuous quality improvement (CQI) to maintain our edge in engineering education.')}
                         </p>
                     </div>
                 </div>

@@ -4,32 +4,16 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
-import { Trophy, Award, Users, Star, ExternalLink, ShieldCheck, Cpu, Code, Lightbulb, GraduationCap, Leaf } from 'lucide-react';
-
-interface TeamMember {
-    name: string;
-    batch?: string;
-}
-
-interface AchievementItem {
-    id?: number;
-    title: string;
-    type?: string | null;
-    icon?: string | any;
-    color?: string | null;
-    description?: string | null;
-    details?: string | null;
-    team_title?: string | null;
-    team_members?: TeamMember[] | null;
-    link?: string | null;
-}
+import { CE_TABS, CE_DEPT_NAME, AchievementItem, achievementColor } from '@/data/ceData';
+import { Trophy, ExternalLink } from 'lucide-react';
+import { deptIcon, pageText } from '@/lib/dept-icons';
 
 interface DeptInfo {
     id: number;
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -37,77 +21,11 @@ interface Props {
     achievements?: AchievementItem[];
 }
 
-const ICON_MAP: Record<string, any> = {
-    ShieldCheck,
-    Cpu,
-    Code,
-    Lightbulb,
-    Star,
-    Trophy,
-    Award,
-    Users,
-    GraduationCap,
-    Leaf,
-};
-
-const DEFAULT_ACHIEVEMENTS: AchievementItem[] = [
-    {
-        title: "Vice Chancellor’s Excellence Award in Research & Service",
-        type: "Faculty Award",
-        icon: "Award",
-        color: "amber",
-        description: "Civil Engineering faculty members recognized for outstanding contributions in research publications, OBE pedagogy, and institutional service at BAUST.",
-        details: "Awarded by the Honorable Vice Chancellor recognizing academic dedication, top tier research papers in Scopus/SCI indexed journals, and exceptional mentorship.",
-        team_title: "Recipient Faculty",
-        team_members: [{ name: "Prof. Dr. Md. Mahmudul Hasan", batch: "Head of CE" }],
-    },
-    {
-        title: "2nd Place at BAUST Pitha Utsob 2025 (“Pitha Mohol”)",
-        type: "Cultural Excellence",
-        icon: "Trophy",
-        color: "emerald",
-        description: "The Civil Engineering Department stall “Pitha Mohol” secured 2nd place at the campus-wide Pitha Utsob 2025, celebrating cultural heritage and teamwork.",
-        details: "Demonstrated vibrant departmental culture, creative stall design, traditional culinary showcase, and active participation by students and faculty members.",
-        team_title: "Student & Faculty Organizing Team",
-        team_members: [{ name: "CE Cultural Committee", batch: "All Batches" }],
-    },
-    {
-        title: "Intra Dept. Drawing and CAD Contest Championship",
-        type: "Technical Competition",
-        icon: "Cpu",
-        color: "blue",
-        description: "Organized by Civil Engineering Innovation Club (CEIC), recognizing student excellence in architectural planning, drafting precision, and 3D modeling.",
-        details: "Students competed across complex building plans, structural drafting, and CAD speed tests, evaluated by external industry experts and faculty judges.",
-        team_title: "Winning Teams",
-        team_members: [{ name: "Champion, 1st Runner Up & 2nd Runner Up Teams", batch: "CE Batches" }],
-    },
-    {
-        title: "Teaching Excellence Program (TEP) Certification",
-        type: "Professional Achievement",
-        icon: "GraduationCap",
-        color: "indigo",
-        description: "Head of Department Dr. Md. Mahmudul Hasan successfully completed the prestigious Teaching Excellence Program (TEP) for advanced instructional design.",
-        details: "Enhancing OBE curriculum delivery, student-centric active learning methodologies, and modern formative assessment protocols in Civil Engineering.",
-        team_title: "Certified Leader",
-        team_members: [{ name: "Dr. Md. Mahmudul Hasan", batch: "Dean & Head" }],
-    },
-    {
-        title: "Reuse of Plastic Materials Innovation Showcase",
-        type: "Sustainability Contest",
-        icon: "Leaf",
-        color: "green",
-        description: "18 student teams turned plastic waste into functional engineering products organized by the Environment and Sustainability Club (ESC).",
-        details: "Highlighted sustainable civil engineering, recycled plastic aggregate in non-structural elements, eco-friendly paving concepts, and circular economy principles.",
-        team_title: "ESC Project Teams",
-        team_members: [{ name: "Top 3 Finalist Teams", batch: "ESC Club" }],
-    },
-];
-
 export default function CeAchievements({ department, achievements }: Props) {
-    const list = (achievements && achievements.length > 0) ? achievements : DEFAULT_ACHIEVEMENTS;
+    const list = achievements ?? [];
 
     const renderIcon = (iconName?: string | null) => {
-        const Comp = (iconName && ICON_MAP[iconName]) ? ICON_MAP[iconName] : Trophy;
+        const Comp = deptIcon(iconName, Trophy);
         return <Comp className="w-6 h-6" />;
     };
 
@@ -116,8 +34,8 @@ export default function CeAchievements({ department, achievements }: Props) {
             <Head title={`Achievements - ${department?.short_name || 'CE'} - BAUST`} />
             <Navbar />
             <PageHero 
-                title={department?.name ? `Achievements - ${department.name}` : "Department of Civil Engineering (CE)"} 
-                subtitle="Celebrating Faculty & Student Success in Competitions, Research, & Innovation" 
+                title={`Achievements - ${department?.name || CE_DEPT_NAME}`} 
+                subtitle={pageText(department, 'achievements_subtitle', "Celebrating Faculty & Student Success in Competitions, Research, & Innovation")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Achievements" tabs={CE_TABS} />
@@ -129,21 +47,27 @@ export default function CeAchievements({ department, achievements }: Props) {
                     <Trophy className="text-emerald-700 w-8 h-8" />
                     <div>
                         <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Hall of Fame & Recognitions</h2>
-                        <p className="text-xs sm:text-sm text-gray-500 mt-1">Honoring milestones, national awards, and excellence in civil engineering</p>
+                        <p className="text-xs sm:text-sm text-gray-500 mt-1">{pageText(department, 'achievements_intro', 'Honoring milestones, national awards, and excellence in civil engineering')}</p>
                     </div>
                 </div>
 
+                {list.length === 0 && (
+                    <p className="text-center text-gray-400 py-12">No achievements have been published yet.</p>
+                )}
+
                 {/* Achievements Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {list.map((item, idx) => (
-                        <div key={item.id ?? idx} className="bg-white rounded-3xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 p-8 flex flex-col justify-between group">
+                    {list.map((item, idx) => {
+                        const color = achievementColor(item.color);
+                        return (
+                        <div key={item.id ?? idx} className={`bg-white rounded-3xl border border-gray-100 shadow-md hover:shadow-xl ${color.border} transition-all duration-300 p-8 flex flex-col justify-between group`}>
                             <div>
                                 <div className="flex items-start justify-between gap-4 mb-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                    <div className={`w-12 h-12 rounded-2xl ${color.icon} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
                                         {renderIcon(item.icon)}
                                     </div>
                                     {item.type && (
-                                        <span className="bg-emerald-50 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100">
+                                        <span className={`${color.badge} text-xs font-bold px-3 py-1 rounded-full`}>
                                             {item.type}
                                         </span>
                                     )}
@@ -193,7 +117,8 @@ export default function CeAchievements({ department, achievements }: Props) {
                                 </div>
                             )}
                         </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
             </main>

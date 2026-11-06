@@ -1,0 +1,37 @@
+{
+    "title": "Payment Procedure",
+    "content": {
+        "browser_title": "Payment Procedure",
+        "hero": {
+            "title": "Tuition Fee Payment Procedure",
+            "subtitle": "Step-by-Step Payment Instructions"
+        },
+        "bkash": {
+            "heading": "bKash Payment",
+            "tagline": "Mobile App Instruction",
+            "steps": [
+                "Open your bKash App and tap on 'Education Fee'",
+                "Search for 'BAUST' and select it",
+                "Enter your Student ID and desired payment details",
+                "Check the amount and proceed with your bKash PIN",
+                "Save the transaction ID and receipt for future reference"
+            ],
+            "security_heading": "Secure Payment",
+            "security_text": "Always ensure you are paying to the official BAUST account. Double-check your Student ID before confirming."
+        },
+        "bank": {
+            "heading": "Bank Payments",
+            "text": "Tuition fees can also be paid at any branch of **Trust Bank Limited**. Use the official deposit slip and ensure your details are correctly mentioned.",
+            "badge": "Authorized Channel"
+        },
+        "procedure_document": {
+            "heading": "Official Procedure PDF",
+            "subheading": "Detailed visual guide for all payment methods.",
+            "pdf": "/images/admission/Tuition Fee Payment Procedure.pdf",
+            "download_tooltip": "Download PDF",
+            "full_view_tooltip": "Full view",
+            "preview_label": "Document Preview",
+            "unavailable_text": "Your browser cannot display this PDF preview. Please use the download button above."
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "title": "Academic Calendar",
+    "content": {
+        "browser_title": "Academic Calendar",
+        "hero": {
+            "title": "Academic Calendar",
+            "subtitle": "Semester structure & term schedule"
+        },
+        "overview": {
+            "heading": "Terms & Duration",
+            "text": "There are two regular semesters, each of 22 weeks, in an academic year for all engineering programs. Classes of the spring semester normally start in April and the fall semester in October. Academic activities follow the calendar approved by the Academic Council before each program commences.",
+            "highlighted_phrases": ["22 weeks", "April", "October"]
+        },
+        "semester_structure": {
+            "heading": "Structure of a Semester",
+            "serial_column": "Ser",
+            "event_column": "Event",
+            "weeks_column": "Weeks",
+            "total_label": "Total",
+            "events": [
+                { "event": "Classes before Mid Term", "weeks": 7 },
+                { "event": "Mid Term Break", "weeks": 1 },
+                { "event": "Classes after Mid Term", "weeks": 7 },
+                { "event": "Recess Before Semester Final Examination", "weeks": 2 },
+                { "event": "Semester Final Examination", "weeks": 3 },
+                { "event": "Semester End Break", "weeks": 2 }
+            ]
+        },
+        "note": {
+            "heading": "Please Note",
+            "text": "BAUST reserves the right to change the academic calendar. Always refer to the official documents below for the authoritative schedule."
+        },
+        "undergraduate_calendar": {
+            "title": "Undergraduate Program — 2026",
+            "subtitle": "Official academic calendar for undergraduate programs",
+            "pdf": "/images/admission/Academic-Calendar-Undergraduate-2026.pdf"
+        },
+        "graduate_divider_label": "Graduate Programs",
+        "graduate_calendar": {
+            "title": "Graduate Programs — Summer 2025",
+            "subtitle": "Official academic calendar for graduate programs",
+            "pdf": "/images/admission/Academic-Calendar-Graduate-Summer-2025.pdf"
+        },
+        "pdf_viewer": {
+            "full_view_label": "Full View",
+            "download_label": "Download",
+            "preview_label": "Calendar Preview",
+            "unavailable_heading": "Preview Unavailable",
+            "unavailable_text": "Your browser doesn't support embedded PDF previews. Please use the download button above."
+        }
+    }
+}

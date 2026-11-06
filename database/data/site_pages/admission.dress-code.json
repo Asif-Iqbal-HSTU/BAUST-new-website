@@ -1,0 +1,37 @@
+{
+    "title": "Dress Code",
+    "content": {
+        "browser_title": "Dress Code",
+        "hero": {
+            "title": "University Dress Code",
+            "subtitle": "Standard Uniform & Grooming Policies"
+        },
+        "overview": {
+            "heading": "Policy Overview",
+            "text": "BAUST maintains a standard dress code to foster discipline, professionalism, and a sense of unity among students. All students are required to adhere to the prescribed uniform and grooming standards while on campus.",
+            "highlights": [
+                "Mandatory for all academic sessions",
+                "Required during official ceremonies",
+                "Specific designs for Summer & Winter",
+                "Applies to all departments"
+            ]
+        },
+        "important_note": {
+            "heading": "Important Note",
+            "text": "Students found violating the dress code may be denied entry to classes or campus premises. Please refer to the full PDF guide for detailed specifications on fabric, color, and design."
+        },
+        "download_cta": {
+            "caption": "Offline Access",
+            "label": "Download Guide"
+        },
+        "guide_document": {
+            "heading": "Official Specification Guide",
+            "subheading": "Visual specifications for male and female uniforms.",
+            "pdf": "/images/admission/Dress-Code-02-1.pdf",
+            "full_view_label": "Full View",
+            "preview_label": "Policy Document Preview",
+            "unavailable_heading": "Preview Unavailable",
+            "unavailable_text": "Your browser doesn't support embedded PDF previews. Please use the download button to view the dress code policy."
+        }
+    }
+}

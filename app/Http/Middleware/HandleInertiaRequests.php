@@ -56,12 +56,40 @@ class HandleInertiaRequests extends Middleware
             'siteStats' => fn () => $this->siteStats(),
             'auth' => [
                 'user' => $request->user(),
+                // Extra pages a focal point runs besides their own department:
+                // their faculty's Dean's page and the faculty's degree programs.
+                'manages' => fn () => $this->manages($request),
+                // Open update requests: all for the developer, own ones needing a reply for others.
+                'updateRequests' => fn () => $request->user() ? [
+                    'open' => $request->user()->isSuperAdmin() ? \App\Models\UpdateRequest::open()->count() : null,
+                    'needsInfo' => \App\Models\UpdateRequest::where('user_id', $request->user()->id)->where('status', 'needs_info')->count(),
+                ] : null,
             ],
             'flash' => [
                 'success' => $request->session()->get('success'),
                 'error' => $request->session()->get('error'),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+        ];
+    }
+
+    /**
+     * @return array{faculty: array{id: int, slug: string, code: string}|null, programs: list<array{slug: string, short_name: string}>}|null
+     */
+    private function manages(Request $request): ?array
+    {
+        $user = $request->user();
+        if (! $user?->isDeptAdmin()) {
+            return null;
+        }
+
+        $faculty = $user->managedFaculty();
+        $programs = \App\Models\Department::whereIn('slug', array_diff($user->manageableDepartmentSlugs(), [$user->department]))
+            ->orderBy('order')->get(['slug', 'short_name']);
+
+        return [
+            'faculty' => $faculty ? ['id' => $faculty->id, 'slug' => $faculty->slug, 'code' => $faculty->code] : null,
+            'programs' => $programs->map(fn ($p) => ['slug' => $p->slug, 'short_name' => $p->short_name])->all(),
         ];
     }
 

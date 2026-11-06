@@ -135,6 +135,7 @@ class IqacController extends Controller
     {
         $config = $this->configFor($type);
         $data = $this->validateItem($request, $config);
+        $data['order'] ??= (int) $config['model']::max('order') + 1;
         $this->applyImage($request, $config, $data, null);
 
         $config['model']::create($data);
@@ -152,6 +153,21 @@ class IqacController extends Controller
         $item->update($data);
 
         return back()->with('success', 'Item updated.');
+    }
+
+    /** Save a drag-and-drop order: `ordered_ids` become order 1..n. */
+    public function reorderItems(Request $request, string $type)
+    {
+        $config = $this->configFor($type);
+        $ids = $request->validate(['ordered_ids' => 'required|array', 'ordered_ids.*' => 'integer'])['ordered_ids'];
+
+        \DB::transaction(function () use ($ids, $config) {
+            foreach (array_values($ids) as $i => $id) {
+                $config['model']::whereKey($id)->update(['order' => $i + 1]);
+            }
+        });
+
+        return back()->with('success', 'Order updated.');
     }
 
     public function destroyItem(string $type, int $id)
@@ -185,7 +201,9 @@ class IqacController extends Controller
         if (array_key_exists('is_lead', $config['rules'])) {
             $validated['is_lead'] = $request->boolean('is_lead');
         }
-        $validated['order'] = $validated['order'] ?? 0;
+        if (! isset($validated['order'])) {
+            unset($validated['order']); // ordering is done by drag and drop (reorderItems)
+        }
 
         return $validated;
     }

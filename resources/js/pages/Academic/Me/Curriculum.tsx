@@ -5,6 +5,7 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { ME_TABS, ME_DEPT_NAME } from '@/data/meData';
+import { pageText } from '@/lib/dept-icons';
 import { FileText, Download, Eye, BookOpen, Clock, Award, ShieldCheck } from 'lucide-react';
 
 interface CurriculumItem {
@@ -24,6 +25,8 @@ interface DeptInfo {
     slug: string;
     name: string;
     short_name: string;
+    accreditation_badge?: string | null;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -31,37 +34,10 @@ interface Props {
     curricula?: CurriculumItem[];
 }
 
-const DEFAULT_SYLLABI: CurriculumItem[] = [
-    {
-        year: "Batch 13 & Onwards",
-        title: "B.Sc. in Mechanical Engineering (OBE Updated)",
-        file: "/storage/departments/me-syllabus-batch-13-and-onwards.pdf",
-        description: "Outcome-Based Education (OBE) curriculum covering thermo-fluid sciences, mechanical design, manufacturing technology, mechatronics, and solid mechanics.",
-        highlights: ["Outcome-Based Education (OBE) Framework", "163.0 Total Credit Hours across 8 Semesters", "Compliant with BAETE & Washington Accord Accreditation"]
-    },
-    {
-        year: "Batch 8 to 12",
-        title: "B.Sc. in Mechanical Engineering Syllabus",
-        file: "/storage/departments/me-syllabus-batch-8-to-12.pdf",
-        description: "Undergraduate curriculum for Batches 8 to 12 structured according to UGC course guidelines.",
-        highlights: ["Core Mechanical Engineering Fundamentals", "Extensive Hands-on Laboratory Workshops", "4-Week Mandatory Industrial Attachment"]
-    },
-    {
-        year: "Batch 1 to 7",
-        title: "B.Sc. in Mechanical Engineering Syllabus",
-        file: "/storage/departments/me-syllabus-batch-1-to-7.pdf",
-        description: "Foundation curriculum for undergraduate batches 1 through 7.",
-        highlights: ["Comprehensive Thermal and Machine Design", "Applied Engineering Mathematics and Sciences", "Capstone Thesis and Design Project"]
-    }
-];
-
 export default function MeCurriculum({ department, curricula }: Props) {
-    const list = (curricula && curricula.length > 0) ? curricula : DEFAULT_SYLLABI;
-
-    const getFileUrl = (item: CurriculumItem) => {
-        if (item.file) return item.file;
-        return "/storage/departments/me-syllabus-batch-13-and-onwards.pdf";
-    };
+    const list = curricula ?? [];
+    const shortName = department?.short_name || 'ME';
+    const primary = list[0];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -69,7 +45,7 @@ export default function MeCurriculum({ department, curricula }: Props) {
             <Navbar />
             <PageHero 
                 title={`${department?.short_name || 'ME'} Academic Curriculum`} 
-                subtitle="Outcome-Based Education Tailored for Professional Mechanical Engineering Excellence" 
+                subtitle={pageText(department, 'curriculum_subtitle', "Outcome-Based Education Tailored for Professional Mechanical Engineering Excellence")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || ME_DEPT_NAME} activeTab="Curriculum" tabs={ME_TABS} />
@@ -82,17 +58,17 @@ export default function MeCurriculum({ department, curricula }: Props) {
                         {department?.short_name || 'ME'} Course Curriculum
                     </h2>
                     <p className="text-gray-600 leading-relaxed text-lg">
-                        The Department of {department?.name || 'Mechanical Engineering'} at BAUST offers a rigorous 4-year undergraduate program. The syllabus is structured following Outcome-Based Education (OBE) principles aligned with the Board of Accreditation for Engineering and Technical Education (BAETE) under the Washington Accord.
+                        {pageText(department, 'curriculum_intro', `The ${department?.name || 'ME'} at BAUST offers a rigorous 4-year undergraduate program. The syllabus is structured following Outcome-Based Education (OBE) principles aligned with the Board of Accreditation for Engineering and Technical Education (BAETE) under the Washington Accord.`)}
                     </p>
                 </div>
 
                 {/* Quick Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
                     {[
-                        { icon: Clock, label: "Duration", value: "4 Years (8 Semesters)" },
-                        { icon: Award, label: "Total Credits", value: "163.0 Credits" },
-                        { icon: ShieldCheck, label: "Accreditation", value: "BAETE (Washington Accord)" },
-                        { icon: BookOpen, label: "Degree", value: `B.Sc. Engg. in ${department?.short_name || 'ME'}` }
+                        { icon: Clock, label: "Duration", value: primary?.duration || "4 Years (8 Semesters)" },
+                        { icon: Award, label: "Total Credits", value: primary?.credits || "163.0 Credits" },
+                        { icon: ShieldCheck, label: "Accreditation", value: department?.accreditation_badge || "BAETE (Washington Accord)" },
+                        { icon: BookOpen, label: "Degree", value: primary?.degree || `B.Sc. Engg. in ${shortName}` }
                     ].map((item, idx) => (
                         <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
@@ -115,7 +91,7 @@ export default function MeCurriculum({ department, curricula }: Props) {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {list.map((syllabus, idx) => {
-                            const fileUrl = getFileUrl(syllabus);
+                            const fileUrl = syllabus.file;
                             const highlights = Array.isArray(syllabus.highlights) ? syllabus.highlights : [];
 
                             return (
@@ -157,6 +133,7 @@ export default function MeCurriculum({ department, curricula }: Props) {
                                         )}
 
                                         {/* Actions */}
+                                        {fileUrl && (
                                         <div className="mt-auto flex flex-wrap gap-3">
                                             <a 
                                                 href={fileUrl}
@@ -176,11 +153,15 @@ export default function MeCurriculum({ department, curricula }: Props) {
                                                 Download PDF
                                             </a>
                                         </div>
+                                        )}
                                     </div>
                                 </div>
                             );
                         })}
                     </div>
+                    {list.length === 0 && (
+                        <p className="text-gray-400 text-center py-10">No curriculum documents published yet.</p>
+                    )}
                 </div>
 
                 {/* Additional Note */}
@@ -191,7 +172,7 @@ export default function MeCurriculum({ department, curricula }: Props) {
                     <div className="relative z-10 max-w-2xl">
                         <h3 className="text-2xl font-bold mb-4 italic">Outcome Based Education (OBE)</h3>
                         <p className="text-slate-400 leading-relaxed text-sm">
-                            The Mechanical Engineering curriculum is organized under the Washington Accord OBE model, ensuring that each graduate demonstrates measurable competencies in thermal-fluid systems, structural simulation, advanced CAD/CAM manufacturing, and sustainable engineering leadership.
+                            {pageText(department, 'curriculum_obe_note', 'The Mechanical Engineering curriculum is organized under the Washington Accord OBE model, ensuring that each graduate demonstrates measurable competencies in thermal-fluid systems, structural simulation, advanced CAD/CAM manufacturing, and sustainable engineering leadership.')}
                         </p>
                     </div>
                 </div>

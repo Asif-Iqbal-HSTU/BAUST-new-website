@@ -4,7 +4,8 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { CSE_TABS, CSE_DEPT_NAME, FacultyMember } from '@/data/cseData';
+import { CSE_TABS, CSE_DEPT_NAME, FacultyMember, type DeptInfo } from '@/data/cseData';
+import { pageText } from '@/lib/dept-icons';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
 
 function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
@@ -60,7 +61,7 @@ function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () =>
     );
 }
 
-export default function CseStaff({ staff }: { staff: FacultyMember[] }) {
+export default function CseStaff({ staff, department }: { staff: FacultyMember[]; department?: DeptInfo | null }) {
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
     const activeStaff = staff.filter(m => m.status !== 'ex_faculty');
@@ -85,17 +86,17 @@ export default function CseStaff({ staff }: { staff: FacultyMember[] }) {
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: '#f8fafc' }}>
-            <Head title="Academic Staff - CSE - BAUST" />
+            <Head title={`Academic Staff - ${department?.short_name || 'CSE'} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Computer Science and Engineering (CSE)" subtitle={null} compact={true} />
-            <DeptSubNav departmentName={CSE_DEPT_NAME} activeTab="Academic Staff" tabs={CSE_TABS} />
+            <PageHero title={department?.name || CSE_DEPT_NAME} subtitle={null} compact={true} />
+            <DeptSubNav departmentName={department?.short_name || CSE_DEPT_NAME} activeTab="Academic Staff" tabs={CSE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 
                 <div className="max-w-3xl mb-12">
                     <h1 className="text-3xl font-extrabold text-gray-900 mb-4 italic tracking-tight">Academic Staff</h1>
                     <p className="text-gray-600 text-lg">
-                        Meet our dedicated technical and administrative support team who ensure the smooth operation of our laboratories and academic activities.
+                        {pageText(department, 'staff_intro', 'Meet our dedicated technical and administrative support team who ensure the smooth operation of our laboratories and academic activities.')}
                     </p>
                 </div>
 

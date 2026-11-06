@@ -8,7 +8,9 @@
 # then build the frontend in the same image with a temporary Node toolchain,
 # then strip Node.
 # =============================================================================
-FROM php:8.4.27-fpm-alpine AS production
+FROM nginx:1.30.6-alpine AS nginx-security
+
+FROM php:8.4.27-fpm-alpine3.24 AS production
 
 # Metadata labels
 LABEL maintainer="BAUST IT" \
@@ -17,7 +19,6 @@ LABEL maintainer="BAUST IT" \
 
 # Install system dependencies and PHP extensions in a single layer
 RUN apk add --no-cache \
-        nginx \
         supervisor \
         libpng-dev \
         libjpeg-turbo-dev \
@@ -26,6 +27,7 @@ RUN apk add --no-cache \
         zip \
         unzip \
         curl \
+        pcre2 \
         oniguruma-dev \
         icu-dev \
         libxml2-dev \
@@ -42,6 +44,10 @@ RUN apk add --no-cache \
         intl \
         xml \
         opcache \
+    && addgroup -S nginx \
+    && adduser -S nginx -G nginx \
+    && mkdir -p /var/log/nginx /var/cache/nginx /var/run/nginx \
+    && chown -R nginx:nginx /var/log/nginx /var/cache/nginx /var/run/nginx \
     && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
 # Install Composer
@@ -60,7 +66,7 @@ RUN { \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini \
     && { \
         echo 'upload_max_filesize=64M'; \
-        echo 'post_max_size=64M'; \
+        echo 'post_max_size=100M'; \
         echo 'memory_limit=256M'; \
         echo 'max_execution_time=600'; \
         echo 'max_input_time=600'; \
@@ -69,9 +75,6 @@ RUN { \
         echo 'session.cookie_secure=1'; \
         echo 'session.use_strict_mode=1'; \
     } > /usr/local/etc/php/conf.d/custom.ini
-
-# Configure Nginx
-COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 
 # Configure Supervisor
 COPY docker/supervisord.conf /etc/supervisord.conf
@@ -94,16 +97,18 @@ COPY . .
 RUN composer dump-autoload --optimize
 
 # -----------------------------------------------------------------------------
-# Build frontend assets. Node is installed only for this step and removed after
-# so it never ships in the runtime image. A throwaway APP_KEY lets artisan boot
-# for `wayfinder:generate`; the real key is injected at runtime by the entrypoint.
+# Build frontend assets and the server-side rendering (SSR) bundle. npm and
+# node_modules are removed after the build; the node runtime stays to run the
+# self-contained SSR bundle (bootstrap/ssr). A throwaway APP_KEY lets artisan
+# boot for `wayfinder:generate`; the real key is injected at runtime.
 # -----------------------------------------------------------------------------
-RUN apk add --no-cache --virtual .build-node nodejs npm \
+RUN apk add --no-cache nodejs \
+    && apk add --no-cache --virtual .build-node npm \
     && export APP_KEY=base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA= \
     && export APP_ENV=production \
     && npm ci --ignore-scripts \
     && php artisan wayfinder:generate --with-form \
-    && npm run build \
+    && npm run build:ssr \
     && rm -rf node_modules \
     && apk del .build-node \
     && rm -rf /root/.npm /tmp/* /var/tmp/*
@@ -125,6 +130,11 @@ RUN mkdir -p \
 # Copy and set up entrypoint
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+
+COPY --from=nginx-security /usr/sbin/nginx /usr/sbin/nginx
+COPY --from=nginx-security /etc/nginx /etc/nginx
+COPY --from=nginx-security /usr/lib/nginx/modules /usr/lib/nginx/modules
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Health check for the container (Laravel /up endpoint)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \

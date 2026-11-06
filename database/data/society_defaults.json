@@ -1,0 +1,262 @@
+{
+ "ce": {
+  "esc": {
+   "member_count": "150+ Members",
+   "established": "2023",
+   "activities": [
+    {
+     "title": "Reuse of Plastic Materials Innovation Competition (18 Student Teams)",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Tree Plantation Drives & Campus Greening Campaigns",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Solid Waste Management & Circular Economy Workshops",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Sustainable Concrete & Eco-Brick Material Exhibitions",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Community Clean-Up and Environmental Awareness Initiatives",
+     "icon": null,
+     "description": null
+    }
+   ],
+   "committee": [
+    {
+     "role": "Chief Advisor",
+     "name": "Prof. Dr. Md. Mahmudul Hasan",
+     "designation": "Dean & Head of Department",
+     "image": null
+    },
+    {
+     "role": "Advisor",
+     "name": "Punom Roy",
+     "designation": "Lecturer, Dept. of Civil Engineering",
+     "image": null
+    },
+    {
+     "role": "Co-Advisor",
+     "name": "Md. Kamrul Hasan Kawsar",
+     "designation": "Lecturer, Dept. of Civil Engineering",
+     "image": null
+    },
+    {
+     "role": "President",
+     "name": "Md. Siam Ur Sadik Khan",
+     "designation": "17th Batch",
+     "image": null
+    },
+    {
+     "role": "Vice-President",
+     "name": "Md. Nahid Hassan",
+     "designation": "17th Batch",
+     "image": null
+    },
+    {
+     "role": "General Secretary",
+     "name": "Arifin Zahan Swarony",
+     "designation": "17th Batch",
+     "image": null
+    },
+    {
+     "role": "Treasurer",
+     "name": "Saklain Mahmud Jissan",
+     "designation": "19th Batch",
+     "image": null
+    },
+    {
+     "role": "Organizing Secretary",
+     "name": "Parvej Alam & Abdullah Al Nayem",
+     "designation": "19th & 20th Batch",
+     "image": null
+    },
+    {
+     "role": "Media & Publication Secretary",
+     "name": "Sultan Mohammad Mubin & Ovijit Kumar Datta",
+     "designation": "21st Batch",
+     "image": null
+    }
+   ]
+  },
+  "ceic": {
+   "member_count": "200+ Members",
+   "established": "2021",
+   "activities": [
+    {
+     "title": "Intra Dept. Drawing and CAD Contest (AutoCAD, Revit, ETABS)",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Bridge Building Model & Load-Bearing Competitions",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Structural Analysis & 3D Building Layout Workshops",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Sticker Design & Creative Branding Competitions",
+     "icon": null,
+     "description": null
+    },
+    {
+     "title": "Technical Seminars on Mega Infrastructure Projects in Bangladesh",
+     "icon": null,
+     "description": null
+    }
+   ],
+   "committee": [
+    {
+     "role": "Chief Advisor",
+     "name": "Prof. Dr. Md. Mahmudul Hasan",
+     "designation": "Dean & Head of Department",
+     "image": null
+    },
+    {
+     "role": "Faculty Advisor",
+     "name": "Md. Izharul Haque Azad",
+     "designation": "Assistant Professor",
+     "image": null
+    }
+   ]
+  },
+  "ce-alumni": {
+   "activities": [
+    {
+     "title": "Technical Seminars & Workshops",
+     "icon": null,
+     "description": "Regular technical sessions and industry tutorials with leading professional civil engineers."
+    },
+    {
+     "title": "Field Trips & Site Visits",
+     "icon": null,
+     "description": "Coordinating practical visits to ongoing megaprojects and civil infrastructure sites."
+    },
+    {
+     "title": "Job Fairs & Career Mentoring",
+     "icon": null,
+     "description": "Connecting fresh graduates with recruiters in consulting, government, and construction."
+    },
+    {
+     "title": "Reunions & Annual Picnics",
+     "icon": null,
+     "description": "Social and cultural gatherings strengthening unity and camaraderie among alumni batches."
+    },
+    {
+     "title": "Research & Innovation Support",
+     "icon": null,
+     "description": "Providing guidance and sponsorship for undergraduate thesis projects and research."
+    },
+    {
+     "title": "Community Service & Blood Drives",
+     "icon": null,
+     "description": "Participating in humanitarian initiatives, environmental cleanup, and emergency relief."
+    }
+   ],
+   "committee": [
+    {
+     "role": "President",
+     "name": "Md. Abu Helal",
+     "designation": "01795748743",
+     "image": null
+    },
+    {
+     "role": "Coordinator & Treasurer",
+     "name": "Zubair Reaz",
+     "designation": "01774516589",
+     "image": null
+    },
+    {
+     "role": "Vice President, Liaison & Public Relations",
+     "name": "Urnisha Roy Chowdhury",
+     "designation": "01792929263",
+     "image": null
+    },
+    {
+     "role": "Vice President, Research & Development",
+     "name": "Md. Abdul Malek",
+     "designation": "01837691013",
+     "image": null
+    },
+    {
+     "role": "Vice President, Member Relation",
+     "name": "Rifat Ara",
+     "designation": "01797734845",
+     "image": null
+    },
+    {
+     "role": "Secretary General",
+     "name": "Md. Waqar Ahmed Imteaz",
+     "designation": "01974604857",
+     "image": null
+    },
+    {
+     "role": "Secretary, Project Management",
+     "name": "Amit Sharma",
+     "designation": null,
+     "image": null
+    },
+    {
+     "role": "Secretary, Publication & Communication",
+     "name": "Md. Sayedur Rahman Mahin",
+     "designation": "01623455479",
+     "image": null
+    },
+    {
+     "role": "Joint Secretary General",
+     "name": "Md. Abu Syied Hasan",
+     "designation": "01319998499",
+     "image": null
+    },
+    {
+     "role": "Secretary, Finance",
+     "name": "Arpita Deb Roy",
+     "designation": "01777293767",
+     "image": null
+    },
+    {
+     "role": "Members of executive committee",
+     "name": "Sheikh Khoshruzzaman",
+     "designation": "+4407387912690",
+     "image": null
+    },
+    {
+     "role": "Members of executive committee",
+     "name": "Md. Arnob Karim",
+     "designation": "01098727325",
+     "image": null
+    },
+    {
+     "role": "Members of executive committee",
+     "name": "Md Abrar Jahin Tonu",
+     "designation": "01954411860",
+     "image": null
+    },
+    {
+     "role": "Members of executive committee",
+     "name": "Rahat Ali",
+     "designation": "01734160376",
+     "image": null
+    },
+    {
+     "role": "Members of executive committee",
+     "name": "Saumake ghosh",
+     "designation": "01772478449",
+     "image": null
+    }
+   ]
+  }
+ }
+}

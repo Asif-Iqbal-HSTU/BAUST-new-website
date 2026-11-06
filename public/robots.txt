@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /login
+
+Sitemap: https://baust.edu.bd/sitemap.xml

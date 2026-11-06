@@ -4,24 +4,9 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { IPE_TABS, IPE_DEPT_NAME, NOTICES, FacultyMember } from '@/data/ipeData';
-import { 
-    BadgeCheck, 
-    ChevronLeft, 
-    ChevronRight, 
-    Flame, 
-    Cpu, 
-    Wrench, 
-    Bot, 
-    Building2, 
-    GraduationCap, 
-    Sparkles, 
-    Target,
-    TrendingUp,
-    Network,
-    Activity,
-    Sliders
-} from 'lucide-react';
+import { IPE_TABS, IPE_DEPT_NAME, FacultyMember } from '@/data/ipeData';
+import { BadgeCheck, ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
+import { deptIcon, pageText } from '@/lib/dept-icons';
 
 interface SlideItem {
     id?: number;
@@ -56,6 +41,7 @@ interface DepartmentData {
     hod_designation?: string | null;
     hod_photo?: string | null;
     hod_message?: string | null;
+    page_texts?: Record<string, string> | null;
     slides?: SlideItem[];
     highlights?: HighlightItem[];
     stats?: any[];
@@ -68,79 +54,11 @@ interface Props {
     notices: any[];
 }
 
-const DEFAULT_SLIDES: SlideItem[] = [
-    { image: "/images/departments/ipe/slider/slide1.jpg", title: "B.Sc. in IPE is now IEB / BAETE Accredited Program of BAUST", caption: "Outcome-based education curriculum meeting international Washington Accord standards" },
-    { image: "/images/departments/ipe/slider/slide2.jpg", title: "Celebrating Prof. Dr. Imtiaz Ahmed Choudhury's Recognition Among the World's Top 2% Researchers", caption: "Excellence in research, publications and global academic leadership" },
-    { image: "/images/departments/ipe/slider/slide3.jpg", title: "IPE Faculty Members & Academic Leadership", caption: "Dedicated mentors shaping the future of industrial engineering" },
-    { image: "/images/departments/ipe/slider/slide4.jpg", title: "Respected Chief of Army Staff and Faculty Members", caption: "Institutional visits and guidance from university trustees" },
-    { image: "/images/departments/ipe/slider/slide5.jpg", title: "IPE Students with Adjunct Professor Dr. Abdullahil Azeem (BUET)", caption: "Distinguished guest lectures and interactive seminars" },
-    { image: "/images/departments/ipe/slider/slide6.jpg", title: "Industrial Visit at Ventura Leatherware Mfy (BD) Ltd.", caption: "Bridging academic theory with real-world plant operations" },
-    { image: "/images/departments/ipe/slider/slide7.jpg", title: "Seminar on Role of Industrial Engineers in Modern Economy", caption: "IEOM Student Chapter events fostering professional growth" },
-];
-
-const DEFAULT_HIGHLIGHTS = [
-    {
-        icon: 'TrendingUp',
-        title: 'Production Optimization & Lean Manufacturing',
-        description: 'Implementing Industry 4.0, Six Sigma, and Toyota Production System principles to eliminate waste and maximize shopfloor productivity.',
-    },
-    {
-        icon: 'Network',
-        title: 'Supply Chain & Operations Research',
-        description: 'Advanced mathematical modeling and optimization for logistics networks, inventory control, and enterprise decision-making.',
-    },
-    {
-        icon: 'Activity',
-        title: 'Ergonomics & Occupational Safety',
-        description: 'Human-centered workplace design, biomechanics analysis, and industrial safety compliance aligned with international standards.',
-    },
-    {
-        icon: 'Sliders',
-        title: 'CAD/CAM, CNC & Advanced Metrology',
-        description: 'Parametric 3D solid modeling, CNC automated toolpaths, and high-precision dimensional quality verification.',
-    },
-];
-
-function renderHighlightIcon(iconName?: string) {
-    const props = { className: "w-7 h-7" };
-    switch (iconName) {
-        case 'TrendingUp':
-            return <TrendingUp {...props} />;
-        case 'Network':
-            return <Network {...props} />;
-        case 'Activity':
-            return <Activity {...props} />;
-        case 'Sliders':
-            return <Sliders {...props} />;
-        case 'Flame':
-            return <Flame {...props} />;
-        case 'Cpu':
-            return <Cpu {...props} />;
-        case 'Wrench':
-            return <Wrench {...props} />;
-        case 'Bot':
-            return <Bot {...props} />;
-        case 'Building2':
-            return <Building2 {...props} />;
-        case 'Sparkles':
-            return <Sparkles {...props} />;
-        case 'Target':
-            return <Target {...props} />;
-        case 'GraduationCap':
-        default:
-            return <GraduationCap {...props} />;
-    }
-}
-
 export default function IpeHome({ department, headOfDept, facultyPreview = [], notices = [] }: Props) {
     const [isHeadMsgOpen, setIsHeadMsgOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const rawSlides: SlideItem[] = (department?.slides && department.slides.length > 0)
-        ? department.slides
-        : DEFAULT_SLIDES;
-
-    const slides: SlideItem[] = rawSlides.map(s => {
+    const slides: SlideItem[] = (department?.slides ?? []).map(s => {
         let img = s.image || '';
         img = img.replace('/images/ipe/slides/', '/images/departments/ipe/slider/');
         img = img.replace(/slide_(\d+)\.jpg/, 'slide$1.jpg');
@@ -150,20 +68,15 @@ export default function IpeHome({ department, headOfDept, facultyPreview = [], n
         };
     });
 
-    const highlights = (department?.highlights && department.highlights.length > 0)
-        ? department.highlights.map(h => ({
-            icon: h.icon || 'TrendingUp',
-            title: h.title,
-            description: h.text || h.description || '',
-        }))
-        : DEFAULT_HIGHLIGHTS;
-
-    const activeNotices = notices && notices.length > 0 ? notices : NOTICES.map((n, i) => ({
-        id: i,
-        title: n.title,
-        slug: '#',
-        published_at: `2026-02-${n.date}`
+    const highlights = (department?.highlights ?? []).map(h => ({
+        icon: h.icon,
+        title: h.title,
+        description: h.text || h.description || '',
     }));
+
+    const activeNotices = notices;
+    const deptName = department?.name || IPE_DEPT_NAME;
+    const shortName = department?.short_name || 'IPE';
 
     const goSlide = (dir: number) => setCurrentSlide((p) => (p + dir + slides.length) % slides.length);
 
@@ -197,18 +110,12 @@ export default function IpeHome({ department, headOfDept, facultyPreview = [], n
         }
     }, [isHeadMsgOpen]);
 
-    const hodName = headOfDept?.name || department?.hod_name || 'Dr. Md. Mamunur Rashid';
-    const hodDesignation = headOfDept?.designation || department?.hod_designation || 'Head of the Department';
-    const hodPhoto = headOfDept?.photo || department?.hod_photo || '/images/ipe/members/dr._md._mamunur_rashid.jpg';
-    const hodMessage = department?.hod_message || `Welcome to the Department of Industrial and Production Engineering (IPE) at Bangladesh Army University of Science and Technology (BAUST), Saidpur. Established in 2015, the Department of IPE has been striving to produce world-class engineers capable of solving complex industrial and operational challenges.
+    const hodName = department?.hod_name || headOfDept?.name || '';
+    const hodDesignation = department?.hod_designation || headOfDept?.designation || 'Head of the Department';
+    const hodPhoto = department?.hod_photo || headOfDept?.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(hodName || shortName)}&background=059669&color=fff&size=176`;
+    const hodMessage = department?.hod_message || '';
 
-Industrial and Production Engineering is a multi-disciplinary engineering field that integrates engineering design, manufacturing technology, supply chain management, human factors, and operations research to optimize production systems, enhance product quality, and drive economic growth.
-
-Our curriculum is designed in compliance with Outcome-Based Education (OBE) guidelines and accredited by BAETE under the Washington Accord. With 12 dedicated laboratories, state-of-the-art computational facilities, and active student chapters like IEOM, we prepare students to lead in competitive global markets.
-
-We welcome aspiring engineers to join us and embark on an exciting and fulfilling educational journey.`;
-
-    const hodMessageParagraphs = hodMessage.split('\n\n').filter(Boolean);
+    const hodMessageParagraphs = hodMessage.split(/\r?\n\s*\r?\n|\\n\\n/).map(p => p.trim()).filter(Boolean);
 
     const accreditationBadge = department?.accreditation_badge || 'BAETE Accredited';
     const accreditationTitle = department?.accreditation_title || 'Accredited by the Board of Accreditation for Engineering and Technical Education (BAETE)';
@@ -216,16 +123,22 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
 
     return (
         <div className="min-h-screen flex flex-col font-['Inter',sans-serif]" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Department of IPE - BAUST" />
+            <Head title={`${deptName} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Industrial and Production Engineering (IPE)" subtitle={null} compact={true} />
-            <DeptSubNav departmentName={IPE_DEPT_NAME} activeTab="Home" tabs={IPE_TABS} />
+            <PageHero title={deptName} subtitle={pageText(department, 'home_hero_subtitle', '') || null} compact={true} />
+            <DeptSubNav departmentName={deptName} activeTab="Home" tabs={IPE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
 
                 {/* Highlights Slider + Accreditation, side by side */}
                 <section className="grid lg:grid-cols-3 gap-6 items-stretch">
                     <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
+                        {slides.length === 0 && (
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 to-emerald-950 flex flex-col justify-end p-6 sm:p-10">
+                                <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug max-w-3xl">{deptName}</h3>
+                                {department?.tagline && <p className="text-emerald-100 text-xs sm:text-sm mt-1 max-w-2xl">{department.tagline}</p>}
+                            </div>
+                        )}
                         {slides.map((slide, idx) => (
                             <div
                                 key={idx}
@@ -253,6 +166,7 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                                 </div>
                             </div>
                         ))}
+                        {slides.length > 1 && <>
                         <button type="button" onClick={() => goSlide(-1)} aria-label="Previous" className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100">
                             <ChevronLeft className="w-6 h-6" />
                         </button>
@@ -270,6 +184,7 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                                 />
                             ))}
                         </div>
+                        </>}
                     </div>
 
                     {/* Accreditation card */}
@@ -313,13 +228,13 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                                     <p className="text-xs text-emerald-700 font-semibold mt-0.5">{hodDesignation}</p>
                                 </div>
                                 <div className="flex-1 text-gray-600 text-[15px] leading-relaxed text-justify relative">
-                                    <p className="mb-4">
-                                        {hodMessageParagraphs[0] || 'Welcome to the Department of Industrial and Production Engineering (IPE) at BAUST.'}
-                                    </p>
-                                    <p className="line-clamp-6">
-                                        {hodMessageParagraphs[1] || 'Industrial and Production Engineering integrates modern manufacturing, operations research, quality control, and supply chain logistics to prepare students for top leadership roles.'}
-                                    </p>
-                                    <div className="mt-4 flex justify-end">
+                                    {hodMessageParagraphs[0] && (
+                                        <p className="mb-4">{hodMessageParagraphs[0]}</p>
+                                    )}
+                                    {hodMessageParagraphs[1] && (
+                                        <p className="line-clamp-6">{hodMessageParagraphs[1]}</p>
+                                    )}
+                                    {hodMessageParagraphs.length > 0 && <div className="mt-4 flex justify-end">
                                         <button 
                                             onClick={() => setIsHeadMsgOpen(false || true)}
                                             className="text-emerald-700 font-bold hover:underline flex items-center gap-1 group"
@@ -327,7 +242,7 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                                             Read full message
                                             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                                         </button>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
@@ -345,12 +260,15 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                                 <Link href="/archive/notices?department=ipe" className="text-xs text-emerald-700 font-bold hover:underline cursor-pointer">View All →</Link>
                             </div>
                             <div className="space-y-3">
+                                {activeNotices.length === 0 && (
+                                    <p className="text-sm text-gray-400 text-center py-8">No notices published yet.</p>
+                                )}
                                 {activeNotices.map((notice, idx) => {
                                     const { day, month } = formatDate(notice.published_at);
                                     return (
                                         <Link 
                                             key={idx} 
-                                            href={notice.slug && notice.slug !== '#' ? `/archive/notices/${notice.slug}` : '/archive/notices?department=ipe'}
+                                            href={notice.slug ? `/archive/notices/${notice.slug}` : '/archive/notices?department=ipe'}
                                             className="flex items-start gap-4 p-3 rounded-xl hover:bg-gray-50 transition-all group border border-transparent hover:border-gray-100"
                                         >
                                             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex flex-col items-center justify-center group-hover:scale-105 transition-transform">
@@ -371,22 +289,22 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                 </div>
 
                 {/* Why IPE at BAUST? */}
-                <div>
+                {highlights.length > 0 && <div>
                     <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
-                        Why IPE at <span className="text-emerald-700">BAUST</span>?
+                        Why {shortName} at <span className="text-emerald-700">BAUST</span>?
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {highlights.map((item, idx) => (
                             <div key={idx} className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                                    {renderHighlightIcon(item.icon)}
+                                    {(() => { const Icon = deptIcon(item.icon, GraduationCap); return <Icon className="w-7 h-7" />; })()}
                                 </div>
                                 <h3 className="text-[15px] font-bold text-gray-900 mb-2">{item.title}</h3>
                                 <p className="text-[13px] text-gray-500 leading-relaxed">{item.description}</p>
                             </div>
                         ))}
                     </div>
-                </div>
+                </div>}
 
                 {/* Faculty Preview */}
                 <div>
@@ -445,7 +363,7 @@ We welcome aspiring engineers to join us and embark on an exciting and fulfillin
                                     <p className="font-bold text-gray-900 mt-2">{hodName}</p>
                                     <p className="text-sm text-emerald-700 font-semibold">{hodDesignation}</p>
                                     <p className="text-[13px] text-gray-500 mt-1">
-                                        Department of IPE, BAUST
+                                        {deptName}, BAUST
                                     </p>
                                 </div>
                             </div>

@@ -49,11 +49,3 @@ export interface FacultyMember {
     publications?: string | null;
     department?: string;
 }
-
-export const NOTICES = [
-    { date: '19', month: 'Feb', title: 'Publication of Results Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '05', month: 'Feb', title: 'Final Examination Result of Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '25', month: 'Jan', title: ' বাউস্ট, ইইই বিভাগের ৬ষ্ঠ, ৭ম ব্যাচের শিক্ষার্থীরা সৈয়দপুর রেলওয়ে ওয়ার্কসপে শিক্ষাসফর' },
-    { date: '12', month: 'Jan', title: 'Solar Photovoltaic Systems for Sustainable Development in Bangladesh' },
-    { date: '08', month: 'Jan', title: 'Prospect of Antenna Research' },
-];

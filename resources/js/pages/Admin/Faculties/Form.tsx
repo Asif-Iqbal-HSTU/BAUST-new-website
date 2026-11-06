@@ -24,21 +24,24 @@ interface Faculty {
     phone: string | null;
     email: string | null;
     department_slugs: string[] | null;
-    order: number;
+    order: number | null;
 }
 
 interface Props {
     faculty: Faculty | null;
     departments: DeptItem[];
+    /** Super admin only: URL slug, department list and the faculties index. Focal points edit the page content. */
+    canEditStructure?: boolean;
 }
 
-export default function Form({ faculty, departments = [] }: Props) {
+export default function Form({ faculty, departments = [], canEditStructure = true }: Props) {
     const isEdit = !!faculty;
+    const backHref = canEditStructure ? index().url : '/dashboard';
 
     const breadcrumbs: BreadcrumbItem[] = [
         { title: 'Dashboard', href: '/dashboard' },
-        { title: "Dean's Offices / Faculties", href: index().url },
-        { title: isEdit ? 'Edit Faculty' : 'Add Faculty', href: '#' },
+        ...(canEditStructure ? [{ title: "Dean's Offices / Faculties", href: index().url }] : []),
+        { title: isEdit ? (canEditStructure ? 'Edit Faculty' : `${faculty?.code ?? ''} Dean's Page`) : 'Add Faculty', href: '#' },
     ];
 
     const { data, setData, post, processing, errors } = useForm({
@@ -55,7 +58,7 @@ export default function Form({ faculty, departments = [] }: Props) {
         phone: faculty?.phone || '',
         email: faculty?.email || '',
         department_slugs: faculty?.department_slugs || ([] as string[]),
-        order: faculty?.order ?? 0,
+        order: faculty?.order ?? null,
     });
 
     const toggleDepartment = (slug: string) => {
@@ -93,11 +96,11 @@ export default function Form({ faculty, departments = [] }: Props) {
                         </p>
                     </div>
                     <Link
-                        href={index()}
+                        href={backHref}
                         className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border border-gray-300 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors shadow-xs"
                     >
                         <ArrowLeft className="w-3.5 h-3.5" />
-                        <span>Back to Faculties</span>
+                        <span>{canEditStructure ? 'Back to Faculties' : 'Back to Dashboard'}</span>
                     </Link>
                 </div>
 
@@ -136,7 +139,8 @@ export default function Form({ faculty, departments = [] }: Props) {
                                         placeholder="Auto-generated from code if left blank"
                                         value={data.slug}
                                         onChange={e => setData('slug', e.target.value.toLowerCase())}
-                                        className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                                        disabled={!canEditStructure}
+                                        className="disabled:cursor-not-allowed disabled:opacity-60 w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                                     />
                                     {errors.slug && <p className="text-xs text-red-500 font-semibold">{errors.slug}</p>}
                                 </div>
@@ -197,15 +201,7 @@ export default function Form({ faculty, departments = [] }: Props) {
                                         className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
                                     />
                                 </div>
-                                <div className="space-y-1.5">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300">Display Order</label>
-                                    <input
-                                        type="number"
-                                        value={data.order}
-                                        onChange={e => setData('order', parseInt(e.target.value || '0', 10))}
-                                        className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
-                                    />
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -251,6 +247,7 @@ export default function Form({ faculty, departments = [] }: Props) {
                                                 key={d.slug}
                                                 type="button"
                                                 onClick={() => toggleDepartment(d.slug)}
+                                                disabled={!canEditStructure}
                                                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer border ${
                                                     isSelected
                                                         ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
@@ -263,6 +260,7 @@ export default function Form({ faculty, departments = [] }: Props) {
                                         );
                                     })}
                                 </div>
+                                {!canEditStructure && <p className="text-[11px] text-gray-400">The URL and the department list are set by the super admin.</p>}
                                 {errors.department_slugs && <p className="text-xs text-red-500 font-semibold">{errors.department_slugs}</p>}
                             </div>
                         </div>
@@ -311,7 +309,7 @@ export default function Form({ faculty, departments = [] }: Props) {
                     {/* Action Bar */}
                     <div className="sticky bottom-4 z-20 p-4 rounded-2xl bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border border-gray-300 dark:border-neutral-800 shadow-xl flex items-center justify-end gap-3">
                         <Link
-                            href={index()}
+                            href={backHref}
                             className="px-4 py-2.5 rounded-xl border border-gray-300 dark:border-neutral-700 text-gray-700 dark:text-gray-300 text-xs font-bold hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                         >
                             Cancel

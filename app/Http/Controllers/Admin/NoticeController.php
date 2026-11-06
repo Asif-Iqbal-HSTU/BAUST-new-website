@@ -19,7 +19,9 @@ class NoticeController extends Controller
         $query = Notice::query()->with('categories');
 
         if ($user->isDeptAdmin()) {
-            $query->where('department', $user->department);
+            $query->whereIn('department', $user->manageableDepartmentSlugs());
+        } elseif ($user->isAdmissionAdmin()) {
+            $query->whereNull('department')->inCategory('admission-notice');
         } elseif ($user->isPro()) {
             $query->where(function ($q) {
                 $q->whereNull('department')->orWhere('department', '')->orWhereHas('categories', function ($c) {
@@ -46,16 +48,27 @@ class NoticeController extends Controller
         ]);
     }
 
+    /** Departments offered in the notice form: all, or the ones a focal point manages. */
+    private function departmentOptions($user)
+    {
+        $query = Department::orderBy('name');
+        if ($user->isDeptAdmin()) {
+            $query->whereIn('slug', $user->manageableDepartmentSlugs());
+        }
+
+        return $query->get(['slug', 'name', 'short_name']);
+    }
+
     public function create()
     {
         $user = auth()->user();
 
         return Inertia::render('Admin/Notices/Form', [
             'notice' => null,
-            'categories' => NoticeCategory::orderBy('order')->get(),
-            'departments' => Department::orderBy('name')->get(['slug', 'name', 'short_name']),
+            'categories' => NoticeCategory::when($user->isAdmissionAdmin(), fn ($q) => $q->where('slug', 'admission-notice'))->orderBy('order')->get(),
+            'departments' => $this->departmentOptions($user),
             'prCategorySlugs' => Notice::PR_CATEGORY_SLUGS,
-            'canPickDepartment' => $user->isSuperAdmin() || $user->isPro(),
+            'canPickDepartment' => $user->isSuperAdmin() || $user->isPro() || count($user->manageableDepartmentSlugs()) > 1,
         ]);
     }
  
@@ -94,6 +107,12 @@ class NoticeController extends Controller
 
         $validated = $request->validate($rules);
 
+        if ($user->isAdmissionAdmin()) {
+            // The Admission admin publishes university-wide Admission Notices only.
+            $validated['category_ids'] = [NoticeCategory::where('slug', 'admission-notice')->value('id')];
+            $validated['department'] = null;
+        }
+
         if ($user->isPro() && !empty($validated['department'])) {
             $picksPrCategory = collect($validated['category_ids'] ?? [])
                 ->intersect(NoticeCategory::whereIn('slug', Notice::PR_CATEGORY_SLUGS)->pluck('id'))
@@ -110,7 +129,9 @@ class NoticeController extends Controller
         unset($data['category_ids'], $data['attachment_file'], $data['attachment_url'], $data['coverages']);
 
         if ($user->isDeptAdmin()) {
-            $data['department'] = $user->department;
+            // Their department or a program of their faculty (e.g. MBA); never university-wide.
+            $picked = $request->input('department');
+            $data['department'] = in_array($picked, $user->manageableDepartmentSlugs(), true) ? $picked : $user->department;
         } elseif (($user->isSuperAdmin() || $user->isPro()) && empty($data['department'])) {
             $data['department'] = null;
         }
@@ -196,10 +217,10 @@ class NoticeController extends Controller
 
         return Inertia::render('Admin/Notices/Form', [
             'notice' => $notice->load(['categories', 'pressCoverages']),
-            'categories' => NoticeCategory::orderBy('order')->get(),
-            'departments' => Department::orderBy('name')->get(['slug', 'name', 'short_name']),
+            'categories' => NoticeCategory::when($user->isAdmissionAdmin(), fn ($q) => $q->where('slug', 'admission-notice'))->orderBy('order')->get(),
+            'departments' => $this->departmentOptions($user),
             'prCategorySlugs' => Notice::PR_CATEGORY_SLUGS,
-            'canPickDepartment' => $user->isSuperAdmin() || $user->isPro(),
+            'canPickDepartment' => $user->isSuperAdmin() || $user->isPro() || count($user->manageableDepartmentSlugs()) > 1,
         ]);
     }
 
@@ -242,6 +263,12 @@ class NoticeController extends Controller
 
         $validated = $request->validate($rules);
 
+        if ($user->isAdmissionAdmin()) {
+            // The Admission admin publishes university-wide Admission Notices only.
+            $validated['category_ids'] = [NoticeCategory::where('slug', 'admission-notice')->value('id')];
+            $validated['department'] = null;
+        }
+
         if ($user->isPro() && !empty($validated['department'])) {
             $picksPrCategory = collect($validated['category_ids'] ?? [])
                 ->intersect(NoticeCategory::whereIn('slug', Notice::PR_CATEGORY_SLUGS)->pluck('id'))
@@ -258,7 +285,9 @@ class NoticeController extends Controller
         unset($data['category_ids'], $data['attachment_file'], $data['attachment_url'], $data['coverages']);
 
         if ($user->isDeptAdmin()) {
-            $data['department'] = $user->department;
+            // Their department or a program of their faculty (e.g. MBA); never university-wide.
+            $picked = $request->input('department');
+            $data['department'] = in_array($picked, $user->manageableDepartmentSlugs(), true) ? $picked : $user->department;
         } elseif (($user->isSuperAdmin() || $user->isPro()) && empty($data['department'])) {
             $data['department'] = null;
         }

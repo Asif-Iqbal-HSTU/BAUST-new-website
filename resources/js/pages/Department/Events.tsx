@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
 import DeptPageShell from '@/custom_components/DeptPageShell';
-import { DeptPageProps, deptBase, deptShort } from '@/data/departmentData';
+import { DeptInfo, DeptPageProps, deptBase, deptShort } from '@/data/departmentData';
+import { pageText } from '@/lib/dept-icons';
 import { Calendar, MapPin, Clock, ArrowRight, ExternalLink, Megaphone } from 'lucide-react';
 
 interface Notice {
@@ -14,7 +15,12 @@ interface Notice {
     categories?: { name: string; slug: string }[];
 }
 
-export default function DepartmentEvents({ department, tabs, events }: DeptPageProps & { events: Notice[] }) {
+interface Props extends DeptPageProps {
+    department: DeptInfo & { page_texts?: Record<string, string> | null };
+    events: Notice[];
+}
+
+export default function DepartmentEvents({ department, tabs, events }: Props) {
     const base = deptBase(department);
     const short = deptShort(department);
 
@@ -25,7 +31,7 @@ export default function DepartmentEvents({ department, tabs, events }: DeptPageP
             activeTab="Events"
             title={`News & Events - ${short}`}
             heroTitle="News & Events"
-            heroSubtitle="Stay Updated with Departmental Highlights"
+            heroSubtitle={pageText(department, 'events_intro', 'Stay Updated with Departmental Highlights')}
         >
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

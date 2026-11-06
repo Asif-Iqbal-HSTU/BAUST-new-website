@@ -29,42 +29,14 @@ interface Props {
     plos?: ObeItem[];
 }
 
-const DEFAULT_PEOS: ObeItem[] = [
-    { code: 'PEO-1', title: 'Technical Competence', description: 'Graduates will be competent to provide effective solutions to civil engineering problems by applying appropriate knowledge, skills, and tools.' },
-    { code: 'PEO-2', title: 'Ethical & Sustainable Practice', description: 'Graduates will responsibly practice civil engineering by integrating sustainability, safety, economic feasibility, and ethical values to meet societal needs.' },
-    { code: 'PEO-3', title: 'Leadership & Teamwork', description: 'Graduates will demonstrate communication, leadership, teamwork, and project management skills in multidisciplinary and diverse professional environments.' },
-    { code: 'PEO-4', title: 'Lifelong Learning', description: 'Graduates will engage in lifelong learning through higher studies, professional training, research, or entrepreneurship to address emerging technologies and evolving challenges for professional advancement.' },
-];
-
-const DEFAULT_PLOS: ObeItem[] = [
-    { code: 'PLO1', title: 'Engineering knowledge', description: 'Apply the knowledge of mathematics, science, engineering fundamentals and an engineering specialization to the solution of complex civil engineering problems.' },
-    { code: 'PLO2', title: 'Problem analysis', description: 'Identify, formulate, research literature and analyze complex civil engineering problems reaching substantiated conclusions using first principles of mathematics, natural sciences and engineering sciences.' },
-    { code: 'PLO3', title: 'Design/development of solutions', description: 'Design solutions for complex civil engineering problems and design system components or processes that meet the specified needs with appropriate consideration for public health and safety, cultural, societal, and environmental considerations.' },
-    { code: 'PLO4', title: 'Investigation', description: 'Conduct investigations of complex problems considering design of experiments, analysis and interpretation of data, and synthesis of information to provide valid conclusions.' },
-    { code: 'PLO5', title: 'Modern tool usage', description: 'Create, select and apply appropriate techniques, resources, and modern engineering and IT tools, including prediction and modeling to complex civil engineering activities with an understanding of the limitations.' },
-    { code: 'PLO6', title: 'The engineer and society', description: 'Apply reasoning informed by the contextual knowledge to assess societal, health, safety, legal and cultural issues and the consequent responsibilities relevant to the professional engineering practice.' },
-    { code: 'PLO7', title: 'Environment and sustainability', description: 'Understand the impact of the professional civil engineering solutions in societal and environmental contexts, and demonstrate the knowledge of, and need for sustainable development.' },
-    { code: 'PLO8', title: 'Ethics', description: 'Apply ethical principles and commit to professional ethics, responsibilities and norms of the civil engineering practice.' },
-    { code: 'PLO9', title: 'Individual and team work', description: 'Function effectively as an individual, and as a member or leader in diverse teams, and in multidisciplinary settings.' },
-    { code: 'PLO10', title: 'Communication', description: 'Communicate effectively on complex civil engineering activities with the engineering community and with society at large, such as being able to comprehend and write effective reports, design documentation, make effective presentations, and give and receive clear instructions.' },
-    { code: 'PLO11', title: 'Project management and finance', description: 'Demonstrate knowledge and understanding of the engineering and management principles and apply these to one’s own work, as a member and leader in a team, to manage projects and in multidisciplinary environments.' },
-    { code: 'PLO12', title: 'Life-long learning', description: 'Recognize the need for, and have the preparation and ability to engage in independent and life-long learning in the broadest context of technological change.' },
-];
-
-const DEFAULT_VISION = "To become a recognized center of excellence through producing Civil Engineering professionals inculcating morality, ethics, and discipline, and fitted for industry and academia to ensure sustainable development.";
-
-const DEFAULT_MISSION = `1. To ensure a dynamic, student-centered learning environment with state-of-the-art facilities in Civil Engineering, including basic sciences and management.
-2. To provide opportunities that bridge theoretical knowledge with real-time projects and industrial activities, contributing to the sustainable development of society.
-3. To conduct advanced, inter- and multi-disciplinary research in collaboration with industries and other academia to address contemporary challenges.
-4. To foster students’ engagement in lifelong learning, cultivating appreciation for diversity, tolerance, ethics, and morality.`;
-
 export default function CeVisionMission({ department, peos: peosProp, plos: plosProp }: Props) {
-    const activePeos = (peosProp && peosProp.length > 0) ? peosProp : DEFAULT_PEOS;
-    const activePlos = (plosProp && plosProp.length > 0) ? plosProp : DEFAULT_PLOS;
+    const activePeos = peosProp ?? [];
+    const activePlos = plosProp ?? [];
+    const shortName = department?.short_name || 'CE';
 
-    const visionText = department?.vision || DEFAULT_VISION;
-    const missionText = department?.mission || DEFAULT_MISSION;
-    const missionPoints = missionText.split('\n').filter(Boolean);
+    const visionText = department?.vision || '';
+    const missionText = department?.mission || '';
+    const missionPoints = missionText.split(/\r?\n|\\n/).filter(pt => pt.trim().length > 0);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -76,7 +48,7 @@ export default function CeVisionMission({ department, peos: peosProp, plos: plos
             <main className="flex-grow w-full max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-10">
 
                 {/* Department Vision & Mission */}
-                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                {(visionText || missionPoints.length > 0) && <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                     <div className="h-2 w-full bg-gradient-to-r from-emerald-500 via-green-400 to-emerald-600" />
                     <div className="p-8 lg:p-12">
                         <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -104,10 +76,10 @@ export default function CeVisionMission({ department, peos: peosProp, plos: plos
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>}
 
                 {/* Program Educational Objectives (PEOs) */}
-                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                {activePeos.length > 0 && <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                     <div className="h-2 w-full bg-gradient-to-r from-emerald-500 via-green-400 to-emerald-600" />
                     <div className="p-8 lg:p-12">
                         <div className="mb-8">
@@ -116,7 +88,7 @@ export default function CeVisionMission({ department, peos: peosProp, plos: plos
                                 Program Educational Objectives (PEOs)
                             </h2>
                             <p className="text-sm text-gray-500 mt-1">
-                                Four years after graduation, the graduates of the B.Sc. in Civil Engineering program are expected to attain the following:
+                                Four years after graduation, the graduates of the {shortName} undergraduate program are expected to attain the following:
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -137,10 +109,10 @@ export default function CeVisionMission({ department, peos: peosProp, plos: plos
                             ))}
                         </div>
                     </div>
-                </div>
+                </div>}
 
                 {/* Program Learning Outcomes (PLOs) */}
-                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                {activePlos.length > 0 && <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                     <div className="h-2 w-full bg-gradient-to-r from-emerald-500 via-green-400 to-emerald-600" />
                     <div className="p-8 lg:p-12">
                         <div className="mb-8">
@@ -149,7 +121,7 @@ export default function CeVisionMission({ department, peos: peosProp, plos: plos
                                 Program Learning Outcomes (PLOs)
                             </h2>
                             <p className="text-sm text-gray-500 mt-1">
-                                The B.Sc. in Civil Engineering program prepares students to attain the following 12 Washington Accord graduate attributes upon graduation:
+                                The {shortName} undergraduate program prepares students to attain the following {activePlos.length} Washington Accord graduate attributes upon graduation:
                             </p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -170,7 +142,7 @@ export default function CeVisionMission({ department, peos: peosProp, plos: plos
                             ))}
                         </div>
                     </div>
-                </div>
+                </div>}
 
             </main>
             <Footer />

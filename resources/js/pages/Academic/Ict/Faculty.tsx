@@ -4,10 +4,10 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { ICT_TABS, ICT_DEPT_NAME, FacultyMember } from '@/data/ictData';
+import { ICT_TABS, ICT_DEPT_NAME, FacultyMember, type DeptInfo } from '@/data/ictData';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
 
-type CategoryFilter = 'all' | 'professor' | 'associate_professor' | 'assistant_professor' | 'lecturer';
+type CategoryFilter = 'all' | 'professor' | 'associate_professor' | 'assistant_professor' | 'lecturer' | 'teaching_assistant';
 
 const CATEGORY_LABELS: Record<CategoryFilter, string> = {
     all: 'All',
@@ -15,6 +15,7 @@ const CATEGORY_LABELS: Record<CategoryFilter, string> = {
     associate_professor: 'Associate Professors',
     assistant_professor: 'Assistant Professors',
     lecturer: 'Lecturers',
+    teaching_assistant: 'Teaching Assistants',
 };
 
 function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
@@ -80,13 +81,6 @@ function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () 
     );
 }
 
-interface DeptInfo {
-    id: number;
-    name: string;
-    short_name: string;
-    slug: string;
-}
-
 export default function IctFaculty({ department, members }: { department?: DeptInfo | null; members: FacultyMember[] }) {
     const [filter, setFilter] = useState<CategoryFilter>('all');
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
@@ -101,6 +95,7 @@ export default function IctFaculty({ department, members }: { department?: DeptI
         associate_professor: members.filter(m => m.category === 'associate_professor').length,
         assistant_professor: members.filter(m => m.category === 'assistant_professor').length,
         lecturer: members.filter(m => m.category === 'lecturer').length,
+        teaching_assistant: members.filter(m => m.category === 'teaching_assistant').length,
     };
 
     const permanentFaculty = filtered.filter(m => m.type === 'permanent' && m.status === 'active');
@@ -149,16 +144,16 @@ export default function IctFaculty({ department, members }: { department?: DeptI
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Faculty Members - ICT - BAUST" />
+            <Head title={`Faculty Members - ${department?.short_name || 'ICT'} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Information and Communication Technology (ICT)" subtitle={null} compact={true} />
+            <PageHero title={department?.name || ICT_DEPT_NAME} subtitle={null} compact={true} />
             <DeptSubNav departmentName={department?.name || ICT_DEPT_NAME} activeTab="Faculty Members" tabs={ICT_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
                 {/* Category Filter */}
                 <div className="flex flex-wrap items-center gap-2 mb-10 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm w-fit">
-                    {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).map((key) => (
+                    {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).filter((key) => key !== 'teaching_assistant' || counts.teaching_assistant > 0).map((key) => (
                         <button
                             key={key}
                             onClick={() => setFilter(key)}

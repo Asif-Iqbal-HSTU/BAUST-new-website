@@ -4,65 +4,22 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { EEE_TABS, EEE_DEPT_NAME, NOTICES, FacultyMember } from '@/data/eeeData';
-import {
-    ChevronLeft,
-    ChevronRight,
-    Cpu,
-    BookOpen,
-    Award,
-    Briefcase,
-    GraduationCap,
-    FlaskConical,
-    Users,
-    Globe,
-    Building2,
-    Lightbulb,
-    Layers,
-    Target,
-    Trophy,
-    ShieldCheck,
-    Sparkles,
-    Zap,
-} from 'lucide-react';
-
-const ICON_MAP: Record<string, React.ReactNode> = {
-    Cpu: <Cpu className="w-7 h-7" />,
-    BookOpen: <BookOpen className="w-7 h-7" />,
-    Award: <Award className="w-7 h-7" />,
-    Briefcase: <Briefcase className="w-7 h-7" />,
-    GraduationCap: <GraduationCap className="w-7 h-7" />,
-    FlaskConical: <FlaskConical className="w-7 h-7" />,
-    Users: <Users className="w-7 h-7" />,
-    Globe: <Globe className="w-7 h-7" />,
-    Building2: <Building2 className="w-7 h-7" />,
-    Lightbulb: <Lightbulb className="w-7 h-7" />,
-    Layers: <Layers className="w-7 h-7" />,
-    Target: <Target className="w-7 h-7" />,
-    Trophy: <Trophy className="w-7 h-7" />,
-    ShieldCheck: <ShieldCheck className="w-7 h-7" />,
-    Sparkles: <Sparkles className="w-7 h-7" />,
-    Zap: <Zap className="w-7 h-7" />,
-};
-
-function renderHighlightIcon(name?: string | null) {
-    if (name && ICON_MAP[name]) return ICON_MAP[name];
-    return <Zap className="w-7 h-7" />;
-}
+import { EEE_TABS, EEE_DEPT_NAME, FacultyMember } from '@/data/eeeData';
+import { deptIcon, pageText } from '@/lib/dept-icons';
+import { ChevronLeft, ChevronRight, Zap } from 'lucide-react';
 
 interface SlideItem {
     id?: number;
     image: string;
     title?: string | null;
-    subtitle?: string | null;
-    badge?: string | null;
+    caption?: string | null;
 }
 
 interface HighlightItem {
     id?: number;
     icon?: string | null;
     title: string;
-    description: string;
+    text?: string | null;
 }
 
 interface StatItem {
@@ -89,6 +46,7 @@ interface DeptInfo {
     hod_designation?: string | null;
     hod_photo?: string | null;
     hod_message?: string | null;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -100,40 +58,6 @@ interface Props {
     facultyPreview: FacultyMember[];
     notices: any[];
 }
-
-const DEFAULT_SLIDES: SlideItem[] = [
-    { image: "/images/eee/slides/freshers_reception_farewell_2026.jpg", title: "Fresher's Reception & Farewell Program-2026" },
-    { image: "/images/eee/slides/creative_mind_expo_2.jpg", title: "BAUST Creative Mind Expo 2.0" },
-    { image: "/images/eee/slides/industrial_visit.jpg", title: "Industrial Visit" },
-    { image: "/images/eee/slides/faculty_students_with_vc.jpg", title: "Faculty and Students with Honorable Vice Chancellor" },
-    { image: "/images/eee/slides/faculty_members_eee.jpg", title: "Faculty Members of Dept. of EEE" },
-    { image: "/images/eee/slides/cultural_night.jpg", title: "Cultural Night" },
-    { image: "/images/eee/slides/obe_training_program.jpg", title: "OBE Training Program, Dept. of EEE" },
-    { image: "/images/eee/slides/symposium.jpg", title: "Symposium" },
-];
-
-const DEFAULT_HIGHLIGHTS: HighlightItem[] = [
-    {
-        icon: 'Award',
-        title: 'BAETE Accredited OBE Curriculum',
-        description: 'Washington Accord aligned Outcome Based Education ensuring global mobility and IEB recognition for graduates.',
-    },
-    {
-        icon: 'Cpu',
-        title: '11 State-of-the-Art Laboratories',
-        description: 'Comprehensive facilities in power systems, electrical machines, switchgear protection, electronics, and digital signal processing.',
-    },
-    {
-        icon: 'Zap',
-        title: 'Active IEEE Student Branch & Research',
-        description: 'Regular technical symposiums, research publishing in IEEE conferences, and inter-university project exhibitions.',
-    },
-    {
-        icon: 'Briefcase',
-        title: 'Direct Industry & Power Sector Partnerships',
-        description: 'Hands-on industrial tours to power plants, railway electrical workshops, and high-voltage grid substations.',
-    },
-];
 
 export default function EeeHome({
     department,
@@ -147,14 +71,10 @@ export default function EeeHome({
     const [isHeadMsgOpen, setIsHeadMsgOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const slides = dbSlides && dbSlides.length > 0 ? dbSlides : DEFAULT_SLIDES;
-    const highlights = dbHighlights && dbHighlights.length > 0 ? dbHighlights : DEFAULT_HIGHLIGHTS;
-    const stats = dbStats && dbStats.length > 0 ? dbStats : [
-        { label: 'Current Students', value: '450+', icon: 'Users' },
-        { label: 'Faculty & Staff', value: '35+', icon: 'GraduationCap' },
-        { label: 'Modern Laboratories', value: '11', icon: 'Cpu' },
-        { label: 'Career Placement', value: '96%', icon: 'Award' },
-    ];
+    const slides = dbSlides ?? [];
+    const highlights = dbHighlights ?? [];
+    const stats = dbStats ?? [];
+    const shortName = department?.short_name || 'EEE';
 
     const goSlide = (dir: number) => setCurrentSlide((p) => (p + dir + slides.length) % slides.length);
     useEffect(() => {
@@ -163,12 +83,7 @@ export default function EeeHome({
         return () => clearInterval(iv);
     }, [slides.length]);
 
-    const activeNotices = notices && notices.length > 0 ? notices : NOTICES.map((n, i) => ({
-        id: i,
-        title: n.title,
-        slug: '#',
-        published_at: `2026-02-${n.date}`,
-    }));
+    const activeNotices = notices ?? [];
 
     const formatDate = (dateStr: string) => {
         try {
@@ -194,45 +109,38 @@ export default function EeeHome({
         }
     }, [isHeadMsgOpen]);
 
-    const hodName = department?.hod_name || headOfDept?.name || 'Dr. Mst. Rubina Aktar';
-    const hodDesignation = department?.hod_designation || headOfDept?.designation || 'Associate Professor and Head';
-    const hodPhoto = department?.hod_photo || headOfDept?.photo || '/images/eee/members/mst_rubina_aktar.jpg';
-    const hodMessage = department?.hod_message || `Welcome to the Department of Electrical and Electronic Engineering (EEE) at Bangladesh Army University of Science and Technology (BAUST), Saidpur.
+    // Profile (admin "Profile" tab) first, then the member flagged as head.
+    const hodName = department?.hod_name || headOfDept?.name || '';
+    const hodDesignation = department?.hod_designation || headOfDept?.designation || '';
+    const hodPhoto = department?.hod_photo || headOfDept?.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(hodName || shortName)}&background=059669&color=fff&size=144`;
+    const hodMessage = department?.hod_message || '';
 
-Since our inception in 2015, we have been dedicated to providing a vibrant academic environment where students gain sound technical mastery and ethical values. With a faculty of seasoned educators and young researchers, together with eleven well-equipped modern laboratories, we offer students hands-on exposure to power generation, smart grids, electronic instrumentation, wireless communication, and embedded systems.
-
-Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchmarks, ensuring our graduates are ready for demanding careers in both national infrastructure and global technology sectors. I invite you to explore our department and join us in shaping the sustainable electrical future of our nation.`;
-
-    const hodMessageParagraphs = hodMessage.split('\n\n').filter(Boolean);
+    const hodMessageParagraphs = hodMessage.split(/(?:\r?\n|\\n)\s*(?:\r?\n|\\n)/).map((p) => p.trim()).filter(Boolean);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Department of EEE - BAUST" />
+            <Head title={`Department of ${shortName} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Electrical and Electronic Engineering (EEE)" subtitle={null} compact={true} />
+            <PageHero title={department?.name || EEE_DEPT_NAME} subtitle={pageText(department, 'home_hero_subtitle', department?.tagline || '') || null} compact={true} />
             <DeptSubNav departmentName={department?.name || EEE_DEPT_NAME} activeTab="Home" tabs={EEE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
 
                 {/* Highlights Slider + intro card */}
                 <section className="grid lg:grid-cols-3 gap-6 items-stretch">
+                    {slides.length > 0 && (
                     <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
                         {slides.map((slide, idx) => (
                             <div key={idx} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
                                 <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10">
-                                    {slide.badge && (
-                                        <span className="inline-block px-3 py-1 bg-emerald-500/80 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider rounded-full mb-2">
-                                            {slide.badge}
-                                        </span>
-                                    )}
                                     <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">
                                         {slide.title}
                                     </h3>
-                                    {slide.subtitle && (
+                                    {slide.caption && (
                                         <p className="text-emerald-100 text-xs sm:text-sm mt-1 max-w-2xl drop-shadow line-clamp-1">
-                                            {slide.subtitle}
+                                            {slide.caption}
                                         </p>
                                     )}
                                 </div>
@@ -254,14 +162,15 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                             </>
                         )}
                     </div>
-                    <div className="lg:col-span-1 bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                    )}
+                    <div className={`${slides.length > 0 ? 'lg:col-span-1' : 'lg:col-span-3'} bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col`}>
                         <div className="h-1.5 bg-gradient-to-r from-emerald-500 via-green-400 to-emerald-600" />
                         <div className="p-7 flex flex-col flex-grow justify-center">
                             <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center mb-5">
                                 <Zap className="w-9 h-9 text-emerald-600" strokeWidth={2} />
                             </div>
                             <span className="w-fit bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full mb-3">
-                                {department?.accreditation_badge || 'IEB-BAETE'}
+                                {department?.accreditation_badge || 'OBE Curriculum'}
                             </span>
                             <h3 className="text-lg font-bold text-gray-900 leading-snug">
                                 {department?.accreditation_title || 'Nurturing Electrical & Electronic Technical Excellence'}
@@ -298,12 +207,13 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                                     <p className="text-xs text-emerald-700 font-semibold mt-0.5 text-center">{hodDesignation}</p>
                                 </div>
                                 <div className="flex-1 text-gray-600 text-[15px] leading-relaxed text-justify relative">
-                                    <p className="mb-4">
-                                        Welcome to the Department of Electrical and Electronic Engineering (EEE) at BAUST.
-                                    </p>
-                                    <p className="line-clamp-6">
-                                        {hodMessageParagraphs[1] || hodMessageParagraphs[0] || hodMessage}
-                                    </p>
+                                    {hodMessageParagraphs[0] && (
+                                        <p className="mb-4">{hodMessageParagraphs[0]}</p>
+                                    )}
+                                    {hodMessageParagraphs[1] && (
+                                        <p className="line-clamp-6">{hodMessageParagraphs[1]}</p>
+                                    )}
+                                    {hodMessageParagraphs.length > 0 && (
                                     <div className="mt-4 flex justify-end">
                                         <button 
                                             onClick={() => setIsHeadMsgOpen(true)}
@@ -313,6 +223,7 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                                             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                                         </button>
                                     </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -332,12 +243,15 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                                 </Link>
                             </div>
                             <div className="space-y-2.5">
+                                {activeNotices.length === 0 && (
+                                    <p className="text-sm text-gray-400 py-6 text-center">No notices published yet.</p>
+                                )}
                                 {activeNotices.slice(0, 5).map((notice: any) => {
                                     const { day, month } = formatDate(notice.published_at);
                                     return (
                                         <Link
                                             key={notice.id}
-                                            href={notice.slug !== '#' ? `/eee/events/${notice.slug}` : '#'}
+                                            href={`/eee/events/${notice.slug}`}
                                             className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-emerald-50/50 transition-colors group cursor-pointer border border-transparent hover:border-emerald-100"
                                         >
                                             <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-emerald-100 text-emerald-800 flex flex-col items-center justify-center font-bold text-xs leading-tight group-hover:bg-emerald-600 group-hover:text-white transition-colors">
@@ -356,30 +270,36 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                 </div>
 
                 {/* Key Pillars / Highlights */}
+                {highlights.length > 0 && (
                 <div>
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                             <span className="w-1.5 h-6 bg-emerald-500 rounded-full" />
-                            Why Study EEE at BAUST?
+                            Why Study {shortName} at BAUST?
                         </h2>
                         <Link href="/eee/about" className="text-sm text-emerald-700 font-semibold hover:underline">
                             Explore Department Details →
                         </Link>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {highlights.map((hl, idx) => (
+                        {highlights.map((hl, idx) => {
+                            const Icon = deptIcon(hl.icon, Zap);
+                            return (
                             <div key={idx} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
                                 <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                    {renderHighlightIcon(hl.icon)}
+                                    <Icon className="w-7 h-7" />
                                 </div>
                                 <h3 className="text-base font-bold text-gray-900 mb-2 leading-snug">{hl.title}</h3>
-                                <p className="text-xs text-gray-500 leading-relaxed flex-grow">{hl.description}</p>
+                                <p className="text-xs text-gray-500 leading-relaxed flex-grow">{hl.text}</p>
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
+                )}
 
                 {/* Stats Section */}
+                {stats.length > 0 && (
                 <div className="bg-gradient-to-r from-emerald-800 to-teal-900 rounded-3xl p-8 sm:p-10 text-white shadow-xl">
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-emerald-700/50">
                         {stats.map((stat, idx) => (
@@ -390,6 +310,7 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                         ))}
                     </div>
                 </div>
+                )}
 
                 {/* Faculty Preview */}
                 <div>
@@ -453,7 +374,7 @@ Our curriculum is fully aligned with BAETE Outcome Based Education (OBE) benchma
                                     <p className="font-bold text-gray-900 mt-2">{hodName}</p>
                                     <p className="text-sm text-emerald-700 font-semibold">{hodDesignation}</p>
                                     <p className="text-[13px] text-gray-500 mt-1">
-                                        Department of EEE, BAUST
+                                        Department of {shortName}, BAUST
                                     </p>
                                 </div>
                             </div>

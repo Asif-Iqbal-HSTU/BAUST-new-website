@@ -5,6 +5,7 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
+import { pageText } from '@/lib/dept-icons';
 import { GraduationCap, Users, UserCheck, FileText, Search, Download, Eye, ExternalLink } from 'lucide-react';
 
 interface ThesisItem {
@@ -14,6 +15,9 @@ interface ThesisItem {
     students_info?: string | null;
     pdf_file?: string | null;
     year?: string | null;
+    category?: string | null;
+    authors?: string | null;
+    link?: string | null;
     order: number;
 }
 
@@ -22,6 +26,7 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -35,7 +40,8 @@ export default function CeThesisProjects({ department, theses = [] }: Props) {
     const filtered = theses.filter(t => 
         t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (t.supervisor && t.supervisor.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (t.students_info && t.students_info.toLowerCase().includes(searchTerm.toLowerCase()))
+        (t.students_info && t.students_info.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (t.authors && t.authors.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
     return (
@@ -44,7 +50,7 @@ export default function CeThesisProjects({ department, theses = [] }: Props) {
             <Navbar />
             <PageHero 
                 title="Undergraduate Thesis Projects" 
-                subtitle="Capstone Research & Final Year Dissertations of Civil Engineering Graduates" 
+                subtitle={pageText(department, 'thesis_subtitle', `Capstone Research & Final Year Dissertations of ${department?.short_name || 'CE'} Graduates`)} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Research" tabs={CE_TABS} />
@@ -62,7 +68,7 @@ export default function CeThesisProjects({ department, theses = [] }: Props) {
                             Undergraduate Thesis & Research Innovations
                         </h2>
                         <p className="text-emerald-100/90 text-sm sm:text-base mt-4 leading-relaxed text-justify">
-                            Final year Civil Engineering students conduct intensive experimental and analytical investigations under dedicated faculty supervision, solving real-world infrastructure, materials, water management, and transportation challenges in Bangladesh.
+                            {pageText(department, 'thesis_intro', 'Final year Civil Engineering students conduct intensive experimental and analytical investigations under dedicated faculty supervision, solving real-world infrastructure, materials, water management, and transportation challenges in Bangladesh.')}
                         </p>
                     </div>
                 </div>
@@ -98,7 +104,7 @@ export default function CeThesisProjects({ department, theses = [] }: Props) {
                                             #{idx + 1}
                                         </span>
                                         <span className="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100/60 uppercase tracking-wider">
-                                            Capstone Thesis
+                                            {[item.category || 'Capstone Thesis', item.year].filter(Boolean).join(' · ')}
                                         </span>
                                     </div>
 
@@ -107,6 +113,16 @@ export default function CeThesisProjects({ department, theses = [] }: Props) {
                                     </h3>
 
                                     <div className="pt-3 border-t border-gray-100 space-y-2.5 text-xs text-gray-600">
+                                        {item.authors && (
+                                            <div className="flex items-start gap-2.5">
+                                                <Users className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <span className="font-bold text-gray-800">Authors: </span>
+                                                    <span>{item.authors}</span>
+                                                </div>
+                                            </div>
+                                        )}
+
                                         {item.students_info && (
                                             <div className="flex items-start gap-2.5">
                                                 <Users className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
@@ -139,6 +155,16 @@ export default function CeThesisProjects({ department, theses = [] }: Props) {
                                         >
                                             <FileText className="w-3.5 h-3.5" />
                                             <span>View Abstract PDF</span>
+                                        </a>
+                                    ) : item.link ? (
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-700 shadow-md shadow-emerald-200 transition-all"
+                                        >
+                                            <ExternalLink className="w-3.5 h-3.5" />
+                                            <span>View Project</span>
                                         </a>
                                     ) : (
                                         <span className="text-[11px] text-gray-400 italic">Abstract document on file</span>

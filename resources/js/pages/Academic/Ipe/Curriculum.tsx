@@ -6,6 +6,7 @@ import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { IPE_TABS, IPE_DEPT_NAME } from '@/data/ipeData';
 import { FileText, Download, Eye, BookOpen, Clock, Award, ShieldCheck } from 'lucide-react';
+import { pageText } from '@/lib/dept-icons';
 
 interface CurriculumItem {
     id?: number;
@@ -24,6 +25,8 @@ interface DeptInfo {
     slug: string;
     name: string;
     short_name: string;
+    accreditation_badge?: string | null;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
@@ -31,44 +34,11 @@ interface Props {
     curricula?: CurriculumItem[];
 }
 
-const DEFAULT_SYLLABI: CurriculumItem[] = [
-    {
-        year: "Summer 2026 Onwards",
-        title: "B.Sc. in Industrial and Production Engineering (OBE Updated)",
-        file: "/storage/departments/ipe-syllabus-summer-2026-and-onwards.pdf",
-        description: "Latest Outcome-Based Education (OBE) curriculum integrating modern supply chain analytics, additive manufacturing, smart ergonomics, and digital simulation.",
-        highlights: ["Outcome-Based Education (OBE) Framework", "160.0 Total Credit Hours across 8 Semesters", "Compliant with BAETE & Washington Accord Accreditation"]
-    },
-    {
-        year: "Winter 2021 Onwards",
-        title: "B.Sc. in Industrial and Production Engineering Syllabus",
-        file: "/storage/departments/ipe-syllabus-winter-2021-and-onwards.pdf",
-        description: "Undergraduate curriculum covering operations research, manufacturing processes, and quality control systems.",
-        highlights: ["Applied Operations Research & Optimization", "Ergonomics and Safety Engineering", "Lean Six Sigma Fundamentals"]
-    },
-    {
-        year: "Winter 2020 Onwards",
-        title: "B.Sc. in Industrial and Production Engineering Syllabus",
-        file: "/storage/departments/ipe-syllabus-winter-2020-and-onwards.pdf",
-        description: "Program curriculum for students enrolled from Winter 2020.",
-        highlights: ["Computer Aided Manufacturing (CAM)", "Industrial Management & Economics", "Plant Layout & Material Handling"]
-    },
-    {
-        year: "Batch 2016 to 2019",
-        title: "B.Sc. in Industrial and Production Engineering Syllabus",
-        file: "/storage/departments/ipe-syllabus-batch-2016-to-2019.pdf",
-        description: "Foundation undergraduate curriculum for inaugural batches 2016 through 2019.",
-        highlights: ["Core Production Engineering Principles", "Thermal and Electrical Machine Labs", "Capstone Thesis and Design Project"]
-    }
-];
-
 export default function IpeCurriculum({ department, curricula }: Props) {
-    const list = (curricula && curricula.length > 0) ? curricula : DEFAULT_SYLLABI;
-
-    const getFileUrl = (item: CurriculumItem) => {
-        if (item.file) return item.file;
-        return "/storage/departments/ipe-syllabus-summer-2026-and-onwards.pdf";
-    };
+    const list = curricula ?? [];
+    const first = list[0];
+    const shortName = department?.short_name || 'IPE';
+    const deptName = department?.name || 'Department of Industrial and Production Engineering';
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -76,7 +46,7 @@ export default function IpeCurriculum({ department, curricula }: Props) {
             <Navbar />
             <PageHero 
                 title={`${department?.short_name || 'IPE'} Academic Curriculum`} 
-                subtitle="Outcome-Based Education Tailored for Professional Industrial Systems Excellence" 
+                subtitle={pageText(department, 'curriculum_subtitle', "Outcome-Based Education Tailored for Professional Industrial Systems Excellence")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || IPE_DEPT_NAME} activeTab="Curriculum" tabs={IPE_TABS} />
@@ -89,17 +59,17 @@ export default function IpeCurriculum({ department, curricula }: Props) {
                         {department?.short_name || 'IPE'} Course Curriculum
                     </h2>
                     <p className="text-gray-600 leading-relaxed text-lg">
-                        The Department of {department?.name || 'Industrial and Production Engineering'} at BAUST offers a rigorous 4-year undergraduate program. The syllabus is structured following Outcome-Based Education (OBE) principles aligned with the Board of Accreditation for Engineering and Technical Education (BAETE) under the Washington Accord.
+                        {pageText(department, 'curriculum_intro', `The ${deptName} at BAUST offers a rigorous 4-year undergraduate program. The syllabus is structured following Outcome-Based Education (OBE) principles aligned with the Board of Accreditation for Engineering and Technical Education (BAETE) under the Washington Accord.`)}
                     </p>
                 </div>
 
                 {/* Quick Info Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
                     {[
-                        { icon: Clock, label: "Duration", value: "4 Years (8 Semesters)" },
-                        { icon: Award, label: "Total Credits", value: "160.0 Credits" },
-                        { icon: ShieldCheck, label: "Accreditation", value: "BAETE (Washington Accord)" },
-                        { icon: BookOpen, label: "Degree", value: `B.Sc. Engg. in ${department?.short_name || 'IPE'}` }
+                        { icon: Clock, label: "Duration", value: first?.duration || "4 Years (8 Semesters)" },
+                        { icon: Award, label: "Total Credits", value: first?.credits || "160.0 Credits" },
+                        { icon: ShieldCheck, label: "Accreditation", value: department?.accreditation_badge || "BAETE (Washington Accord)" },
+                        { icon: BookOpen, label: "Degree", value: first?.degree || `B.Sc. Engg. in ${shortName}` }
                     ].map((item, idx) => (
                         <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600">
@@ -120,9 +90,13 @@ export default function IpeCurriculum({ department, curricula }: Props) {
                         <div className="h-px flex-grow bg-gradient-to-r from-gray-200 to-transparent" />
                     </div>
 
+                    {list.length === 0 && (
+                        <p className="text-center text-gray-400 py-12">No curriculum documents have been published yet.</p>
+                    )}
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {list.map((syllabus, idx) => {
-                            const fileUrl = getFileUrl(syllabus);
+                            const fileUrl = syllabus.file;
                             const highlights = Array.isArray(syllabus.highlights) ? syllabus.highlights : [];
 
                             return (
@@ -164,7 +138,7 @@ export default function IpeCurriculum({ department, curricula }: Props) {
                                         )}
 
                                         {/* Actions */}
-                                        <div className="mt-auto flex flex-wrap gap-3">
+                                        {fileUrl && <div className="mt-auto flex flex-wrap gap-3">
                                             <a 
                                                 href={fileUrl}
                                                 target="_blank"
@@ -182,7 +156,7 @@ export default function IpeCurriculum({ department, curricula }: Props) {
                                                 <Download size={16} />
                                                 Download PDF
                                             </a>
-                                        </div>
+                                        </div>}
                                     </div>
                                 </div>
                             );
@@ -198,7 +172,7 @@ export default function IpeCurriculum({ department, curricula }: Props) {
                     <div className="relative z-10 max-w-2xl">
                         <h3 className="text-2xl font-bold mb-4 italic">Outcome Based Education (OBE)</h3>
                         <p className="text-slate-400 leading-relaxed text-sm">
-                            The Industrial and Production Engineering curriculum is organized under the Washington Accord OBE model, ensuring that each graduate demonstrates measurable competencies in smart production systems, supply chain analytics, operations research, and industrial ergonomic design.
+                            {pageText(department, 'curriculum_obe_note', `The ${shortName} curriculum is organized under the Washington Accord OBE model, ensuring that each graduate demonstrates measurable competencies in smart production systems, supply chain analytics, operations research, and industrial ergonomic design.`)}
                         </p>
                     </div>
                 </div>

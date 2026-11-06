@@ -182,7 +182,7 @@ const FACILITIES: FacilityItem[] = [
         badge: 'Trust Bank & ATM',
         title: 'Bank Facility',
         description: 'Convenient on-campus banking booth and automated teller machine (ATM) ensuring seamless fee payment and financial transactions.',
-        image: '/images/hero/hero-4.jpg',
+        image: '/images/facilities/bank_facility.jpeg',
         link: '/facilities',
         buttonText: 'Banking Services',
         icon: Landmark,

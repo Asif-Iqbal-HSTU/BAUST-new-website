@@ -5,48 +5,73 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import { GraduationCap, BookOpen, Clock, Users, ExternalLink, Info, CheckCircle2 } from "lucide-react";
 
-export default function OfferedPrograms() {
-    const undergradPrograms = [
-        { sl: 1, name: "B.Sc. Engineering in Computer Science and Engineering (CSE)", credits: 161 },
-        { sl: 2, name: "B.Sc. Engineering in Electrical and Electronic Engineering (EEE)", credits: 161 },
-        { sl: 3, name: "B.Sc. Engineering in Mechanical Engineering (ME)", credits: 160 },
-        { sl: 4, name: "B.Sc. Engineering in Industrial and Production Engineering (IPE)", credits: 160 },
-        { sl: 5, name: "B.Sc. Engineering in Civil Engineering (CE)", credits: 160 },
-        { sl: 6, name: "B.Sc. Engineering in Information and Communication Technology (ICT)", credits: 160 },
-        { sl: 7, name: "Bachelor of Business Administration (BBA)", credits: 140 },
-        { sl: 8, name: "BBA in Accounting & Information Systems (AIS)", credits: 132 },
-        { sl: 9, name: "B.A. (Hons) in English", credits: 140 },
-    ];
+export interface OfferedProgramsContent {
+    browser_title: string;
+    hero: { title: string; subtitle: string };
+    intro: { heading: string; text: string };
+    undergraduate: {
+        heading: string;
+        subheading: string;
+        serial_column: string;
+        name_column: string;
+        credits_column: string;
+        credits_suffix: string;
+        programs: { name: string; credits: number | string }[];
+    };
+    graduate: {
+        heading: string;
+        subheading: string;
+        credits_label: string;
+        programs: { name: string; credits: string; duration: string }[];
+    };
+    admission_overview: {
+        heading: string;
+        lead: string;
+        capacity_text: string;
+        capacity_highlight: string;
+        footnote: string;
+    };
+    apply_cta: { heading: string; text: string; button_label: string; button_url: string };
+}
 
-    const graduatePrograms = [
-        { sl: 1, name: "Executive MBA (EMBA)", credits: "48 Credit", duration: "1.5 Years (3 Semesters)" },
-        { sl: 2, name: "MBA Regular (For BBA Graduate)", credits: "36 Credit", duration: "1 Year (2 Semesters)" },
-        { sl: 3, name: "MBA (For Other Graduate)", credits: "60 Credit", duration: "2 Years (4 Semesters)" },
-        { sl: 4, name: "MA in English (ELT)", credits: "36 Credit", duration: "1 Year (2 Semesters)" },
-    ];
+/** Renders `text`, wrapping the first occurrence of `phrase` with `wrap`. */
+function withHighlight(text: string, phrase: string, wrap: (p: string) => React.ReactNode): React.ReactNode {
+    const at = phrase ? text.indexOf(phrase) : -1;
+    if (at < 0) return text;
+    return (
+        <>
+            {text.slice(0, at)}
+            {wrap(phrase)}
+            {text.slice(at + phrase.length)}
+        </>
+    );
+}
+
+export default function OfferedPrograms({ content }: { content: OfferedProgramsContent }) {
+    const { hero, intro, undergraduate, graduate, admission_overview: overview, apply_cta: cta } = content;
 
     return (
         <div className="min-h-screen flex flex-col font-sans bg-slate-50">
-            <Head title="Offered Programs - BAUST" />
+            <Head title={`${content.browser_title} - BAUST`} />
 
             {/* Navigation */}
             <Navbar />
 
             {/* Page Header */}
-            <PageHero title="Offered Programs" subtitle="Academic Degrees & Courses" />
+            <PageHero title={hero.title} subtitle={hero.subtitle} />
 
             {/* Main Content Area */}
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                
+
                 <div className="max-w-4xl mx-auto mb-16 text-center">
-                    <h2 className="text-3xl font-bold text-slate-900 mb-6">Explore Our Academic Degrees</h2>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-6">{intro.heading}</h2>
                     <p className="text-lg text-slate-600 leading-relaxed">
-                        Bangladesh Army University of Science and Technology (BAUST) is offering a wide range of undergraduate and graduate programs designed to prepare students for the challenges of the modern world.
+                        {intro.text}
                     </p>
                 </div>
 
                 <div className="space-y-20">
-                    
+
                     {/* Undergraduate Programs Section */}
                     <section>
                         <div className="flex items-center space-x-4 mb-8">
@@ -54,8 +79,8 @@ export default function OfferedPrograms() {
                                 <GraduationCap size={28} />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-slate-900">Undergraduate Programs</h3>
-                                <p className="text-slate-500 text-sm">4-Year Degree Programs (8 Semesters)</p>
+                                <h3 className="text-2xl font-bold text-slate-900">{undergraduate.heading}</h3>
+                                <p className="text-slate-500 text-sm">{undergraduate.subheading}</p>
                             </div>
                         </div>
 
@@ -64,15 +89,15 @@ export default function OfferedPrograms() {
                                 <table className="w-full text-left border-collapse">
                                     <thead>
                                         <tr className="bg-slate-50 border-b border-slate-100">
-                                            <th className="px-8 py-5 text-sm font-black uppercase tracking-wider text-slate-500">Sl. No.</th>
-                                            <th className="px-8 py-5 text-sm font-black uppercase tracking-wider text-slate-500">Program Name</th>
-                                            <th className="px-8 py-5 text-sm font-black uppercase tracking-wider text-slate-500 text-right">Total Credits</th>
+                                            <th className="px-8 py-5 text-sm font-black uppercase tracking-wider text-slate-500">{undergraduate.serial_column}</th>
+                                            <th className="px-8 py-5 text-sm font-black uppercase tracking-wider text-slate-500">{undergraduate.name_column}</th>
+                                            <th className="px-8 py-5 text-sm font-black uppercase tracking-wider text-slate-500 text-right">{undergraduate.credits_column}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-50">
-                                        {undergradPrograms.map((program) => (
-                                            <tr key={program.sl} className="hover:bg-emerald-50/30 transition-colors group">
-                                                <td className="px-8 py-5 text-slate-500 font-medium">{program.sl.toString().padStart(2, '0')}</td>
+                                        {undergraduate.programs.map((program, idx) => (
+                                            <tr key={idx} className="hover:bg-emerald-50/30 transition-colors group">
+                                                <td className="px-8 py-5 text-slate-500 font-medium">{(idx + 1).toString().padStart(2, '0')}</td>
                                                 <td className="px-8 py-5">
                                                     <div className="flex items-center space-x-3">
                                                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -81,7 +106,7 @@ export default function OfferedPrograms() {
                                                 </td>
                                                 <td className="px-8 py-5 text-right">
                                                     <span className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-sm font-bold">
-                                                        {program.credits} Credits
+                                                        {program.credits} {undergraduate.credits_suffix}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -99,17 +124,17 @@ export default function OfferedPrograms() {
                                 <BookOpen size={28} />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-slate-900">Graduate Programs</h3>
-                                <p className="text-slate-500 text-sm">Postgraduate & Professional Degrees</p>
+                                <h3 className="text-2xl font-bold text-slate-900">{graduate.heading}</h3>
+                                <p className="text-slate-500 text-sm">{graduate.subheading}</p>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {graduatePrograms.map((program) => (
-                                <div key={program.sl} className="bg-white p-6 rounded-3xl shadow-lg shadow-slate-200/40 border border-slate-100 hover:border-emerald-200 hover:shadow-emerald-100/50 transition-all group">
+                            {graduate.programs.map((program, idx) => (
+                                <div key={idx} className="bg-white p-6 rounded-3xl shadow-lg shadow-slate-200/40 border border-slate-100 hover:border-emerald-200 hover:shadow-emerald-100/50 transition-all group">
                                     <div className="flex justify-between items-start mb-4">
                                         <div className="bg-slate-50 text-slate-400 font-black p-2 rounded-xl text-xs group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
-                                            #{program.sl}
+                                            #{idx + 1}
                                         </div>
                                         <div className="flex items-center space-x-2 text-emerald-600 text-xs font-bold uppercase tracking-widest">
                                             <Clock size={14} />
@@ -121,7 +146,7 @@ export default function OfferedPrograms() {
                                         <div className="p-1 bg-slate-100 rounded-md text-slate-400">
                                             <CheckCircle2 size={14} />
                                         </div>
-                                        <span>Required: <b className="text-slate-700">{program.credits}</b></span>
+                                        <span>{graduate.credits_label} <b className="text-slate-700">{program.credits}</b></span>
                                     </div>
                                 </div>
                             ))}
@@ -130,7 +155,7 @@ export default function OfferedPrograms() {
 
                     {/* Admission Info Cards */}
                     <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-8">
-                        
+
                         {/* Capacity Info */}
                         <div className="lg:col-span-2 bg-[#0f5132] text-white p-8 md:p-10 rounded-[40px] shadow-2xl relative overflow-hidden group">
                             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
@@ -141,20 +166,24 @@ export default function OfferedPrograms() {
                                     <span className="p-2 bg-white/10 rounded-lg mr-4">
                                         <Info size={24} />
                                     </span>
-                                    Admission Overview
+                                    {overview.heading}
                                 </h3>
                                 <div className="space-y-6 text-emerald-50/80 leading-relaxed">
                                     <p className="text-lg font-medium text-white">
-                                        The admission process at BAUST is highly competitive and merit-based.
+                                        {overview.lead}
                                     </p>
                                     <p>
-                                        Each department currently accepts only <strong className="text-emerald-300">100 students*</strong> in each semester to maintain the highest quality of education and personalized attention.
+                                        {withHighlight(overview.capacity_text, overview.capacity_highlight, (p) => (
+                                            <strong className="text-emerald-300">{p}</strong>
+                                        ))}
                                     </p>
-                                    <div className="pt-6 border-t border-white/10">
-                                        <p className="text-xs italic opacity-70">
-                                            *3 percent of the total seats are reserved for children of Freedom Fighters, and another 3 percent for meritorious candidates from remote and underdeveloped areas.
-                                        </p>
-                                    </div>
+                                    {overview.footnote && (
+                                        <div className="pt-6 border-t border-white/10">
+                                            <p className="text-xs italic opacity-70">
+                                                {overview.footnote}
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -165,16 +194,16 @@ export default function OfferedPrograms() {
                                 <ExternalLink size={40} />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-2">Ready to Apply?</h3>
-                                <p className="text-slate-500 text-sm mb-8">Start your journey with BAUST today by filling out our online form.</p>
+                                <h3 className="text-xl font-bold text-slate-900 mb-2">{cta.heading}</h3>
+                                <p className="text-slate-500 text-sm mb-8">{cta.text}</p>
                             </div>
-                            <a 
-                                href="http://admission.baust.edu.bd" 
+                            <a
+                                href={cta.button_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 rounded-2xl font-bold transition-all shadow-lg shadow-emerald-600/20 active:scale-95 flex items-center justify-center space-x-2"
                             >
-                                <span>Apply Online</span>
+                                <span>{cta.button_label}</span>
                                 <ExternalLink size={18} />
                             </a>
                         </div>

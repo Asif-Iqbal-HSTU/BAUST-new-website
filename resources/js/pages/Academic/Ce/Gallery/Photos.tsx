@@ -6,6 +6,7 @@ import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME } from '@/data/ceData';
 import { Camera, Image as ImageIcon, X, Maximize2 } from 'lucide-react';
+import { pageText } from '@/lib/dept-icons';
 
 interface GalleryAlbum {
     id: number;
@@ -67,7 +68,7 @@ export default function CeGalleryPhotos({ department, albums = [] }: Props) {
             <Navbar />
             <PageHero 
                 title="Photo Gallery" 
-                subtitle="Field Camps, State-of-the-Art Laboratories, Student Life & Departmental Events" 
+                subtitle={pageText(department, 'gallery_subtitle', "Field Camps, State-of-the-Art Laboratories, Student Life & Departmental Events")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Gallery" tabs={CE_TABS} />

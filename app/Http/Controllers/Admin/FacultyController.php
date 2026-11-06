@@ -47,27 +47,41 @@ class FacultyController extends Controller
             $count++;
         }
         $data['slug'] = $slug;
+        $data['order'] ??= (int) Faculty::max('order') + 1;
 
         Faculty::create($data);
 
         return redirect()->route('admin.faculties.index')->with('success', 'Faculty created successfully.');
     }
 
+    /** Super admin, or a focal point of one of the faculty's departments (its Dean's page). */
     public function edit(Faculty $faculty)
     {
+        abort_unless(auth()->user()->canManageFaculty($faculty->slug), 403);
+
         return Inertia::render('Admin/Faculties/Form', [
             'faculty' => $faculty,
             'departments' => Department::orderBy('name')->get(['slug', 'name', 'short_name']),
+            'canEditStructure' => auth()->user()->isSuperAdmin(),
         ]);
     }
 
     public function update(Request $request, Faculty $faculty)
     {
+        $user = auth()->user();
+        abort_unless($user->canManageFaculty($faculty->slug), 403);
+
         $data = $this->validated($request, $faculty);
         $data['slug'] = $data['slug'] ?: $faculty->slug;
+        if (! $user->isSuperAdmin()) {
+            // The URL and which departments belong (and so who may edit) stay with the super admin.
+            unset($data['slug'], $data['department_slugs']);
+        }
         $faculty->update($data);
 
-        return redirect()->route('admin.faculties.index')->with('success', 'Faculty updated successfully.');
+        return $user->isSuperAdmin()
+            ? redirect()->route('admin.faculties.index')->with('success', 'Faculty updated successfully.')
+            : back()->with('success', "Dean's page updated successfully.");
     }
 
     public function destroy(Faculty $faculty)
@@ -76,6 +90,20 @@ class FacultyController extends Controller
         $faculty->delete();
 
         return redirect()->route('admin.faculties.index')->with('success', 'Faculty deleted successfully.');
+    }
+
+    /** Save a drag-and-drop order: `ordered_ids` become order 1..n. */
+    public function reorder(Request $request)
+    {
+        $ids = $request->validate(['ordered_ids' => 'required|array', 'ordered_ids.*' => 'integer'])['ordered_ids'];
+
+        \DB::transaction(function () use ($ids) {
+            foreach (array_values($ids) as $i => $id) {
+                Faculty::whereKey($id)->update(['order' => $i + 1]);
+            }
+        });
+
+        return back()->with('success', 'Order updated.');
     }
 
     private function validated(Request $request, ?Faculty $faculty = null): array
@@ -102,7 +130,9 @@ class FacultyController extends Controller
             'order' => 'nullable|integer',
         ]);
 
-        $data['order'] = $data['order'] ?? 0;
+        if (! isset($data['order'])) {
+            unset($data['order']); // ordering is done by drag and drop (reorder)
+        }
         $data['department_slugs'] = $data['department_slugs'] ?? [];
 
         return $data;

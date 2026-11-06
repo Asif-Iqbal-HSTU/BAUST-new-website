@@ -1,0 +1,61 @@
+{
+    "title": "Finance Committee",
+    "content": {
+        "hero": {
+            "title": "Finance Committee",
+            "subtitle": "The Apex Financial Regulatory Body"
+        },
+        "chairman_heading": "The Chairman",
+        "chairman": {
+            "position": "Chairman",
+            "name": "Maj Gen Mohammad Kamrul Hasan, SGP, SUP, ndc, hdmc, psc",
+            "designation": "GOC, 66 Infantry Division & Area Commander, Rangpur Area",
+            "photo": "/images/Finance Committee/goc.jpg",
+            "phone": "",
+            "email": ""
+        },
+        "members_heading": "Committee Members",
+        "members": [
+            {
+                "position": "Member",
+                "name": "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
+                "designation": "Vice Chancellor, BAUST",
+                "photo": "/images/Finance Committee/vc.jpeg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Col Muhammad Rubayat Zamil, BSP",
+                "designation": "Colonel Admin, Rangpur Area",
+                "photo": "/images/Finance Committee/col-admin.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Shaikh Mostak Ahammad",
+                "designation": "Dean, Faculty of Business Studies, Hajee Mohammad Danesh Science & Technology University, Dinajpur",
+                "photo": "/images/Finance Committee/mostak.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Associate Professor Md. Anowar Hossain",
+                "designation": "Head, Dept. of Business Administration, BAUST",
+                "photo": "/images/Finance Committee/anowar.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member Secretary",
+                "name": "Lt Col (Retd) Dr. Md Shameem Reza",
+                "designation": "Treasurer, BAUST",
+                "photo": "/images/Finance Committee/treasurer.jpeg",
+                "phone": "",
+                "email": ""
+            }
+        ]
+    }
+}

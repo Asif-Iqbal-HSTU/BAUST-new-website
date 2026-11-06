@@ -5,19 +5,42 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { ME_TABS, ME_DEPT_NAME } from '@/data/meData';
-import { GraduationCap, Building } from 'lucide-react';
+import { GraduationCap, Building, FileText, Award, Briefcase, CheckCircle } from 'lucide-react';
+import { deptIcon, pageText } from '@/lib/dept-icons';
 
 interface CommitteeMember {
-    role: string;
-    name: string;
+    role?: string | null;
+    name?: string | null;
+    designation?: string | null;
+    image?: string | null;
 }
 
-interface AlumniData {
+interface SocietyActivity {
+    title?: string | null;
+    icon?: string | null;
+    description?: string | null;
+}
+
+interface AlumniSociety {
     id?: number;
     name: string;
-    description: string;
+    description?: string | null;
+    member_count?: string | null;
+    established?: string | null;
+    committee_pdf?: string | null;
     committee?: CommitteeMember[] | null;
-    activities?: string[] | null;
+    activities?: (SocietyActivity | string)[] | null;
+}
+
+interface AlumnusItem {
+    id: number;
+    type: 'job_holder' | 'higher_study' | string;
+    name: string;
+    batch?: string | null;
+    passing_year?: string | null;
+    designation?: string | null;
+    organization?: string | null;
+    image?: string | null;
 }
 
 interface DeptInfo {
@@ -25,36 +48,60 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 interface Props {
     department?: DeptInfo | null;
-    alumni?: AlumniData | null;
+    alumni?: AlumniSociety | null;
+    alumniMembers?: AlumnusItem[];
 }
 
-const DEFAULT_DESTINATIONS = [
-    'Bangladesh Power Development Board (BPDB) & Coal Power Plants',
-    'Heavy Cement & Construction Materials (LafargeHolcim, Shah Cement)',
-    'Automotive & Modern Manufacturing (Toyota, Runner, Walton Hi-Tech)',
-    'HVAC Engineering & Environmental Design Consultancies',
-    'Prestige Graduate Research Programs (North America, Europe, Australia)',
-    'Bangladesh Civil Service (BCS) Cadres & Government Administration'
-];
+function AlumnusCard({ person }: { person: AlumnusItem }) {
+    const avatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(person.name)}&background=059669&color=fff&size=128`;
+    return (
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+            <img
+                src={person.image || avatar}
+                alt={person.name}
+                className="w-24 h-24 rounded-full object-cover object-top border-2 border-emerald-50 mb-3"
+                onError={(e) => { e.currentTarget.src = avatar; }}
+            />
+            <h4 className="text-sm font-bold text-gray-900 leading-snug">{person.name}</h4>
+            {(person.batch || person.passing_year) && (
+                <p className="text-[11px] text-gray-400 font-semibold mt-0.5">
+                    {[person.batch, person.passing_year].filter(Boolean).join(' · ')}
+                </p>
+            )}
+            {person.designation && <p className="text-xs text-emerald-700 font-semibold mt-2">{person.designation}</p>}
+            {person.organization && <p className="text-xs text-gray-500 mt-0.5">{person.organization}</p>}
+        </div>
+    );
+}
 
-export default function MeAlumni({ department, alumni }: Props) {
-    const destinations = Array.isArray(alumni?.activities) && alumni.activities.length > 0
-        ? alumni.activities
-        : DEFAULT_DESTINATIONS;
+export default function MeAlumni({ department, alumni, alumniMembers = [] }: Props) {
+    const shortName = department?.short_name || 'ME';
+    const activities = (Array.isArray(alumni?.activities) ? alumni.activities : [])
+        .map((act) => (typeof act === 'string' ? { title: act } : act) as SocietyActivity)
+        .filter((act) => act?.title || act?.description);
+    const committee = Array.isArray(alumni?.committee) ? alumni.committee : [];
+    const description = alumni?.description || '';
+    const intro = pageText(department, 'alumni_intro', `Through regular seminars, mock interview drives, industrial workshops, and technical mentoring networks, the ${shortName} Alumni Network plays a vital role in preparing current students for graduation.`);
 
-    const description = alumni?.description || "Our alumni are representing BAUST across various fields globally. From key roles in power plants, cement industries, HVAC design consultancy firms, and automotive plants, ME graduates have established themselves as valuable technical assets.";
+    const jobHolders = alumniMembers.filter((a) => a.type === 'job_holder');
+    const higherStudy = alumniMembers.filter((a) => a.type === 'higher_study');
+    const groups = [
+        { key: 'job_holder', title: 'Alumni in Professional Careers', icon: Briefcase, items: jobHolders },
+        { key: 'higher_study', title: 'Alumni in Higher Studies', icon: GraduationCap, items: higherStudy },
+    ].filter((g) => g.items.length > 0);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title={`Alumni - ${department?.short_name || 'ME'} - BAUST`} />
+            <Head title={`Alumni - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
-                title={alumni?.name || `${department?.short_name || 'ME'} Alumni Network`} 
-                subtitle="Global Footprint of BAUST Mechanical Engineers" 
+                title={alumni?.name || `${shortName} Alumni Network`} 
+                subtitle={pageText(department, 'alumni_subtitle', "Global Footprint of BAUST Mechanical Engineers")} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.short_name || ME_DEPT_NAME} activeTab="Alumni" tabs={ME_TABS} />
@@ -69,37 +116,105 @@ export default function MeAlumni({ department, alumni }: Props) {
                                 <GraduationCap className="w-6 h-6" />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-gray-900">{alumni?.name || 'ME Alumni Association'}</h2>
-                                <p className="text-sm text-gray-500 mt-0.5">{department?.name || 'Department of Mechanical Engineering'}</p>
+                                <h2 className="text-2xl font-bold text-gray-900">{alumni?.name || `${shortName} Alumni Association`}</h2>
+                                <p className="text-sm text-gray-500 mt-0.5">
+                                    {[department?.name, alumni?.member_count, alumni?.established].filter(Boolean).join(' · ')}
+                                </p>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
+                        <div className={`grid grid-cols-1 ${activities.length > 0 ? 'md:grid-cols-2' : ''} gap-8 items-start mb-10`}>
                             <div className="space-y-4 text-gray-600 text-[15px] leading-relaxed text-justify">
-                                <p>{description}</p>
-                                <p>
-                                    Through regular seminars, mock interview drives, industrial workshops, and technical mentoring networks, the ME Alumni Network plays a vital role in preparing current students for graduation.
-                                </p>
+                                {description && <p className="whitespace-pre-line">{description}</p>}
+                                {intro && <p>{intro}</p>}
+
+                                {alumni?.committee_pdf && (
+                                    <div className="pt-2">
+                                        <a
+                                            href={alumni.committee_pdf}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold hover:bg-emerald-100 transition-colors"
+                                        >
+                                            <FileText size={15} />
+                                            <span>Download Official Alumni Committee (PDF)</span>
+                                        </a>
+                                    </div>
+                                )}
                             </div>
 
+                            {activities.length > 0 && (
                             <div className="bg-emerald-50/60 rounded-3xl p-6 sm:p-8 border border-emerald-100 flex flex-col justify-center space-y-4">
                                 <h3 className="text-lg font-bold text-emerald-900 flex items-center gap-2">
                                     <Building className="w-5 h-5 text-emerald-700" />
                                     Notable Career Sectors
                                 </h3>
                                 <div className="space-y-3">
-                                    {destinations.map((dest, idx) => (
-                                        <div key={idx} className="flex items-start gap-3">
-                                            <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
-                                            <span className="text-xs sm:text-sm text-gray-700 font-semibold leading-snug">{dest}</span>
+                                    {activities.map((act, idx) => {
+                                        const Icon = act.icon ? deptIcon(act.icon, CheckCircle) : null;
+                                        return (
+                                            <div key={idx} className="flex items-start gap-3">
+                                                {Icon ? (
+                                                    <Icon size={16} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                ) : (
+                                                    <div className="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0" />
+                                                )}
+                                                <div>
+                                                    {act.title && <span className="text-xs sm:text-sm text-gray-700 font-semibold leading-snug">{act.title}</span>}
+                                                    {act.description && <p className="text-xs text-gray-500 leading-relaxed mt-0.5">{act.description}</p>}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                            )}
+                        </div>
+
+                        {committee.length > 0 && (
+                            <div>
+                                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                    <Award className="w-5 h-5 text-emerald-600" />
+                                    Alumni Committee
+                                </h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {committee.map((member, idx) => (
+                                        <div key={idx} className="p-4 rounded-2xl bg-gray-50/60 border border-gray-100 flex items-center gap-3">
+                                            {member.image ? (
+                                                <img src={member.image} alt={member.name ?? ''} className="w-12 h-12 rounded-xl object-cover object-top flex-shrink-0" />
+                                            ) : (
+                                                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                                    {idx + 1}
+                                                </div>
+                                            )}
+                                            <div>
+                                                {member.role && <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">{member.role}</p>}
+                                                <p className="text-sm font-semibold text-gray-900">{member.name}</p>
+                                                {member.designation && <p className="text-xs text-gray-500">{member.designation}</p>}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        )}
 
                     </div>
                 </div>
+
+                {groups.map((group) => (
+                    <section key={group.key}>
+                        <div className="flex items-center gap-3 mb-6">
+                            <group.icon className="w-6 h-6 text-emerald-600" />
+                            <h2 className="text-2xl font-bold text-gray-900">{group.title}</h2>
+                            <div className="h-0.5 flex-grow bg-gradient-to-r from-emerald-100 to-transparent" />
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+                            {group.items.map((person) => (
+                                <AlumnusCard key={person.id} person={person} />
+                            ))}
+                        </div>
+                    </section>
+                ))}
             </main>
             <Footer />
         </div>

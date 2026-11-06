@@ -1,0 +1,121 @@
+{
+    "title": "Board of Trustees",
+    "content": {
+        "hero": {
+            "title": "Board of Trustees",
+            "subtitle": "Regulatory Bodies of BAUST"
+        },
+        "chairman_heading": "The Chairman",
+        "chairman": {
+            "position": "Chairman",
+            "name": "General Waker-Uz-Zaman, SBP, OSP, SGP, psc",
+            "designation": "Chief of Army Staff (CAS), Bangladesh Army",
+            "photo": "/images/Board of trustees/BOT01.jpg"
+        },
+        "members_heading": "Board Members",
+        "members": [
+            {
+                "position": "Member",
+                "name": "Lt Gen Md Mainur Rahman, OSP, SUP, awc, psc",
+                "designation": "Chief of General Staff (CGS)",
+                "photo": "/images/Board of trustees/BOT02.png"
+            },
+            {
+                "position": "Member",
+                "name": "Lt Gen Mohammad Shaheenul Haque, OSP, BSP, ndc, hdmc, psc",
+                "designation": "Quarter Master General (QMG)",
+                "photo": "/images/Board of trustees/BOT03.jpg"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen Md Mahbub-ul-Alam, BSP, ndc, afwc, psc, M.Phil, PhD",
+                "designation": "Vice Chancellor, BUP",
+                "photo": "/images/Board of trustees/BOT04.jpg"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen Md Abu Bakar Siddique Khan, ndc, afwc, psc, G+",
+                "designation": "Master General of Ordnance (MGO)",
+                "photo": "/images/Board of trustees/BOT05.png"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen Md Hakimuzzaman, SGP, ndc, afwc, psc",
+                "designation": "Commandant, MIST",
+                "photo": "/images/Board of trustees/BOT06.png"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen Md Hasan Uz Zaman, ndu, afwc, psc, M.Phil",
+                "designation": "Engineer in Chief (E-in-C)",
+                "photo": "/images/Board of trustees/BOT07.png"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen Md Sajedur Rahman, ndu, psc",
+                "designation": "Military Secretary (MS)",
+                "photo": "/images/Board of trustees/BOT08.jpeg"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen Mohd Hossain Al Morshed, ndc, afwc, psc",
+                "designation": "Adjutant General (AG)",
+                "photo": "/images/Board of trustees/BOT09.jpg"
+            },
+            {
+                "position": "Member",
+                "name": "Maj Gen A B M Faisal Baten, ndc, psc",
+                "designation": "Area Commander, Rangpur Area",
+                "photo": "/images/Board of trustees/BOT10.jpg"
+            },
+            {
+                "position": "Member",
+                "name": "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
+                "designation": "Vice Chancellor, BAUST, Saidpur",
+                "photo": "/images/Board of trustees/BOT11.jpeg"
+            },
+            {
+                "position": "Member",
+                "name": "Brig Gen Md Rashidul Islam, SUP, ndu, afwc, psc, M.Phil",
+                "designation": "Director, Army Welfare Trust (AWT)",
+                "photo": "/images/Board of trustees/BOT12.png"
+            },
+            {
+                "position": "Member",
+                "name": "Brig Gen Md Lutfor Rahman, psc, PhD",
+                "designation": "Director, Education Directorate, Army Headquarters",
+                "photo": "/images/Board of trustees/BOT13.jpg"
+            },
+            {
+                "position": "Member",
+                "name": "Brig Gen Md Anisur Rahman, ndc, afwc, psc (Retd)",
+                "designation": "Director Education Division",
+                "photo": "/images/Board of trustees/BOT14.jpg"
+            }
+        ],
+        "governance": {
+            "heading": "Administrative Governance",
+            "description": "BAUST is governed by several regulatory bodies that work together to maintain academic standards, financial health, and institutional integrity.",
+            "primary_button_label": "Administration",
+            "secondary_button_label": "Academic Council",
+            "stats": [
+                {
+                    "value": "2015",
+                    "label": "Established"
+                },
+                {
+                    "value": "14",
+                    "label": "Board Members"
+                },
+                {
+                    "value": "Army",
+                    "label": "Patronized By"
+                },
+                {
+                    "value": "Saidpur",
+                    "label": "Campus"
+                }
+            ]
+        }
+    }
+}

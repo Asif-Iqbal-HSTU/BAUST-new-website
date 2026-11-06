@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+    // Public self-registration is disabled (RegisteredUserController returns
+    // 404). The routes stay so the frontend's generated Wayfinder helpers build.
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

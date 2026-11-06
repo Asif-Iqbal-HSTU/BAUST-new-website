@@ -4,19 +4,20 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { ICT_TABS, ICT_DEPT_NAME } from '@/data/ictData';
-import { Heart, GraduationCap, Briefcase, Star, Users, Zap, Award, BookOpen, Coffee } from 'lucide-react';
+import { ICT_TABS, ICT_DEPT_NAME, type DeptInfo } from '@/data/ictData';
+import { deptIcon, pageText } from '@/lib/dept-icons';
+import { Heart, GraduationCap, Briefcase, Users, Eye, Download } from 'lucide-react';
 
 interface ActivityItem {
     title: string;
-    icon?: any;
+    icon?: string | null;
     description: string;
 }
 
 interface CommitteeMember {
     role: string;
     name: string;
-    designation: string;
+    designation?: string | null;
     image?: string | null;
 }
 
@@ -32,53 +33,55 @@ interface AlumniData {
     committee?: CommitteeMember[] | null;
 }
 
-interface DeptInfo {
+interface AlumnusItem {
     id: number;
+    type: 'job_holder' | 'higher_study' | string;
     name: string;
-    short_name: string;
-    slug: string;
+    batch?: string | null;
+    passing_year?: string | null;
+    designation?: string | null;
+    organization?: string | null;
+    image?: string | null;
 }
 
 interface Props {
     department?: DeptInfo | null;
     alumni?: AlumniData | null;
+    alumniMembers?: AlumnusItem[];
 }
 
-const ICON_MAP: Record<string, any> = {
-    Briefcase,
-    GraduationCap,
-    Users,
-    Star,
-    Heart,
-    Zap,
-    Award,
-    BookOpen,
-    Coffee,
-};
+function AlumnusCard({ person }: { person: AlumnusItem }) {
+    return (
+        <div className="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition-all flex items-center gap-5 group">
+            <div className="w-20 h-20 rounded-2xl overflow-hidden bg-emerald-50 flex-shrink-0 flex items-center justify-center">
+                {person.image ? (
+                    <img src={person.image} alt={person.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                ) : (
+                    <Users className="w-8 h-8 text-emerald-600" />
+                )}
+            </div>
+            <div className="min-w-0">
+                <h3 className="text-lg font-bold text-gray-900 leading-snug">{person.name}</h3>
+                {person.designation && <p className="text-emerald-700 text-sm font-semibold">{person.designation}</p>}
+                {person.organization && <p className="text-gray-500 text-sm">{person.organization}</p>}
+                {(person.batch || person.passing_year) && (
+                    <p className="text-gray-400 text-xs mt-1">
+                        {[person.batch, person.passing_year && `Passed ${person.passing_year}`].filter(Boolean).join(' · ')}
+                    </p>
+                )}
+            </div>
+        </div>
+    );
+}
 
-const DEFAULT_ACTIVITIES: ActivityItem[] = [
-    {
-        title: "Global Careers",
-        icon: Briefcase,
-        description: "Positioned in leading tech industries, MNCs, telecom carriers, and central banking IT sectors."
-    },
-    {
-        title: "Higher Education Mentorship",
-        icon: GraduationCap,
-        description: "Guiding graduates pursuing M.Sc., Ph.D., and advanced research fellowships worldwide."
-    },
-    {
-        title: "Student Mentorship & Networking",
-        icon: Users,
-        description: "Annual get-togethers, mock interviews, internship references, and interactive webinars."
-    }
-];
-
-export default function IctAlumni({ department, alumni }: Props) {
-    const title = alumni?.name || "ICT Alumni Association";
-    const description = alumni?.description || "The ICT Alumni Association of BAUST is a platform that unites all graduates of our department. Our members are currently working in leading telecommunication firms, software companies, financial institutions, and government roles both in Bangladesh and across the globe. We provide mentorship, networking events, and career progression guides to current students and recent graduates.";
-    const activities = (alumni?.activities && alumni.activities.length > 0) ? alumni.activities : DEFAULT_ACTIVITIES;
-    const committee = alumni?.committee || [];
+export default function IctAlumni({ department, alumni, alumniMembers = [] }: Props) {
+    const shortName = department?.short_name || 'ICT';
+    const title = alumni?.name || `${shortName} Alumni Association`;
+    const description = alumni?.description;
+    const activities = Array.isArray(alumni?.activities) ? alumni.activities : [];
+    const committee = Array.isArray(alumni?.committee) ? alumni.committee : [];
+    const jobHolders = alumniMembers.filter(a => a.type !== 'higher_study');
+    const higherStudy = alumniMembers.filter(a => a.type === 'higher_study');
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -86,7 +89,7 @@ export default function IctAlumni({ department, alumni }: Props) {
             <Navbar />
             <PageHero 
                 title={title} 
-                subtitle="Nurturing lifelong connections and technological networks" 
+                subtitle={pageText(department, 'alumni_intro', 'Nurturing lifelong connections and technological networks')} 
                 compact={true} 
             />
             <DeptSubNav departmentName={department?.name || ICT_DEPT_NAME} activeTab="Alumni" tabs={ICT_TABS} />
@@ -108,12 +111,42 @@ export default function IctAlumni({ department, alumni }: Props) {
                         )}
                     </div>
                     <h2 className="text-4xl font-black text-gray-900 mb-6">Connected Beyond Graduation</h2>
-                    <p className="text-gray-600 text-lg leading-relaxed text-justify whitespace-pre-line">
-                        {description}
-                    </p>
+                    {description && (
+                        <p className="text-gray-600 text-lg leading-relaxed text-justify whitespace-pre-line">
+                            {description}
+                        </p>
+                    )}
                 </div>
 
+                {/* Alumni Directory */}
+                {jobHolders.length > 0 && (
+                    <section className="mb-20">
+                        <div className="flex items-center gap-4 mb-10">
+                            <Briefcase className="text-emerald-600 w-7 h-7" />
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Alumni in Profession</h2>
+                            <div className="h-px flex-grow bg-emerald-100" />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {jobHolders.map(person => <AlumnusCard key={person.id} person={person} />)}
+                        </div>
+                    </section>
+                )}
+
+                {higherStudy.length > 0 && (
+                    <section className="mb-20">
+                        <div className="flex items-center gap-4 mb-10">
+                            <GraduationCap className="text-emerald-600 w-7 h-7" />
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Alumni in Higher Studies</h2>
+                            <div className="h-px flex-grow bg-emerald-100" />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {higherStudy.map(person => <AlumnusCard key={person.id} person={person} />)}
+                        </div>
+                    </section>
+                )}
+
                 {/* Alumni Activities / Highlights */}
+                {activities.length > 0 && (
                 <section className="mb-20">
                     <div className="flex items-center gap-4 mb-10">
                         <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Key Pillars & Activities</h2>
@@ -122,7 +155,7 @@ export default function IctAlumni({ department, alumni }: Props) {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {activities.map((act, idx) => {
-                            const IconComponent = (typeof act.icon === 'string' ? ICON_MAP[act.icon] : act.icon) || Briefcase;
+                            const IconComponent = deptIcon(act.icon, Briefcase);
                             return (
                                 <div key={idx} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group">
                                     <div className="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
@@ -135,13 +168,24 @@ export default function IctAlumni({ department, alumni }: Props) {
                         })}
                     </div>
                 </section>
+                )}
 
                 {/* Committee Section if exists */}
-                {committee.length > 0 && (
+                {(committee.length > 0 || alumni?.committee_pdf) && (
                     <section className="mb-20">
                         <div className="flex items-center gap-4 mb-10">
                             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Executive Committee</h2>
                             <div className="h-px flex-grow bg-emerald-100" />
+                            {alumni?.committee_pdf && (
+                                <div className="flex gap-2">
+                                    <a href={alumni.committee_pdf} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-bold hover:bg-emerald-700 transition-all">
+                                        <Eye size={16} /> View PDF
+                                    </a>
+                                    <a href={alumni.committee_pdf} download className="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-xl text-sm font-bold hover:bg-gray-50 transition-all">
+                                        <Download size={16} /> Download
+                                    </a>
+                                </div>
+                            )}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
@@ -164,7 +208,7 @@ export default function IctAlumni({ department, alumni }: Props) {
                                             {person.role}
                                         </span>
                                         <h3 className="text-lg font-bold text-gray-900 mb-1">{person.name}</h3>
-                                        <p className="text-gray-500 text-sm font-medium">{person.designation}</p>
+                                        {person.designation && <p className="text-gray-500 text-sm font-medium">{person.designation}</p>}
                                     </div>
                                 </div>
                             ))}
@@ -177,17 +221,14 @@ export default function IctAlumni({ department, alumni }: Props) {
                     <Heart className="mx-auto text-emerald-500 w-12 h-12 mb-6" />
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Register as an Alumnus</h3>
                     <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-                        Stay connected, update your profile, receive notifications about reunions, and guide the upcoming generations of ICT engineering students at BAUST.
+                        Stay connected, update your profile, receive notifications about reunions, and guide the upcoming generations of {shortName} engineering students at BAUST.
                     </p>
                     <div className="flex flex-wrap items-center justify-center gap-4">
-                        <button className="px-8 py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-emerald-200">
-                            Alumni Registration
-                        </button>
                         <Link
                             href="/ict/ict-society"
                             className="px-8 py-3 bg-white text-emerald-700 border border-emerald-200 rounded-xl font-bold hover:bg-emerald-50 transition-all shadow-sm"
                         >
-                            Explore ICT Society
+                            Explore {shortName} Society
                         </Link>
                     </div>
                 </div>

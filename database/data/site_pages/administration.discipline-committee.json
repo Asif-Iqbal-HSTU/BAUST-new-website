@@ -1,0 +1,85 @@
+{
+    "title": "Discipline Committee",
+    "content": {
+        "hero": {
+            "title": "Discipline Committee",
+            "subtitle": "Upholding Discipline & Conduct at BAUST"
+        },
+        "chairman_heading": "The Chairman",
+        "chairman": {
+            "position": "Chairman",
+            "name": "Brig Gen Mohammad Mobarak Hossain Majumder, psc",
+            "designation": "Vice Chancellor, BAUST",
+            "photo": "/images/Discipline Committee/vc.jpeg",
+            "phone": "",
+            "email": ""
+        },
+        "members_heading": "Committee Members",
+        "members": [
+            {
+                "position": "Member",
+                "name": "Col Muhammad Rubayat Zamil, BSP",
+                "designation": "Colonel Admin, Rangpur Area",
+                "photo": "/images/Discipline Committee/col-admin.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (LPR)",
+                "designation": "Registrar, BAUST",
+                "photo": "/images/Discipline Committee/registrar.jpeg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Md. Shah Alam",
+                "designation": "Dean, Faculty of Business Studies, BAUST",
+                "photo": "/images/Discipline Committee/shah-alam.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Md. Jahurul Islam",
+                "designation": "Dean, Faculty of Science & Humanities, BAUST",
+                "photo": "/images/Discipline Committee/jahurul.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Prof. Dr. Imtiaz Ahmed Choudhury",
+                "designation": "Dean, Faculty of Mechanical Engineering, BAUST",
+                "photo": "/images/Discipline Committee/imtiaz.jpg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Professor Dr. Md. Mahmudul Hasan",
+                "designation": "Dean, Faculty of Civil Engineering, BAUST",
+                "photo": "/images/Discipline Committee/mahmudul.png",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member",
+                "name": "Associate Prof. Engr. Md. Mamun Hossain",
+                "designation": "Head, Department of ICT, BAUST",
+                "photo": "/images/Discipline Committee/mamun.jpeg",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "position": "Member Secretary",
+                "name": "Associate Prof. Md. Zaber Hossain",
+                "designation": "Proctor, BAUST",
+                "photo": "/images/Discipline Committee/zaber.jpeg",
+                "phone": "",
+                "email": ""
+            }
+        ]
+    }
+}

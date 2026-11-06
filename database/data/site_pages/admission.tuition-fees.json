@@ -1,0 +1,351 @@
+{
+    "title": "Semester Fees & Payments",
+    "content": {
+        "meta_title": "Semester Fees & Payments - BAUST",
+        "hero": {
+            "title": "Semester Fees & Payments",
+            "subtitle": "Official Tuition Fees, Payment Schedules & Academic Policies"
+        },
+        "intro": {
+            "badge_text": "Approved by BAUST Syndicate & Finance Committee",
+            "heading": "Tuition & Semester Fee Structure",
+            "description": "Transparent breakdown of all academic costs, semester fees, detailed course expenses, deadlines, and policies for undergraduate and graduate programs.",
+            "jump_links": [
+                { "label": "Engineering Programs", "target_link": "#engineering" },
+                { "label": "Non-Engineering (BBA & English)", "target_link": "#non-engineering" },
+                { "label": "Graduate Programs", "target_link": "#graduate" },
+                { "label": "Itemized Fee Breakdown", "target_link": "#detailed-fees" },
+                { "label": "Payment Deadlines & Fines", "target_link": "#deadlines" },
+                { "label": "Repeater Fees", "target_link": "#repeater" },
+                { "label": "Additional Fees", "target_link": "#additional" },
+                { "label": "Scholarships & Waivers", "target_link": "#scholarships" }
+            ]
+        },
+        "engineering_programs": {
+            "heading": "Engineering Programs",
+            "subheading": "B.Sc. Engg. in CSE / EEE / ME / IPE / CE / ICT (4 Years • 8 Semesters)",
+            "table_headings": {
+                "serial_heading": "Ser No",
+                "program_heading": "Name of the Programs",
+                "admission_heading": "Once at Admission",
+                "admission_subheading": "(Including 1st Semester)",
+                "per_semester_heading": "Per Semester",
+                "per_semester_subheading": "(Remaining 7 Semesters)",
+                "total_heading": "Total Expenditure",
+                "total_subheading": "(Incl. Caution Money)"
+            },
+            "programs": [
+                {
+                    "program_name": "B.Sc. Engg. in CSE / EEE / ME / IPE / CE / ICT",
+                    "program_details": "Faculty of ECE & Faculty of ME & CE",
+                    "admission_fee": "TK 65,000/-",
+                    "per_semester_fee": "TK 90,000/-",
+                    "total_fee": "TK 6,95,000/-"
+                }
+            ],
+            "caution_note_prefix": "Total course fee includes",
+            "caution_amount": "Tk. 5,000/-",
+            "caution_note_suffix": "as caution money (refundable after graduation).",
+            "footer_label": "Total Credits: 160+ • 8 Semesters"
+        },
+        "non_engineering_programs": {
+            "heading": "Non-Engineering Programs",
+            "subheading": "Faculty of Business Studies & Faculty of Science and Humanities",
+            "table_headings": {
+                "serial_heading": "Ser No",
+                "program_heading": "Name of the Programs",
+                "admission_heading": "Once at Admission",
+                "admission_subheading": "(Including 1st Semester)",
+                "per_semester_heading": "Per Semester",
+                "per_semester_subheading": "(Remaining 7 Semesters)",
+                "total_heading": "Total Expenditure",
+                "total_subheading": "(Incl. Caution Money)"
+            },
+            "programs": [
+                {
+                    "program_name": "BBA (Bachelor of Business Administration)",
+                    "program_details": "4 Years • 8 Semesters • 126 Credits",
+                    "admission_fee": "TK 60,000/-",
+                    "per_semester_fee": "TK 66,429/-",
+                    "total_fee": "TK 5,25,000/-"
+                },
+                {
+                    "program_name": "BBA in Accounting & Information Systems (AIS)",
+                    "program_details": "4 Years • 8 Semesters • 126 Credits",
+                    "admission_fee": "TK 60,000/-",
+                    "per_semester_fee": "TK 66,429/-",
+                    "total_fee": "TK 5,25,000/-"
+                },
+                {
+                    "program_name": "B.A. (Hons) in English",
+                    "program_details": "4 Years • 8 Semesters • 120 Credits",
+                    "admission_fee": "TK 50,625/-",
+                    "per_semester_fee": "TK 57,054/-",
+                    "total_fee": "TK 4,50,000/-"
+                }
+            ],
+            "caution_note_prefix": "Total course fee includes",
+            "caution_amount": "Tk. 5,000/-",
+            "caution_note_suffix": "as caution money (refundable after graduation).",
+            "footer_label": "Regular 4-Year Bachelor Programs"
+        },
+        "graduate_programs": {
+            "heading": "Expenditure for Graduate Programs",
+            "subheading": "Postgraduate Studies: EMBA, MBA Regular & MA in English (ELT)",
+            "program_heading": "Dept. / Program",
+            "duration_heading": "Duration",
+            "fee_structure_heading": "Fee Structure in Taka",
+            "semester_headings": [
+                "1st Sem (Admission)",
+                "2nd Sem",
+                "3rd Sem",
+                "4th Sem"
+            ],
+            "total_heading": "Total Expenditure",
+            "programs": [
+                {
+                    "program_name": "Executive MBA (EMBA)",
+                    "credits": "48 Credits",
+                    "duration": "1.5 Years",
+                    "duration_detail": "(3 Semesters)",
+                    "semester_fees": ["TK 46,000/-", "TK 34,000/-", "TK 40,000/-", ""],
+                    "total_fee": "TK 1,20,000/-"
+                },
+                {
+                    "program_name": "MBA Regular (For BBA Graduates)",
+                    "credits": "36 Credits",
+                    "duration": "1 Year",
+                    "duration_detail": "(2 Semesters)",
+                    "semester_fees": ["TK 46,000/-", "TK 46,000/-", "", ""],
+                    "total_fee": "TK 92,000/-"
+                },
+                {
+                    "program_name": "MBA Regular (For Non-BBA Graduates)",
+                    "credits": "60 Credits",
+                    "duration": "2 Years",
+                    "duration_detail": "(4 Semesters)",
+                    "semester_fees": ["TK 46,000/-", "TK 34,000/-", "TK 34,000/-", "TK 34,000/-"],
+                    "total_fee": "TK 1,48,000/-"
+                },
+                {
+                    "program_name": "MA in English (ELT)",
+                    "credits": "36 Credits",
+                    "duration": "1 Year",
+                    "duration_detail": "(2 Semesters)",
+                    "semester_fees": ["TK 46,000/-", "TK 46,000/-", "", ""],
+                    "total_fee": "TK 92,000/-"
+                }
+            ]
+        },
+        "detailed_fees": {
+            "heading": "Detail Course Fees for Various Programs",
+            "subheading": "Itemized Fee Structure: During Admission vs. Per Semester",
+            "all_filter_label": "All Programs",
+            "particulars_heading": "Fee Particulars",
+            "at_admission_heading": "At Admission",
+            "per_semester_heading": "Per Sem",
+            "refundable_badge_label": "Refundable",
+            "semester_total_label": "Total Semester Cost",
+            "course_total_label": "Total Course Fee (With Caution Money)",
+            "programs": [
+                {
+                    "filter_label": "Engineering",
+                    "column_heading": "Engineering (B.Sc.)",
+                    "semester_total_at_admission": "TK 65,000/-",
+                    "semester_total_per_semester": "TK 90,000/-",
+                    "course_total": "TK 6,95,000/-"
+                },
+                {
+                    "filter_label": "BBA / AIS",
+                    "column_heading": "BBA & BBA in AIS",
+                    "semester_total_at_admission": "TK 60,000/-",
+                    "semester_total_per_semester": "TK 66,429/-",
+                    "course_total": "TK 5,25,000/-"
+                },
+                {
+                    "filter_label": "English",
+                    "column_heading": "B.A. (Hons) in English",
+                    "semester_total_at_admission": "TK 50,625/-",
+                    "semester_total_per_semester": "TK 57,054/-",
+                    "course_total": "TK 4,50,000/-"
+                }
+            ],
+            "rows": [
+                {
+                    "particular": "Admission Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "10,000", "per_semester": "10,000" },
+                        { "at_admission": "10,000", "per_semester": "10,000" },
+                        { "at_admission": "10,000", "per_semester": "10,000" }
+                    ]
+                },
+                {
+                    "particular": "Registration Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "5,000", "per_semester": "5,000" },
+                        { "at_admission": "5,000", "per_semester": "5,000" },
+                        { "at_admission": "5,000", "per_semester": "5,000" }
+                    ]
+                },
+                {
+                    "particular": "Establishment Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "10,000", "per_semester": "27,000" },
+                        { "at_admission": "10,000", "per_semester": "16,429" },
+                        { "at_admission": "6,250", "per_semester": "12,679" }
+                    ]
+                },
+                {
+                    "particular": "Tuition Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "30,000", "per_semester": "40,000" },
+                        { "at_admission": "26,250", "per_semester": "31,250" },
+                        { "at_admission": "20,625", "per_semester": "25,625" }
+                    ]
+                },
+                {
+                    "particular": "Laboratory Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "2,000", "per_semester": "5,000" },
+                        { "at_admission": "750", "per_semester": "750" },
+                        { "at_admission": "750", "per_semester": "750" }
+                    ]
+                },
+                {
+                    "particular": "Library Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "1,000", "per_semester": "1,000" },
+                        { "at_admission": "1,000", "per_semester": "1,000" },
+                        { "at_admission": "1,000", "per_semester": "1,000" }
+                    ]
+                },
+                {
+                    "particular": "Caution Fee (Refundable)",
+                    "is_refundable": true,
+                    "fees": [
+                        { "at_admission": "5,000", "per_semester": "" },
+                        { "at_admission": "5,000", "per_semester": "" },
+                        { "at_admission": "5,000", "per_semester": "" }
+                    ]
+                },
+                {
+                    "particular": "Student Activities Fee",
+                    "is_refundable": false,
+                    "fees": [
+                        { "at_admission": "2,000", "per_semester": "2,000" },
+                        { "at_admission": "2,000", "per_semester": "2,000" },
+                        { "at_admission": "2,000", "per_semester": "2,000" }
+                    ]
+                }
+            ]
+        },
+        "payment_mode": {
+            "heading": "Mode of Payment for all Programs",
+            "subheading": "Strict Compliance with Academic Calendar",
+            "standard_window": {
+                "title": "Standard Payment Window",
+                "text_before_highlight": "Students have to pay the required semester fees/charges of any semester within the",
+                "highlight": "3rd week",
+                "text_after_highlight": "of each semester’s beginning."
+            },
+            "late_penalties": {
+                "title": "Late Payment Penalties (Defaulters)",
+                "fines": [
+                    { "label": "After 3rd week:", "amount": "Tk. 500/-", "suffix": "fine" },
+                    { "label": "After 5th week:", "amount": "Tk. 1,000/-", "suffix": "fine" }
+                ]
+            },
+            "payment_channels_text": "Payable via Trust Bank, bKash & Designated Counters",
+            "payment_guide_button_label": "Payment Procedure Guide",
+            "payment_guide_link": "/admission/tuition-fee-payment-procedure"
+        },
+        "repeater_fees": {
+            "heading": "Semester Fees for Repeater",
+            "subheading": "Applicable to Course & Semester Repeat Cases",
+            "items": [
+                { "faculty": "Faculty of ECE & ME/CE", "program": "All Engineering Programs", "fee": "TK 50,000/-" },
+                { "faculty": "Faculty of Business Studies", "program": "BBA / BBA in AIS Programs", "fee": "TK 35,000/-" },
+                { "faculty": "Faculty of Science & Humanities", "program": "B.A. (Hons) in English", "fee": "TK 30,000/-" }
+            ],
+            "note": "Repeaters must register with the Controller of Examinations within scheduled deadline."
+        },
+        "additional_fees": {
+            "heading": "Additional Yearly Fees",
+            "subheading": "Mandatory Co-Curricular & Student Welfare Fees (Per Year)",
+            "serial_prefix": "SL #",
+            "amount_label": "Annual Fee",
+            "items": [
+                {
+                    "particular": "Medical",
+                    "description": "Medical Insurance & Campus Healthcare Access",
+                    "amount": "TK 300/-",
+                    "period": "Per Year"
+                },
+                {
+                    "particular": "BNCC",
+                    "description": "Bangladesh National Cadet Corps Platoon Activities",
+                    "amount": "TK 60/-",
+                    "period": "Per Year"
+                },
+                {
+                    "particular": "Scout",
+                    "description": "Rover Scout & Youth Leadership Development",
+                    "amount": "TK 25/-",
+                    "period": "Per Year"
+                }
+            ]
+        },
+        "scholarships": {
+            "badge_text": "Merit Recognition Scheme",
+            "heading": "Scholarship and Tuition Fee Waiver for Meritorious Students",
+            "description": "BAUST recognizes academic dedication and honors top performers. Students from each batch securing 1st, 2nd, and 3rd position in each semester final examination receive substantial tuition fee waivers:",
+            "positions": [
+                { "position": "1st Position", "waiver": "40%", "waiver_label": "Tuition Fee Waiver" },
+                { "position": "2nd Position", "waiver": "30%", "waiver_label": "Tuition Fee Waiver" },
+                { "position": "3rd Position", "waiver": "20%", "waiver_label": "Tuition Fee Waiver" }
+            ],
+            "waiver_policies_button_label": "View All Waiver Policies (GPA & Freedom Fighter)",
+            "waiver_policies_link": "/admission/waiver-and-financial-aid",
+            "apply_button_label": "Apply Online Portal",
+            "apply_url": "https://admission.baust.edu.bd/apply"
+        },
+        "formalities": {
+            "heading": "Admission Formalities & Regulations",
+            "subheading": "Mandatory Terms for Selected Candidates",
+            "items": [
+                {
+                    "title": "Admission Deadline Compliance",
+                    "description": "Candidates have to complete admission formalities within the fixed period as announced by the Admission Committee. Any failure will warrant automatic cancellation of selection."
+                },
+                {
+                    "title": "Mandatory Class Attendance",
+                    "description": "Attendance is mandatory from the first day of class. Any student failing to attend class within two consecutive weeks without approval will warrant cancellation of admission and forfeiture of fees."
+                }
+            ]
+        },
+        "related_resources": {
+            "heading": "Related Admission Resources",
+            "links": [
+                { "title": "Apply Online Instruction", "link": "/admission/apply-online-instruction" },
+                { "title": "Tuition Fee Payment Procedure", "link": "/admission/tuition-fee-payment-procedure" },
+                { "title": "Admission Requirements", "link": "/admission/admission-requirment" },
+                { "title": "Offered Programs", "link": "/admission/program-offering" },
+                { "title": "Admission Procedure", "link": "/admission/admission-procedure" },
+                { "title": "Waiver & Financial Aid", "link": "/admission/waiver-and-financial-aid" },
+                { "title": "Credit Transfer Policy", "link": "/admission/credit-transfer-policy" }
+            ],
+            "leaflet_banner": {
+                "heading": "Download Official Admission Leaflet",
+                "description": "Official BAUST circular with fees, eligibility, and program highlights.",
+                "button_label": "Download PDF Leaflet",
+                "leaflet_pdf": "/images/admission/Leaflet.pdf"
+            }
+        }
+    }
+}

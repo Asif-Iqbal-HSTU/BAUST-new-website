@@ -75,6 +75,7 @@ class CeDepartmentController extends Controller
 
     public function faculty()
     {
+        $dept = Department::where('slug', 'ce')->first();
         $members = DepartmentMember::where('department', 'ce')
             ->facultyVisible()
             ->orderBy('type', 'asc') // Permanent first, then adjunct/contractual
@@ -82,18 +83,21 @@ class CeDepartmentController extends Controller
             ->get();
 
         return Inertia::render('Academic/Ce/Faculty', [
+            'department' => $dept,
             'members' => $members,
         ]);
     }
 
     public function academicStaff()
     {
+        $dept = Department::where('slug', 'ce')->first();
         $staff = DepartmentMember::where('department', 'ce')
             ->staffVisible()
             ->orderBy('order')
             ->get();
 
         return Inertia::render('Academic/Ce/AcademicStaff', [
+            'department' => $dept,
             'staff' => $staff,
         ]);
     }
@@ -130,7 +134,7 @@ class CeDepartmentController extends Controller
     public function alumniAssoc()
     {
         $dept = Department::where('slug', 'ce')->first();
-        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->first() : null;
+        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->orderBy('order')->first() : null;
 
         return Inertia::render('Academic/Ce/Alumni/AlumniAssoc', [
             'department' => $dept,
@@ -195,6 +199,7 @@ class CeDepartmentController extends Controller
 
     public function events()
     {
+        $dept = Department::where('slug', 'ce')->first();
         $events = Notice::active()
             ->forDepartment('ce')
             ->whereHas('categories', function($q) {
@@ -204,6 +209,7 @@ class CeDepartmentController extends Controller
             ->get();
 
         return Inertia::render('Academic/Ce/Events', [
+            'department' => $dept,
             'events' => $events,
         ]);
     }
@@ -211,6 +217,7 @@ class CeDepartmentController extends Controller
     public function eventDetail($slug)
     {
         $event = Notice::active()
+            ->forDepartment('ce')
             ->where('slug', $slug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -245,34 +252,36 @@ class CeDepartmentController extends Controller
     public function laboratories($slug = null)
     {
         $dept = Department::where('slug', 'ce')->first();
-        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : [];
-        $lab = $slug ? ($allLabs->firstWhere('slug', $slug) ?: $allLabs->first()) : $allLabs->first();
+        $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : collect();
+        $lab = $slug ? $allLabs->firstWhere('slug', $slug) : $allLabs->first();
+        abort_if($slug && !$lab, 404);
 
         return Inertia::render('Academic/Ce/Laboratories', [
             'department' => $dept,
             'lab' => $lab,
             'allLabs' => $allLabs,
-            'labSlug' => $slug ?: ($lab?->slug ?? 'practical-surveying-lab'),
+            'labSlug' => $lab?->slug,
         ]);
     }
 
     public function clubs($club = null)
     {
         $dept = Department::where('slug', 'ce')->first();
-        $allClubs = $dept ? $dept->societies()->where('is_active', true)->orderBy('order')->get() : [];
-        $selectedClub = $club ? ($allClubs->firstWhere('slug', $club) ?: $allClubs->first()) : $allClubs->first();
+        $allClubs = $dept ? $dept->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->orderBy('order')->get() : collect();
+        $selectedClub = $club ? $allClubs->firstWhere('slug', $club) : $allClubs->first();
+        abort_if($club && !$selectedClub, 404);
 
         return Inertia::render('Academic/Ce/Clubs', [
             'department' => $dept,
             'club' => $selectedClub,
             'allClubs' => $allClubs,
-            'clubSlug' => $club ?: ($selectedClub?->slug ?? 'esc'),
+            'clubSlug' => $selectedClub?->slug,
         ]);
     }
 
     public function society()
     {
-        return redirect()->route('academic.ce.clubs', 'esc');
+        return redirect()->route('academic.ce.clubs');
     }
 
     public function onlineResources()

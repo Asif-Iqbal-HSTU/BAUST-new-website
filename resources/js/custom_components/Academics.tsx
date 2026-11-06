@@ -322,7 +322,7 @@ export default function Academics() {
                                     </li>
                                     <li>
                                         <Link
-                                            href="/eng/curriculum"
+                                            href="/ma-elt"
                                             className="flex items-center gap-3 p-2 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/30 transition-all duration-200 group/item"
                                         >
                                             <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 group-hover/item:scale-110 group-hover/item:bg-emerald-600 group-hover/item:text-white transition-all shadow-xs">
@@ -454,7 +454,7 @@ export default function Academics() {
                                         <span className="truncate font-medium">BBA in AIS</span>
                                     </Link>
                                     <Link
-                                        href="/dba"
+                                        href="/mba"
                                         className="flex items-center gap-2 p-1.5 rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors group/item"
                                     >
                                         <div className="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 group-hover/item:bg-emerald-500 group-hover/item:text-white transition-colors">
@@ -463,7 +463,7 @@ export default function Academics() {
                                         <span className="truncate font-medium">MBA</span>
                                     </Link>
                                     <Link
-                                        href="/eng"
+                                        href="/ma-elt"
                                         className="flex items-center gap-2 p-1.5 rounded-lg text-gray-200 hover:text-white hover:bg-white/10 transition-colors group/item sm:col-span-2"
                                     >
                                         <div className="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 group-hover/item:bg-emerald-500 group-hover/item:text-white transition-colors">

@@ -401,7 +401,7 @@ export default function Form({ notice, categories = [], departments = [], prCate
                                             onChange={e => setData('department', e.target.value || null)}
                                             className="w-full rounded-xl border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-sm text-gray-900 dark:text-white px-3.5 py-2.5 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-xs transition-colors"
                                         >
-                                            <option value="">Global (All BAUST University)</option>
+                                            {user.role !== 'dept_admin' && <option value="">Global (All BAUST University)</option>}
                                             {departments.map((d, idx) => {
                                                 const slug = typeof d === 'string' ? d : d.slug;
                                                 const label = typeof d === 'string' ? d.toUpperCase() : (d.short_name || d.name || d.slug.toUpperCase());

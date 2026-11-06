@@ -1,0 +1,57 @@
+{
+    "title": "Offered Programs",
+    "content": {
+        "browser_title": "Offered Programs",
+        "hero": {
+            "title": "Offered Programs",
+            "subtitle": "Academic Degrees & Courses"
+        },
+        "intro": {
+            "heading": "Explore Our Academic Degrees",
+            "text": "Bangladesh Army University of Science and Technology (BAUST) is offering a wide range of undergraduate and graduate programs designed to prepare students for the challenges of the modern world."
+        },
+        "undergraduate": {
+            "heading": "Undergraduate Programs",
+            "subheading": "4-Year Degree Programs (8 Semesters)",
+            "serial_column": "Sl. No.",
+            "name_column": "Program Name",
+            "credits_column": "Total Credits",
+            "credits_suffix": "Credits",
+            "programs": [
+                { "name": "B.Sc. Engineering in Computer Science and Engineering (CSE)", "credits": 161 },
+                { "name": "B.Sc. Engineering in Electrical and Electronic Engineering (EEE)", "credits": 161 },
+                { "name": "B.Sc. Engineering in Mechanical Engineering (ME)", "credits": 160 },
+                { "name": "B.Sc. Engineering in Industrial and Production Engineering (IPE)", "credits": 160 },
+                { "name": "B.Sc. Engineering in Civil Engineering (CE)", "credits": 160 },
+                { "name": "B.Sc. Engineering in Information and Communication Technology (ICT)", "credits": 160 },
+                { "name": "Bachelor of Business Administration (BBA)", "credits": 140 },
+                { "name": "BBA in Accounting & Information Systems (AIS)", "credits": 132 },
+                { "name": "B.A. (Hons) in English", "credits": 140 }
+            ]
+        },
+        "graduate": {
+            "heading": "Graduate Programs",
+            "subheading": "Postgraduate & Professional Degrees",
+            "credits_label": "Required:",
+            "programs": [
+                { "name": "Executive MBA (EMBA)", "credits": "48 Credit", "duration": "1.5 Years (3 Semesters)" },
+                { "name": "MBA Regular (For BBA Graduate)", "credits": "36 Credit", "duration": "1 Year (2 Semesters)" },
+                { "name": "MBA (For Other Graduate)", "credits": "60 Credit", "duration": "2 Years (4 Semesters)" },
+                { "name": "MA in English (ELT)", "credits": "36 Credit", "duration": "1 Year (2 Semesters)" }
+            ]
+        },
+        "admission_overview": {
+            "heading": "Admission Overview",
+            "lead": "The admission process at BAUST is highly competitive and merit-based.",
+            "capacity_text": "Each department currently accepts only 100 students* in each semester to maintain the highest quality of education and personalized attention.",
+            "capacity_highlight": "100 students*",
+            "footnote": "*3 percent of the total seats are reserved for children of Freedom Fighters, and another 3 percent for meritorious candidates from remote and underdeveloped areas."
+        },
+        "apply_cta": {
+            "heading": "Ready to Apply?",
+            "text": "Start your journey with BAUST today by filling out our online form.",
+            "button_label": "Apply Online",
+            "button_url": "http://admission.baust.edu.bd"
+        }
+    }
+}

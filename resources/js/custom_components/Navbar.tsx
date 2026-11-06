@@ -92,7 +92,7 @@ const mainNavItems = [
                 children: [
                     { name: "FSH Dean’s Office", href: "/fsh" },
                     { name: "Department of English", href: "/eng" },
-                    { name: "MA in English (ELT)", href: "/eng/curriculum" },
+                    { name: "MA in English (ELT)", href: "/ma-elt" },
                     { name: "Department of Arts & Sciences (A&S)", href: "/as" }
                 ]
             },

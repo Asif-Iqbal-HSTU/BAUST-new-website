@@ -29,23 +29,10 @@ interface Props {
     stats?: StatItem[];
 }
 
-const DEFAULT_STATS: StatItem[] = [
-    { value: '400+', label: 'Current Students' },
-    { value: '28+', label: 'Faculty & Staff' },
-    { value: '14', label: 'Laboratories & Workshops' },
-    { value: '95%', label: 'Placement & Higher Studies' },
-];
-
-const DEFAULT_ABOUT = `Mechanical Engineering (ME) is one of the most fundamental, versatile, and essential branches of engineering, with applications spanning automobile industries, power generation, aerospace systems, manufacturing processes, and robotics. The Department of Mechanical Engineering at Bangladesh Army University of Science and Technology (BAUST), Saidpur, commenced its journey in 2015 with a mission to develop skilled, innovative, and ethically grounded engineers.
-
-The department offers a comprehensive 4-year undergraduate B.Sc. in Mechanical Engineering degree covering thermo-fluid sciences, mechanical design, manufacturing technology, mechatronics, and solid mechanics. Combining deep theoretical foundations with practical laboratory training across 14 state-of-the-art facilities, our students are prepared to lead industrial automation and national engineering developments.
-
-Our curriculum combines Outcome-Based Education (OBE) with design workshops and industry internships, preparing graduates for key roles in energy industries, automotive engineering, manufacturing plants, and advanced research institutions worldwide.`;
-
 export default function MeAbout({ department, stats }: Props) {
-    const activeStats = (stats && stats.length > 0) ? stats : DEFAULT_STATS;
-    const aboutText = department?.about || department?.description || DEFAULT_ABOUT;
-    const aboutParagraphs = aboutText.split('\n\n').filter(Boolean);
+    const activeStats = stats ?? [];
+    const aboutText = department?.about || department?.description || '';
+    const aboutParagraphs = aboutText.split(/(?:\r?\n|\\n)\s*(?:\r?\n|\\n)/).map((p) => p.trim()).filter(Boolean);
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
@@ -77,6 +64,7 @@ export default function MeAbout({ department, stats }: Props) {
                         </div>
 
                         {/* Quick Stats */}
+                        {activeStats.length > 0 && (
                         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {activeStats.map((stat, idx) => (
                                 <div key={stat.id ?? idx} className="text-center p-5 rounded-2xl bg-emerald-50/60 border border-emerald-100/50">
@@ -85,6 +73,7 @@ export default function MeAbout({ department, stats }: Props) {
                                 </div>
                             ))}
                         </div>
+                        )}
                     </div>
                 </div>
             </main>

@@ -92,7 +92,7 @@ const LAB_GALLERY = [
 ];
 
 const DEPT_LABS = [
-    { dept: 'CSE', href: '/cse/laboratories/computer-programming-and-operating-system-lab' },
+    { dept: 'CSE', href: '/cse/laboratories' },
     { dept: 'ICT', href: '/ict/laboratories' },
     { dept: 'EEE', href: '/eee/laboratories' },
     { dept: 'ME', href: '/me/laboratories' },

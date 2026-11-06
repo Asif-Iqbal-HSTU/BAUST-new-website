@@ -4,7 +4,7 @@ import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
-import { ICT_TABS, ICT_DEPT_NAME } from '@/data/ictData';
+import { ICT_TABS, ICT_DEPT_NAME, type DeptInfo } from '@/data/ictData';
 
 interface StatItem {
     id?: number;
@@ -12,28 +12,10 @@ interface StatItem {
     label: string;
 }
 
-interface DeptInfo {
-    id: number;
-    slug: string;
-    name: string;
-    short_name: string;
-    faculty?: string | null;
-    tagline?: string | null;
-    established?: string | null;
-    about?: string | null;
-}
-
 interface Props {
     department?: DeptInfo | null;
     stats?: StatItem[];
 }
-
-const DEFAULT_STATS: StatItem[] = [
-    { value: '16+', label: 'Faculty & Staff' },
-    { value: '2015', label: 'Established' },
-    { value: 'B.Sc. ICT', label: 'Program' },
-    { value: '250+', label: 'Students' },
-];
 
 const DEFAULT_ABOUT = `Information and Communication Technology (ICT) plays a vital and indispensable role in all fields of modern human activities. Consequently, ICT has established itself as one of the most important branches of engineering. The recent developments in communication networks and information systems have a considerable impact on society, expanding to all fields of study from industrial automation to cloud database engineering.
 
@@ -42,7 +24,7 @@ The Department of Information and Communication Technology is one of the pioneer
 A combination of highly qualified faculty members and state-of-the-art facilities has established the ICT department as one of the leading and prestigious departments of the university.`;
 
 export default function IctAbout({ department, stats }: Props) {
-    const activeStats = (stats && stats.length > 0) ? stats : DEFAULT_STATS;
+    const activeStats = stats ?? [];
     const aboutText = department?.about || DEFAULT_ABOUT;
     const aboutParagraphs = aboutText.split('\n\n').filter(Boolean);
 
@@ -50,7 +32,7 @@ export default function IctAbout({ department, stats }: Props) {
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
             <Head title={`About ${department?.short_name || 'ICT'} - BAUST`} />
             <Navbar />
-            <PageHero title={department?.name || "Department of Information and Communication Technology (ICT)"} subtitle={null} compact={true} />
+            <PageHero title={department?.name || ICT_DEPT_NAME} subtitle={null} compact={true} />
             <DeptSubNav departmentName={department?.short_name || ICT_DEPT_NAME} activeTab="About" tabs={ICT_TABS} />
 
             <main className="flex-grow w-full max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -76,6 +58,7 @@ export default function IctAbout({ department, stats }: Props) {
                         </div>
 
                         {/* Quick Stats */}
+                        {activeStats.length > 0 && (
                         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
                             {activeStats.map((stat, idx) => (
                                 <div key={stat.id ?? idx} className="text-center p-5 rounded-2xl bg-emerald-50/60 border border-emerald-100/50">
@@ -84,6 +67,7 @@ export default function IctAbout({ department, stats }: Props) {
                                 </div>
                             ))}
                         </div>
+                        )}
                     </div>
                 </div>
             </main>

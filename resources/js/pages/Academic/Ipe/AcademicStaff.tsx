@@ -6,6 +6,7 @@ import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { IPE_TABS, IPE_DEPT_NAME, FacultyMember } from '@/data/ipeData';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
+import { pageText } from '@/lib/dept-icons';
 
 function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
     return (
@@ -70,6 +71,7 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 export default function IpeAcademicStaff({ department, staff = [] }: { department?: DeptInfo | null; staff: FacultyMember[] }) {
@@ -103,6 +105,10 @@ export default function IpeAcademicStaff({ department, staff = [] }: { departmen
             <DeptSubNav departmentName={department?.short_name || IPE_DEPT_NAME} activeTab="Academic Staff" tabs={IPE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+                {pageText(department, 'staff_intro', '') && (
+                    <p className="text-gray-600 text-[15px] leading-relaxed max-w-3xl">{pageText(department, 'staff_intro', '')}</p>
+                )}
 
                 {/* Academic Staff */}
                 {activeStaff.length > 0 && (

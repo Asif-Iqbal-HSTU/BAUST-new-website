@@ -5,71 +5,22 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import { User, Mail, Phone } from 'lucide-react';
 
-interface Member {
+export interface Member {
+    position: string;
     name: string;
     designation: string;
-    position: string;
-    image: string;
+    photo: string;
     phone?: string;
     email?: string;
 }
 
-const disciplineMembers: Member[] = [
-    {
-        name: 'Brig Gen Mohammad Mobarak Hossain Majumder, psc',
-        designation: 'Vice Chancellor, BAUST',
-        position: 'Chairman',
-        image: '/images/Discipline Committee/vc.jpeg',
-    },
-    {
-        name: 'Col Muhammad Rubayat Zamil, BSP',
-        designation: 'Colonel Admin, Rangpur Area',
-        position: 'Member',
-        image: '/images/Discipline Committee/col-admin.jpg',
-    },
-    {
-        name: 'Col Chowdhury Saif Uddin Kawsar, PBGM, Sigs (LPR)',
-        designation: 'Registrar, BAUST',
-        position: 'Member',
-        image: '/images/Discipline Committee/registrar.jpeg',
-    },
-    {
-        name: 'Prof. Dr. Md. Shah Alam',
-        designation: 'Dean, Faculty of Business Studies, BAUST',
-        position: 'Member',
-        image: '/images/Discipline Committee/shah-alam.jpg',
-    },
-    {
-        name: 'Prof. Md. Jahurul Islam',
-        designation: 'Dean, Faculty of Science & Humanities, BAUST',
-        position: 'Member',
-        image: '/images/Discipline Committee/jahurul.jpg',
-    },
-    {
-        name: 'Prof. Dr. Imtiaz Ahmed Choudhury',
-        designation: 'Dean, Faculty of Mechanical Engineering, BAUST',
-        position: 'Member',
-        image: '/images/Discipline Committee/imtiaz.jpg',
-    },
-    {
-        name: 'Professor Dr. Md. Mahmudul Hasan',
-        designation: 'Dean, Faculty of Civil Engineering, BAUST',
-        position: 'Member',
-        image: '/images/Discipline Committee/mahmudul.png',
-    },
-    {
-        name: 'Associate Prof. Engr. Md. Mamun Hossain',
-        designation: 'Head, Department of ICT, BAUST',
-        position: 'Member',
-        image: '/images/Discipline Committee/mamun.jpeg',
-    },
-    {
-        name: 'Associate Prof. Md. Zaber Hossain',
-        designation: 'Proctor, BAUST',
-        position: 'Member Secretary',
-        image: '/images/Discipline Committee/zaber.jpeg',
-    },
-];
+export interface DisciplineCommitteeContent {
+    hero: { title: string; subtitle: string };
+    chairman_heading: string;
+    chairman: Member | null;
+    members_heading: string;
+    members: Member[];
+}
 
 // Treat missing images and old "Portrait" text placeholders as no-image.
 const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrait|no-profile/i.test(src);
@@ -77,7 +28,7 @@ const isPlaceholderImage = (src?: string) => !src || /placehold\.co|text=portrai
 // Member photo with a graceful person-icon fallback.
 const MemberImage = ({ member, isChairman = false }: { member: Member; isChairman?: boolean }) => {
     const [failed, setFailed] = React.useState(false);
-    const showFallback = failed || isPlaceholderImage(member.image);
+    const showFallback = failed || isPlaceholderImage(member.photo);
 
     return (
         <div className={`${isChairman ? 'w-32 sm:w-44' : 'w-24 sm:w-32 md:w-36'} aspect-square flex-shrink-0 relative overflow-hidden bg-emerald-50 border-r border-gray-50`}>
@@ -87,7 +38,7 @@ const MemberImage = ({ member, isChairman = false }: { member: Member; isChairma
                 </div>
             ) : (
                 <img
-                    src={member.image}
+                    src={member.photo}
                     alt={member.name}
                     loading="lazy"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -144,23 +95,23 @@ const MemberCard = ({ member, isChairman = false }: { member: Member; isChairman
     </div>
 );
 
-export default function DisciplineCommittee() {
-    const chairman = disciplineMembers.find((m) => m.position === 'Chairman');
-    const members = disciplineMembers.filter((m) => m.position !== 'Chairman');
+export default function DisciplineCommittee({ content }: { content: DisciplineCommitteeContent }) {
+    const chairman = content.chairman;
+    const members = content.members ?? [];
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Discipline Committee - BAUST" />
+            <Head title={`${content.hero.title} - BAUST`} />
             <Navbar />
 
-            <PageHero title="Discipline Committee" subtitle="Upholding Discipline & Conduct at BAUST" />
+            <PageHero title={content.hero.title} subtitle={content.hero.subtitle} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 {chairman && (
                     <div className="mb-24">
                         <div className="flex items-center justify-center gap-4 mb-12">
                             <div className="h-px bg-emerald-200 w-16" />
-                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">The Chairman</h2>
+                            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.chairman_heading}</h2>
                             <div className="h-px bg-emerald-200 w-16" />
                         </div>
                         <MemberCard member={chairman} isChairman={true} />
@@ -170,7 +121,7 @@ export default function DisciplineCommittee() {
                 <div>
                     <div className="flex items-center justify-center gap-4 mb-12">
                         <div className="h-px bg-emerald-200 w-16" />
-                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">Committee Members</h2>
+                        <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-800">{content.members_heading}</h2>
                         <div className="h-px bg-emerald-200 w-16" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

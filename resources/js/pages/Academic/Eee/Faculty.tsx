@@ -7,7 +7,7 @@ import DeptSubNav from '@/custom_components/DeptSubNav';
 import { EEE_TABS, EEE_DEPT_NAME, FacultyMember } from '@/data/eeeData';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
 
-type CategoryFilter = 'all' | 'professor' | 'associate_professor' | 'assistant_professor' | 'lecturer';
+type CategoryFilter = 'all' | 'professor' | 'associate_professor' | 'assistant_professor' | 'lecturer' | 'teaching_assistant';
 
 const CATEGORY_LABELS: Record<CategoryFilter, string> = {
     all: 'All',
@@ -15,6 +15,7 @@ const CATEGORY_LABELS: Record<CategoryFilter, string> = {
     associate_professor: 'Associate Professors',
     assistant_professor: 'Assistant Professors',
     lecturer: 'Lecturers',
+    teaching_assistant: 'Teaching Assistants',
 };
 
 function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
@@ -101,6 +102,7 @@ export default function EeeFaculty({ department, members = [] }: { department?: 
         associate_professor: members.filter(m => m.category === 'associate_professor').length,
         assistant_professor: members.filter(m => m.category === 'assistant_professor').length,
         lecturer: members.filter(m => m.category === 'lecturer').length,
+        teaching_assistant: members.filter(m => m.category === 'teaching_assistant').length,
     };
 
     const permanentFaculty = filtered.filter(m => m.type === 'permanent' && m.status === 'active');
@@ -149,16 +151,16 @@ export default function EeeFaculty({ department, members = [] }: { department?: 
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Faculty Members - EEE - BAUST" />
+            <Head title={`Faculty Members - ${department?.short_name || 'EEE'} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Electrical and Electronic Engineering (EEE)" subtitle={null} compact={true} />
-            <DeptSubNav departmentName={EEE_DEPT_NAME} activeTab="Faculty Members" tabs={EEE_TABS} />
+            <PageHero title={department?.name || EEE_DEPT_NAME} subtitle={null} compact={true} />
+            <DeptSubNav departmentName={department?.short_name || EEE_DEPT_NAME} activeTab="Faculty Members" tabs={EEE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
                 {/* Category Filter */}
                 <div className="flex flex-wrap items-center gap-2 mb-10 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm w-fit">
-                    {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).map((key) => (
+                    {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).filter((key) => key !== 'teaching_assistant' || counts.teaching_assistant > 0).map((key) => (
                         <button
                             key={key}
                             onClick={() => setFilter(key)}

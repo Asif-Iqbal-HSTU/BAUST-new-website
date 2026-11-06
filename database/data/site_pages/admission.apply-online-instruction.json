@@ -1,0 +1,68 @@
+{
+    "title": "Apply Online & Admission Leaflet",
+    "content": {
+        "meta_title": "Apply Online & Admission Leaflet - BAUST",
+        "hero": {
+            "title": "Apply Online & Leaflet"
+        },
+        "instructions": {
+            "heading": "Admission Instructions",
+            "lead_text": "Thank you for your interest in Bangladesh Army University of Science and Technology (BAUST). Apply now!",
+            "body_text": "If you fulfill the admission criteria, you should read carefully the following instructions about submitting the application.",
+            "official_link_label": "Official Link",
+            "official_link_text": "admission.baust.edu.bd",
+            "portal_url": "http://admission.baust.edu.bd",
+            "portal_button_label": "Go to Portal"
+        },
+        "leaflet": {
+            "badge_text": "Winter 2027 Admission Circular",
+            "heading": "Admission Leaflet",
+            "description": "Official circular featuring program offerings, semester fees, waivers, and admission criteria.",
+            "highlights": [
+                {
+                    "label": "Application Deadline:",
+                    "value": "26 November 2026"
+                },
+                {
+                    "label": "Tuition Waiver:",
+                    "value": "Up to 50% for meritorious & ICT"
+                }
+            ],
+            "leaflet_image": "/images/admission/leaflet.jpeg",
+            "download_file_name": "BAUST_Admission_Leaflet_Winter_2027.jpeg",
+            "view_button_label": "View Full Screen",
+            "download_button_label": "Download Image",
+            "preview_bar_label": "leaflet.jpeg • Winter 2027 Circular",
+            "expand_label": "Click to Expand",
+            "image_alt": "BAUST Admission Leaflet Winter 2027",
+            "hover_label": "Click to view high resolution",
+            "tip_text": "Tip: Click on the leaflet image above to open it in full-resolution zoomable view.",
+            "open_in_new_tab_label": "Open Image in New Tab",
+            "lightbox_title": "BAUST Official Admission Leaflet (Winter 2027)",
+            "lightbox_subtitle": "Full resolution prospectus & circular details",
+            "lightbox_image_alt": "BAUST Admission Leaflet Winter 2027 (Full Resolution)",
+            "open_in_new_tab_tooltip": "Open in new tab",
+            "close_tooltip": "Close (Esc)"
+        },
+        "important_note": {
+            "heading": "Important Note",
+            "text": "Must Bring your Admit card on Admission Test."
+        },
+        "procedure_guide": {
+            "heading": "Application Procedure Guide",
+            "badge_text": "Step-by-Step",
+            "guide_image": "/images/admission/1.png",
+            "image_alt": "Apply Online Instruction Procedure"
+        },
+        "next_steps": {
+            "heading": "Next Steps:",
+            "steps": [
+                "Check Eligibility Criteria",
+                "Prepare Necessary Documents",
+                "Pay Admission Fee",
+                "Fill Online Form",
+                "Download Admit Card"
+            ]
+        }
+    }
+}

@@ -5,6 +5,7 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME, FacultyMember } from '@/data/ceData';
+import { pageText } from '@/lib/dept-icons';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
 
 function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
@@ -65,7 +66,13 @@ function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () =>
     );
 }
 
-export default function CeAcademicStaff({ staff }: { staff: FacultyMember[] }) {
+interface CeDeptInfo {
+    name: string;
+    short_name: string;
+    page_texts?: Record<string, string> | null;
+}
+
+export default function CeAcademicStaff({ department, staff }: { department?: CeDeptInfo | null; staff: FacultyMember[] }) {
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
 
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
@@ -92,12 +99,16 @@ export default function CeAcademicStaff({ staff }: { staff: FacultyMember[] }) {
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Academic Staff - CE - BAUST" />
+            <Head title={`Academic Staff - ${department?.short_name || 'CE'} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Civil Engineering (CE)" subtitle={null} compact={true} />
-            <DeptSubNav departmentName={CE_DEPT_NAME} activeTab="Academic Staff" tabs={CE_TABS} />
+            <PageHero title={department?.name || CE_DEPT_NAME} subtitle={null} compact={true} />
+            <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Academic Staff" tabs={CE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+                {pageText(department, 'staff_intro', '') && (
+                    <p className="text-gray-600 text-[15px] leading-relaxed max-w-3xl">{pageText(department, 'staff_intro', '')}</p>
+                )}
 
                 {/* Academic Staff */}
                 {activeStaff.length > 0 && (

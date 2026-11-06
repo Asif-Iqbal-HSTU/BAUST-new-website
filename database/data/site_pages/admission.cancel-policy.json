@@ -1,0 +1,38 @@
+{
+    "title": "Admission Cancel Policy",
+    "content": {
+        "browser_title": "Admission Cancel Policy",
+        "hero": {
+            "title": "Admission Cancellation Policy",
+            "subtitle": "Cancellation guidelines & refund schedule"
+        },
+        "overview": {
+            "section_number": "1.7",
+            "heading": "Cancellation of Admission",
+            "text": "The cancellation of admission is not permissible. However, under special circumstances, such cancellation may be considered as per the guidelines shown here.",
+            "highlighted_phrase": "not permissible",
+            "highlights": [
+                "Applies to special circumstances only",
+                "Refund depends on timing of cancellation",
+                "Caution money treated separately"
+            ]
+        },
+        "reference": {
+            "heading": "Reference",
+            "text": "SOP, Academic Guideline, October 2020. For any cancellation request, please contact the Admission Office."
+        },
+        "refund_schedule": {
+            "heading": "Refund Schedule",
+            "subheading": "Refundable amount by time of cancellation",
+            "serial_column": "Ser",
+            "description_column": "Description",
+            "refundable_column": "Refundable",
+            "rules": [
+                { "when": "Before commencement of the classes", "refundable": "100% of the Establishment Fees and 100% of the Semester Fee" },
+                { "when": "Within the 1st week of commencement of the classes", "refundable": "The Caution Money, 75% of the Establishment Fee and the Semester Fee" },
+                { "when": "Within 2 weeks of commencement of the classes", "refundable": "The Caution Money, 50% of the Establishment Fee and the Semester Fee" },
+                { "when": "After 2 weeks of commencement of the classes", "refundable": "Caution Money only" }
+            ]
+        }
+    }
+}

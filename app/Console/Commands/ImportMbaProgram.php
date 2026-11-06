@@ -16,6 +16,7 @@ use DOMXPath;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Imports the MBA program sub-site (https://baust.edu.bd/mba/) as a DB-driven
@@ -78,7 +79,9 @@ class ImportMbaProgram extends Command
     private function import(array $data): void
     {
         $dept = Department::firstOrNew(['slug' => 'mba']);
-        $dept->forceFill(array_merge($data['department'], [
+        // The snapshot carries keys (e.g. degree_name) the departments table doesn't have.
+        $columns = array_flip(Schema::getColumnListing('departments'));
+        $dept->forceFill(array_merge(array_intersect_key($data['department'], $columns), [
             'is_active' => true,
             'order' => $dept->order ?: ((int) Department::where('slug', '!=', 'mba')->max('order') + 1),
         ]))->save();

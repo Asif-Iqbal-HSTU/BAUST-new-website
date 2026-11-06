@@ -1,0 +1,102 @@
+{
+    "title": "Admission Requirements",
+    "content": {
+        "meta_title": "Admission Requirements - BAUST",
+        "hero": {
+            "title": "Admission Requirements",
+            "subtitle": "Eligibility & Required Documentation"
+        },
+        "engineering_programs": {
+            "heading": "Engineering Programs",
+            "programs_label": "CSE, EEE, ME, IPE, CE and ICT",
+            "criteria": [
+                {
+                    "title": "HSC / Alim or Equivalent",
+                    "text_before_highlight": "Science Group with Mathematics, Physics, and Chemistry. Minimum GPA 3.0 (with additional subject). Total GPA of SSC and HSC should be at least",
+                    "highlight": "7.0",
+                    "text_after_highlight": "."
+                },
+                {
+                    "title": "GCE O/A Level",
+                    "text_before_highlight": "A-Level with Physics, Mathematics, Chemistry, and Functional English. Minimum GPA 3.0. Total GPA of O-Level and A-Level should be at least",
+                    "highlight": "7.0",
+                    "text_after_highlight": ". No 'F' grades allowed in any subject."
+                }
+            ],
+            "direct_admission": {
+                "label": "Direct Admission",
+                "text_before_highlight": "Applicants with a total GPA of",
+                "highlight": "9.0",
+                "text_after_highlight": "or more in HSC and SSC are eligible for direct admission without a test."
+            }
+        },
+        "non_engineering_programs": {
+            "heading": "Non-Engineering Programs",
+            "programs_label": "BBA, BBA in AIS, English, MBA, and MA in English",
+            "criteria": [
+                {
+                    "title": "HSC / Alim or Equivalent",
+                    "text_before_highlight": "Minimum GPA 3.0 (with additional subject). Total GPA of HSC and SSC should be at least",
+                    "highlight": "6.0",
+                    "text_after_highlight": "."
+                },
+                {
+                    "title": "GCE O/A Level",
+                    "text_before_highlight": "Minimum GPA 3.0 in both levels. Total GPA of O-Level and A-Level should be at least",
+                    "highlight": "6.0",
+                    "text_after_highlight": ". No 'F' grades allowed in any subject."
+                }
+            ],
+            "direct_admission": {
+                "label": "Direct Admission",
+                "text_before_highlight": "Applicants with a total GPA of",
+                "highlight": "8.0",
+                "text_after_highlight": "or more in HSC and SSC are eligible for direct admission without a test."
+            }
+        },
+        "required_documents": {
+            "heading": "Required Documents",
+            "documents": [
+                "Admit card for the admission test",
+                "Original copies of SSC Academic Transcript, Certificate, and Testimonial",
+                "Original copies of HSC Academic Transcript, Certificate and Testimonial",
+                "Photocopies of SSC & HSC Academic Transcripts",
+                "8 copies of passport-size photograph",
+                "Medical reports (Blood group, Blood for CBC, HBs. Ag, Urine R/E) from any reputed hospital/clinic/diagnostic center",
+                "A copy of the parents’ PP-size photo",
+                "A copy of the parent’s NID",
+                "A copy of the Student’s Birth Certificate and NID",
+                "Provisional certificate/testimonial from the head of the institution (if original HSC certificate is not available)"
+            ],
+            "apply_button_label": "Apply Online Now",
+            "apply_url": "http://admission.baust.edu.bd"
+        },
+        "medical_tests": {
+            "heading": "Medical Tests Required",
+            "test_label_prefix": "Test",
+            "tests": [
+                "Blood Group",
+                "Blood for CBC",
+                "HBs. Ag",
+                "Urine R/E"
+            ]
+        },
+        "identity_documents": {
+            "heading": "Identity Documents",
+            "documents": [
+                "Student's NID/Birth Cert.",
+                "Parents' NID Copies",
+                "Parent's PP Size Photo"
+            ]
+        },
+        "admission_detail": {
+            "heading": "Admission Detail - 24th Batch",
+            "description": "Official documentation for the current admission session.",
+            "detail_pdf": "/images/admission/Admission-Detail-24th-Batch.pdf",
+            "open_button_tooltip": "Open in new tab",
+            "download_button_label": "Download PDF",
+            "preview_label": "Official Document Preview",
+            "preview_fallback_text": "Your browser cannot display this PDF preview directly. Please use the download button above."
+        }
+    }
+}

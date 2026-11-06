@@ -44,16 +44,10 @@ class DepartmentController extends Controller
         $tabs[] = ['name' => 'Alumni', 'href' => "{$base}/alumni"];
         $tabs[] = ['name' => 'Events', 'href' => "{$base}/events"];
 
-        $hasResearch = $d->researches()->where('is_active', true)->exists();
-        $tabs[] = ['name' => 'Research', 'children' => $hasResearch
-            ? [
-                ['name' => 'Publications', 'href' => "{$base}/research/publications"],
-                ['name' => 'Research Projects', 'href' => "{$base}/research/projects"],
-            ]
-            : [
-                ['name' => 'Publications', 'href' => '/research#publications'],
-                ['name' => 'Research Areas', 'href' => '/research#projects'],
-            ]];
+        $tabs[] = ['name' => 'Research', 'children' => [
+            ['name' => 'Publications', 'href' => "{$base}/research/publications"],
+            ['name' => 'Research Projects', 'href' => "{$base}/research/projects"],
+        ]];
 
         $tabs[] = ['name' => 'Achievements', 'href' => "{$base}/achievements"];
 
@@ -73,9 +67,15 @@ class DepartmentController extends Controller
         return Department::where('slug', $slug)->firstOrFail();
     }
 
+    /** Active student societies and clubs (everything except the alumni association). */
+    private function societies(Department $d)
+    {
+        return $d->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->get();
+    }
+
     private function society(Department $d)
     {
-        return $d->societies()->where('type', '!=', 'alumni')->where('is_active', true)->orderBy('order')->first();
+        return $this->societies($d)->first();
     }
 
     /** Props shared by every department page. */
@@ -160,7 +160,8 @@ class DepartmentController extends Controller
     {
         $department = $this->department($dept);
         $all = $department->laboratories()->where('is_active', true)->get();
-        $lab = ($facilitySlug ? $all->firstWhere('slug', $facilitySlug) : null) ?: $all->first();
+        $lab = $facilitySlug ? $all->firstWhere('slug', $facilitySlug) : $all->first();
+        abort_if($facilitySlug && ! $lab, 404);
 
         return $this->page('Facilities', $department, [
             'lab' => $lab,
@@ -186,6 +187,7 @@ class DepartmentController extends Controller
     public function eventDetail(string $eventSlug, string $dept): Response
     {
         $event = Notice::active()
+            ->forDepartment($dept)
             ->where('slug', $eventSlug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -234,16 +236,19 @@ class DepartmentController extends Controller
     {
         $department = $this->department($dept);
 
-        return $this->page('Clubs', $department, ['society' => $this->society($department)]);
+        $societies = $this->societies($department);
+
+        return $this->page('Clubs', $department, [
+            'society' => $societies->first(),
+            'societies' => $societies,
+        ]);
     }
 
     public function researchPublications(string $dept): Response
     {
         $department = $this->department($dept);
 
-        return Inertia::render('Academic/Dba/Research/Publications', [
-            'department' => $department,
-            'tabs' => $this->getTabs($department),
+        return $this->page('ResearchPublications', $department, [
             'publications' => $department->researches()->where('type', 'publication')->where('is_active', true)->get(),
         ]);
     }
@@ -252,9 +257,7 @@ class DepartmentController extends Controller
     {
         $department = $this->department($dept);
 
-        return Inertia::render('Academic/Dba/Research/Projects', [
-            'department' => $department,
-            'tabs' => $this->getTabs($department),
+        return $this->page('ResearchProjects', $department, [
             'projects' => $department->researches()->where('type', 'thesis')->where('is_active', true)->get(),
         ]);
     }

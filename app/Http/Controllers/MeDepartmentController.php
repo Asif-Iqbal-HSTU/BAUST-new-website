@@ -37,11 +37,9 @@ class MeDepartmentController extends Controller
             ->take(5)
             ->get();
 
+        // Slides, highlights and stats reach the page through the eager-loaded `department` relations.
         return Inertia::render('Academic/Me/Index', [
             'department' => $dept,
-            'slides' => $dept?->slides ?? [],
-            'highlights' => $dept?->highlights ?? [],
-            'stats' => $dept?->stats ?? [],
             'headOfDept' => $head,
             'facultyPreview' => $faculty,
             'notices' => $notices,
@@ -116,11 +114,13 @@ class MeDepartmentController extends Controller
     public function alumni()
     {
         $dept = Department::where('slug', 'me')->first();
-        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->first() : null;
+        $alumni = $dept ? $dept->societies()->where('type', 'alumni')->where('is_active', true)->orderBy('order')->first() : null;
+        $alumniMembers = $dept ? $dept->alumni()->where('is_active', true)->get() : [];
 
         return Inertia::render('Academic/Me/Alumni', [
             'department' => $dept,
             'alumni' => $alumni,
+            'alumniMembers' => $alumniMembers,
         ]);
     }
 
@@ -144,6 +144,7 @@ class MeDepartmentController extends Controller
     public function eventDetail($slug)
     {
         $event = Notice::active()
+            ->forDepartment('me')
             ->where('slug', $slug)
             ->with(['categories', 'pressCoverages'])
             ->firstOrFail();
@@ -179,20 +180,21 @@ class MeDepartmentController extends Controller
     {
         $dept = Department::where('slug', 'me')->first();
         $allLabs = $dept ? $dept->laboratories()->where('is_active', true)->orderBy('order')->get() : [];
-        $lab = $slug ? ($allLabs->firstWhere('slug', $slug) ?: $allLabs->first()) : $allLabs->first();
+        $lab = $slug ? collect($allLabs)->firstWhere('slug', $slug) : collect($allLabs)->first();
+        abort_if($slug && ! $lab, 404);
 
         return Inertia::render('Academic/Me/Laboratory', [
             'department' => $dept,
             'lab' => $lab,
             'allLabs' => $allLabs,
-            'labSlug' => $slug ?: ($lab?->slug ?? 'strength-of-materials-lab'),
+            'labSlug' => $lab?->slug,
         ]);
     }
 
     public function society()
     {
         $dept = Department::where('slug', 'me')->first();
-        $society = $dept ? $dept->societies()->where('slug', 'me-society')->where('is_active', true)->first() : null;
+        $society = $dept ? $dept->societies()->whereIn('type', ['society', 'club'])->where('is_active', true)->orderBy('order')->first() : null;
 
         return Inertia::render('Academic/Me/MeSociety', [
             'department' => $dept,

@@ -1,6 +1,7 @@
 import React from 'react';
 import DeptPageShell from '@/custom_components/DeptPageShell';
-import { DeptPageProps, deptShort } from '@/data/departmentData';
+import { DeptInfo, DeptPageProps, deptShort } from '@/data/departmentData';
+import { pageText } from '@/lib/dept-icons';
 import { FileText, Download, Eye, BookOpen, Clock, Award, ShieldCheck } from 'lucide-react';
 
 interface CurriculumItem {
@@ -17,6 +18,7 @@ interface CurriculumItem {
 }
 
 interface Props extends DeptPageProps {
+    department: DeptInfo & { page_texts?: Record<string, string> | null };
     curricula?: CurriculumItem[];
 }
 
@@ -28,7 +30,7 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
     const getFileUrl = (item: CurriculumItem) => {
         if (item.file) return item.file;
         if (item.filename) return `/departments/${department.slug}/curriculum/${item.filename}`;
-        return '#';
+        return null;
     };
 
     return (
@@ -38,7 +40,7 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
             activeTab="Curriculum"
             title={`Curriculum - ${short}`}
             heroTitle={`${short} Academic Curriculum`}
-            heroSubtitle="Designed for Excellence, Built for the Future"
+            heroSubtitle={pageText(department, 'curriculum_subtitle', "Designed for Excellence, Built for the Future")}
         >
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -48,8 +50,12 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
                         <BookOpen className="text-emerald-600 w-8 h-8" />
                         {short} Course Curriculum
                     </h2>
-                    <p className="text-gray-600 leading-relaxed text-lg">
-                        The {department.name} at BAUST offers a comprehensive undergraduate program. Our curriculum is periodically updated to align with contemporary academic standards and the requirements of the University Grants Commission (UGC).
+                    <p className="text-gray-600 leading-relaxed text-lg whitespace-pre-line">
+                        {pageText(
+                            department,
+                            'curriculum_intro',
+                            `The ${department.name} at BAUST offers a comprehensive academic program. Our curriculum is periodically updated to align with contemporary academic standards and the requirements of the University Grants Commission (UGC).`,
+                        )}
                     </p>
                 </div>
 
@@ -58,7 +64,7 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
                     {[
                         { icon: Clock, label: "Duration", value: primary?.duration },
                         { icon: Award, label: "Total Credits", value: primary?.credits },
-                        { icon: ShieldCheck, label: "Accreditation", value: department.accreditation_badge || 'UGC Approved' },
+                        { icon: ShieldCheck, label: "Accreditation", value: department.accreditation_badge },
                         { icon: BookOpen, label: "Degree", value: primary?.degree }
                     ].filter((item) => item.value).map((item, idx) => (
                         <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
@@ -79,6 +85,13 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
                         <h3 className="text-xl font-bold text-gray-900">Available Syllabi Versions</h3>
                         <div className="h-px flex-grow bg-gradient-to-r from-gray-200 to-transparent" />
                     </div>
+
+                    {list.length === 0 && (
+                        <div className="bg-white rounded-3xl p-16 text-center border border-dashed border-gray-200">
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Curriculum Coming Soon</h3>
+                            <p className="text-gray-500">The department's curriculum will be published here.</p>
+                        </div>
+                    )}
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {list.map((syllabus, idx) => {
@@ -124,7 +137,7 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
                                         )}
 
                                         {/* Actions */}
-                                        <div className="mt-auto flex flex-wrap gap-3">
+                                        {fileUrl && <div className="mt-auto flex flex-wrap gap-3">
                                             <a 
                                                 href={fileUrl}
                                                 target="_blank"
@@ -142,7 +155,7 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
                                                 <Download size={18} />
                                                 Download PDF
                                             </a>
-                                        </div>
+                                        </div>}
                                     </div>
                                 </div>
                             );
@@ -157,8 +170,12 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
                     </div>
                     <div className="relative z-10 max-w-2xl">
                         <h3 className="text-2xl font-bold mb-4 italic">Outcome Based Education (OBE)</h3>
-                        <p className="text-slate-400 leading-relaxed text-sm">
-                            Curricula are designed following the OBE framework, ensuring that students achieve specific competencies and skills by the end of their degree. We focus on continuous quality improvement (CQI) to maintain academic excellence.
+                        <p className="text-slate-400 leading-relaxed text-sm whitespace-pre-line">
+                            {pageText(
+                                department,
+                                'curriculum_obe_note',
+                                'Curricula are designed following the OBE framework, ensuring that students achieve specific competencies and skills by the end of their degree. We focus on continuous quality improvement (CQI) to maintain academic excellence.',
+                            )}
                         </p>
                     </div>
                 </div>

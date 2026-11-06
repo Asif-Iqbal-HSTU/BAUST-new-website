@@ -5,6 +5,7 @@ import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { ME_TABS, ME_DEPT_NAME } from '@/data/meData';
+import { pageText } from '@/lib/dept-icons';
 import { 
     Folder, 
     ExternalLink, 
@@ -31,11 +32,21 @@ interface OnlineResourceItem {
     is_active: boolean;
 }
 
+interface DeptInfo {
+    id: number;
+    name: string;
+    short_name: string;
+    slug: string;
+    page_texts?: Record<string, string> | null;
+}
+
 interface Props {
+    department?: DeptInfo | null;
     resources: OnlineResourceItem[];
 }
 
-export default function OnlineResources({ resources = [] }: Props) {
+export default function OnlineResources({ department, resources = [] }: Props) {
+    const shortName = department?.short_name || 'ME';
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [copiedId, setCopiedId] = useState<number | null>(null);
@@ -84,14 +95,14 @@ export default function OnlineResources({ resources = [] }: Props) {
 
     return (
         <div className="min-h-screen flex flex-col font-['Inter',sans-serif]" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Online Resources - Department of ME - BAUST" />
+            <Head title={`Online Resources - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
                 title="Online Resources & Course Materials" 
-                subtitle="Department of Mechanical Engineering" 
+                subtitle={department?.name || 'Department of Mechanical Engineering'} 
                 compact={true} 
             />
-            <DeptSubNav departmentName={ME_DEPT_NAME} activeTab="Online Resources" tabs={ME_TABS} />
+            <DeptSubNav departmentName={department?.short_name || ME_DEPT_NAME} activeTab="Online Resources" tabs={ME_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
                 
@@ -104,10 +115,10 @@ export default function OnlineResources({ resources = [] }: Props) {
                             Academic Cloud Repository
                         </div>
                         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                            Mechanical Engineering Online Education Portal
+                            {shortName} Online Education Portal
                         </h2>
                         <p className="mt-2 text-emerald-100/90 text-sm sm:text-base leading-relaxed">
-                            Access verified lecture notes, lab manuals, course syllabi, and academic routines hosted securely on Google Drive for all Level-Term undergraduate students.
+                            {pageText(department, 'online_resources_intro', 'Access verified lecture notes, lab manuals, course syllabi, and academic routines hosted securely on Google Drive for all Level-Term undergraduate students.')}
                         </p>
                     </div>
                 </div>

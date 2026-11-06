@@ -19,16 +19,7 @@ export const CSE_TABS = [
         ]
     },
     { name: 'Curriculum', href: `${CSE_BASE_PATH}/curriculum` },
-    {
-        name: 'Laboratories',
-        children: [
-            { name: 'Computer Programming and Operating system Lab', href: `${CSE_BASE_PATH}/laboratories/programming-os` },
-            { name: 'Database and Data warehouse Lab', href: `${CSE_BASE_PATH}/laboratories/database` },
-            { name: 'Digital and Embedded System Lab', href: `${CSE_BASE_PATH}/laboratories/digital-embedded` },
-            { name: 'Network and Hardware Lab', href: `${CSE_BASE_PATH}/laboratories/network-hardware` },
-            { name: 'Microprocessor and Interfacing Lab', href: `${CSE_BASE_PATH}/laboratories/microprocessor` }
-        ]
-    },
+    { name: 'Laboratories', href: `${CSE_BASE_PATH}/laboratories` },
     { name: 'Alumni', href: `${CSE_BASE_PATH}/alumni` },
     { name: 'Events', href: `${CSE_BASE_PATH}/events` },
     {
@@ -72,10 +63,24 @@ export interface FacultyMember {
     category: string | null;
 }
 
-export const NOTICES = [
-    { date: '08', month: 'Feb', title: 'Publication of Results Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '14', month: 'Jan', title: 'Final Examination Result of Summer 2025 (Regular) and Winter 2025 (Special)' },
-    { date: '06', month: 'May', title: 'Seminar on "Shedding Light on the Black Box: The Role of Explainability in Machine Learning"' },
-    { date: '27', month: 'Jun', title: 'Publication of Results Summer 2024 (CSE)' },
-    { date: '29', month: 'Sep', title: 'Syllabus 2021_Course Leaflet' },
-];
+/** Department profile row (`departments` table) as passed by the controller. */
+export interface DeptInfo {
+    id: number;
+    slug: string;
+    name: string;
+    short_name: string;
+    faculty?: string | null;
+    tagline?: string | null;
+    established?: string | null;
+    about?: string | null;
+    vision?: string | null;
+    mission?: string | null;
+    hod_name?: string | null;
+    hod_designation?: string | null;
+    hod_photo?: string | null;
+    hod_message?: string | null;
+    accreditation_badge?: string | null;
+    accreditation_title?: string | null;
+    accreditation_text?: string | null;
+    page_texts?: Record<string, string> | null;
+}

@@ -6,6 +6,7 @@ import PageHero from '@/custom_components/PageHero';
 import DeptSubNav from '@/custom_components/DeptSubNav';
 import { ME_TABS, ME_DEPT_NAME, FacultyMember } from '@/data/meData';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
+import { pageText } from '@/lib/dept-icons';
 
 function StaffCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
     return (
@@ -70,12 +71,14 @@ interface DeptInfo {
     name: string;
     short_name: string;
     slug: string;
+    page_texts?: Record<string, string> | null;
 }
 
 export default function MeAcademicStaff({ department, staff = [] }: { department?: DeptInfo | null; staff: FacultyMember[] }) {
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
     const exStaff = staff.filter(m => m.status === 'ex_faculty');
     const activeStaff = staff.filter(m => m.status !== 'ex_faculty');
+    const staffIntro = pageText(department, 'staff_intro', '');
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -103,6 +106,9 @@ export default function MeAcademicStaff({ department, staff = [] }: { department
             <DeptSubNav departmentName={department?.short_name || ME_DEPT_NAME} activeTab="Academic Staff" tabs={ME_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+                {staffIntro && (
+                    <p className="text-gray-600 leading-relaxed max-w-3xl">{staffIntro}</p>
+                )}
 
                 {/* Academic Staff */}
                 {activeStaff.length > 0 && (

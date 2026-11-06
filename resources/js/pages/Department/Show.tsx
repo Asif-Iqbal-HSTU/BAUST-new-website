@@ -1,54 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 import DeptPageShell from '@/custom_components/DeptPageShell';
-import { DeptPageProps, FacultyMember, StatItem, avatarUrl, deptBase, deptShort } from '@/data/departmentData';
-import {
-    BadgeCheck,
-    ChevronLeft,
-    ChevronRight,
-    Cpu,
-    BookOpen,
-    Award,
-    Briefcase,
-    GraduationCap,
-    FlaskConical,
-    Users,
-    Globe,
-    Building2,
-    Lightbulb,
-    Layers,
-    Target,
-    Trophy,
-    ShieldCheck,
-    Sparkles,
-    Handshake,
-    Eye,
-} from 'lucide-react';
-
-const ICON_MAP: Record<string, React.ReactNode> = {
-    Cpu: <Cpu className="w-7 h-7" />,
-    BookOpen: <BookOpen className="w-7 h-7" />,
-    Award: <Award className="w-7 h-7" />,
-    Briefcase: <Briefcase className="w-7 h-7" />,
-    GraduationCap: <GraduationCap className="w-7 h-7" />,
-    FlaskConical: <FlaskConical className="w-7 h-7" />,
-    Users: <Users className="w-7 h-7" />,
-    Globe: <Globe className="w-7 h-7" />,
-    Building2: <Building2 className="w-7 h-7" />,
-    Lightbulb: <Lightbulb className="w-7 h-7" />,
-    Layers: <Layers className="w-7 h-7" />,
-    Target: <Target className="w-7 h-7" />,
-    Trophy: <Trophy className="w-7 h-7" />,
-    ShieldCheck: <ShieldCheck className="w-7 h-7" />,
-    Sparkles: <Sparkles className="w-7 h-7" />,
-    Handshake: <Handshake className="w-7 h-7" />,
-    Eye: <Eye className="w-7 h-7" />,
-};
-
-function renderHighlightIcon(name?: string | null) {
-    if (name && ICON_MAP[name]) return ICON_MAP[name];
-    return <Sparkles className="w-7 h-7" />;
-}
+import { DeptInfo, DeptPageProps, FacultyMember, StatItem, avatarUrl, deptBase, deptShort } from '@/data/departmentData';
+import { BadgeCheck, ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
+import { deptIcon, pageText } from '@/lib/dept-icons';
 
 interface SlideItem {
     id?: number;
@@ -66,6 +21,7 @@ interface HighlightItem {
 }
 
 interface Props extends DeptPageProps {
+    department: DeptInfo & { page_texts?: Record<string, string> | null };
     slides?: SlideItem[];
     highlights?: HighlightItem[];
     stats?: StatItem[];
@@ -74,7 +30,7 @@ interface Props extends DeptPageProps {
     notices: { id: number; title: string; slug: string; published_at: string }[];
 }
 
-export default function DepartmentShow({ department, tabs, slides = [], highlights = [], headOfDept, facultyPreview, notices }: Props) {
+export default function DepartmentShow({ department, tabs, slides = [], highlights = [], stats = [], headOfDept, facultyPreview, notices }: Props) {
     const base = deptBase(department);
     const short = deptShort(department);
     // "Business Administration", "English"... but "MBA" rather than the full program title.
@@ -115,6 +71,7 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
             tabs={tabs}
             activeTab="Home"
             title={department.name}
+            heroSubtitle={pageText(department, 'home_hero_subtitle', department.tagline || '') || null}
             overlay={isHeadMsgOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 sm:py-12">
                     <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm transition-opacity" onClick={() => setIsHeadMsgOpen(false)} />
@@ -158,7 +115,7 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
 
                 {/* Highlights Slider + Accreditation / intro card, side by side */}
                 <section className="grid lg:grid-cols-3 gap-6 items-stretch">
-                    <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group bg-emerald-950">
+                    {slides.length > 0 && <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group bg-emerald-950">
                         {slides.map((slide, idx) => (
                             <div
                                 key={slide.id ?? idx}
@@ -197,11 +154,11 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                                 </div>
                             </>
                         )}
-                    </div>
+                    </div>}
 
                     {hasAccreditation ? (
                         /* Accreditation card */
-                        <div className="lg:col-span-1 bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                        <div className={`${slides.length > 0 ? 'lg:col-span-1' : 'lg:col-span-3'} bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col`}>
                             <div className="h-1.5 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500" />
                             <div className="p-7 flex flex-col flex-grow justify-center">
                                 <div className="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center mb-5">
@@ -220,7 +177,7 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                         </div>
                     ) : (
                         /* Intro card */
-                        <div className="lg:col-span-1 bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col">
+                        <div className={`${slides.length > 0 ? 'lg:col-span-1' : 'lg:col-span-3'} bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden flex flex-col`}>
                             <div className="h-1.5 bg-gradient-to-r from-emerald-500 via-green-400 to-emerald-600" />
                             <div className="p-7 flex flex-col flex-grow justify-center">
                                 <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center mb-5">
@@ -242,6 +199,18 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                         </div>
                     )}
                 </section>
+
+                {/* Quick Stats */}
+                {stats.length > 0 && (
+                    <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {stats.map((stat, idx) => (
+                            <div key={stat.id ?? idx} className="text-center p-5 rounded-2xl bg-white shadow-md border border-gray-100">
+                                <p className="text-2xl font-extrabold text-emerald-700">{stat.value}</p>
+                                <p className="text-xs text-gray-500 font-semibold mt-1 uppercase tracking-wider">{stat.label}</p>
+                            </div>
+                        ))}
+                    </section>
+                )}
 
                 {/* Two-column: Message from Head + Notices */}
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -336,15 +305,18 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                             Why {subject} at <span className="text-emerald-700">BAUST</span>?
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {highlights.map((item, idx) => (
-                                <div key={item.id ?? idx} className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
-                                    <div className="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                                        {renderHighlightIcon(item.icon)}
+                            {highlights.map((item, idx) => {
+                                const Icon = deptIcon(item.icon);
+                                return (
+                                    <div key={item.id ?? idx} className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                                        <div className="w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                                            <Icon className="w-7 h-7" />
+                                        </div>
+                                        <h3 className="text-[15px] font-bold text-gray-900 mb-2">{item.title}</h3>
+                                        <p className="text-[13px] text-gray-500 leading-relaxed">{item.text || item.description}</p>
                                     </div>
-                                    <h3 className="text-[15px] font-bold text-gray-900 mb-2">{item.title}</h3>
-                                    <p className="text-[13px] text-gray-500 leading-relaxed">{item.text || item.description}</p>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 )}

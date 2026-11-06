@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import DeptPageShell from '@/custom_components/DeptPageShell';
-import { DeptPageProps, deptShort } from '@/data/departmentData';
+import { DeptInfo, DeptPageProps, deptShort } from '@/data/departmentData';
+import { pageText } from '@/lib/dept-icons';
 import { 
     Folder, 
     ExternalLink, 
@@ -28,6 +29,7 @@ interface OnlineResourceItem {
 }
 
 interface Props extends DeptPageProps {
+    department: DeptInfo & { page_texts?: Record<string, string> | null };
     resources: OnlineResourceItem[];
 }
 
@@ -102,8 +104,12 @@ export default function DepartmentOnlineResources({ department, tabs, resources 
                         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                             {department.name.replace(/^Department of\s+/i, '')} Online Education Portal
                         </h2>
-                        <p className="mt-2 text-emerald-100/90 text-sm sm:text-base leading-relaxed">
-                            Access verified lecture notes, lab manuals, course syllabi, and academic routines hosted securely on Google Drive for all Level-Term undergraduate students.
+                        <p className="mt-2 text-emerald-100/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                            {pageText(
+                                department,
+                                'online_resources_intro',
+                                'Access verified lecture notes, course syllabi, and academic routines hosted securely on Google Drive for all students of the department.',
+                            )}
                         </p>
                     </div>
                 </div>

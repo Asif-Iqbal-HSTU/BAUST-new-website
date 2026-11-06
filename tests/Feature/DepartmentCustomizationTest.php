@@ -1,35 +1,47 @@
 <?php
 
 use App\Models\Department;
+use App\Models\Notice;
 use App\Models\User;
+
+function cseEvent(): Notice
+{
+    return Notice::create([
+        'title' => 'CSE Programming Contest',
+        'slug' => 'cse-programming-contest',
+        'department' => 'cse',
+        'published_at' => now()->subDay(),
+        'is_active' => true,
+    ]);
+}
 
 test('guests cannot access department admin manage page', function () {
     $this->get('/admin/departments/cse')->assertRedirect('/login');
 });
 
 test('cse admin can access cse department manage page', function () {
-    $admin = User::where('email', 'cseadmin@baust.edu.bd')->first();
+    $admin = User::factory()->create(['role' => 'dept_admin', 'department' => 'cse']);
     $this->actingAs($admin)
         ->get('/admin/departments/cse')
         ->assertOk();
 });
 
 test('cse admin visiting /admin/departments is redirected to /admin/departments/cse', function () {
-    $admin = User::where('email', 'cseadmin@baust.edu.bd')->first();
+    $admin = User::factory()->create(['role' => 'dept_admin', 'department' => 'cse']);
     $this->actingAs($admin)
         ->get('/admin/departments')
         ->assertRedirect('/admin/departments/cse');
 });
 
 test('cse admin cannot access eee department manage page', function () {
-    $admin = User::where('email', 'cseadmin@baust.edu.bd')->first();
+    $admin = User::factory()->create(['role' => 'dept_admin', 'department' => 'cse']);
     $this->actingAs($admin)
         ->get('/admin/departments/eee')
         ->assertForbidden();
 });
 
 test('super admin can access all department manage pages', function () {
-    $superAdmin = User::where('email', 'superadmin@baust.edu.bd')->first();
+    $superAdmin = User::factory()->create(['role' => 'super_admin']);
     $this->actingAs($superAdmin)
         ->get('/admin/departments')
         ->assertOk();
@@ -71,7 +83,7 @@ test('public can visit cse department pages with dynamic content', function () {
 });
 
 test('public can visit cse event detail page with departmental menu', function () {
-    $event = \App\Models\Notice::active()->forDepartment('cse')->firstOrFail();
+    $event = cseEvent();
 
     $this->get("/cse/events/{$event->slug}")
         ->assertOk()
@@ -84,7 +96,7 @@ test('public can visit cse event detail page with departmental menu', function (
 });
 
 test('visiting cse notice with dept=cse redirects to cse event page', function () {
-    $event = \App\Models\Notice::active()->forDepartment('cse')->firstOrFail();
+    $event = cseEvent();
 
     $this->get("/archive/notices/{$event->slug}?dept=cse")
         ->assertRedirect("/cse/events/{$event->slug}");

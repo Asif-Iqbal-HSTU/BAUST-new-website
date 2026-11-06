@@ -20,6 +20,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
+        // Self-registration is closed: the users.role column defaults to
+        // dept_admin, so admin accounts are created by a super_admin instead.
+        abort(404);
+
         return Inertia::render('auth/register');
     }
 
@@ -30,6 +34,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        abort(404);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,

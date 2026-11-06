@@ -7,13 +7,14 @@ import DeptSubNav from '@/custom_components/DeptSubNav';
 import { CE_TABS, CE_DEPT_NAME, FacultyMember } from '@/data/ceData';
 import ProfileModal, { getProfileSlug } from '@/custom_components/ProfileModal';
 
-type CategoryFilter = 'all' | 'professor' | 'assistant_professor' | 'lecturer';
+type CategoryFilter = 'all' | 'professor' | 'assistant_professor' | 'lecturer' | 'teaching_assistant';
 
 const CATEGORY_LABELS: Record<CategoryFilter, string> = {
     all: 'All',
     professor: 'Professors',
     assistant_professor: 'Assistant Professors',
     lecturer: 'Lecturers',
+    teaching_assistant: 'Teaching Assistants',
 };
 
 function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () => void }) {
@@ -87,7 +88,13 @@ function FacultyCard({ member, onClick }: { member: FacultyMember; onClick?: () 
     );
 }
 
-export default function CeFaculty({ members }: { members: FacultyMember[] }) {
+interface CeDeptInfo {
+    name: string;
+    short_name: string;
+    page_texts?: Record<string, string> | null;
+}
+
+export default function CeFaculty({ department, members }: { department?: CeDeptInfo | null; members: FacultyMember[] }) {
     const [filter, setFilter] = useState<CategoryFilter>('all');
     const [selectedMember, setSelectedMember] = useState<any | null>(null);
 
@@ -100,6 +107,7 @@ export default function CeFaculty({ members }: { members: FacultyMember[] }) {
         professor: members.filter(m => m.category === 'professor').length,
         assistant_professor: members.filter(m => m.category === 'assistant_professor').length,
         lecturer: members.filter(m => m.category === 'lecturer').length,
+        teaching_assistant: members.filter(m => m.category === 'teaching_assistant').length,
     };
 
     const permanentFaculty = filtered.filter(m => m.type === 'permanent' && m.status === 'active');
@@ -154,16 +162,16 @@ export default function CeFaculty({ members }: { members: FacultyMember[] }) {
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title="Faculty Members - CE - BAUST" />
+            <Head title={`Faculty Members - ${department?.short_name || 'CE'} - BAUST`} />
             <Navbar />
-            <PageHero title="Department of Civil Engineering (CE)" subtitle={null} compact={true} />
-            <DeptSubNav departmentName={CE_DEPT_NAME} activeTab="Faculty Members" tabs={CE_TABS} />
+            <PageHero title={department?.name || CE_DEPT_NAME} subtitle={null} compact={true} />
+            <DeptSubNav departmentName={department?.short_name || CE_DEPT_NAME} activeTab="Faculty Members" tabs={CE_TABS} />
 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
                 {/* Category Filter */}
                 <div className="flex flex-wrap items-center gap-2 mb-10 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm w-fit">
-                    {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).map((key) => (
+                    {(Object.keys(CATEGORY_LABELS) as CategoryFilter[]).filter((key) => key !== 'teaching_assistant' || counts.teaching_assistant > 0).map((key) => (
                         <button
                             key={key}
                             onClick={() => setFilter(key)}
