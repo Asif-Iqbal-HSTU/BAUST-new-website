@@ -378,6 +378,9 @@ Route::get('/gallery', function () {
 foreach (config('legacy-redirects.paths', []) as $legacyPath => $newUrl) {
     Route::permanentRedirect('/'.$legacyPath, $newUrl);
 }
+foreach (config('legacy-redirects.prefixes', []) as $legacyPrefix => $newUrl) {
+    Route::permanentRedirect('/'.$legacyPrefix.'/{legacyRest?}', $newUrl)->where('legacyRest', '.*');
+}
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', App\Http\Controllers\DashboardController::class)->name('dashboard');

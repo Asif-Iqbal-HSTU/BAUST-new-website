@@ -23,7 +23,7 @@ return [
             'description' => 'Bangladesh Army University of Science and Technology (BAUST), Saidpur Cantonment: engineering, business and English degrees, admission and notices.',
         ],
         '/admission/tuition-fees' => [
-            'title' => 'BAUST Tuition Fees 2026 | Program-wise Semester Costs',
+            'title' => 'BAUST Tuition Fees | Program-wise Semester Costs',
             'description' => 'Program-wise tuition and semester fees at BAUST Saidpur: cost at admission, per-semester totals, other fees, payment mode, waivers and scholarships.',
         ],
         '/admission/admission-requirements' => [

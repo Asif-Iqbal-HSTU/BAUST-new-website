@@ -176,10 +176,9 @@ logged a console error (React reports hydration mismatches there).
    - after deploy, use Search Console → Removals for the already indexed login URLs.
 6. **`public/web.config`** is an IIS leftover that nginx ignores. It can be deleted when convenient.
 
-## Open questions
+## Decisions (2026-11-06)
 
-- **`/journal/…` URLs** (old journal site, e.g. `/journal/category/…`) currently return 404. Should they 301 to
-  `/research` (the Research & Publication page with the research cell), or answer 410? The repo has no new journal
-  page to map them to. It's a one-line entry in `config/legacy-redirects.php` either way.
-- **"2026" in the tuition-fees title** follows the brief. The fee page content itself carries no year (only 2019/2022
-  policy dates). Update `config/seo.php` once the fees are re-confirmed each session.
+- **`/journal` and everything under it** 301 to **https://journal.baust.edu.bd** (its home page). The journal site's
+  paths differ from the old WordPress ones (e.g. `/category/…` is 404 there), so the path isn't carried over
+  (`config/legacy-redirects.php` → `prefixes`).
+- **Tuition-fees title has no year:** "BAUST Tuition Fees | Program-wise Semester Costs".

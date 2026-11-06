@@ -109,6 +109,9 @@ test('moved pages 301 to their new URL and WordPress-only URLs are gone', functi
         $this->get('/'.$old)->assertStatus(301)->assertRedirect($new);
     }
     $this->get('/admission/admission-requirements')->assertOk();
+    foreach (['/journal', '/journal/category/research', '/journal/2021/05/some-paper'] as $url) {
+        $this->get($url)->assertStatus(301)->assertRedirect('https://journal.baust.edu.bd');
+    }
 
     foreach (['/wp-login.php', '/wp-admin/', '/feed', '/cse/feed', '/tag/admission', '/author/admin', '/2021/05/10/some-post', '/wp-content/plugins/x/y.js'] as $url) {
         $this->get($url)->assertStatus(410);

@@ -11,6 +11,9 @@
 |          registered as a 301 route in routes/web.php. Trailing-slash variants
 |          are already folded into the bare path by nginx.
 |
+| 'prefixes' Old path prefix => URL that it and everything under it 301s to
+|          (the path below the prefix is not carried over).
+|
 | 'gone'   Regular expressions (matched against the path, no leading slash) for
 |          old WordPress URLs that have no counterpart on this site. They answer
 |          410 Gone so search engines drop them. LegacyRedirectController checks
@@ -61,6 +64,12 @@ return [
         'ce/research' => '/ce/research/publications',
         'ce/gallery' => '/ce/gallery/photos',
         'ce/ce-society' => '/ce/clubs',
+    ],
+
+    'prefixes' => [
+        // The old WordPress journal (/journal/...) now lives on its own site, whose
+        // paths differ, so every old journal URL goes to its home page.
+        'journal' => 'https://journal.baust.edu.bd',
     ],
 
     'gone' => [
