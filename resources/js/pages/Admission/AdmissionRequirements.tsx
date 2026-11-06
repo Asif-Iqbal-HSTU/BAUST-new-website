@@ -1,5 +1,5 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/seo-head';
 import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
@@ -62,7 +62,7 @@ export default function AdmissionRequirements({ content }: { content: AdmissionR
 
     return (
         <div className="min-h-screen flex flex-col font-sans bg-slate-50">
-            <Head title={content.meta_title} />
+            <SeoHead title={content.meta_title} />
 
             {/* Navigation */}
             <Navbar />

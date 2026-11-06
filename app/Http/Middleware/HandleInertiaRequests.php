@@ -44,6 +44,8 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            // Hand-written title/description for this URL (config/seo.php), used by <SeoHead>.
+            'seo' => fn () => \App\Support\Seo::override(),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'topScrollNotices' => Notice::active()
                 ->where(function ($q) {

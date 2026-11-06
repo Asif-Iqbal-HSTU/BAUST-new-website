@@ -1,5 +1,5 @@
 import React from "react";
-import { Head } from "@inertiajs/react";
+import SeoHead from "@/components/seo-head";
 import { motion } from "framer-motion";
 import Navbar from "@/custom_components/Navbar";
 import GreenButton from "@/custom_components/GreenButton";
@@ -21,7 +21,7 @@ interface HomeProps {
 export default function Home({ notices = [], newsEvents = [], stats }: HomeProps) {
     return (
         <>
-            <Head title="BAUST - Bangladesh Army University of Science and Technology" />
+            <SeoHead title="BAUST - Bangladesh Army University of Science and Technology" />
 
             <Navbar />
 

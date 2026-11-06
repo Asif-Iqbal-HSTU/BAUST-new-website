@@ -47,9 +47,28 @@ class Seo
         'Clubs' => 'Clubs & Societies',
     ];
 
+    /** Query parameters that only track a visit and never change what a page shows. */
+    private const TRACKING_PARAMS = ['gclid', 'fbclid', 'msclkid'];
+
+    /** The current request path, as used for canonical URLs and config('seo.pages') ("/", "/eng"). */
+    public static function path(): string
+    {
+        return '/'.trim(request()->path(), '/');
+    }
+
+    /**
+     * Hand-written title/description for a path (config/seo.php), or null.
+     *
+     * @return array{title?: string, description?: string}|null
+     */
+    public static function override(?string $path = null): ?array
+    {
+        return config('seo.pages')[$path ?? self::path()] ?? null;
+    }
+
     /**
      * @param  array{component: string, props: array, url: string}  $page
-     * @return array{title: string, description: string, image: string, url: string, type: string, robots: string, jsonLd: list<array>}
+     * @return array{title: string, description: string, image: string, url: string, type: string, robots: string, titleOverride: bool, jsonLd: list<array>}
      */
     public static function forPage(array $page): array
     {
@@ -70,6 +89,11 @@ class Seo
         // Admin, settings and auth screens are not for search engines.
         if (Str::startsWith($component, ['Admin/', 'auth/', 'settings/', 'dashboard']) || $request->is('admin*', 'dashboard', 'settings*', 'login', 'register', 'forgot-password', 'reset-password*')) {
             $seo['robots'] = 'noindex, nofollow';
+        } elseif (self::hasFilterQuery()) {
+            // Filtered, searched and paginated views (?category=, ?department=, ?page=2, ...):
+            // keep them out of the index but let crawlers follow their links. rel=canonical
+            // below points at the unfiltered page.
+            $seo['robots'] = 'noindex, follow';
         }
 
         $notice = $props['event'] ?? $props['notice'] ?? null;
@@ -134,11 +158,20 @@ class Seo
             $seo['description'] = self::excerpt($props['office']['subtitle'] ?? null);
         }
 
+        $override = self::override();
+        $seo['titleOverride'] = isset($override['title']);
+        if ($seo['titleOverride']) {
+            $seo['title'] = $override['title'];
+        }
+        if (isset($override['description'])) {
+            $seo['description'] = $override['description'];
+        }
+
         $title = $seo['title'] ?: Str::headline(str_replace('/', ' ', $component));
         $seo['title'] = Str::contains($title, 'BAUST') ? $title : "{$title} – ".self::SITE_NAME;
         $seo['description'] = $seo['description'] ?: self::DEFAULT_DESCRIPTION;
         $seo['image'] = self::absolute($seo['image'] ?: self::DEFAULT_IMAGE);
-        $seo['url'] = self::absolute('/'.ltrim($request->path(), '/'));
+        $seo['url'] = self::absolute(config('seo.canonical')[self::path()] ?? self::path());
 
         return $seo;
     }
@@ -161,7 +194,25 @@ class Seo
                 'addressCountry' => 'BD',
             ],
             'telephone' => '+8801769675588',
+            'email' => 'info@baust.edu.bd',
+            'sameAs' => [
+                'https://www.facebook.com/baust.edu.bd/',
+                'https://www.youtube.com/@BAUSTSaidpurNilphamari',
+                'https://bd.linkedin.com/company/bangladesh-army-university-of-science-technology',
+            ],
         ];
+    }
+
+    /** Whether the URL carries a query string that changes the page (filters, search, pagination). */
+    private static function hasFilterQuery(): bool
+    {
+        foreach (array_keys(request()->query()) as $key) {
+            if (! in_array($key, self::TRACKING_PARAMS, true) && ! Str::startsWith((string) $key, 'utm_')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /** Absolute URL on the public site address (APP_URL), whatever host the request came through. */

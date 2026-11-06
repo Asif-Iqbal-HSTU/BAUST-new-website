@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+import SeoHead from '@/components/seo-head';
 import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
@@ -284,7 +285,7 @@ export default function TuitionFees({ content }: { content: TuitionFeesContent }
 
     return (
         <div className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-800">
-            <Head title={content.meta_title} />
+            <SeoHead title={content.meta_title} />
 
             {/* Navigation */}
             <Navbar />

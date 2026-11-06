@@ -48,11 +48,18 @@
 
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
-        @inertiaHead
-
         {{-- Search & social metadata, worked out on the server (App\Support\Seo) --}}
         @php($seo = \App\Support\Seo::forPage($page))
-        @if (! str_contains((string) ($__inertiaSsrResponse->head ?? ''), '<title'))
+
+        {{-- SSR head tags. A hand-written title (config/seo.php) replaces the page component's. --}}
+        @php(ob_start())
+        @inertiaHead
+        @php($ssrHead = ob_get_clean())
+        @if ($seo['titleOverride'])
+            @php($ssrHead = preg_replace('#<title\b[^>]*>.*?</title>#is', '', $ssrHead))
+        @endif
+        {!! $ssrHead !!}
+        @if ($seo['titleOverride'] || ! str_contains($ssrHead, '<title'))
             <title inertia>{{ $seo['title'] }}</title>
         @endif
         <meta name="description" content="{{ $seo['description'] }}">

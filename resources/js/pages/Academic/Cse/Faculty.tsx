@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/seo-head';
 import Navbar from '@/custom_components/Navbar';
 import Footer from '@/custom_components/Footer';
 import PageHero from '@/custom_components/PageHero';
@@ -147,7 +147,7 @@ export default function CseFaculty({ members, department }: { members: FacultyMe
 
     return (
         <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
-            <Head title={`Faculty Members - ${department?.short_name || 'CSE'} - BAUST`} />
+            <SeoHead title={`Faculty Members - ${department?.short_name || 'CSE'} - BAUST`} />
             <Navbar />
             <PageHero title={department?.name || CSE_DEPT_NAME} subtitle={null} compact={true} />
             <DeptSubNav departmentName={department?.short_name || CSE_DEPT_NAME} activeTab="Faculty Members" tabs={CSE_TABS} />

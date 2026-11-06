@@ -31,6 +31,8 @@ export interface SharedData {
         error?: string | null;
     };
     sidebarOpen: boolean;
+    /** Hand-written title/description for this URL (config/seo.php), if any. */
+    seo?: { title?: string; description?: string } | null;
     [key: string]: unknown;
 }
 
