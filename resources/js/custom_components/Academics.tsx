@@ -354,7 +354,7 @@ export default function Academics() {
                         {/* Background Image with Deep Overlay */}
                         <div
                             className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                            style={{ backgroundImage: "url('/images/hero/hero-2.jpg')" }}
+                            style={{ backgroundImage: "url('/images/hero/hero-2-960.webp')" }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-gray-950/92 via-emerald-950/92 to-gray-950/96 backdrop-blur-[1px]" />
 

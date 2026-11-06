@@ -161,7 +161,11 @@ export default function VCMessage() {
                                 <div className="shrink-0 mx-auto sm:mx-0 relative">
                                     <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden ring-4 ring-emerald-500/15 shadow-md bg-slate-100">
                                         <img
-                                            src="/images/VC_Sir.jpeg"
+                                            src="/images/VC_Sir-480.webp"
+                                            width={480}
+                                            height={518}
+                                            loading="lazy"
+                                            decoding="async"
                                             alt="Brig Gen Mohammad Mobarak Hossain Majumder, psc - Vice Chancellor BAUST"
                                             className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -291,7 +295,7 @@ export default function VCMessage() {
                                             className="w-full h-full object-cover object-center brightness-[0.85]"
                                             onError={(e) => {
                                                 // Fallback if image fails
-                                                e.currentTarget.src = "/images/campus.jpeg";
+                                                e.currentTarget.src = "/images/campus-960.webp";
                                             }}
                                         />
                                         {/* Multi-stop gradient vignette */}

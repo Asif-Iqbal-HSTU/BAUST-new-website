@@ -2,16 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight, ArrowRight, GraduationCap, Users, Building2 } from 'lucide-react';
 import HeroFeatureGateways from '@/custom_components/HeroFeatureGateways';
 
-// University campus photos for the hero slideshow.
+// University campus photos for the hero slideshow. Each has WebP copies 960, 1600 and
+// 1920 px wide ("/images/hero/hero-1-1600.webp"); the original JPEGs stay for the gallery.
 const SLIDES = [
-    { src: "/images/hero/hero-1.jpg", alt: "BAUST campus" },
-    { src: "/images/hero/hero-2.jpg", alt: "BAUST campus" },
-    { src: "/images/hero/hero-3.jpg", alt: "BAUST campus" },
-    { src: "/images/hero/hero-4.jpg", alt: "BAUST campus" },
-    { src: "/images/hero/hero-5.jpg", alt: "BAUST campus" },
-    { src: "/images/hero/hero-6.jpg", alt: "BAUST campus" },
-    { src: "/images/hero/hero-7.jpg", alt: "BAUST campus" },
+    { base: "/images/hero/hero-1", alt: "BAUST campus", width: 1920, height: 1440 },
+    { base: "/images/hero/hero-2", alt: "BAUST campus", width: 1920, height: 1280 },
+    { base: "/images/hero/hero-3", alt: "BAUST campus", width: 1920, height: 1280 },
+    { base: "/images/hero/hero-4", alt: "BAUST campus", width: 1920, height: 1280 },
+    { base: "/images/hero/hero-5", alt: "BAUST campus", width: 1920, height: 1280 },
+    { base: "/images/hero/hero-6", alt: "BAUST campus", width: 1920, height: 1280 },
+    { base: "/images/hero/hero-7", alt: "BAUST campus", width: 1920, height: 1280 },
 ];
+const slideSrcSet = (base: string) => `${base}-960.webp 960w, ${base}-1600.webp 1600w, ${base}-1920.webp 1920w`;
+// The photo covers a fixed-height box (640/780/880/940 px), so on narrow screens it is
+// drawn wider than the viewport.
+const SLIDE_SIZES = '(max-width: 639px) 960px, (max-width: 1023px) 1320px, (max-width: 1439px) 1440px, 100vw';
 // Fallbacks used when the page is rendered without server-provided stats.
 const ACTIVE_STUDENTS = 3643;
 const DEFAULT_FACULTY = 226;
@@ -124,6 +129,10 @@ const StatsCard = ({ faculty, departments }: { faculty: number; departments: num
 
 export default function HeroBanner({ stats }: { stats?: { faculty: number; departments: number } }) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    // How many slides are in the DOM. Only the first is server-rendered (it is the page's LCP
+    // image); each later photo is mounted one step before it is shown, so the other six don't
+    // compete with it for bandwidth on page load.
+    const [mountedSlides, setMountedSlides] = useState(1);
 
     // Slideshow logic using useEffect and setInterval
     useEffect(() => {
@@ -136,16 +145,26 @@ export default function HeroBanner({ stats }: { stats?: { faculty: number; depar
         return () => clearInterval(interval); // Cleanup interval on component unmount
     }, []);
 
+    useEffect(() => {
+        setMountedSlides((n) => Math.max(n, Math.min(currentSlide + 2, SLIDES.length)));
+    }, [currentSlide]);
+
     return (
         <div className="relative">
             <section className="relative w-full h-[640px] sm:h-[780px] md:h-[880px] lg:h-[940px] overflow-hidden">
                 {/* 1. SLIDESHOW BACKGROUND */}
                 <div className="absolute inset-0">
-                    {SLIDES.map((slide, index) => (
+                    {SLIDES.slice(0, mountedSlides).map((slide, index) => (
                         <img
                             key={index}
-                            src={slide.src}
+                            src={`${slide.base}-1600.webp`}
+                            srcSet={slideSrcSet(slide.base)}
+                            sizes={SLIDE_SIZES}
+                            width={slide.width}
+                            height={slide.height}
                             alt={slide.alt}
+                            fetchPriority={index === 0 ? 'high' : 'low'}
+                            decoding={index === 0 ? 'sync' : 'async'}
                             className={`
                             absolute inset-0 w-full h-full object-cover object-top sm:object-[center_16%] md:object-[center_10%]
                             transition-opacity duration-1000 ease-in-out

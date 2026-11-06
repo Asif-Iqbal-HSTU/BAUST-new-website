@@ -29,7 +29,7 @@ interface Props {
 }
 
 export default function NoticesAndEvents({ notices = [], newsEvents = [] }: Props) {
-    const defaultImage = '/images/campus.jpeg';
+    const defaultImage = '/images/campus-960.webp';
 
     // Separate news events into top 2 featured and bottom 2 compact
     const topFeatured = newsEvents.slice(0, 2);
