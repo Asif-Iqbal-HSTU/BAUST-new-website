@@ -1,12 +1,12 @@
 name: deploy
 
-# Deploys `main` to the VPS after the `tests` workflow passes on it, or on demand
-# from the Actions tab. Setup (secrets, deploy keys) is described in DEPLOY.md.
+# Manual only: deploys `main` to the VPS when started from the Actions tab
+# ("Run workflow"). Pushes no longer deploy automatically; production is deployed by
+# hand with `docker compose up -d --build` on the VPS. To restore automatic deploys
+# after a passing `tests` run, add back:
+#   workflow_run: { workflows: [tests], types: [completed], branches: [main] }
+# Setup (secrets, deploy keys) is described in DEPLOY.md.
 on:
-  workflow_run:
-    workflows: [tests]
-    types: [completed]
-    branches: [main]
   workflow_dispatch:
 
 concurrency:

@@ -224,7 +224,7 @@ database exist only in its Docker volumes.
 |--------------|---------------------------------|---------------------------------------------------|
 | `tests.yml`  | push / PR to `main`, `develop`  | Pest test suite                                   |
 | `lint.yml`   | push / PR to `main`, `develop`  | Pint, Prettier, ESLint                            |
-| `deploy.yml` | `tests` passing on `main`, or manual | SSH to the VPS, `git reset --hard origin/main`, `docker compose up -d --build`, health check |
+| `deploy.yml` | manual only (Actions tab → deploy → Run workflow); pushes do not deploy | SSH to the VPS, `git reset --hard origin/main`, `docker compose up -d --build`, health check |
 
 One-time setup for `deploy.yml`:
 
