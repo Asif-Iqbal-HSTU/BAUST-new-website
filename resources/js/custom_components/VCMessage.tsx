@@ -292,6 +292,8 @@ export default function VCMessage() {
                                         <img
                                             src={activeSlide.image}
                                             alt={activeSlide.title}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover object-center brightness-[0.85]"
                                             onError={(e) => {
                                                 // Fallback if image fails

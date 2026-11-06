@@ -237,6 +237,8 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                                         <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-emerald-300 to-green-500 opacity-25" />
                                         <img
                                             src={hodPhoto}
+                                            loading="lazy"
+                                            decoding="async"
                                             alt={hodName}
                                             className="relative w-44 h-44 object-cover object-top rounded-xl shadow-md z-10"
                                             onError={(e) => { e.currentTarget.src = avatarUrl(hodName, 176); }}
@@ -345,6 +347,8 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                                             <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-emerald-300 to-green-500 opacity-0 group-hover:opacity-30 transition-opacity" />
                                             <img
                                                 src={member.photo || avatarUrl(member.name, 96)}
+                                                loading="lazy"
+                                                decoding="async"
                                                 alt={member.name}
                                                 className="w-24 h-24 rounded-full object-cover object-top shadow-sm border-2 border-white"
                                                 onError={(e) => { e.currentTarget.src = avatarUrl(member.name, 96); }}

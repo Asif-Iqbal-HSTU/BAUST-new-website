@@ -118,6 +118,8 @@ export default function NoticesAndEvents({ notices = [], newsEvents = [] }: Prop
                                                 <div className="relative w-full h-36 sm:h-38 rounded-lg overflow-hidden bg-gray-100 shrink-0 border border-gray-100">
                                                     <img
                                                         src={item.attachment || defaultImage}
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         alt={item.title}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                         onError={(e) => {
@@ -171,6 +173,10 @@ export default function NoticesAndEvents({ notices = [], newsEvents = [] }: Prop
                                                     <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-lg overflow-hidden bg-gray-100 shrink-0 border border-gray-100">
                                                         <img
                                                             src={item.attachment || defaultImage}
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                        loading="lazy"
+                                                        decoding="async"
                                                             alt={item.title}
                                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                             onError={(e) => {
