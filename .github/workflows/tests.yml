@@ -37,6 +37,12 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      # resources/js/routes and resources/js/actions are generated (and gitignored); the
+      # Vite plugin's generate command is a no-op on Linux, so create them before building,
+      # as the Dockerfile does.
+      - name: Generate Wayfinder Routes
+        run: php artisan wayfinder:generate --with-form
+
       - name: Build Assets
         run: npm run build
 
