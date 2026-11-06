@@ -16,7 +16,7 @@ const SLIDES = [
 const slideSrcSet = (base: string) => `${base}-960.webp 960w, ${base}-1600.webp 1600w, ${base}-1920.webp 1920w`;
 // The photo covers a fixed-height box (640/780/880/940 px), so on narrow screens it is
 // drawn wider than the viewport.
-const SLIDE_SIZES = '(max-width: 639px) 960px, (max-width: 1023px) 1320px, (max-width: 1439px) 1440px, 100vw';
+const SLIDE_SIZES = '(max-width: 639px) 900px, (max-width: 1023px) 1320px, (max-width: 1439px) 1440px, 100vw';
 // Fallbacks used when the page is rendered without server-provided stats.
 const ACTIVE_STUDENTS = 3643;
 const DEFAULT_FACULTY = 226;

@@ -95,7 +95,7 @@ const MODERN_CARDS: ModernCardItem[] = [
         id: 'facilities',
         badge: '4 Secure Residential Halls',
         badgePulse: false,
-        image: '/images/halls/abbas_uddin_hall.jpg',
+        image: '/images/halls/abbas_uddin_hall-960.webp',
         imageAlt: 'Residential Hall at BAUST',
         icon: Building2,
         title: 'Hall Facilities & Campus',

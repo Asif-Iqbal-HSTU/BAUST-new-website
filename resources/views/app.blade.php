@@ -32,10 +32,10 @@
         </style>
 
 
-        <link rel="icon" type="image/png" href="/images/BAUST%20logo.png">
-        <link rel="shortcut icon" type="image/png" href="/images/BAUST%20logo.png">
+        {{-- Small icon files (the 2048 px "BAUST logo.png" is ~1 MB and was fetched on every page) --}}
+        <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64">
         <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="apple-touch-icon" href="/images/BAUST%20logo.png">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         {{-- Body-text font, needed for the first paint. The other faces are self-hosted too
              (resources/css/app.css) and load on demand; Tiro Bangla only where Bengali text appears. --}}
