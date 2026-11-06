@@ -2,6 +2,8 @@ User-agent: *
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /settings
-Disallow: /login
+# /login, /forgot-password and the other sign-in pages are not blocked here on purpose:
+# they carry <meta name="robots" content="noindex">, which crawlers can only see if they
+# are allowed to fetch the page. Filtered and paginated lists are noindexed the same way.
 
 Sitemap: https://baust.edu.bd/sitemap.xml

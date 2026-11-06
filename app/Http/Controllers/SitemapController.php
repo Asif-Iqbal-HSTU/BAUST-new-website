@@ -30,8 +30,13 @@ class SitemapController extends Controller
     private function build(): string
     {
         $urls = [];
-        $add = function (string $path, $lastmod = null, string $priority = '0.6') use (&$urls) {
-            $path = '/'.ltrim($path, '/');
+        // Only canonical, indexable URLs: aliases of another page (config/seo.php) are skipped.
+        $aliases = config('seo.canonical', []);
+        $add = function (string $path, $lastmod = null, string $priority = '0.6') use (&$urls, $aliases) {
+            $path = '/'.trim($path, '/');
+            if (isset($aliases[$path])) {
+                return;
+            }
             $urls[$path] ??= ['loc' => \App\Support\Seo::absolute($path), 'lastmod' => $lastmod ? $lastmod->toAtomString() : null, 'priority' => $priority];
         };
 
@@ -66,6 +71,7 @@ class SitemapController extends Controller
 
         // Published notices, news and events
         Notice::active()->where(fn ($q) => $q->whereNull('published_at')->orWhere('published_at', '<=', now()))
+            ->where('slug', '!=', '')->whereNotNull('slug')
             ->latest('published_at')->select(['slug', 'updated_at', 'published_at'])
             ->each(fn ($n) => $add("/archive/notices/{$n->slug}", $n->updated_at ?? $n->published_at, '0.5'));
 
