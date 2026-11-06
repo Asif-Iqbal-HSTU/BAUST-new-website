@@ -279,11 +279,6 @@ class CeDepartmentController extends Controller
         ]);
     }
 
-    public function society()
-    {
-        return redirect()->route('academic.ce.clubs');
-    }
-
     public function onlineResources()
     {
         $dept = Department::where('slug', 'ce')->first();

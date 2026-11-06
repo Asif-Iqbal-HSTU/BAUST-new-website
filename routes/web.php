@@ -135,8 +135,7 @@ foreach ($facultySlugs as $facultySlug) {
         ->defaults('office', $facultySlug)
         ->name('academic.'.$facultySlug);
 
-    Route::redirect('/academic/'.$facultySlug.'-deans-office', '/'.$facultySlug);
-    Route::redirect('/academic/'.$facultySlug.'-deans-office/', '/'.$facultySlug);
+    Route::permanentRedirect('/academic/'.$facultySlug.'-deans-office', '/'.$facultySlug);
 }
 
 use App\Http\Controllers\CseDepartmentController;
@@ -159,8 +158,8 @@ Route::prefix('cse')->group(function() {
     Route::get('/events/{slug}', [CseDepartmentController::class, 'eventDetail'])->name('academic.cse.events.show');
     Route::get('/achievements', [CseDepartmentController::class, 'achievements'])->name('academic.cse.achievements');
     Route::get('/laboratories/{slug?}', [CseDepartmentController::class, 'laboratory'])->name('academic.cse.laboratories');
-    Route::redirect('/research/publications', '/research#publications');
-    Route::redirect('/research/areas', '/research#projects');
+    Route::permanentRedirect('/research/publications', '/research#publications');
+    Route::permanentRedirect('/research/areas', '/research#projects');
     Route::get('/cse-society', [CseDepartmentController::class, 'society'])->name('academic.cse.society');
 });
 
@@ -212,7 +211,6 @@ Route::prefix('me')->group(function() {
     Route::get('/laboratories/{slug?}', [MeDepartmentController::class, 'laboratory'])->name('academic.me.laboratories');
     Route::get('/me-society', [MeDepartmentController::class, 'society'])->name('academic.me.society');
     Route::get('/online-resources', [MeDepartmentController::class, 'onlineResources'])->name('academic.me.online-resources');
-    Route::get('/online-education', fn() => redirect('/me/online-resources'));
 });
 
 // IPE Department Pages
@@ -230,7 +228,6 @@ Route::prefix('ipe')->group(function() {
     Route::get('/laboratories/{slug?}', [IpeDepartmentController::class, 'laboratory'])->name('academic.ipe.laboratories');
     Route::get('/ipe-society', [IpeDepartmentController::class, 'society'])->name('academic.ipe.society');
     Route::get('/online-resources', [IpeDepartmentController::class, 'onlineResources'])->name('academic.ipe.online-resources');
-    Route::get('/online-education', fn() => redirect('/ipe/online-resources'));
 });
 
 // CE Department Pages
@@ -243,7 +240,6 @@ Route::prefix('ce')->group(function() {
     Route::get('/curriculum', [CeDepartmentController::class, 'curriculum'])->name('academic.ce.curriculum');
     
     // Research
-    Route::get('/research', fn() => redirect('/ce/research/publications'));
     Route::get('/research/publications', [CeDepartmentController::class, 'publications'])->name('academic.ce.research.publications');
     Route::get('/research/thesis-projects', [CeDepartmentController::class, 'thesisProjects'])->name('academic.ce.research.theses');
 
@@ -254,10 +250,8 @@ Route::prefix('ce')->group(function() {
 
     // Student Voice
     Route::get('/student-voice', [CeDepartmentController::class, 'studentVoice'])->name('academic.ce.student-voice');
-    Route::get('/online-education', fn() => redirect('/ce/student-voice'));
 
     // Gallery
-    Route::get('/gallery', fn() => redirect('/ce/gallery/photos'));
     Route::get('/gallery/photos', [CeDepartmentController::class, 'galleryPhotos'])->name('academic.ce.gallery.photos');
     Route::get('/gallery/videos', [CeDepartmentController::class, 'galleryVideos'])->name('academic.ce.gallery.videos');
 
@@ -266,7 +260,6 @@ Route::prefix('ce')->group(function() {
     Route::get('/achievements', [CeDepartmentController::class, 'achievements'])->name('academic.ce.achievements');
     Route::get('/laboratories/{slug?}', [CeDepartmentController::class, 'laboratories'])->name('academic.ce.laboratories');
     Route::get('/clubs/{club?}', [CeDepartmentController::class, 'clubs'])->name('academic.ce.clubs');
-    Route::get('/ce-society', [CeDepartmentController::class, 'society'])->name('academic.ce.society');
     Route::get('/online-resources', [CeDepartmentController::class, 'onlineResources'])->name('academic.ce.online-resources');
 });
 
@@ -277,20 +270,7 @@ Route::get('/facilities', function () {
 
 Route::get('/facilities/library', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'library.central-library')->defaults('component', 'Facilities/Library')->name('facilities.library');
-Route::redirect('/library', '/facilities/library');
 
-// Legacy baust.edu.bd sub-paths -> merged Facilities page sections
-foreach ([
-    'wifi-campus' => 'wifi',
-    'multimedia-classroom' => 'multimedia',
-    'modern-laboratories' => 'laboratories',
-    'residential-facilities-male-female' => 'residential',
-    'cafeteria' => 'cafeteria',
-    'counseling' => 'counseling',
-] as $path => $anchor) {
-    Route::redirect('/facilities/'.$path, '/facilities#'.$anchor);
-}
-Route::redirect('/counseling', '/facilities#counseling');
 
 // Counseling & Mental Health Booking (AES-256 encrypted at rest)
 Route::post('/facilities/counseling/book', [App\Http\Controllers\CounselingBookingController::class, 'store'])
@@ -309,7 +289,7 @@ Route::get('/admission/apply-online-instruction', [App\Http\Controllers\SitePage
 Route::get('/admission/program-offering', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'admission.offered-programs')->defaults('component', 'Admission/OfferedPrograms')->name('admission.program-offering');
 
-Route::get('/admission/admission-requirment', [App\Http\Controllers\SitePageController::class, 'show'])
+Route::get('/admission/admission-requirements', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'admission.admission-requirements')->defaults('component', 'Admission/AdmissionRequirements')->name('admission.admission-requirement');
 
 Route::get('/admission/admission-procedure', [App\Http\Controllers\SitePageController::class, 'show'])
@@ -332,22 +312,16 @@ Route::get('/admission/credit-transfer-policy', [App\Http\Controllers\SitePageCo
 
 Route::get('/admission/cancel-policy', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'admission.cancel-policy')->defaults('component', 'Admission/CancelPolicy')->name('admission.cancel-policy');
-Route::redirect('/admission-cancel-policy', '/admission/cancel-policy');
 
 Route::get('/admission/academic-calendar', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'admission.academic-calendar')->defaults('component', 'Admission/AcademicCalendar')->name('admission.academic-calendar');
 Route::get('/about/academic-calendar', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'admission.academic-calendar')->defaults('component', 'Admission/AcademicCalendar')->name('about.academic-calendar');
 
-// Legacy /dress-code -> canonical admission path
-Route::redirect('/dress-code', '/admission/dress-code');
 
 // Research & Publication (single merged page)
 Route::get('/research', [App\Http\Controllers\SitePageController::class, 'show'])
     ->defaults('key', 'research.research-publication')->defaults('component', 'Research/Index')->name('research.index');
-Route::redirect('/research/publications', '/research#publications');
-Route::redirect('/research/projects', '/research#projects');
-Route::redirect('/administration/offices/journal-office', '/research#cell');
 
 // Non-engineering departments (Business Administration, Accounting & IS, English,
 // Arts & Sciences) and the MBA program - DB-driven, rendered with the same layout as CSE
@@ -361,7 +335,7 @@ foreach (['dba', 'ais', 'eng', 'as', 'mba', 'ma-elt'] as $deptSlug) {
         Route::get('/curriculum', [App\Http\Controllers\DepartmentController::class, 'curriculum'])->defaults('dept', $deptSlug)->name('curriculum');
         Route::get('/facilities', [App\Http\Controllers\DepartmentController::class, 'facilities'])->defaults('dept', $deptSlug)->name('facilities');
         Route::get('/facilities/{facilitySlug}', [App\Http\Controllers\DepartmentController::class, 'facilitiesDetail'])->defaults('dept', $deptSlug)->name('facilities.show');
-        Route::redirect('/laboratories', "/{$deptSlug}/facilities");
+        Route::permanentRedirect('/laboratories', "/{$deptSlug}/facilities");
         Route::get('/events', [App\Http\Controllers\DepartmentController::class, 'events'])->defaults('dept', $deptSlug)->name('events');
         Route::get('/events/{eventSlug}', [App\Http\Controllers\DepartmentController::class, 'eventDetail'])->defaults('dept', $deptSlug)->name('events.show');
         Route::get('/research/publications', [App\Http\Controllers\DepartmentController::class, 'researchPublications'])->defaults('dept', $deptSlug)->name('research.publications');
@@ -398,13 +372,12 @@ Route::get('/gallery', function () {
     ]);
 })->name('gallery');
 
-Route::redirect('/photo-gallery', '/gallery');
-Route::redirect('/category/home-university-highlights', '/gallery');
 
-// Category Legacy Redirects
-Route::redirect('/category/notice', '/archive/notices');
-Route::redirect('/category/news-events', '/archive/notices?category=news-events');
-Route::redirect('/category/admission-notice', '/archive/notices?category=admission-notice');
+// Moved and renamed pages (old WordPress site, misspelled slugs, merged sections): 301s
+// from the single map in config/legacy-redirects.php.
+foreach (config('legacy-redirects.paths', []) as $legacyPath => $newUrl) {
+    Route::permanentRedirect('/'.$legacyPath, $newUrl);
+}
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', App\Http\Controllers\DashboardController::class)->name('dashboard');

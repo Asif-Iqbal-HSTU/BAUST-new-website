@@ -11,7 +11,10 @@ use Illuminate\Http\Request;
 
 /**
  * Route::fallback for links into the old WordPress site at baust.edu.bd, which
- * this app replaces. Anything we can map gets a permanent redirect; the rest 404s.
+ * this app replaces. Anything we can map gets a permanent redirect, WordPress-only
+ * URLs listed under 'gone' in config/legacy-redirects.php answer 410, the rest 404.
+ * Plain renamed paths are not handled here: they are 301 routes built from that
+ * same config file.
  *
  *   /{post-slug}/                     -> /archive/notices/{slug}
  *   /{dept}/{post-slug}/              -> /{dept}/events/{slug}
@@ -61,6 +64,12 @@ class LegacyRedirectController extends Controller
         $notice = Notice::active()->whereIn('original_url', $candidates)->first();
         if ($notice) {
             return redirect($notice->department ? "/{$notice->department}/events/{$notice->slug}" : "/archive/notices/{$notice->slug}", 301);
+        }
+
+        foreach (config('legacy-redirects.gone', []) as $pattern) {
+            if (preg_match($pattern, $raw)) {
+                abort(410);
+            }
         }
 
         abort(404);
