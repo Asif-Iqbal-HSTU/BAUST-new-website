@@ -175,8 +175,6 @@ export default function NoticesAndEvents({ notices = [], newsEvents = [] }: Prop
                                                             src={item.attachment || defaultImage}
                                                             loading="lazy"
                                                             decoding="async"
-                                                        loading="lazy"
-                                                        decoding="async"
                                                             alt={item.title}
                                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                             onError={(e) => {
