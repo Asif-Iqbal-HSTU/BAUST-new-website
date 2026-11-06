@@ -305,7 +305,7 @@ export default function TuitionFees({ content }: { content: TuitionFeesContent }
                         <CreditCard size={15} className="text-emerald-600" />
                         <span>{intro.badge_text}</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
                         {intro.heading}
                     </h2>
                     <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
@@ -681,7 +681,7 @@ export default function TuitionFees({ content }: { content: TuitionFeesContent }
                                     <span>{scholarships.badge_text}</span>
                                 </div>
 
-                                <h3 className="text-2xl sm:text-3xl font-extrabold mb-4">
+                                <h3 className="text-2xl sm:text-3xl font-bold mb-4">
                                     {scholarships.heading}
                                 </h3>
                                 <p className="text-emerald-100/90 text-sm sm:text-base leading-relaxed mb-8">

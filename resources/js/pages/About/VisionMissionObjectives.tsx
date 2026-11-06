@@ -52,7 +52,7 @@ export default function VisionMissionObjectives() {
                                 <div className="bg-white/10 p-5 rounded-3xl backdrop-blur-md inline-block mb-6 border border-white/20 shadow-xl">
                                     <Eye className="w-12 h-12 text-emerald-400" />
                                 </div>
-                                <h2 className="text-4xl font-black text-white mb-4 tracking-tight">OUR VISION</h2>
+                                <h2 className="text-4xl font-bold text-white mb-4 tracking-tight">OUR VISION</h2>
                                 <div className="w-16 h-1.5 bg-emerald-400 mx-auto rounded-full" />
                             </div>
                         </div>
@@ -72,7 +72,7 @@ export default function VisionMissionObjectives() {
                 <section className="mb-24">
                     <div className="text-center mb-16">
                         <h2 className="text-sm font-bold uppercase tracking-[0.4em] text-emerald-600 mb-4">Our Commitment</h2>
-                        <h3 className="text-4xl font-black text-gray-900">Mission Statement</h3>
+                        <h3 className="text-4xl font-bold text-gray-900">Mission Statement</h3>
                         <div className="w-20 h-1.5 bg-emerald-500 mx-auto rounded-full mt-6" />
                     </div>
 
@@ -103,7 +103,7 @@ export default function VisionMissionObjectives() {
                             <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
                                 <div className="text-center md:text-left">
                                     <h2 className="text-emerald-400 font-bold uppercase tracking-widest mb-2">Defining Our Path</h2>
-                                    <h3 className="text-4xl md:text-5xl font-black">Strategic Objectives</h3>
+                                    <h3 className="text-4xl md:text-5xl font-bold">Strategic Objectives</h3>
                                 </div>
                                 <div className="p-4 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20">
                                     <ShieldCheck className="w-12 h-12 text-emerald-400" />

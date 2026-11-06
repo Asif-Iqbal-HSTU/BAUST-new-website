@@ -122,7 +122,7 @@ export default function IpeHome({ department, headOfDept, facultyPreview = [], n
     const accreditationText = department?.accreditation_text || 'The B.Sc. in Industrial and Production Engineering program is accredited by the Board of Accreditation for Engineering and Technical Education (BAETE) under the Washington Accord.';
 
     return (
-        <div className="min-h-screen flex flex-col font-['Inter',sans-serif]" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
+        <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
             <Head title={`${deptName} - BAUST`} />
             <Navbar />
             <PageHero title={deptName} subtitle={pageText(department, 'home_hero_subtitle', '') || null} compact={true} />
@@ -135,7 +135,7 @@ export default function IpeHome({ department, headOfDept, facultyPreview = [], n
                     <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
                         {slides.length === 0 && (
                             <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 to-emerald-950 flex flex-col justify-end p-6 sm:p-10">
-                                <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug max-w-3xl">{deptName}</h3>
+                                <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug max-w-3xl">{deptName}</h3>
                                 {department?.tagline && <p className="text-emerald-100 text-xs sm:text-sm mt-1 max-w-2xl">{department.tagline}</p>}
                             </div>
                         )}
@@ -159,7 +159,7 @@ export default function IpeHome({ department, headOfDept, facultyPreview = [], n
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10 z-10">
-                                    <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
+                                    <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
                                     {slide.caption && (
                                         <p className="text-emerald-100 text-xs sm:text-sm mt-1 max-w-2xl line-clamp-2 drop-shadow">{slide.caption}</p>
                                     )}

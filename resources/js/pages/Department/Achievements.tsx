@@ -73,7 +73,7 @@ export default function DepartmentAchievements({ department, tabs, achievements 
                             <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${stat.className}`}>
                                 <stat.icon size={32} />
                             </div>
-                            <h3 className="text-3xl font-black text-gray-900 mb-2">{stat.value}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</h3>
                             <p className="text-gray-500 font-bold text-sm uppercase tracking-widest">{stat.label}</p>
                         </div>
                     ))}
@@ -117,7 +117,7 @@ export default function DepartmentAchievements({ department, tabs, achievements 
                                             <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Notable Achievement</span>
                                         </div>
 
-                                        <h3 className={`text-2xl lg:text-3xl font-black text-gray-900 mb-6 ${color.title} transition-colors`}>
+                                        <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 mb-6 ${color.title} transition-colors`}>
                                             {item.title}
                                         </h3>
 

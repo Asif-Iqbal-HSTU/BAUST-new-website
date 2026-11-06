@@ -60,7 +60,7 @@ export default function CeCurriculum({ department, curricula }: Props) {
                         <span className="bg-emerald-500/30 text-emerald-200 text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-emerald-400/20">
                             Academic Framework
                         </span>
-                        <h2 className="text-2xl sm:text-4xl font-black mt-4 leading-tight">
+                        <h2 className="text-2xl sm:text-4xl font-bold mt-4 leading-tight">
                             Undergraduate {shortName} Curriculum
                         </h2>
                         <p className="text-emerald-100/90 text-sm sm:text-base mt-4 leading-relaxed text-justify">

@@ -492,7 +492,7 @@ export default function Manage({
                                 {d.short_name} Department Admin
                             </span>
                         </div>
-                        <h1 className="text-2xl font-black text-gray-900 dark:text-white">{d.name}</h1>
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{d.name}</h1>
                         <p className="text-sm text-neutral-500 mt-1">Manage public profile, curricula, laboratories, achievements, and societies.</p>
                     </div>
                     <a

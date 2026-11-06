@@ -70,7 +70,7 @@ export default function Dashboard({ roleLabel, scope, usesDefaultPassword, stats
                 {/* Welcome */}
                 <div className={`${card} flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between`}>
                     <div>
-                        <h1 className="text-2xl font-black text-gray-900 dark:text-white">
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                             {greeting()}, {auth.user.name}
                         </h1>
                         {scope && <p className="mt-1 text-sm text-neutral-500">You manage: {scope}</p>}

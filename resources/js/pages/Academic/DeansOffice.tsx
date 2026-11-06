@@ -166,7 +166,7 @@ export default function DeansOffice({ office, faculty, departments, otherFaculti
                                     Accredited Academic Faculty
                                 </span>
                             </div>
-                            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight mb-3">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-3">
                                 {faculty.name}
                             </h2>
                             <p className="text-emerald-800/90 font-medium text-sm sm:text-base leading-relaxed mb-4">

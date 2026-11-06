@@ -74,7 +74,7 @@ export default function DepartmentAlumni({ department, tabs, alumni, alumniList 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {/* Introduction */}
                 <div className="max-w-3xl mb-20">
-                    <h2 className="text-4xl font-black text-gray-900 mb-6">Building a Legacy</h2>
+                    <h2 className="text-4xl font-bold text-gray-900 mb-6">Building a Legacy</h2>
                     <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">
                         {intro}
                     </p>

@@ -107,7 +107,7 @@ export default function NoticeDetail({ notice, relatedNotices }: Props) {
                                 </div>
 
                                 {/* Title */}
-                                <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-3">
+                                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-3">
                                     {notice.title}
                                 </h1>
 
@@ -181,7 +181,7 @@ export default function NoticeDetail({ notice, relatedNotices }: Props) {
                                 {/* Newspaper Coverage */}
                                 {notice.press_coverages && notice.press_coverages.length > 0 && (
                                     <div className="mt-10 pt-8 border-t border-gray-100">
-                                        <h3 className="text-sm font-black uppercase tracking-wider text-gray-700 mb-4 flex items-center gap-2">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-gray-700 mb-4 flex items-center gap-2">
                                             <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                                             </svg>

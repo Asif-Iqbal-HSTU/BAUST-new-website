@@ -328,6 +328,12 @@
         font-family: var(--font-sans);
     }
 
+    /* Headings use Poppins site-wide, matching the home page. An explicit
+       font-* utility on a heading still wins over this base rule. */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-poppins);
+    }
+
     /* Bengali typography normalization across the application */
     :lang(bn),
     [lang="bn"],

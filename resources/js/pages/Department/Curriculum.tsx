@@ -46,7 +46,7 @@ export default function DepartmentCurriculum({ department, tabs, curricula = [] 
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {/* Intro Section */}
                 <div className="max-w-3xl mb-16">
-                    <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                         <BookOpen className="text-emerald-600 w-8 h-8" />
                         {short} Course Curriculum
                     </h2>

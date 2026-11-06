@@ -106,7 +106,7 @@ export default function DeptLabsBrowser({ labs, lab, basePath, shortName, intro,
                                     </div>
                                     <div>
                                         <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Laboratory</span>
-                                        <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">{activeLab.name}</h2>
+                                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">{activeLab.name}</h2>
                                     </div>
                                 </div>
                                 {activeLab.description && (

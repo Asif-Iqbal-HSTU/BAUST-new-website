@@ -46,7 +46,7 @@ export default function CeAchievements({ department, achievements }: Props) {
                 <div className="flex items-center gap-3">
                     <Trophy className="text-emerald-700 w-8 h-8" />
                     <div>
-                        <h2 className="text-2xl sm:text-3xl font-black text-gray-900">Hall of Fame & Recognitions</h2>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Hall of Fame & Recognitions</h2>
                         <p className="text-xs sm:text-sm text-gray-500 mt-1">{pageText(department, 'achievements_intro', 'Honoring milestones, national awards, and excellence in civil engineering')}</p>
                     </div>
                 </div>

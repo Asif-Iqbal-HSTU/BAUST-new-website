@@ -87,7 +87,7 @@ const ProgramCard = ({ program, onShowCert }: { program: Program, onShowCert: (u
                 <StatusBadge status={program.status} />
             </div>
 
-            <h3 className="text-2xl font-black text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">
                 {program.name}
             </h3>
             
@@ -133,7 +133,7 @@ export default function Accreditation() {
                 
                 {/* Intro Section */}
                 <div className="max-w-3xl mb-20">
-                    <h2 className="text-4xl font-black text-gray-900 mb-6 tracking-tight">Quality Assurance & Global Recognition</h2>
+                    <h2 className="text-4xl font-bold text-gray-900 mb-6 tracking-tight">Quality Assurance & Global Recognition</h2>
                     <p className="text-lg text-gray-600 leading-relaxed">
                         BAUST is committed to maintaining the highest standards of education. Our programs are approved by the University Grants Commission (UGC) of Bangladesh and are undergoing accreditation processes by prestigious bodies like IEB-BAETE and BAC to ensure our graduates are globally competitive.
                     </p>
@@ -143,7 +143,7 @@ export default function Accreditation() {
                 <section className="mb-24">
                     <div className="flex items-center gap-4 mb-12">
                         <div className="w-12 h-1.5 bg-emerald-600 rounded-full" />
-                        <h2 className="text-2xl font-black text-gray-900 uppercase tracking-wider">Engineering Programs</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-wider">Engineering Programs</h2>
                         <div className="flex-grow h-px bg-gray-200" />
                     </div>
 
@@ -158,7 +158,7 @@ export default function Accreditation() {
                 <section>
                     <div className="flex items-center gap-4 mb-12">
                         <div className="w-12 h-1.5 bg-amber-500 rounded-full" />
-                        <h2 className="text-2xl font-black text-gray-900 uppercase tracking-wider">Non-Engineering Programs</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-wider">Non-Engineering Programs</h2>
                         <div className="flex-grow h-px bg-gray-200" />
                     </div>
 
@@ -179,7 +179,7 @@ export default function Accreditation() {
                             <div className="inline-block px-4 py-1.5 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest mb-6">
                                 Why Accreditation Matters
                             </div>
-                            <h3 className="text-4xl font-black mb-6">Global Standards, Local Excellence</h3>
+                            <h3 className="text-4xl font-bold mb-6">Global Standards, Local Excellence</h3>
                             <p className="text-emerald-100/80 text-lg leading-relaxed">
                                 Accreditation by IEB-BAETE ensures that our engineering programs meet international benchmarks (Washington Accord), making our graduates eligible for professional engineering status and postgraduate studies worldwide.
                             </p>

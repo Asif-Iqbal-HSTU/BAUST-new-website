@@ -84,7 +84,7 @@ export default function CeClubs({ department, club, allClubs = [] }: Props) {
                                         <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
                                             {club.type === 'club' ? 'Student Club' : 'Student Society'}
                                         </span>
-                                        <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mt-1">
+                                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                                             {club.name}
                                         </h2>
                                     </div>

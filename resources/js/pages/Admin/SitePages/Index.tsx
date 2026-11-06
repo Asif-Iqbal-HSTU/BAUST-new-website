@@ -31,7 +31,7 @@ export default function Index({ pages, sections, publicUrls }: Props) {
             <Head title="Website Pages" />
             <div className="mx-auto w-full max-w-4xl space-y-6 p-4 md:p-6">
                 <div>
-                    <h1 className="text-2xl font-black text-gray-900 dark:text-white">Website Pages</h1>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Website Pages</h1>
                     <p className="text-sm text-neutral-500">
                         Every text, person, table, list, image and document on these pages can be edited here. Changes go live when you save.
                     </p>

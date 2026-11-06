@@ -59,7 +59,7 @@ export default function Index({ requests, counts, filters, isDeveloper, types, s
             <div className="mx-auto w-full max-w-6xl space-y-5 p-4 md:p-6">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <h1 className="text-2xl font-black text-gray-900 dark:text-white">{isDeveloper ? 'Update Requests' : 'My Update Requests'}</h1>
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{isDeveloper ? 'Update Requests' : 'My Update Requests'}</h1>
                         <p className="text-sm text-neutral-500">
                             {isDeveloper ? 'Requests from all admins. Urgent and open ones are listed first.' : 'Ask the developer for any change on the website and follow its progress here.'}
                         </p>

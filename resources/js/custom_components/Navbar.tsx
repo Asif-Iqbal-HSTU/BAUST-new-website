@@ -349,7 +349,7 @@ export default function Navbar() {
                                                             <div key={cIdx} className="flex flex-col min-w-0 break-inside-avoid h-full">
                                                                 {col.children ? (
                                                                     <>
-                                                                        <h4 className="flex items-center space-x-2 text-[13.5px] font-black uppercase tracking-wider text-[#0f5132] mb-4 pb-2 border-b-2 border-emerald-100/50">{col.name}</h4>
+                                                                        <h4 className="flex items-center space-x-2 text-[13.5px] font-bold uppercase tracking-wider text-[#0f5132] mb-4 pb-2 border-b-2 border-emerald-100/50">{col.name}</h4>
                                                                         <ul className="flex justify-start flex-col space-y-3 relative z-10">
                                                                             {col.children.map((link: any, lIdx: number) => (
                                                                                 <li key={lIdx}>
@@ -423,7 +423,7 @@ export default function Navbar() {
 
                     {/* Utility Links for Mobile */}
                     <div className="mt-8 pt-6 border-t-2 border-dashed border-gray-200">
-                        <h4 className="text-[12px] font-black tracking-widest text-[#0f5132]/50 uppercase mb-4 pl-1">Quick Portals</h4>
+                        <h4 className="text-[12px] font-bold tracking-widest text-[#0f5132]/50 uppercase mb-4 pl-1">Quick Portals</h4>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-8">
                             {utilityNavItems.flatMap((item, idx) => {
                                 if (item.children) {

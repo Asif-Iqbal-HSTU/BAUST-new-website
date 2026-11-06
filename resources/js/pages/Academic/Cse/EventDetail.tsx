@@ -116,7 +116,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                                 </div>
 
                                 {/* Title */}
-                                <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-snug mb-8">
+                                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug mb-8">
                                     {event.title}
                                 </h1>
 
@@ -172,7 +172,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                                 {/* Newspaper Coverage */}
                                 {event.press_coverages && event.press_coverages.length > 0 && (
                                     <div className="mt-10 pt-8 border-t border-gray-100">
-                                        <h3 className="text-sm font-black uppercase tracking-wider text-gray-700 mb-4 flex items-center gap-2">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-gray-700 mb-4 flex items-center gap-2">
                                             <Newspaper className="w-4 h-4 text-blue-600" />
                                             As Covered in the Press
                                         </h3>
@@ -225,7 +225,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
                         {/* Related CSE Events */}
                         {relatedEvents && relatedEvents.length > 0 && (
                             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
-                                <h3 className="font-extrabold text-gray-900 text-base mb-4 flex items-center gap-2">
+                                <h3 className="font-bold text-gray-900 text-base mb-4 flex items-center gap-2">
                                     <span className="w-1.5 h-5 bg-emerald-600 rounded-full" />
                                     More News from {shortName}
                                 </h3>
@@ -261,7 +261,7 @@ export default function EventDetail({ event, relatedEvents, department }: Props)
 
                         {/* Quick Navigation Card */}
                         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
-                            <h3 className="font-extrabold text-gray-900 text-base mb-4 flex items-center gap-2">
+                            <h3 className="font-bold text-gray-900 text-base mb-4 flex items-center gap-2">
                                 <span className="w-1.5 h-5 bg-emerald-600 rounded-full" />
                                 Department Links
                             </h3>

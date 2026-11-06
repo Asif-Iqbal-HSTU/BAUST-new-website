@@ -357,7 +357,7 @@ export default function Manage({ settings, slides, stats, qaAreas, obePoints, me
 
             <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 p-4 md:p-6">
                 <div>
-                    <h1 className="text-2xl font-black text-emerald-800 dark:text-emerald-300">IQAC Page Manager</h1>
+                    <h1 className="text-2xl font-bold text-emerald-800 dark:text-emerald-300">IQAC Page Manager</h1>
                     <p className="mt-1 text-sm text-neutral-500">Edit every section of the public /iqac page. Changes go live immediately.</p>
                 </div>
 

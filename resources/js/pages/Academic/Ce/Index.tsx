@@ -119,7 +119,7 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                     <div className="lg:col-span-2 relative w-full h-[20rem] sm:h-[26rem] lg:h-auto lg:min-h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-gray-100 group">
                         {activeSlides.length === 0 && (
                             <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 to-emerald-950 flex flex-col justify-end p-6 sm:p-10">
-                                <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug max-w-3xl">{deptName}</h3>
+                                <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug max-w-3xl">{deptName}</h3>
                                 {department?.tagline && <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">{department.tagline}</p>}
                             </div>
                         )}
@@ -132,7 +132,7 @@ export default function CeIndex({ department, slides, highlights, stats, headOfD
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10">
                                     {slide.title && (
-                                        <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
+                                        <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
                                     )}
                                     {(slide.caption || slide.subtitle) && (
                                         <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">{slide.caption || slide.subtitle}</p>

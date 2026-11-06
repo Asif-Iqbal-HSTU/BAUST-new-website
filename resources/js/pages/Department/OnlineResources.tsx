@@ -101,7 +101,7 @@ export default function DepartmentOnlineResources({ department, tabs, resources 
                             <Sparkles className="w-3.5 h-3.5" />
                             Academic Cloud Repository
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                             {department.name.replace(/^Department of\s+/i, '')} Online Education Portal
                         </h2>
                         <p className="mt-2 text-emerald-100/90 text-sm sm:text-base leading-relaxed whitespace-pre-line">

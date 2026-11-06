@@ -115,7 +115,7 @@ export default function DbaEventDetail({ event, relatedEvents, department }: Pro
                                 </div>
 
                                 {/* Title */}
-                                <h1 className="text-2xl sm:text-3xl font-black text-gray-900 leading-snug mb-8">
+                                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug mb-8">
                                     {event.title}
                                 </h1>
 
@@ -171,7 +171,7 @@ export default function DbaEventDetail({ event, relatedEvents, department }: Pro
                                 {/* Newspaper Coverage */}
                                 {event.press_coverages && event.press_coverages.length > 0 && (
                                     <div className="mt-10 pt-8 border-t border-gray-100">
-                                        <h3 className="text-sm font-black uppercase tracking-wider text-gray-700 mb-4 flex items-center gap-2">
+                                        <h3 className="text-sm font-bold uppercase tracking-wider text-gray-700 mb-4 flex items-center gap-2">
                                             <Newspaper className="w-4 h-4 text-blue-600" />
                                             As Covered in the Press
                                         </h3>

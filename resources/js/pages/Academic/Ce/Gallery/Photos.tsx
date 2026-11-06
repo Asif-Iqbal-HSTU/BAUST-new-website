@@ -82,7 +82,7 @@ export default function CeGalleryPhotos({ department, albums = [] }: Props) {
                                 <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100/70 px-3 py-1 rounded-full">
                                     {album.category || 'Photo Album'}
                                 </span>
-                                <h3 className="text-2xl font-black text-gray-900 mt-2">{album.title}</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 mt-2">{album.title}</h3>
                                 {album.description && (
                                     <p className="text-sm text-gray-600 mt-1 max-w-3xl leading-relaxed">{album.description}</p>
                                 )}

@@ -69,7 +69,7 @@ const MemberCard = ({ member, isChairman = false }: { member: Member; isChairman
                 </span>
             </div>
 
-            <h3 className={`font-black text-gray-900 leading-tight mb-1 group-hover:text-emerald-700 transition-colors ${isChairman ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'}`}>
+            <h3 className={`font-bold text-gray-900 leading-tight mb-1 group-hover:text-emerald-700 transition-colors ${isChairman ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'}`}>
                 {member.name}
             </h3>
 

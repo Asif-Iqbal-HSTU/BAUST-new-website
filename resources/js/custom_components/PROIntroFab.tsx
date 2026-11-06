@@ -97,7 +97,7 @@ export default function PROIntroFab() {
                                 <Newspaper className="w-3 h-3" />
                                 Public Relations Office
                             </span>
-                            <h3 className="text-xl font-black text-gray-900 leading-tight">{PRO.name}</h3>
+                            <h3 className="text-xl font-bold text-gray-900 leading-tight">{PRO.name}</h3>
                             <p className="text-sm font-semibold text-emerald-700">{PRO.title}</p>
                             <p className="text-xs text-gray-400 mb-4">{PRO.role}</p>
 

@@ -97,7 +97,7 @@ export default function Alumni({ department, alumni, alumniMembers = [] }: Props
                 {/* Introduction */}
                 {(description || alumni?.member_count || alumni?.established) && (
                 <div className="max-w-3xl mb-20">
-                    <h2 className="text-4xl font-black text-gray-900 mb-6">Building a Legacy</h2>
+                    <h2 className="text-4xl font-bold text-gray-900 mb-6">Building a Legacy</h2>
                     {description && (
                         <p className="text-gray-600 text-lg leading-relaxed whitespace-pre-line">
                             {description}

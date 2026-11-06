@@ -111,7 +111,7 @@ export default function Manage({ office, members }: Props) {
             <Head title={`Manage ${office.name}`} />
             {toast && <div className="fixed bottom-6 right-6 z-50 rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-2xl">{toast}</div>}
             <div className="mx-auto w-full max-w-3xl p-4 md:p-6">
-                <h1 className="mb-1 text-2xl font-black text-emerald-800 dark:text-emerald-300">{office.name}</h1>
+                <h1 className="mb-1 text-2xl font-bold text-emerald-800 dark:text-emerald-300">{office.name}</h1>
                 <p className="mb-6 text-sm text-neutral-500">Tier 1 shows at the top, tier 3 as the directorate/deputies row, tier 4 as the staff grid. Drag members by the handle (or use ↑ ↓) to sort them within a tier; change a member’s tier with Edit.</p>
 
                 <div className="space-y-6">

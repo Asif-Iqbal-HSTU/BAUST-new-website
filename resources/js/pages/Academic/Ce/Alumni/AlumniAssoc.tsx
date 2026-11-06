@@ -57,7 +57,7 @@ export default function CeAlumniAssoc({ department, alumni }: Props) {
                                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
                                     Official Alumni Network
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
+                                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                                     {alumni.name || `${shortName} Alumni Association`}
                                 </h2>
                             </div>

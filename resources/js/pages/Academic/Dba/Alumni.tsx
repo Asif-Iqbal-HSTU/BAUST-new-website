@@ -124,7 +124,7 @@ export default function DbaAlumni({ department, society, alumni = [] }: Props) {
                                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
                                     Official Alumni Network
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
+                                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                                     {society?.name || 'BAUST BBA Alumni Association'}
                                 </h2>
                             </div>
@@ -136,7 +136,7 @@ export default function DbaAlumni({ department, society, alumni = [] }: Props) {
 
                         {/* Activities */}
                         <div className="mt-10 pt-10 border-t border-gray-100">
-                            <h3 className="text-lg font-black text-gray-900 mb-6">Association Programs & Strategic Initiatives</h3>
+                            <h3 className="text-lg font-bold text-gray-900 mb-6">Association Programs & Strategic Initiatives</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 {activities.map((act, idx) => (
                                     <div key={idx} className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-100 flex items-start gap-4">
@@ -155,7 +155,7 @@ export default function DbaAlumni({ department, society, alumni = [] }: Props) {
                         {/* Executive Committee */}
                         {committee.length > 0 && (
                             <div className="mt-12 pt-10 border-t border-gray-100">
-                                <h3 className="text-lg font-black text-gray-900 mb-6">Alumni Executive Committee</h3>
+                                <h3 className="text-lg font-bold text-gray-900 mb-6">Alumni Executive Committee</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {committee.map((member, idx) => (
                                         <div key={idx} className="p-4 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-between">
@@ -182,7 +182,7 @@ export default function DbaAlumni({ department, society, alumni = [] }: Props) {
                         <div>
                             <div className="flex items-center gap-3">
                                 <Building2 className="w-6 h-6 text-emerald-700" />
-                                <h3 className="text-2xl font-black text-gray-900">Corporate & Global Placements Directory</h3>
+                                <h3 className="text-2xl font-bold text-gray-900">Corporate & Global Placements Directory</h3>
                             </div>
                             <p className="text-xs text-gray-500 mt-1">Verified employment records and graduate study destinations of DBA alumni</p>
                         </div>

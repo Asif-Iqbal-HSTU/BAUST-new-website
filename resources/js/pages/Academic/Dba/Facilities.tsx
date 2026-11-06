@@ -145,7 +145,7 @@ export default function DbaFacilities({ department, facilities, selectedFacility
                                     <span className="bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
                                         Department Infrastructure
                                     </span>
-                                    <h2 className="text-3xl font-black text-gray-900 mt-3 mb-4">
+                                    <h2 className="text-3xl font-bold text-gray-900 mt-3 mb-4">
                                         {currentFacility.name}
                                     </h2>
                                     <p className="text-gray-600 leading-relaxed text-base text-justify">

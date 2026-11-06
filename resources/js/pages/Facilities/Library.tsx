@@ -288,7 +288,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                     <Award size={12} />
                                     {overview.badge}
                                 </span>
-                                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+                                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
                                     {overview.heading}
                                 </h2>
                                 {overview.paragraphs.map((p, i) => (
@@ -336,7 +336,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                         <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-800">
                                             <Icon className="w-7 h-7" />
                                         </div>
-                                        <h3 className="text-2xl font-black text-gray-900">{title}</h3>
+                                        <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
                                         <p className="text-gray-600 leading-relaxed text-justify">
                                             {text}
                                         </p>
@@ -356,7 +356,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                         <Clock size={12} />
                                         {hours.badge}
                                     </div>
-                                    <h3 className="text-3xl md:text-4xl font-black">{hours.heading}</h3>
+                                    <h3 className="text-3xl md:text-4xl font-bold">{hours.heading}</h3>
                                     <p className="text-emerald-200/80 text-sm max-w-xl mt-2">
                                         {hours.description}
                                     </p>
@@ -419,7 +419,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                     <UserCheck size={12} />
                                     {membership.badge}
                                 </span>
-                                <h2 className="text-3xl font-black text-gray-900 leading-tight">
+                                <h2 className="text-3xl font-bold text-gray-900 leading-tight">
                                     {membership.heading}
                                 </h2>
                                 <p className="text-gray-600 text-base leading-relaxed">
@@ -465,7 +465,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                         <div className="space-y-8">
                             <div className="text-center max-w-xl mx-auto space-y-3">
                                 <span className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-600">{policies.kicker}</span>
-                                <h3 className="text-3xl font-black text-gray-900">{policies.heading}</h3>
+                                <h3 className="text-3xl font-bold text-gray-900">{policies.heading}</h3>
                                 <p className="text-gray-500 text-sm">
                                     {policies.description}
                                 </p>
@@ -507,7 +507,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                     <Globe size={12} />
                                     {eres.badge}
                                 </span>
-                                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+                                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
                                     {eres.heading}
                                 </h2>
                                 <p className="text-gray-600 text-base leading-relaxed text-justify">
@@ -515,7 +515,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                 </p>
 
                                 <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-100/80 space-y-3">
-                                    <h4 className="font-extrabold text-emerald-950 flex items-center gap-2">
+                                    <h4 className="font-bold text-emerald-950 flex items-center gap-2">
                                         <CheckCircle2 size={18} className="text-emerald-700" />
                                         {eres.wiley_title}
                                     </h4>
@@ -555,7 +555,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                         <div className="space-y-6">
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-1.5 bg-emerald-600 rounded-full" />
-                                <h3 className="text-2xl font-black text-gray-900 uppercase tracking-wider">{eres.consortium_heading}</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 uppercase tracking-wider">{eres.consortium_heading}</h3>
                                 <div className="flex-grow h-px bg-gray-200" />
                             </div>
                             <p className="text-gray-500 text-sm">
@@ -569,7 +569,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                         <div className="space-y-6">
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-1.5 bg-emerald-600 rounded-full" />
-                                <h3 className="text-2xl font-black text-gray-900 uppercase tracking-wider">{eres.open_access_heading}</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 uppercase tracking-wider">{eres.open_access_heading}</h3>
                                 <div className="flex-grow h-px bg-gray-200" />
                             </div>
                             <p className="text-gray-500 text-sm">
@@ -591,7 +591,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                 <Library size={12} />
                                 {collections.badge}
                             </span>
-                            <h2 className="text-3xl font-black text-gray-900">
+                            <h2 className="text-3xl font-bold text-gray-900">
                                 {collections.heading}
                             </h2>
                             <p className="text-gray-600 text-base leading-relaxed text-justify">
@@ -616,7 +616,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                         </div>
 
                                         <div className="space-y-2">
-                                            <h4 className="text-xl font-extrabold text-gray-900 group-hover:text-emerald-800 transition-colors">
+                                            <h4 className="text-xl font-bold text-gray-900 group-hover:text-emerald-800 transition-colors">
                                                 {dept.name}
                                             </h4>
                                             <p className="text-gray-500 text-[13.5px] leading-relaxed">
@@ -648,7 +648,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-800 via-emerald-900 to-[#052214] opacity-50 z-0" />
                             <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
                                 <Search className="w-12 h-12 text-emerald-300 mx-auto" />
-                                <h3 className="text-2xl md:text-3xl font-black">{collections.cta_heading}</h3>
+                                <h3 className="text-2xl md:text-3xl font-bold">{collections.cta_heading}</h3>
                                 <p className="text-emerald-100/70 text-sm leading-relaxed">
                                     {collections.cta_description}
                                 </p>
@@ -679,7 +679,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                         <div className="space-y-8">
                             <div className="text-center max-w-xl mx-auto space-y-3">
                                 <span className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-600">{gallery.kicker}</span>
-                                <h3 className="text-3xl font-black text-gray-900">{gallery.heading}</h3>
+                                <h3 className="text-3xl font-bold text-gray-900">{gallery.heading}</h3>
                                 <p className="text-gray-500 text-sm">
                                     {gallery.description}
                                 </p>
@@ -697,7 +697,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                             />
                                         </div>
                                         <div className="p-6 text-center border-t border-gray-50 bg-white">
-                                            <h4 className="font-extrabold text-gray-800 text-[15px]">{photo.title}</h4>
+                                            <h4 className="font-bold text-gray-800 text-[15px]">{photo.title}</h4>
                                             <p className="text-xs text-gray-400 mt-1">{photo.caption}</p>
                                         </div>
                                     </div>
@@ -709,7 +709,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                         <div className="space-y-8 pt-4">
                             <div className="text-center max-w-xl mx-auto space-y-3">
                                 <span className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-600">{contacts.kicker}</span>
-                                <h3 className="text-3xl font-black text-gray-900">{contacts.heading}</h3>
+                                <h3 className="text-3xl font-bold text-gray-900">{contacts.heading}</h3>
                                 <p className="text-gray-500 text-sm">
                                     {contacts.description}
                                 </p>
@@ -724,7 +724,7 @@ export default function LibraryRedesign({ content }: { content: LibraryContent }
                                     </div>
 
                                     <div className="space-y-1">
-                                        <h4 className="text-2xl font-black text-gray-900">{contacts.contact_name}</h4>
+                                        <h4 className="text-2xl font-bold text-gray-900">{contacts.contact_name}</h4>
                                         <p className="text-[#0f5132] font-bold text-sm">{contacts.contact_designation}</p>
                                         <p className="text-xs text-gray-400 font-semibold uppercase mt-0.5">{contacts.contact_office}</p>
                                     </div>

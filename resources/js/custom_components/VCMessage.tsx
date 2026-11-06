@@ -148,7 +148,7 @@ export default function VCMessage() {
                                 </span>
                             </div>
 
-                            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-2">
                                 Vice Chancellor's Message
                             </h2>
                             <p className="text-xs sm:text-sm text-slate-500 mb-6">
@@ -271,7 +271,7 @@ export default function VCMessage() {
                                 </div>
                             </div>
 
-                            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-2">
                                 Important Events
                             </h2>
                             <p className="text-xs sm:text-sm text-slate-500 mb-6">

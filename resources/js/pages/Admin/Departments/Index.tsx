@@ -15,7 +15,7 @@ export default function Index({ departments }: { departments: Dept[] }) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Manage Departments" />
             <div className="mx-auto w-full max-w-4xl p-4 md:p-6">
-                <h1 className="mb-2 text-2xl font-black text-emerald-800 dark:text-emerald-300">Departments</h1>
+                <h1 className="mb-2 text-2xl font-bold text-emerald-800 dark:text-emerald-300">Departments</h1>
                 <p className="mb-6 text-sm text-neutral-500">Edit each department's profile, slider, stats and highlights. Changes go live immediately.</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                     {departments.map((d) => (

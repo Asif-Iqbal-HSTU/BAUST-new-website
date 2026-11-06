@@ -94,7 +94,7 @@ export default function OnlineResources({ department, resources = [] }: Props) {
     };
 
     return (
-        <div className="min-h-screen flex flex-col font-['Inter',sans-serif]" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
+        <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
             <Head title={`Online Resources - ${shortName} - BAUST`} />
             <Navbar />
             <PageHero 
@@ -114,7 +114,7 @@ export default function OnlineResources({ department, resources = [] }: Props) {
                             <Sparkles className="w-3.5 h-3.5" />
                             Academic Cloud Repository
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                             {shortName} Online Education Portal
                         </h2>
                         <p className="mt-2 text-emerald-100/90 text-sm sm:text-base leading-relaxed">

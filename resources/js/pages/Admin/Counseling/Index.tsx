@@ -141,7 +141,7 @@ export default function CounselingDashboard({ sessions, counts, currentFilter, r
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold tracking-wider uppercase border border-emerald-500/30 mb-3">
                                 <Lock className="w-3.5 h-3.5" /> Strict Doctor-Patient Privilege
                             </div>
-                            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-3">
+                            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight flex items-center gap-3">
                                 <HeartHandshake className="w-8 h-8 text-emerald-400" />
                                 Psychological Counseling & Wellness Portal
                             </h1>
@@ -535,7 +535,7 @@ export default function CounselingDashboard({ sessions, counts, currentFilter, r
                                     <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-emerald-400">
                                         <Sparkles className="w-3 h-3" /> Presentation Slide Demo
                                     </div>
-                                    <h3 className="text-lg font-extrabold text-white">
+                                    <h3 className="text-lg font-bold text-white">
                                         Data Privacy & Database Encryption Audit
                                     </h3>
                                 </div>

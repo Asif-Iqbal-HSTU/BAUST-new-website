@@ -59,7 +59,7 @@ export default function Create({ prefill, types, priorities }: Props) {
             <Head title="New update request" />
             <form onSubmit={submit} className="mx-auto w-full max-w-3xl space-y-5 p-4 md:p-6">
                 <div>
-                    <h1 className="text-2xl font-black text-gray-900 dark:text-white">Request an update</h1>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Request an update</h1>
                     <p className="text-sm text-neutral-500">
                         Tell the developer what should change on the website and where. The clearer the page, section and wording, the faster it gets done.
                     </p>

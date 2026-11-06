@@ -93,7 +93,7 @@ export default function IctAchievements({ department, achievements: achievements
                                             <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Departmental Highlight</span>
                                         </div>
 
-                                        <h3 className={`text-2xl lg:text-3xl font-black text-gray-900 mb-6 ${color.title} transition-colors`}>
+                                        <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 mb-6 ${color.title} transition-colors`}>
                                             {item.title}
                                         </h3>
 
@@ -156,7 +156,7 @@ export default function IctAchievements({ department, achievements: achievements
                         <GraduationCap size={200} />
                     </div>
                     <div className="relative z-10 max-w-2xl">
-                        <h3 className="text-3xl font-black mb-4">Empowering Technical Talents</h3>
+                        <h3 className="text-3xl font-bold mb-4">Empowering Technical Talents</h3>
                         <p className="text-slate-400 leading-relaxed font-medium">
                             {pageText(department, 'achievements_intro', 'The department supports and encourages student participation in diverse national hackathons, robotic expos, software exhibitions, and research publications to build industry-ready leaders.')}
                         </p>

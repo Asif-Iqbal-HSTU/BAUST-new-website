@@ -71,7 +71,7 @@ export default function CseSociety({ department, society }: Props) {
                 {society && (
                 <div className={`grid grid-cols-1 ${pdfUrl ? 'lg:grid-cols-2' : ''} gap-16 mb-24 items-center`}>
                     <div>
-                        <h2 className="text-4xl font-black text-gray-900 mb-6">A Platform for Growth</h2>
+                        <h2 className="text-4xl font-bold text-gray-900 mb-6">A Platform for Growth</h2>
                         {description && (
                             <p className="text-gray-600 text-lg leading-relaxed mb-8 whitespace-pre-line">
                                 {description}

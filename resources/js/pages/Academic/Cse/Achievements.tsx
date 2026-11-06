@@ -93,7 +93,7 @@ export default function Achievements({ department, achievements: achievementsPro
                                             <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Notable Achievement</span>
                                         </div>
 
-                                        <h3 className={`text-2xl lg:text-3xl font-black text-gray-900 mb-6 ${color.title} transition-colors`}>
+                                        <h3 className={`text-2xl lg:text-3xl font-bold text-gray-900 mb-6 ${color.title} transition-colors`}>
                                             {item.title}
                                         </h3>
 

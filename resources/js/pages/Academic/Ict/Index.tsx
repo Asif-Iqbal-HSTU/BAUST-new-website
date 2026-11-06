@@ -111,7 +111,7 @@ Our alumni are successfully positioned across various IT and telecommunication s
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10">
                                     {slide.title && (
-                                        <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">
+                                        <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug drop-shadow-md max-w-3xl">
                                             {slide.title}
                                         </h3>
                                     )}

@@ -63,7 +63,7 @@ export default function IqacSlider({ slides }: { slides: Slide[] }) {
                         </div>
                         <h3
                             key={index}
-                            className="text-white text-xl sm:text-2xl lg:text-4xl font-black leading-tight drop-shadow-lg [animation:iqacSlideUp_0.6s_ease-out]"
+                            className="text-white text-xl sm:text-2xl lg:text-4xl font-bold leading-tight drop-shadow-lg [animation:iqacSlideUp_0.6s_ease-out]"
                         >
                             {slides[index].title}
                         </h3>

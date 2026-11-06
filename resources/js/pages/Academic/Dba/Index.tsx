@@ -166,7 +166,7 @@ export default function Index({
                                 {(slide.title || slide.caption) && (
                                     <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 text-white max-w-3xl">
                                         {slide.title && (
-                                            <h3 className="text-xl sm:text-3xl md:text-4xl font-black mb-2 tracking-tight text-white drop-shadow-md">
+                                            <h3 className="text-xl sm:text-3xl md:text-4xl font-bold mb-2 tracking-tight text-white drop-shadow-md">
                                                 {slide.title}
                                             </h3>
                                         )}
@@ -252,7 +252,7 @@ export default function Index({
                                     }}
                                 />
                                 <div>
-                                    <h4 className="text-lg sm:text-xl font-black text-gray-900 leading-snug">
+                                    <h4 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug">
                                         {department?.hod_name || headOfDept?.name || 'Dr. Md. Anowar Hossain'}
                                     </h4>
                                     <p className="text-xs sm:text-sm text-emerald-700 font-bold mt-1">
@@ -288,7 +288,7 @@ export default function Index({
                                 <BadgeCheck className="w-4 h-4 text-emerald-600" />
                                 Premier Business Education
                             </div>
-                            <h3 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight mb-4">
+                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight mb-4">
                                 Shaping Visionary Corporate Leaders & Entrepreneurs
                             </h3>
                             <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
@@ -341,7 +341,7 @@ export default function Index({
                 {highlights && highlights.length > 0 && (
                     <div className="mb-16">
                         <div className="text-center max-w-2xl mx-auto mb-10">
-                            <h3 className="text-2xl sm:text-3xl font-black text-gray-900">
+                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">
                                 Why Study Business Administration at BAUST?
                             </h3>
                             <p className="text-gray-500 text-sm mt-2">
@@ -358,7 +358,7 @@ export default function Index({
                                         <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
                                             {renderHighlightIcon(h.icon)}
                                         </div>
-                                        <h4 className="font-extrabold text-gray-900 text-base mb-2">{h.title}</h4>
+                                        <h4 className="font-bold text-gray-900 text-base mb-2">{h.title}</h4>
                                         <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{h.text || h.description}</p>
                                     </div>
                                 </div>
@@ -374,7 +374,7 @@ export default function Index({
                             <div className="flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">
                                 <Users className="w-4 h-4" /> Academic Leadership
                             </div>
-                            <h3 className="text-2xl sm:text-3xl font-black text-gray-900">Distinguished Faculty</h3>
+                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Distinguished Faculty</h3>
                         </div>
                         <Link
                             href="/dba/faculty"
@@ -438,7 +438,7 @@ export default function Index({
                                 <div className="flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">
                                     <Building2 className="w-4 h-4" /> World-Class Infrastructure
                                 </div>
-                                <h3 className="text-2xl sm:text-3xl font-black text-gray-900">Modern Facilities</h3>
+                                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Modern Facilities</h3>
                             </div>
                             <Link
                                 href="/dba/facilities"
@@ -489,7 +489,7 @@ export default function Index({
                             <div className="flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1">
                                 <Calendar className="w-4 h-4" /> Announcements & Highlights
                             </div>
-                            <h3 className="text-2xl sm:text-3xl font-black text-gray-900">Latest from DBA</h3>
+                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Latest from DBA</h3>
                         </div>
                         <Link
                             href="/dba/events"
@@ -548,7 +548,7 @@ export default function Index({
                             <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-emerald-500/30">
                                 Campus Experience
                             </span>
-                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mt-4 mb-4 leading-tight">
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-4 mb-4 leading-tight">
                                 Experience Academic Life & Career Growth at BAUST
                             </h3>
                             <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">

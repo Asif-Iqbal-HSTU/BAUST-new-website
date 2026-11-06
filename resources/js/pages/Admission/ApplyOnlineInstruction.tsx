@@ -150,7 +150,7 @@ export default function ApplyOnlineInstruction({ content }: { content: ApplyOnli
                                             <Sparkles size={14} className="text-emerald-600" />
                                             <span>{leaflet.badge_text}</span>
                                         </div>
-                                        <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">{leaflet.heading}</h3>
+                                        <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">{leaflet.heading}</h3>
                                         <p className="text-slate-500 text-sm mt-1">{leaflet.description}</p>
                                     </div>
                                     <div className="flex items-center gap-2">

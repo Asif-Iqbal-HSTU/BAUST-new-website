@@ -100,7 +100,7 @@ export default function DbaClubs({ department, club }: Props) {
                                 <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
                                     Student Co-Curricular Platform
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl font-black text-gray-900">
+                                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                                     {club?.name || 'BAUST Business Club'}
                                 </h2>
                             </div>
@@ -134,7 +134,7 @@ export default function DbaClubs({ department, club }: Props) {
                         <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
                             Club Programs
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mt-2">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">
                             Signature Co-Curricular Initiatives
                         </h3>
                     </div>
@@ -168,7 +168,7 @@ export default function DbaClubs({ department, club }: Props) {
                             <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
                                 Student Leadership
                             </span>
-                            <h3 className="text-2xl sm:text-3xl font-black text-gray-900 mt-2">
+                            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">
                                 Club Executive Committee
                             </h3>
                         </div>

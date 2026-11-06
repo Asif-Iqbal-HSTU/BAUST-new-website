@@ -110,7 +110,7 @@ export default function IctAlumni({ department, alumni, alumniMembers = [] }: Pr
                             </span>
                         )}
                     </div>
-                    <h2 className="text-4xl font-black text-gray-900 mb-6">Connected Beyond Graduation</h2>
+                    <h2 className="text-4xl font-bold text-gray-900 mb-6">Connected Beyond Graduation</h2>
                     {description && (
                         <p className="text-gray-600 text-lg leading-relaxed text-justify whitespace-pre-line">
                             {description}

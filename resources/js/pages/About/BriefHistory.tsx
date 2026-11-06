@@ -46,7 +46,7 @@ export default function BriefHistory({ histories }: { histories: BriefHistoryRec
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-600/10 text-emerald-800 text-xs font-bold uppercase tracking-[0.2em] mb-6 w-fit">
                             <Sparkles className="w-4 h-4" /> Our Journey
                         </div>
-                        <h2 className="text-3xl lg:text-4xl font-black text-emerald-950 tracking-tight mb-6 leading-tight">
+                        <h2 className="text-3xl lg:text-4xl font-bold text-emerald-950 tracking-tight mb-6 leading-tight">
                             The pioneer technical institute of the Armed Forces
                         </h2>
                         <p className="text-gray-700 text-lg leading-relaxed text-justify">
@@ -108,7 +108,7 @@ export default function BriefHistory({ histories }: { histories: BriefHistoryRec
                                             <span className="w-10 h-10 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center shadow-lg">
                                                 {String(index + 1).padStart(2, '0')}
                                             </span>
-                                            {h.title && <h3 className="text-2xl lg:text-3xl font-black text-emerald-950 leading-tight">{h.title}</h3>}
+                                            {h.title && <h3 className="text-2xl lg:text-3xl font-bold text-emerald-950 leading-tight">{h.title}</h3>}
                                         </div>
                                         {h.content && <p className="text-gray-700 text-lg leading-relaxed text-justify">{h.content}</p>}
                                     </div>
@@ -126,7 +126,7 @@ export default function BriefHistory({ histories }: { histories: BriefHistoryRec
                         </div>
                         <div className="relative z-10 flex flex-col items-center">
                             <ShieldCheck className="w-12 h-12 text-emerald-300 mb-5" />
-                            <h3 className="text-2xl lg:text-3xl font-black mb-3">Serving the nation through quality education</h3>
+                            <h3 className="text-2xl lg:text-3xl font-bold mb-3">Serving the nation through quality education</h3>
                             <p className="text-emerald-100/85 text-lg max-w-3xl">
                                 In full compliance with the Private University Act 2010, BAUST continues to spread technical education
                                 across the country under the patronage of the Bangladesh Army Welfare Trust.

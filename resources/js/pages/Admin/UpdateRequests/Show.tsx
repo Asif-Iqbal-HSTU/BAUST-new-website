@@ -93,7 +93,7 @@ export default function Show({ request: r, isDeveloper, canWithdraw, types, prio
                             <StatusBadge status={r.status} label={statuses[r.status] ?? r.status} />
                             <span className={`text-[11px] font-bold uppercase ${PRIORITY_STYLE[r.priority] ?? ''}`}>{priorities[r.priority]?.split(' —')[0] ?? r.priority} priority</span>
                         </div>
-                        <h1 className="mt-2 text-xl font-black text-gray-900 dark:text-white">{r.title}</h1>
+                        <h1 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">{r.title}</h1>
                         <p className="mt-1 text-xs text-neutral-500">
                             {types[r.type] ?? r.type} · sent {new Date(r.created_at).toLocaleString()}
                             {r.user ? ` by ${r.user.name}${r.user.department ? ` (${r.user.department.toUpperCase()})` : ''}` : ''}

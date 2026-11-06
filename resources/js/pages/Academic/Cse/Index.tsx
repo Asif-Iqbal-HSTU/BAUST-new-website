@@ -98,7 +98,7 @@ export default function CseHome({ department, slides, highlights, stats, headOfD
                             <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                             <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10">
                                 {slide.title && (
-                                    <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
+                                    <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
                                 )}
                                 {slide.caption && (
                                     <p className="text-white/80 text-sm sm:text-base mt-2 max-w-2xl">{slide.caption}</p>

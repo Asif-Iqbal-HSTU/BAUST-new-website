@@ -91,7 +91,7 @@ export default function CeStudentVoice({ department, voices = [] }: Props) {
                                         </span>
                                     </div>
 
-                                    <h2 className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight">
+                                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
                                         {featured.title || 'The Civil Engineering Journey — Student Perspective'}
                                     </h2>
 
@@ -104,7 +104,7 @@ export default function CeStudentVoice({ department, voices = [] }: Props) {
 
                                     <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                                         <div>
-                                            <h4 className="font-extrabold text-gray-900 text-lg">{featured.student_name}</h4>
+                                            <h4 className="font-bold text-gray-900 text-lg">{featured.student_name}</h4>
                                             <p className="text-xs text-gray-500 font-medium">
                                                 Student ID: {featured.student_id} • {featured.batch}
                                             </p>

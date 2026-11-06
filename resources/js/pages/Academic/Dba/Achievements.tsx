@@ -135,7 +135,7 @@ export default function DbaAchievements({ department, achievements }: Props) {
                         <Trophy size={14} className="text-amber-600" />
                         Hall of Distinction
                     </div>
-                    <h2 className="text-3xl lg:text-4xl font-black text-gray-900">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
                         Pioneering Business Acumen & Leadership
                     </h2>
                     <p className="text-gray-600 leading-relaxed text-base">

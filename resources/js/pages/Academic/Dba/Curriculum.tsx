@@ -111,7 +111,7 @@ export default function DbaCurriculum({ department, curricula }: Props) {
                             <BookOpen className="text-emerald-700 w-8 h-8" />
                         </div>
                         <div>
-                            <h2 className="text-3xl font-black text-gray-900">
+                            <h2 className="text-3xl font-bold text-gray-900">
                                 {department?.short_name || 'DBA'} Course Curriculum & Syllabus
                             </h2>
                             <p className="text-sm font-medium text-emerald-700">Bachelor of Business Administration (BBA)</p>
@@ -171,7 +171,7 @@ export default function DbaCurriculum({ department, curricula }: Props) {
                         <span className="bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3.5 py-1 rounded-full">
                             BBA Specialization Tracks
                         </span>
-                        <h3 className="text-2xl lg:text-3xl font-black mt-3 mb-4">
+                        <h3 className="text-2xl lg:text-3xl font-bold mt-3 mb-4">
                             Four Specialized Concentration Areas
                         </h3>
                         <p className="text-emerald-100 text-sm leading-relaxed mb-6">
@@ -202,7 +202,7 @@ export default function DbaCurriculum({ department, curricula }: Props) {
                 <div className="space-y-8">
                     <div className="flex items-center gap-3">
                         <FileText className="text-emerald-700 w-6 h-6" />
-                        <h3 className="text-2xl font-black text-gray-900">Approved Curriculum & Course Catalogs</h3>
+                        <h3 className="text-2xl font-bold text-gray-900">Approved Curriculum & Course Catalogs</h3>
                     </div>
 
                     <div className="grid grid-cols-1 gap-8">

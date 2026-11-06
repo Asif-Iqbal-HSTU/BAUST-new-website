@@ -189,7 +189,7 @@ export default function ResearchIndex({ content }: { content: ResearchContent })
                                 <Newspaper className="absolute -right-5 -bottom-5 w-40 h-40 text-white/10" />
                                 <div className="relative z-10">
                                     <div className="inline-flex items-center gap-2 bg-white/15 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"><Newspaper className="w-3.5 h-3.5" /> {publications.newsletter_badge}</div>
-                                    <h3 className="text-xl font-extrabold leading-snug">{publications.newsletter_title}</h3>
+                                    <h3 className="text-xl font-bold leading-snug">{publications.newsletter_title}</h3>
                                     <p className="mt-2 text-emerald-50/90 text-sm leading-relaxed">{publications.newsletter_description}</p>
                                     {publications.newsletter_pdf && (
                                         <div className="mt-5 flex flex-wrap gap-2">

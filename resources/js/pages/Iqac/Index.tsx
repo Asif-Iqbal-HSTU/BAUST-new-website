@@ -116,7 +116,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-600/10 text-emerald-800 text-xs font-bold uppercase tracking-[0.2em] mb-6">
                             <Sparkles className="w-4 h-4" /> Quality First
                         </div>
-                        <h2 className="text-3xl lg:text-4xl font-black text-emerald-950 tracking-tight mb-6">
+                        <h2 className="text-3xl lg:text-4xl font-bold text-emerald-950 tracking-tight mb-6">
                             {about.heading}
                         </h2>
                         <div className="space-y-4">
@@ -154,7 +154,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                                     initialsClassName="bg-white/10 backdrop-blur-md"
                                     textClassName="text-emerald-100"
                                 />
-                                <h3 className="mt-6 text-2xl font-black leading-tight">{director.name}</h3>
+                                <h3 className="mt-6 text-2xl font-bold leading-tight">{director.name}</h3>
                                 <p className="mt-2 text-emerald-300 font-semibold">{director.role}</p>
                                 {director.affiliation && (
                                     <p className="mt-1 text-sm text-emerald-100/80">{director.affiliation}</p>
@@ -183,7 +183,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                         <div className="w-16 h-16 rounded-2xl bg-emerald-600/10 flex items-center justify-center mb-7 group-hover:bg-emerald-600 transition-colors duration-300">
                             <Eye className="w-8 h-8 text-emerald-700 group-hover:text-white transition-colors" />
                         </div>
-                        <h3 className="text-2xl font-black text-emerald-950 mb-4">Our Vision</h3>
+                        <h3 className="text-2xl font-bold text-emerald-950 mb-4">Our Vision</h3>
                         <p className="text-gray-700 text-lg leading-relaxed">{vision}</p>
                     </div>
 
@@ -191,7 +191,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                         <div className="w-16 h-16 rounded-2xl bg-teal-600/10 flex items-center justify-center mb-7 group-hover:bg-teal-600 transition-colors duration-300">
                             <Target className="w-8 h-8 text-teal-700 group-hover:text-white transition-colors" />
                         </div>
-                        <h3 className="text-2xl font-black text-emerald-950 mb-4">Our Mission</h3>
+                        <h3 className="text-2xl font-bold text-emerald-950 mb-4">Our Mission</h3>
                         <p className="text-gray-700 text-lg leading-relaxed">{mission}</p>
                     </div>
                 </section>
@@ -201,7 +201,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                     <section>
                         <div className="text-center mb-14">
                             <h2 className="text-sm font-bold uppercase tracking-[0.35em] text-emerald-600 mb-3">Our Coverage</h2>
-                            <h3 className="text-3xl lg:text-4xl font-black text-emerald-950">Quality Assurance Areas</h3>
+                            <h3 className="text-3xl lg:text-4xl font-bold text-emerald-950">Quality Assurance Areas</h3>
                             <div className="w-20 h-1.5 bg-emerald-500 mx-auto rounded-full mt-5" />
                         </div>
 
@@ -236,7 +236,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-200 text-xs font-bold uppercase tracking-[0.2em] mb-6">
                                     <Award className="w-4 h-4" /> OBE Corner
                                 </div>
-                                <h3 className="text-3xl lg:text-4xl font-black leading-tight mb-5">{obe.heading}</h3>
+                                <h3 className="text-3xl lg:text-4xl font-bold leading-tight mb-5">{obe.heading}</h3>
                                 <p className="text-emerald-100/85 text-lg leading-relaxed">{obe.description}</p>
                             </div>
                             <div className="grid sm:grid-cols-2 gap-4">
@@ -259,7 +259,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                     <section>
                         <div className="text-center mb-14">
                             <h2 className="text-sm font-bold uppercase tracking-[0.35em] text-emerald-600 mb-3">Organogram</h2>
-                            <h3 className="text-3xl lg:text-4xl font-black text-emerald-950">The IQAC Team</h3>
+                            <h3 className="text-3xl lg:text-4xl font-bold text-emerald-950">The IQAC Team</h3>
                             <div className="w-20 h-1.5 bg-emerald-500 mx-auto rounded-full mt-5" />
                         </div>
 
@@ -285,7 +285,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                                             }
                                         />
                                         <div className="min-w-0">
-                                            <h4 className="font-black text-emerald-950 leading-tight">{m.name}</h4>
+                                            <h4 className="font-bold text-emerald-950 leading-tight">{m.name}</h4>
                                             <p className="text-sm font-bold text-emerald-600 mt-0.5">{m.role}</p>
                                         </div>
                                     </div>
@@ -309,7 +309,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                             <div className="w-11 h-11 rounded-2xl bg-emerald-600/10 flex items-center justify-center">
                                 <CalendarDays className="w-6 h-6 text-emerald-700" />
                             </div>
-                            <h3 className="text-2xl font-black text-emerald-950">Activities &amp; Events</h3>
+                            <h3 className="text-2xl font-bold text-emerald-950">Activities &amp; Events</h3>
                         </div>
                         <div className="space-y-4">
                             {events.map((e, i) => (
@@ -332,7 +332,7 @@ export default function IqacIndex({ iqac }: { iqac: IqacData }) {
                             <div className="w-11 h-11 rounded-2xl bg-teal-600/10 flex items-center justify-center">
                                 <ShieldCheck className="w-6 h-6 text-teal-700" />
                             </div>
-                            <h3 className="text-2xl font-black text-emerald-950">Notices</h3>
+                            <h3 className="text-2xl font-bold text-emerald-950">Notices</h3>
                         </div>
                         <div className={`${glass} rounded-3xl p-4 divide-y divide-emerald-100/70`}>
                             {notices.map((n, i) => (

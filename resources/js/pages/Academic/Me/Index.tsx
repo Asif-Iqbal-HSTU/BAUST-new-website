@@ -116,7 +116,7 @@ export default function MeHome({ department, headOfDept, facultyPreview, notices
     const accreditationText = department?.accreditation_text || 'The B.Sc. in Mechanical Engineering program is accredited by the Board of Accreditation for Engineering and Technical Education (BAETE) under the Washington Accord.';
 
     return (
-        <div className="min-h-screen flex flex-col font-['Inter',sans-serif]" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
+        <div className="min-h-screen flex flex-col font-sans" style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #f0fdf4 100%)' }}>
             <Head title={`Department of ${shortName} - BAUST`} />
             <Navbar />
             <PageHero title={department?.name || ME_DEPT_NAME} subtitle={pageText(department, 'home_hero_subtitle', department?.tagline || '') || null} compact={true} />
@@ -140,7 +140,7 @@ export default function MeHome({ department, headOfDept, facultyPreview, notices
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10 z-10">
-                                    <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-extrabold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
+                                    <h3 className="text-white text-lg sm:text-2xl lg:text-3xl font-bold leading-snug drop-shadow-md max-w-3xl">{slide.title}</h3>
                                     {slide.caption && (
                                         <p className="text-emerald-100 text-xs sm:text-sm mt-1 max-w-2xl line-clamp-2 drop-shadow">{slide.caption}</p>
                                     )}

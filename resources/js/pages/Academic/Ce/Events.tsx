@@ -41,7 +41,7 @@ export default function Events({ department, events }: { department?: DeptInfo |
             <main className="flex-grow w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="flex items-center gap-4 mb-12">
                     <Megaphone className="text-emerald-600 w-8 h-8" />
-                    <h2 className="text-3xl font-black text-gray-900">Latest from {shortName}</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">Latest from {shortName}</h2>
                     <div className="h-px flex-grow bg-emerald-100" />
                 </div>
 

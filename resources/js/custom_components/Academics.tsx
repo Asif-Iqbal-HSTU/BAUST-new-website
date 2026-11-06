@@ -29,7 +29,7 @@ export default function Academics() {
                         <GraduationCap size={14} className="text-emerald-600 dark:text-emerald-400" />
                         Academic Excellence
                     </span>
-                    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
                         Our Academics
                     </h2>
                     <p className="mt-3 text-sm sm:text-base text-gray-600 dark:text-gray-400">
