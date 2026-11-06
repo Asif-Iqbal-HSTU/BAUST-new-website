@@ -45,6 +45,9 @@
         @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
         {{-- Search & social metadata, worked out on the server (App\Support\Seo) --}}
         @php($seo = \App\Support\Seo::forPage($page))
+        @if ($seo['preloadImage'])
+            <link rel="preload" as="image" href="{{ $seo['preloadImage'] }}" fetchpriority="high">
+        @endif
 
         {{-- SSR head tags. A hand-written title (config/seo.php) replaces the page component's. --}}
         @php(ob_start())

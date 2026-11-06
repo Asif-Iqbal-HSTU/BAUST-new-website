@@ -46,6 +46,15 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
         return () => clearInterval(t);
     }, [slides.length]);
 
+    // Slides whose photo may load: the first (server-rendered and preloaded, it is the page's
+    // LCP image), then the current and the next one, so the rest don't load all at once.
+    const [loadedSlides, setLoadedSlides] = useState<Set<number>>(() => new Set([0]));
+    useEffect(() => {
+        if (slides.length === 0) return;
+        const next = (currentSlide + 1) % slides.length;
+        setLoadedSlides((prev) => (prev.has(currentSlide) && prev.has(next) ? prev : new Set([...prev, currentSlide, next])));
+    }, [currentSlide, slides.length]);
+
     const formatDate = (dateStr: string) => {
         const d = new Date(dateStr);
         const day = d.getDate().toString().padStart(2, '0');
@@ -121,7 +130,7 @@ export default function DepartmentShow({ department, tabs, slides = [], highligh
                                 key={slide.id ?? idx}
                                 className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
                             >
-                                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
+                                <div className="absolute inset-0 bg-cover bg-center" style={loadedSlides.has(idx) ? { backgroundImage: `url('${slide.image}')` } : undefined} />
                                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/20 to-transparent" />
                                 <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10">
                                     {slide.title && (

@@ -68,7 +68,7 @@ class Seo
 
     /**
      * @param  array{component: string, props: array, url: string}  $page
-     * @return array{title: string, description: string, image: string, url: string, type: string, robots: string, titleOverride: bool, jsonLd: list<array>}
+     * @return array{title: string, description: string, image: string, url: string, type: string, robots: string, titleOverride: bool, preloadImage: ?string, jsonLd: list<array>}
      */
     public static function forPage(array $page): array
     {
@@ -84,6 +84,8 @@ class Seo
             'type' => 'website',
             'robots' => 'index, follow',
             'jsonLd' => [self::universityJsonLd()],
+            // The page's LCP image when the browser can't find it early itself (a CSS background).
+            'preloadImage' => null,
         ];
 
         // Admin, settings and auth screens are not for search engines.
@@ -139,6 +141,9 @@ class Seo
                 ?: self::excerpt($dept['about'] ?? null)
                 ?: self::excerpt($dept['tagline'] ?? null);
             $seo['image'] ??= $props['slides'][0]['image'] ?? ($dept['slides'][0]['image'] ?? null);
+            if ($component === 'Department/Show' && ! empty($props['slides'][0]['image'])) {
+                $seo['preloadImage'] = $props['slides'][0]['image'];
+            }
             $seo['jsonLd'][] = array_filter([
                 '@context' => 'https://schema.org',
                 '@type' => 'EducationalOrganization',
