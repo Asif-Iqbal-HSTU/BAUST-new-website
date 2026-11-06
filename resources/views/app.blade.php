@@ -37,14 +37,9 @@
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="apple-touch-icon" href="/images/BAUST%20logo.png">
 
-        <link rel="preload" href="/fonts/TiroBangla-Bengali.woff2" as="font" type="font/woff2" crossorigin>
-        <link rel="preload" href="/fonts/TiroBangla-Regular.ttf" as="font" type="font/ttf" crossorigin>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+        {{-- Body-text font, needed for the first paint. The other faces are self-hosted too
+             (resources/css/app.css) and load on demand; Tiro Bangla only where Bengali text appears. --}}
+        <link rel="preload" href="/fonts/instrument-sans-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
