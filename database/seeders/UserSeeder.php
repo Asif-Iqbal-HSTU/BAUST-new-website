@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     {
         // Delete existing admin users if they exist to prevent duplicates
         User::whereIn('email', [
-            'superadmin@baust.edu.bd',
+            'asif.ase@baust.edu.bd',
             'cseadmin@baust.edu.bd',
             'eeeadmin@baust.edu.bd',
             'ictadmin@baust.edu.bd',
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         // 1. Super Admin
         User::create([
             'name' => 'Super Admin',
-            'email' => 'superadmin@baust.edu.bd',
+            'email' => 'asif.ase@baust.edu.bd',
             'password' => Hash::make('password'),
             'role' => 'super_admin',
             'department' => null,
