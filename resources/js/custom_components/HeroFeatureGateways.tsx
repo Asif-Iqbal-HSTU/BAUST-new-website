@@ -83,7 +83,7 @@ const MODERN_CARDS: ModernCardItem[] = [
         },
         quickChips: [
             { label: 'Offered Programs', link: '/admission/program-offering' },
-            { label: 'Requirements', link: '/admission/admission-requirment' },
+            { label: 'Requirements', link: '/admission/admission-requirements' },
             { label: 'Tuition & Fees', link: '/admission/tuition-fees' },
             { label: 'Waiver & Aid', link: '/admission/waiver-and-financial-aid' }
         ],

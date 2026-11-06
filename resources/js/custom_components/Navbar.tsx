@@ -125,7 +125,7 @@ const mainNavItems = [
             { name: "Apply Online Instruction & Leaflet", href: "/admission/apply-online-instruction/" },
             { name: "Admission Notice", href: "/archive/notices?category=admission-notice" },
             { name: "Offered Programs", href: "/admission/program-offering/" },
-            { name: "Admission Requirements", href: "/admission/admission-requirment/" },
+            { name: "Admission Requirements", href: "/admission/admission-requirements" },
             { name: "Admission Procedure", href: "/admission/admission-procedure/" },
             { name: "Semester Fees & Payments", href: "/admission/tuition-fees/" },
             { name: "Waiver and Financial Aid", href: "/admission/waiver-and-financial-aid/" },
