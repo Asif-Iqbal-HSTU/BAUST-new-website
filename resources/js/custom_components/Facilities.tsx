@@ -104,7 +104,7 @@ const FACILITIES: FacilityItem[] = [
         category: 'Health & Well-being',
         badge: 'On-Campus Clinic',
         title: 'Medical Center',
-        description: 'Dedicated healthcare clinic providing free doctor consultations, 24/7 residential emergency care, oxygen support, and essential medicines led by Medical Officer Dr. Fowzia Jahan.',
+        description: 'Dedicated healthcare clinic providing free doctor consultations, 24/7 residential emergency care, oxygen support, and essential medicines.',
         image: '/images/facilities/medical_center_main-960.webp',
         link: '/facilities#medical',
         buttonText: 'View Staff & Contacts',

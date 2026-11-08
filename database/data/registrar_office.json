@@ -74,19 +74,6 @@
 "order": 6
 },
 {
-"name": "Fowzia Jahan",
-"designation": "Medical Officer",
-"photo": "/images/Office of the registrar/REG06.jpg",
-"phone": "01717415380",
-"email": "fowzia39th@gmail.com",
-"education": [
-"MBBS, DMUD"
-],
-"office": "registrar",
-"tier": 4,
-"order": 7
-},
-{
 "name": "Md. Shah Alam",
 "designation": "Information Officer",
 "photo": "/images/Office of the registrar/REG07.jpg",
@@ -211,19 +198,6 @@
 "office": "registrar",
 "tier": 4,
 "order": 17
-},
-{
-"name": "Halima Khatun Shuravi",
-"designation": "Nurse (Medical centre)",
-"photo": "/images/Office of the registrar/REG16.jpeg",
-"phone": "01755-249857",
-"email": "halimasurovi956@gmail.com",
-"education": [
-"B. Sc in Nursing"
-],
-"office": "registrar",
-"tier": 4,
-"order": 18
 },
 {
 "name": "Sgt Md. Abdul Hamid (Retd)",

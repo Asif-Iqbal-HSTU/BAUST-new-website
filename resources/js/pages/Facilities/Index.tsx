@@ -55,14 +55,6 @@ const ASSISTANT_PROVOSTS = [
 
 const MEDICAL_STAFF = [
     {
-        name: 'Dr. Fowzia Jahan',
-        designation: 'Medical Officer',
-        qualification: 'MBBS, DMUD (Sylhet M.A.G. Osmani Medical College, Sylhet)',
-        phone: '01769-675576',
-        email: 'medicalcenter@baust.edu.bd',
-        badge: 'Medical Officer',
-    },
-    {
         name: 'Md. Mozaffor Hossain',
         designation: 'Medical Assistant',
         qualification: 'Retired Sergeant, Bangladesh Army',
